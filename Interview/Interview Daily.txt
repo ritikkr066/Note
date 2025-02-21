@@ -1,0 +1,3 @@
+Q. Introduce yourself
+
+Sure, I'm Ritik , currently in my third year of pursuing a B.Tech in Computer Science. I've developed a strong foundation in programming, algorithms, and software development, and I've been actively involved in projects like trialshopy, hospital management that enhance my technical and problem-solving skills. Where I was responsible for UI design, Frontend and Backend development . I used technology  like ReactJs, Nodejs, ExpressJs MongoDB to build scalable and efficient solutions.  I'm excited to bring my skills and passion into a practical environment and contribute effectively to impactful projects."

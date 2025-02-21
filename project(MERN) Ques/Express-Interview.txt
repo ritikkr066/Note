@@ -1,0 +1,179 @@
+1. How do you handle routing in Express.js ?
+    In express.js routing is handled using Router class, which allows us to define routes for our application.
+
+2. What are difference between req.params, req.query and req.body ? 
+    In Express.js , req.params, req.query and req.body are used to access data sent in an HTTP request.
+
+    req.params
+        purpose : Captures route parameters specified in the URL path.
+        Source :  URL path (dynamic segments).	
+        Use Case : For accessing required parameters in dynamic routes (e.g., /users/:id).
+    
+    req.query
+        Purpose : Captures query string parameters appended to the URL.
+        Source : Query string (?key=value).
+    	Use Case : For filtering, sorting, or optional data (e.g., /search?name=john).
+
+    req.body
+        Purpose : Contains the request payload sent in the HTTP body (e.g., POST, PUT requests).
+        Source : Request body.
+        Use Case : For sending data like JSON, form fields, etc. (e.g., creating a user)
+
+        Code:
+        const express = require("express");
+        const app = express();
+
+        // Middleware to parse JSON bodies
+        app.use(express.json());
+
+        // Route using `req.params`
+        app.get("/users/:id", (req, res) => {
+        const userId = req.params.id;
+        res.send(`User ID from params: ${userId}`);
+        });
+
+        // Route using `req.query`
+        app.get("/search", (req, res) => {
+        const searchTerm = req.query.q;
+        res.send(`Search term from query: ${searchTerm}`);
+        });
+
+        // Route using `req.body`
+        app.post("/users", (req, res) => {
+        const { name, email } = req.body;
+        res.send(`User created with name: ${name} and email: ${email}`);
+        });
+
+        // Start the server
+        app.listen(3000, () => {
+        console.log("Server running on http://localhost:3000");
+        });
+
+    
+    OUTPUT:-
+    req.params:
+    Request: GET http://localhost:3000/users/123
+    Output: User ID from params: 123
+
+    req.query:
+    Request: GET http://localhost:3000/search?q=nodejs
+    Output: Search term from query: nodejs
+
+    req.body:
+    Request: POST http://localhost:3000/users
+        {
+            "name": "John",
+            "email": "john@example.com"
+        }
+    Output: User created with name: John and email: john@example.com
+
+3. What are Middleware functions in Express.js , how do they work ?
+
+    1. Application-Level Middleware:Applied globally across the entire application.
+        Defined using app.use() or route-specific handlers.
+    
+    2. Router-Level Middleware : Specific to a route or group of routes.
+        Applied to instances of express.Router().
+    
+    3.  Error-Handling Middleware : Handles errors in the application.
+        Must include four arguments: (err, req, res, next).
+
+4. How can you handle errors in express Application?
+
+        -> Error Handling Middleware
+        -> 404 Handling
+        -> custom error types
+
+5. What is the role of body parsers in Express, and how do you use them ?
+    Body parsers make it easier to work with data sent from a client to a server.
+    For example, if a client sends JSON data in a POST request, the body parser will convert that JSON string into a Javascript object, so we can access the values directly
+
+6. How do you implement authentication and authorisation in Express ?
+
+    Authentication : Authentication is the process of verifying the identity of a user
+
+    Authorization : Authorization determines what actions the authenticated user is allowed to a perform 
+
+    Basic Authentication (Login) and Authorization (Access Control) Example
+
+    const express = require("express");
+    const jwt = require("jsonwebtoken");
+    const bcrypt = require("bcryptjs");
+
+    const app = express();
+    app.use(express.json()); // Middleware to parse JSON bodies
+
+    const SECRET_KEY = "your-secret-key"; // Secret key for JWT
+    let users = []; // Example user store (in-memory for demo)
+
+    // Simulate user registration (hash password before storing)
+    app.post("/register", async (req, res) => {
+        const { username, password } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10); // Hash the password
+        users.push({ username, password: hashedPassword });
+        res.status(201).send("User registered successfully");
+    });
+
+    // Authentication: Verify user and generate JWT token
+    app.post("/login", async (req, res) => {
+        const { username, password } = req.body;
+        
+        // Find user by username
+        const user = users.find(u => u.username === username);
+        if (!user) {
+            return res.status(400).send("Invalid username or password");
+        }
+
+        // Verify password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).send("Invalid username or password");
+        }
+
+        // Create JWT token
+        const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: "1h" });
+        res.json({ token });
+    });
+
+    // Middleware to verify JWT and protect routes
+    function authenticateToken(req, res, next) {
+        const token = req.header("Authorization")?.split(" ")[1];
+        if (!token) {
+            return res.status(401).send("Access denied. No token provided.");
+        }
+
+        jwt.verify(token, SECRET_KEY, (err, decoded) => {
+            if (err) {
+            return res.status(403).send("Invalid token");
+            }
+            req.user = decoded; // Attach decoded user info to request object
+            next(); // Proceed to the next middleware or route handler
+        });
+    }
+
+    // Authorization: Protecting routes and checking user permissions
+    app.get("/profile", authenticateToken, (req, res) => {
+        res.json({ message: `Welcome, ${req.user.username}! This is your profile.` });
+    });
+
+    app.listen(3000, () => console.log("Server running on http://localhost:3000"));
+ --------------------------------------------------------------------------------------------------------------------->
+
+7. What is CORS , and how do you handle it in an Express application 
+        cross origin request
+
+        when one website tries to get data or information from a different website
+
+        Cross-Origin Resource Sharing(CORS) is a security mechanism implemented by web browser that allows servers to specify who can access their rsources over the web. CORS works by using HTTP headers to define which origin(domains) are permitted to make requests  to the server.
+
+8. How do you manage sessions in Express ?
+    In Express, session  management is commonoly handled using middleware like express-session. This middleware helos store session data on the server, ensuring that each user has their own session with a unique identifier. 
+
+9. How do you create a RESTful API using Express ?
+
+    A RESTful API ( Representational State Transfer API) is a way for different software application to communicate with each other over the internet using a set of rules.
+    
+
+
+
+

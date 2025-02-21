@@ -1,0 +1,78 @@
+
+#General Payment Gateway Questions
+
+1. What is a payment gateway?
+   - It helps process online payments securely between customers, merchants, and banks.
+
+2. How do you ensure security?
+   - Use HTTPS, encrypt data with SHA256, and store keys securely (like in environment variables).
+
+3. What fields are needed for a payment request?
+   - Merchant ID, Transaction ID, Amount, Redirect URL, and Security Hash.
+
+4. What is the `X-VERIFY` header?
+   - It proves the request is valid, created by hashing the payload and other details.
+
+5. What if a payment fails?
+   - Show a clear failure message, let the user retry, and use the status API to confirm the result.
+
+---
+
+ Technical Questions
+
+6. Why use base64 and SHA256?
+   - Base64 makes data safe to send, and SHA256 ensures the data hasn’t been changed.
+
+7. How to validate the payment response?
+   - Check the status, verify the hash, and match transaction details.
+
+8. What if the `redirectUrl` doesn’t work?
+   - Use a `callbackUrl` to get the status directly on the server.
+
+9. Why is `merchantTransactionId` important?
+   - It prevents confusion by uniquely identifying each transaction.
+
+10. How to debug payment issues?
+    - Check logs, verify the payload, and test using sandbox (test) mode.
+
+---
+
+ Error Handling
+
+11. What happens if `X-VERIFY` is wrong?
+    - The gateway rejects the request, so recheck your hash logic.
+
+12. How to handle duplicate requests?
+    - Use the same `merchantTransactionId` to check the original transaction status.
+
+13. What if the gateway is down?
+    - Retry with delays and notify users of the issue.
+
+14. How to avoid fraud?
+    - Validate user details, limit retries, and use fraud checks.
+
+15. How to secure redirect and callback URLs?
+    - Use HTTPS and verify incoming requests with a hash.
+
+---
+
+ Concepts
+
+16. Difference between `redirectUrl` and `callbackUrl`:
+   - `redirectUrl`: Brings the user back after payment.
+   - `callbackUrl`: Informs your server about the payment result.
+
+17. What is idempotency?
+   - It ensures repeated requests don’t process the same payment twice.
+
+18. Why use `SALT_INDEX`?
+   - It tells the gateway which key to use for validation.
+
+19. How to secure keys?
+   - Store them in environment variables, not in your code.
+
+20. Handling success, error, and pending statuses:
+   - Success: Show a thank-you page.
+   - Error: Allow retries.
+   - Pending: Inform the user to check later.
+

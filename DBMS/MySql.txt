@@ -1,0 +1,470 @@
+create database ORG;
+show databases;
+use ORG;
+create table worker(
+WORKER_ID int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+FIRST_NAME char(25),
+LAST_NAME char(25),
+SALARY int(25),
+JOINING_DATE DATETIME,
+DEPARTMENT char(25)
+);
+show tables;
+
+INSERT INTO worker
+(WORKER_ID,FIRST_NAME,LAST_NAME,SALARY,JOINING_DATE,DEPARTMENT)values
+    (0001,"Monika","Singh",100000,'14-02-20 09.00.00','HR'),
+    (0002,"Mohan","Verma",800000,'14-06-20 09.00.00','Admin'),
+    (0003,"Arora","Sharma",500000,'14-01-21 09.00.00','Admin'),
+    (0004,"Sohan","Patel",820000,'14-02-22 09.00.00','Account'),
+    (0005,"Shyam","Kapur",450000,'14-07-20 09.00.00','HR'),
+    (0006,"Priyam","Kumar",200000,'14-12-20 09.00.00','Admin'),
+    (0007,"Satish","Bhati",950000,'14-04-20 09.00.00','Account'),
+    (0008,"Vishal","Kapur",150000,'14-08-20 09.00.00','HR');
+select * from worker;
+
+create table bonus(
+WORKER_REF_ID int,
+BONUS_AMOUNT int(10),
+BONUS_DATE datetime,
+foreign key (WORKER_REF_ID)
+	references worker(WORKER_ID)
+    ON DELETE cascade
+    );
+    
+insert into bonus
+	(WORKER_REF_ID,BONUS_AMOUNT,BONUS_DATE)values
+    (001,5000,'16-02-20'),
+    (002,3000,'16-02-11'),
+    (003,4000,'16-02-20'),
+    (001,4500,'16-02-20'),
+	(002,3500,'16-06-16');
+    
+create table Title(
+	WORKER_REF_ID int,
+    WORKER_TITLE char(25),
+    AFFECTED_FROM datetime,
+     foreign key(WORKER_REF_ID)
+     references worker(WORKER_ID)
+);
+
+insert into Title
+	(WORKER_REF_ID,WORKER_TITLE,AFFECTED_FROM)values
+    (001,"Manager",'2016-02-20 00:00:00'),
+    (002,"Executive",'2016-06-11 00:00:00'),
+    (008,"Executive",'2016-06-12 00:00:00'),
+    (004,"Manager",'2016-06-11 00:00:00'),
+    (007,"Assit. Manager",'2016-02-20 00:00:00'),
+    (006,"Executive",'2016-06-11 00:00:00'),
+    (003,"Lead",'2016-08-11 00:00:00'),
+    (005,"Lead",'2016-06-20 00:00:00');
+    show tables;
+    select * from title;
+
+
+//worker table
+1	Monika	Singh	100000	2014-02-20 09:00:00	HR
+2	Mohan	Verma	800000	2014-06-20 09:00:00	Admin
+3	Arora	Sharma	500000	2014-01-21 09:00:00	Admin
+4	Sohan	Patel	820000	2014-02-22 09:00:00	Account
+5	Shyam	Kapur	450000	2014-07-20 09:00:00	HR
+6	Priyam	Kumar	200000	2014-12-20 09:00:00	Admin
+7	Satish	Bhati	950000	2014-04-20 09:00:00	Account
+8	Vishal	Kapur	150000	2014-08-20 09:00:00	HR
+
+
+//bonus table
+1	5000	2016-02-20 00:00:00
+2	3000	2016-02-11 00:00:00
+3	4000	2016-02-20 00:00:00
+1	4500	2016-02-20 00:00:00
+2	3500	2016-06-16 00:00:00
+
+//Title table
+1	Manager	2016-02-20 00:00:00
+2	Executive	2016-06-11 00:00:00
+8	Executive	2016-06-12 00:00:00
+4	Manager	2016-06-11 00:00:00
+7	Assit. Manager	2016-02-20 00:00:00
+6	Executive	2016-06-11 00:00:00
+3	Lead	2016-08-11 00:00:00
+5	Lead	2016-06-20 00:00:00
+
+
+
+//////PAGE 2 /////
+
+
+select now();
+select lcase("RITIK");
+select * from worker ;
+select FIRST_NAME, SALARY from worker where SALARY>900000;
+select FIRST_NAME, SALARY from worker where DEPARTMENT='HR';
+select FIRST_NAME, SALARY from worker where  WORKER_ID between 0001 AND 0004;
+-- remove OR
+select FIRST_NAME, SALARY from worker where DEPARTMENT  in('Admin','HR','Account');
+-- not
+select FIRST_NAME, SALARY from worker where DEPARTMENT not  in('Admin','HR');
+-- wild card %oh%  -> sohan mohan
+select * from worker where FIRST_NAME LIKE '__n%';
+
+-- sorting by using  ordering by asc or desc
+select * from worker order by SALARY desc;
+
+-- Distinct
+select distinct DEPARTMENT from worker;
+
+-- find no of employee working in diff. department- GROUP BY
+-- GROUP BY is used along AGGERGATE fn COUNT SUM AVG MAX
+select department,count(DEPARTMENT) from worker group by DEPARTMENT; 
+
+-- AVG salary per deaprrtment
+select department, avg(salary) from worker group by DEPARTMENT;
+
+-- MIN salary per department
+select department, min(salary) from worker group by DEPARTMENT;
+
+
+
+-- max
+select department, max(salary) from worker group by DEPARTMENT;
+
+-- Group by having
+select department,count(DEPARTMENT) from worker group by DEPARTMENT having count(DEPARTMENT)>2; 
+
+
+
+-- Join
+
+use ORG;
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    City VARCHAR(50)
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    OrderDate DATE,
+    CustomerID INT,
+    Amount DECIMAL(10, 2)
+   -- FOREIG N KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+drop table Orders;
+INSERT INTO Customers (CustomerID, FirstName, LastName, City)
+VALUES 
+(1, 'John', 'Doe', 'New York'),
+(2, 'Jane', 'Smith', 'Los Angeles'),
+(3, 'Michael', 'Brown', 'Chicago'),
+(4, 'Emily', 'Davis', 'Houston'),
+(5, 'Johny', 'Doeyy', 'New York'),
+(6, 'kanee', 'Smith ', 'Los Angeles'),
+(8, 'Mich', 'singh', 'Chicago'),
+(9, 'Emilyyyyy', 'Davis', 'Houston');
+
+
+select * from Customers;
+
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, Amount)
+VALUES 
+(101, '2024-08-01', 1, 150.00),
+(102, '2024-08-02', 2, 250.00),
+(103, '2024-08-03', 1, 200.00),
+(104, '2024-08-04', 3, 300.00),
+(105, '2024-08-05', 10, 120.00),
+(106, '2024-08-03', 6, 200.00),
+(107, '2024-08-04', 3, 300.00),
+(108, '2024-08-05', 9, 120.00);
+
+
+
+select * from Orders;
+
+-- Inner join :  Retrieves records that have matching values in both tables.
+
+SELECT Customers.CustomerID AS ID, Customers.FirstName, Customers.LastName, Orders.OrderDate, Orders.Amount
+FROM Customers
+INNER JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+-- LEFT JOIN (or LEFT OUTER JOIN): Retrieves all records from the left table (Customers), and the matched records from the right table (Orders). If no match, NULL is returned for the right table.
+
+SELECT Customers.CustomerID as ID, Customers.FirstName, Customers.LastName, Orders.OrderDate, Orders.Amount
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+	-- 2nd method without using JOIN
+
+select Customers.CustomerID AS ID, Customers.FirstName, Customers.LastName, Orders.OrderDate, Orders.Amount
+from Orders, Customers
+where  Customers.CustomerID = Orders.CustomerID;
+
+-- RIGHT JOIN (or RIGHT OUTER JOIN): Retrieves all records from the right table (Orders), and the matched records from the left table (Customers) If no match, NULL is returned for the left table.
+
+SELECT Customers.CustomerID as ID, Customers.FirstName, Customers.LastName, Orders.OrderDate, Orders.Amount
+FROM Customers
+RIGHT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+-- FULL JOIN: MySQL does not directly support FULL OUTER JOIN, but you can achieve this by combining LEFT JOIN and RIGHT JOIN using UNION.
+
+SELECT  Customers.CustomerID as ID, Customers.FirstName, Customers.LastName, Orders.OrderDate, Orders.Amount
+FROM Customers
+LEFT JOIN Orders ON Customers.CustomerID = Orders.CustomerID
+UNION
+SELECT  Customers.CustomerID as ID , Customers.FirstName, Customers.LastName, Orders.OrderDate, Orders.Amount
+FROM Customers
+RIGHT JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+
+-- CROSS JOIN: Retrieves all combinations of records from both tables (cartesian product).
+
+SELECT Customers.FirstName, Customers.LastName, Orders.OrderDate, Orders.Amount
+FROM Customers
+CROSS JOIN Orders;
+
+
+//SET
+
+use ORG;
+
+CREATE TABLE TableA (
+    ID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+
+CREATE TABLE TableB (
+    ID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);
+
+INSERT INTO TableA (ID, Name)
+VALUES 
+(1, 'Alice'),
+(2, 'Bob'),
+(3, 'Charlie');
+
+INSERT INTO TableB (ID, Name)
+VALUES 
+(2, 'Bob'),
+(3, 'Charlie'),
+(4, 'David');
+
+-- union
+
+SELECT * FROM TableA
+UNION
+SELECT * FROM TableB;
+
+-- union all contains Duplicate
+
+SELECT Name FROM TableA
+UNION ALL
+SELECT Name FROM TableB;
+
+-- intersect
+
+SELECT Name  FROM TableA
+WHERE Name IN (SELECT Name FROM TableB);
+
+select TableA.* from TableA inner join TableB using(ID);
+
+-- minus B-A
+
+select TableB.* from TableB left join TableA using(ID) where TableA.ID is null;
+
+
+// SUB-QUERIES
+
+create database ORG1;	
+use ORG1;
+
+CREATE TABLE Customers (
+    CustomerID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT
+);
+
+CREATE TABLE Orders (
+    OrderID INT PRIMARY KEY,
+    CustomerID INT,
+    Amount DECIMAL(10, 2),
+    OrderDate DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+INSERT INTO Customers (CustomerID, FirstName, LastName, Age)
+VALUES 
+(1, 'John', 'Doe', 28),
+(2, 'Jane', 'Smith', 32),
+(3, 'Michael', 'Brown', 40),
+(4, 'Emily', 'Davis', 22),
+(5, 'David', 'Wilson', 35);
+
+select * from Customers where Age in (select Age from Customers where Age>30);
+
+INSERT INTO Orders (OrderID, CustomerID, Amount, OrderDate)
+VALUES 
+(101, 1, 300.00, '2024-08-01'),
+(102, 2, 150.00, '2024-08-02'),
+(103, 1, 250.00, '2024-08-03'),
+(104, 3, 400.00, '2024-08-04'),
+(105, 4, 200.00, '2024-08-05'),
+(106, 5, 600.00, '2024-08-06'),
+(107, 5, 150.00, '2024-08-07');
+
+-- total spent by customers 
+
+SELECT 
+    FirstName, LastName, Age,
+    (SELECT SUM(Amount) 
+     FROM Orders 
+     WHERE Orders.CustomerID = Customers.CustomerID) AS TotalSpent
+FROM Customers;
+
+-- customer who spent more than 500 
+
+SELECT FirstName, LastName, TotalSpent
+FROM (
+    SELECT CustomerID, SUM(Amount) AS TotalSpent
+    FROM Orders
+    GROUP BY CustomerID
+) AS CustomerTotals
+JOIN Customers ON Customers.CustomerID = CustomerTotals.CustomerID
+WHERE TotalSpent > 500;
+
+
+-- customer placed over 500
+
+SELECT FirstName, LastName
+FROM Customers
+WHERE CustomerID IN 
+    (SELECT CustomerID 
+     FROM Orders 
+     WHERE Amount > 500);
+     
+ -- who order > 1 
+ 
+SELECT FirstName, LastName
+FROM Customers c
+WHERE (SELECT COUNT(*) 
+       FROM Orders o 
+       WHERE o.CustomerID = c.CustomerID) > 1;
+       
+-- who never placed order
+
+SELECT FirstName, LastName
+FROM Customers c
+WHERE NOT EXISTS 
+    (SELECT 1 
+     FROM Orders o 
+     WHERE o.CustomerID = c.CustomerID);
+     
+select min(Age) from (select * from Customers where FirstName like '%a%') as temp ; 
+
+SELECT FirstName, LastName
+FROM Customers c
+WHERE EXISTS (
+    SELECT 0 
+    FROM Orders o
+    WHERE o.CustomerID = c.CustomerID
+    AND o.Amount > (
+        SELECT AVG(Amount)
+        FROM Orders
+        WHERE CustomerID = c.CustomerID
+    )
+);
+
+select * from Customers;
+-- view
+create view custom_view AS select CustomerID , Age from Customers;
+
+select * from custom_view;
+
+-- alter
+alter VIEW custom_view as select FirstName, Age from Customers;
+
+
+
+
+-- TRANSCATION
+
+use ORG1;
+
+CREATE TABLE Accounts (
+    AccountID INT PRIMARY KEY,
+    Balance DECIMAL(10, 2)
+);
+
+INSERT INTO Accounts (AccountID, Balance)
+VALUES 
+(1, 1000.00),
+(2, 500.00);
+
+select * from Accounts;
+
+-- 1st method
+
+START TRANSACTION;
+
+-- Step 4: Deduct money from the sender's account
+UPDATE Accounts
+SET Balance = Balance - 200.00
+WHERE AccountID = 1;
+
+-- Step 5: Add money to the recipient's account
+UPDATE Accounts
+SET Balance = Balance + 200.00
+WHERE AccountID = 2;
+
+-- Step 6: Check if the balances are correct
+-- If they are, commit the transaction; otherwise, roll it back
+COMMIT;
+
+-- using function
+
+DELIMITER $$
+CREATE PROCEDURE Transfer()
+BEGIN
+    -- Deduct money from account 1
+    UPDATE Accounts
+    SET Balance = Balance - 100.00
+    WHERE AccountID = 1;
+
+    -- Add money to account 2
+    UPDATE Accounts
+    SET Balance = Balance + 100.00
+    WHERE AccountID = 2;
+END$$
+DELIMITER ;
+
+CALL Transfer();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+					

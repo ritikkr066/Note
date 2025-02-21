@@ -1,0 +1,95 @@
+1. What are the main differences between MongoDB and relational databases?
+    Relational Database : Data is split into tables with strict relatiionships. These relatiionships must be managed carefully, and chnages to the structure require significant updates.
+
+    MongoDB : Everything is stored together in one document, making it flexible and easy to work with. 
+              New field can be easily added without needing to changes the entire databases structure
+
+        Feature        MongoDB                                    Relational databases
+        Schema         No fixed structure                         Fixed structure, all records must follow the same format
+        Transcation    Support basic Transcation                  Strong support for Transcation ensuring data reliability
+        Best for       Application with varying data,real-time    Application needed complex query and structure data like banking system
+
+2. What is the differences between a document and a collection in MongoDB ?
+
+    Document :- A single entry in a MongoDB collection in BSON(Binary JSON ) format. it consists of field-value pairs, where fields are strings, and values can be various types.
+        Document: { 
+            "_id": 1,
+            "name": "Alice", 
+            "age": 25
+         }.
+
+    Collection :- It's is the grouping of document. it acts as a container for docuements , similar to a table in a relational database.
+        Collection name: users.
+
+3. What is a Replica Set in MongoDB?
+    A replica set is a group of MongoDB servers that work together to ensuring data redundancy and high availability 
+    It consists of one primary node and one more secondary node that replicate the primary node's data
+
+    Read Operation:
+        -> By default, all read operations are directed to the primary node to ensure data consistency.
+        -> Secondary nodes can also handle read operations if explicitly configured using a read preference
+            eg.
+            // Default read (from primary)
+                db.collection.find({ age: { $gte: 30 } });
+
+            // Read from secondary
+                db.collection.find({ age: { $gte: 30 } }).readPref("secondary");
+    
+    Write Operation:
+        -> All write operations are handled by the primary node
+        -> The primary node logs the operation in its oplog (operation log), and the secondaries replicate the change asynchronously.
+
+4. How does MongoDB handle data consistence?
+    
+    1.Write consistency
+        Levels: 
+        w: 1 (default): Acknowledgment from the primary node only.
+        w: "majority": Acknowledgment from a majority of nodes in the replica set.
+        w: 0: No acknowledgment required (fire-and-forget mode).
+
+            eg. db.collection.insertOne({ name: "Alice", age: 25 }, { writeConcern: { w: "majority" } });
+
+    2. Read consistency
+        Levels:
+        local (default): Returns data from the node’s memory, not guaranteeing replication.
+        majority: Ensures the data read is acknowledged by a majority of the nodes.
+        linearizable: Guarantees the read operation reflects the most recent write.
+        available: Returns data even if the node is not in sync.
+
+        eg. db.collection.find({ name: "Alice" }).readConcern("majority");
+    
+    3.  Replica Sets
+        The primary node handles all writes.
+        The secondary nodes replicate data from the primary asynchronously.
+        If the primary fails, a new primary is elected to ensure continuity.
+
+    4. Transaction Support
+        MongoDB supports ACID transactions for multi-document operations.
+        Transactions ensure atomicity, consistency, isolation, and durability across multiple documents or collections.
+
+5. What are indexes in MongoDB , and why are they important ?
+    They work by storing a small portion of the data in a way that makes it quicker to search through.
+    Indexes are similar to the index at the front book, which allows you to quickly locate a topic without having to read every page 
+
+    it helps in 
+        1. faster Query performance
+        2. Efficient sorting 
+        3. improved Filtering
+
+6. Explain the concept of aggregation in MongoDB
+    Aggregation operation allow us to transform and analyze data in a MongoDB collection
+
+7. How does sharding work in MongoDB ?
+    Sharding in MongoDB is a method used to distribute data accross multiple servers or "shards" to ensure that the database can handle large datasets and high traffic
+
+8. What is the role of the ObjectInd in MongoDB documents?
+    A 4-byte timestamps represent the creation time.
+    A 5-byte random value(unique to the machine and process)
+    A 3-byte incrementing counter(initialised to a random value)
+
+9. How do you handle transcations in MongoDB ?
+    Start a Session : const session = client.startSession();
+    Start a Transaction : session.startTranscation();
+    perform operation :
+    commit the Transaction : await session.commitTranscation();
+    End the session : session.endSession();

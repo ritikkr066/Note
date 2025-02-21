@@ -1,0 +1,91 @@
+Requirement Analysis and Specification in Software Engineering
+
+Requirement Analysis and Specification is a critical phase in the Software Development Life Cycle (SDLC). It involves understanding, documenting, and validating the needs and expectations of the stakeholders to ensure the software solution aligns with their objectives.
+
+Key Steps in Requirement Analysis and Specification
+1.Requirement Gathering:
+2. Requirement Analysis:
+3.Requirement Specification:
+4.Validation:
+
+Importance of Requirement Analysis and Specification
+1.Prevents Misunderstandings:
+	Ensures developers and stakeholders have a shared understanding of the project scope.
+2.Reduces Costs:	
+3.Improves Quality:
+4.Facilitates Communication:
+
+
+**A good SRS is a well-structured and precise document that effectively communicates the software requirements to all stakeholders. It serves as a clear reference point for developers, testers, project managers, and clients.
+
+**A bad SRS is poorly written, incomplete, or ambiguous, leading to miscommunication, development delays, and increased project costs.
+
+
+1. Functional Requirements
+Functional requirements describe the specific behaviors, actions, and operations that a software system must perform.
+They define what the system should do.
+like:- User Authentication,Data Processing,Search Functionality,Notifications
+
+2. Non-Functional Requirements
+Non-functional requirements describe the quality attributes or constraints of the system. They define how the system should perform or operate.
+like:-Performance,Scalability,Security,Availability,Usability
+
+
+
+		FORMAL SPECIFICATION
+
+Formal Specification is a mathematical approach to defining the requirements and behavior of a software system.
+It uses formal methods, which are precise, rigorous, and unambiguous, to describe what a system should do
+
+1.Property-oriented techniques:
+Axiomatic Specification and Algebraic Specification
+
+1. Axiomatic Specification:-Axiomatic specification is a method of defining a system's behavior by specifying a set of axioms (basic truths) and rules that govern the operations on data. It focuses on stating the properties of operations (or functions) in a formal way
+
+Structure of Axiomatic Specifications:
+Preconditions: Conditions that must hold before an operation is executed.
+Postconditions: Conditions that must hold after an operation has completed.
+Invariants: Properties that must always hold true, even during operation execution.
+Example:
+Consider a Stack with the following operations:
+
+Push(x): Adds item x to the stack.
+Pop(): Removes the top item from the stack and returns it.
+Top(): Returns the top item without removing it.
+
+
+2. Algebraic Specification
+Algebraic specification is a technique that uses algebraic data types and operations to define the system's behavior. It focuses on defining data types (or structures) and the operations on them. Algebraic specifications use equations to describe how operations should behave on the data types,
+
+Consider a Set abstract data type with the following operations:
+
+Union(S1, S2): Returns the union of two sets.
+Intersection(S1, S2): Returns the intersection of two sets.
+Difference(S1, S2): Returns the difference of two sets.
+
+
+		SOFTWARE DESIGN
+
+Software Design is a critical phase in the software development life cycle (SDLC) that involves converting software requirements into a detailed blueprint for building the system. It bridges the gap between problem analysis (requirements) and the actual implementation (coding).
+
+Modularity in Software Engineering:Modularity is a design principle in software engineering that involves dividing a software system into smaller, manageable, and independent units called modules. Each module performs a specific function or part of the system's overall functionality and can be developed, tested, and maintained independently.
+
+Cohesion and Coupling in Software Engineering
+Cohesion and coupling are two fundamental concepts in software design that influence the maintainability, scalability, and flexibility of a system. They describe the relationships between modules or components of a software system and are essential for achieving a well-structured and modular design.
+
+Cohesion: The degree to which components within a module are related. 
+	 high cohesion means that a module has a single responsibility and all its components are tightly related.
+
+Coupling: The degree of dependency between modules.
+Coupling refers to the degree of dependence or interaction between different modules or components of a system. In simpler terms, low coupling means that modules interact with each other minimally, while high coupling indicates a high degree of dependency between them.
+
+Functional independence refers to the concept of designing software modules or components in such a way that each module performs a single, well-defined function or task with minimal dependencies on other modules.
+
+
+Object-Oriented versus Function-Oriented Design in software engineering
+
+Object-Oriented Design is a design paradigm based on the concept of "objects," which are instances of classes. OOD focuses on organizing software around real-world entities and their behaviors.
+	The system is broken down into smaller, manageable objects or classes, making the system easier to understand, maintain, and extend.
+
+Function-Oriented Design is based on the concept of "functions" or "procedures" that perform tasks or computations. FOD emphasizes the step-by-step transformation of input data into output.
+	The system is divided into functions or procedures that perform specific operations. Each function takes some input, processes it, and returns a result.

@@ -1,0 +1,86 @@
+
+Network Topologies
+    The layout or structure of a network, describing how devices are connected.
+
+1.Bus Topology:- All devices are connected to a central cable, known as the bus or backbone. Signals are sent along this bus, and all devices receive them.
+    disadvantages:-If the central bus fails, the entire network goes down.
+
+2.Star Topology:- All devices are connected to a central hub or switch. Each device has a dedicated point-to-point connection to the hub.
+    disadvantages:-If the central hub or switch fails, the entire network is affected.
+
+3.Ring Topology:-Each device is connected to exactly two other devices, forming a circular data path. Data travels in one direction (or both, in a dual ring topology).
+    disadvantages:-A failure in any single connection or device can disrupt the entire network.
+
+4.Mesh Topology:-Devices are interconnected, with each device having multiple connections to other devices. This can be a full mesh (every device connects to every other device) or a partial mesh (some devices are connected, but not all).
+    disadvantages:-Expensive due to the amount of cabling and hardware required.
+
+5.Tree Topology:-A combination of star and bus topologies. Groups of star-configured networks are connected to a linear bus backbone. It’s hierarchical, with a central node at the top and branches extending below.
+    disadvantages:-If the backbone fails, the entire network can be affected.
+                    More complex and expensive than star or bus topologies
+
+##OSI MODEL
+The OSI (Open Systems Interconnection) model is a conceptual framework used to understand and standardize the functions of a network protocol. It divides the process of network communication into seven distinct layers, each responsible for specific tasks. Here's a simple breakdown of each layer and its key functions:
+
+1. Physical Layer (Layer 1)
+- Role: Handles the physical connection between devices. 
+- Function: Defines hardware elements like cables, switches, and the electrical signals used for data transmission.
+- Example: The Ethernet cables and the physical ports on your router.
+
+2. Data Link Layer (Layer 2)
+- Role: Manages communication between devices on the same network.
+- Function: Responsible for error detection, frame synchronization, and controlling how data is placed onto the network.
+- Example: Ethernet frames and MAC addresses used to identify devices on the same network.
+
+3. Network Layer (Layer 3)
+- Role: Determines the best path for data to travel across networks.
+- Function: Handles routing of data packets and logical addressing (IP addresses) to ensure they reach the correct destination.
+- Example: IP addresses and routers that direct data from one network to another.
+
+4. Transport Layer (Layer 4)
+- Role: Ensures reliable data transfer between devices.
+- Function: Manages data flow control, error correction, and retransmission of lost data. It breaks data into segments and ensures they are reassembled correctly.
+- Example: TCP (Transmission Control Protocol) and UDP (User Datagram Protocol).
+
+5. Session Layer (Layer 5)
+- Role: Manages sessions or connections between applications.
+- Function: Controls the start, maintenance, and termination of sessions between applications, enabling communication and data exchange.
+- Example: Session management in online chat applications.
+
+6. Presentation Layer (Layer 6)
+- Role: Translates data between the application layer and the network.
+- Function: Handles data encoding, encryption, and compression to ensure that data is in a readable format for the application layer.
+- Example: Encryption protocols like SSL/TLS and data formats like JPEG or GIF.
+
+7. Application Layer (Layer 7)
+- Role: Provides network services directly to end-user applications.
+- Function: Interfaces with software applications to provide network services such as email, file transfer, and web browsing.
+- Example: HTTP for web browsing, SMTP for email, and FTP for file transfer.
+
+Summary
+- Layer 1 (Physical): Deals with hardware and physical connections.
+- Layer 2 (Data Link): Manages data frames and device addressing.
+- Layer 3 (Network): Handles routing and logical addressing.
+- Layer 4 (Transport): Ensures reliable data transfer and flow control.
+- Layer 5 (Session): Manages sessions and connections between applications.
+- Layer 6 (Presentation): Translates, encrypts, and compresses data.
+- Layer 7 (Application): Provides network services to end-user applications.
+
+example:-
+Summary of the Example:
+- Physical Layer: Sends the raw data bits through the physical connection (cable or wireless).
+- Data Link Layer: Frames the data with MAC addresses for local network delivery.
+- Network Layer: Routes the data across networks using IP addresses.
+- Transport Layer: Ensures the data packets are sent reliably and in the correct order.
+- Session Layer: Manages the connection session between the email client and server.
+- Presentation Layer: Encodes and formats the email data for transmission.
+- Application Layer: Interfaces with the email client and server to send and receive emails.
+					*****
+
+
+.ARP (Address Resolution Protocol):When a device wants to communicate with another device on the same network, it uses ARP to find the corresponding MAC address for the given IP address
+	ARP: For mapping IP addresses to MAC addresses.
+	ARP: Broadcasts requests and receives responses to map IP addresses to MAC addresses.
+
+ ICMP (Internet Control Message Protocol):
+	ICMP: For error reporting and network diagnostics.
+	ICMP: Sends control and error messages encapsulated within IP packets.

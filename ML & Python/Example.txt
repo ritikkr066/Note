@@ -1,0 +1,8 @@
+1. How machine learning used in OLA?
+
+"Let's say, in a particular area, Ola notices that there is a high demand for cabs between 8 am and 11 am. To meet this demand, Ola designates the area as a hotspot and increases the prices during that time. They also notify drivers that if they pick up passengers from the hotspot area, they will earn 2x-3x the usual fare. In this way, Ola uses machine learning to predict demand, ensuring customer needs are met while also providing drivers with an opportunity to earn extra income."
+
+
+2.How machine learning used in SuperMarket?
+
+"In a supermarket, machine learning can analyze data from thousands of bills to identify patterns of items that are frequently purchased together. For example, if the data shows that customers often buy bread and butter together, the supermarket can strategically place these items closer to each other or offer bundle discounts. This approach not only enhances the shopping experience but also encourages customers to buy more, ultimately leading to increased profits for the supermarket."

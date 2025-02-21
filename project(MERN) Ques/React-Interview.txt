@@ -1,0 +1,114 @@
+1. Explain Virtual DOM and how it works?
+    The Virtual DOM(Document OBject Model) is used to improve the efficiency of updating the user interface(UI) in web applications , expecially in javascript framework React. It acts as a lightweight copy of real dom allowing changes to be made quickly without directly modifying the actual dom each time.
+
+2. what is state management in React ?
+
+    State management involves controlling the flow and handling of data within our app to ensure the UI responds correctly to user inputs and data changes.
+    or,
+    State management control the flow of data to ensure that UI responds correctly to user input or data changes.
+
+
+    Technique	        Pros	                                                Cons
+
+    Component State	    Simple and intuitive for local state management.	    Not suitable for sharing state across components.
+    Prop Drilling	    Straightforward for small hierarchies.	                Becomes unmanageable in deeply nested components.
+    Context API	        Avoids prop drilling, lightweight.	                    Not ideal for frequent updates (can cause re-renders).
+    Redux	            Great for complex apps, debugging tools 	            Overkill for small apps, requires boilerplate code.
+                        like Redux DevTools.
+
+    component state: useState, useReducer
+
+3. what are some of the compulsory used hooks in React?
+
+    -> useState : used for creating variables that can change over time.
+    -> useEffect : it is used in performing side effect in our component, such as data fetching, or manually updating the DOM.
+    -> useContext : used to access data from a context in our component.
+
+4. Explain the component lifecycle in React ?
+
+    The component lifecycle  is sequence of events that happen to a component from its creation(mounting) to its removal(unmounting).
+
+    1. mounting : constructor()  render()  componentDidMount()
+    2. updating : shouldComponentUpdate() render() componentDidUpdate()
+    3. unmounting : componentWillUnmount()
+
+    Mounting : when the component is created and inserted into the DOM.
+    Updating : when the component's state or props change
+    Unmounting : Shutting down the process
+
+5. What is context API , and how is it different from props ?
+    The Context API  allows us to share state and data across componenet without actually  passing  props down manually at every level.
+    
+    it helps to manage global state and avoids " prop drilling" where we have to pass data through many layers of components.
+
+        How is Context API Different from Props?
+
+        Aspect	        Props	                                                    Context API
+
+        Purpose	        Used to pass data from parent to child.	                    Used to share global data across components.
+        Data Flow	    Unidirectional (parent → child).	                        Accessible by any component in the tree.
+        Use Case	    Ideal for passing specific data to immediate children.	    Ideal for avoiding prop drilling in nested components.
+        Overhead	    Can lead to prop drilling in deeply nested components.	    Simplifies state sharing, reducing code complexity.
+        Performance	    Lightweight and efficient.	                                May cause re-renders if not optimized.
+
+6. How can you optimise Performance within a React application?
+
+    Optimizing Performance in a React Application:
+    1.Use React.memo:- Prevents unnecessary re-renders by memoizing functional components.
+        eg. const OptimizedComponent = memo(({ data }) => <div>{data}</div>);
+    
+    2.Use useCallback and useMemo:-
+        useCallback: Memoizes functions to avoid re-creation during re-renders.
+        useMemo: Memoizes computed values.
+        eg. const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+            const memoizedCallback = useCallback(() => doSomething(a), [a]);
+
+    3.Code-Splitting and Lazy Loading:-Load components and modules only when needed.
+
+    4.Avoid Anonymous Functions in JSX:-Avoid inline functions that can cause unnecessary re-renders.
+        // Bad
+        <button onClick={() => handleClick()}>Click</button>
+        // Good
+        const handleClick = useCallback(() => {...}, []);
+        <button onClick={handleClick}>Click</button>
+
+7. What do you mean by higher-order component in React?
+
+8. How do you handle forms in React ?
+        -> Managing the form inputs
+        -> Capturing user input
+        -> Responding to form submission
+
+9. What is server-side rendering , how is it beneficial?
+    Server-side rendering(SSR) is a Technique where a web pages is rendered on the server before it sent to the user's browser.
+
+    Instead a sending a blank HTML with javascript code that builds the page on client's side,the server generates the HTML with content already includes and sends it to the browser.
+        eg. Times of India uses SSR . all content already loaded
+            Instagram uses CSR(client-side rendering based on user preference)
+
+    Advantages:-
+        -> Faster Initial load : since the HTML is pre-rendered on the server, the browser can display the content quickly, improving the preceived load times for users.
+
+        -> Better SEO : search engines can easily index the content of server-side rendered pages because they don't need to execute javascript to see the content.
+
+        -> Improved Performance :- Since most of the rendering is done on the server, client devices don't need to do as much work to render the page which is helpful for users on slower or less powerful devices.
+
+        -> with SSR, users can interact with the content more quickly because they don't have to wait for the javascript to fully load before seeing anything
+
+10. What do you understand by Redux in React ?
+    In React, components manage their own internal state, but as an application grows, managing shared state between multiple componenets can become complex. This is where Redux helps by providing a single global state that any componenet can access
+
+11. client-side rendering  and server-side rendering
+    CSR:- web app with more users or more interactivity
+        Dynamic websites
+        in CSR. browser first receive the HTML file and load it up with CSS file which received right after HTML. the java script function take much longer loading time
+    
+    SSR:- static websites
+        web app with less users or less interactivity.
+        full Documentation rebuild(while refreshing).
+
+        in case of SSR,instead of sending HTML file to client, server pre-renders all CSS properties and javascript function inside full-fledges HTML Document to display the website 
+
+
+
+        

@@ -1,0 +1,16 @@
+Bit Manipulation Concepts:-
+
+## XOR (^) mimics addition without the carry. For example:
+    1 ^ 0 = 1 (1+0 = 1)
+    1 ^ 1 = 0 (1+1 without carry = 0)
+
+## AND (&) helps identify the carry bits. Shifting left (<< 1) moves the carry to the correct position for the next bit addition.
+    1 & 1 = 1 (indicating a carry needs to happen)
+
+eg. xor = a ^ b = 10 ^ 11 = 01 (binary 1)
+    carry = (a & b) << 1 = (10 & 11) << 1 = 10 (binary 2)
+    Update a = 1, b = 2
+
+    xor = a ^ b = 01 ^ 10 = 11 (binary 3)
+    carry = (a & b) << 1 = (01 & 10) << 1 = 00
+    b = 0 now, so the loop stops, and a = 3 is the final result.
