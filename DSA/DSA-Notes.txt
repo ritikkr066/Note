@@ -1,0 +1,22 @@
+
+
+                                REVISION QUES/NOTES
+
+leetcode:- 33. Search in Rotated Sorted Array
+
+##  binary search has two important aspects.
+
+    1. A sorted array.
+    2. Splitting an array into two halves.
+
+leetcode :- 49 Group Anangram
+
+    1. convert char Array to string //string str  array arr
+        String str= new String(arr);
+
+    2. traverse HashMap
+        for(Map.Entry<String,List<String>>entry:map.entrySet()){
+           String s= entry.getKey();
+            List list=entry.getValue();
+        }
+

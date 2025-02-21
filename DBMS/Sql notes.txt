@@ -1,0 +1,2 @@
+Replace vs Update
+    if row is not present ,REPLACE will add a new row while UPDATE will do nothing

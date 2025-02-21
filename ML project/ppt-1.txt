@@ -1,0 +1,46 @@
+AUROC: it is metric which is used to measure the performance of classification.
+    it mean how well it can distinguish between two classes i.e human generated and machine-generated.
+
+HumanRec : it mean how well AI detection method correctly identies human-written text.
+
+MAchineRec : it mean how well AI detection method correctly identies AI generated text.
+
+RESULT:-
+
+#In-Domain Detection
+    "When the detection model was trained and tested on the same domain,performance is good.
+    Longformer, achieved high AUROC, meaning it can easily separate AI-generated text from human-written text.
+
+# Out-of-Domain Detection 
+    When the detector was tested on new topics that it had never seen before, its accuracy dropped significantly.
+    Longformer still performed best, but its HumanRec score dropped, meaning many human-written texts were misclassified as AI-generated.
+
+#Unseen Models & Unseen Domains
+ "When we introduced AI-generated text from an entirely new model,GPT-4,Longformer still performed well with an AUROC of 0.94.
+    After fine-tuning the detection threshold, accuracy improved to 86.54%. However, human-written text was still sometimes misclassified as AI-generated."
+
+#Paraphrasing Attacks
+    When AI-generated text was slightly rewritten, detection accuracy dropped drastically.
+    Longformer’s AUROC dropped from 0.94 to 0.75, meaning paraphrased AI-generated text often went undetected.
+
+
+    ANANLYSIS
+
+After evaluating the detection models, They conducted a deeper analysis to understand what makes AI-generated text different from human-written text.
+
+#Convergence of Human and Machine Compositions
+    They analyzed various linguistic features and found that AI-generated text differs from human text in specific domains
+        when they collected adequate amount of data from various domains they found that there is not much different is these two text sources.
+
+#The Double-Edged Sword of Perplexity Bias
+    "One common way to detect AI-generated text is by using perplexity,which measures how predictable a sentence is.
+     AI-generated text usually has lower perplexity, making it easier to detect.
+     However, some human-written texts also have low perplexity, leading to misclassifications.
+     when AI-generated text is paraphrased, its perplexity increases, making it appear more human-written and bypassing detection."
+
+    CONCLUSION
+
+AI detection works well in limited domains but fails when encountering new topics or writing styles.
+Among all method Longformer perform  better with avgRec of 86.54%.
+
+            DESIGN 

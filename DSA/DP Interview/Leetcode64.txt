@@ -1,0 +1,35 @@
+	Leetcode- 64 minimum path sum
+
+1. Describe the Problem:
+	Explain that the goal is to find the minimum path sum from the top-left to the bottom-right corner of a grid, moving only down or right. This problem is well-suited to dynamic programming because there are overlapping subproblems that can be solved efficiently by storing intermediate results.
+
+2. Define the State and Recursive Approach:
+	Explain that we’re using a top-down approach, where dp[i][j] (or memo[i][j]) represents the minimum path sum to reach the cell (i, j).
+
+	To calculate dp[i][j], we take the minimum of the sum required to reach the cell from the top (i-1, j) or from the left (i, j-1), then add the current cell’s value, grid[i][j].
+
+3. Discuss the Base Cases:
+	Point out that the starting point (0, 0) has no cells above or to the left, so it’s initialized with grid[0][0].
+
+	If a cell is out of bounds, we return a large value (like Integer.MAX_VALUE) to ignore that path.
+
+4. Explain Memoization:
+	Describe how the memoization table (memo[i][j]) stores the minimum path sum to avoid recomputation. Once memo[i][j] is filled, we can simply return the stored value whenever we revisit cell (i, j).
+	This memoization ensures each cell is only computed once, reducing time complexity significantly.
+
+5. Time and Space Complexity:
+	Time Complexity: O(m×n) because each cell is computed once due to memoization.
+Space Complexity: O(m×n) for the memo array and the recursion stack, where m and n are the dimensions of the grid.
+
+
+		<---- Potential Interview Questions and Answers---->
+
+1. Why did you choose a top-down dynamic programming approach?
+	The top-down approach is intuitive and allows us to start from the destination and work backward, exploring only valid paths. Memoization optimizes it by storing results for each cell, avoiding repeated computations.
+
+2. Why use Integer.MAX_VALUE for out-of-bounds cells?
+	Returning Integer.MAX_VALUE effectively ignores invalid paths since they won’t be chosen in the Math.min comparison. It ensures we only consider cells within the grid.
+
+3. What if there were additional directions, such as moving diagonally?
+	The recursive approach can adapt by adding a diagonal move to the topDown function, updating the state transitions accordingly.
+

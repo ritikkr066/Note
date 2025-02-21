@@ -1,0 +1,150 @@
+        <----QUESTION - 1 ----->
+
+Q. What role do you see data structures and algorithms playing in your development process? Can you give an example?
+
+ANSWER:- Data structures and algorithms are important for building efficient applications. For example, in my e-commerce project, I used caching with hash maps to speed up product search. This cut down on database queries, making the site faster for users. Applying these concepts in my projects helps me balance performance with functionality.
+
+    SHOW CASE:-
+    // Assume we have a simple cache object
+    const productCache = new Map(); // Using a Map for efficient key-value storage
+
+    // Function to fetch product details
+    async function fetchProduct(productId) {
+        // 1. Check if the product exists in cache
+        if (productCache.has(productId)) {
+            console.log("Fetching from cache");
+            return productCache.get(productId); // Return cached result
+        }
+
+        // 2. If not in cache, query the database
+        console.log("Fetching from database");
+        const product = await database.query(`SELECT * FROM products WHERE id = ?`, [productId]);
+
+        // 3. Store the result in cache for future requests
+        productCache.set(productId, product);
+        
+        return product;
+    }
+
+
+        <------ QUESTION - 2 ------>
+
+Q. If you were to mentor someone new in web development, what advice would you give them?
+
+ANSWER:-
+If I were mentoring someone new in web development, I’d start by advising them to focus on the basics first, like HTML, CSS, and JavaScript. Mastering these core skills is important because it makes learning frameworks like React or Next.js much easier. I’d also suggest building small projects from scratch—such as a personal website or a simple to-do list app—because hands-on experience is the best way to learn.
+
+Once they’re comfortable, I’d recommend getting involved in open-source projects. Contributing to open source is a great way to show their skills to others, learn from experienced developers, and build connections in the tech community. They can start small by fixing bugs or adding features, and over time, they’ll gain confidence and valuable experience. 
+
+Finally, I’d remind them to stay curious and open to feedback, as web development is always changing. Being willing to learn and improve will help them grow and succeed in their career.
+
+            <----- QUESTION - 3 ------>
+
+Q.What do you think sets you apart from other candidates with similar technical backgrounds?
+
+ANSWER:
+What sets me apart from other candidates is my practical approach to problem-solving with data structures and algorithms (DSA), along with my adaptability to learn new technologies as trends change. While I’m not focused on competitive programming, I’ve spent a lot of time building a strong foundation in DSA, which helps me solve real-world problems effectively.
+
+For example, in one of my recent projects, I used efficient data structures to improve search speed and reduce load times for users. I enjoy breaking down complex problems and finding the best solution, which makes my approach very practical and useful in real-world applications.
+
+I started with core CSS to understand styling fundamentals, then moved to Tailwind CSS as it became popular for quickly building modern, responsive designs. Similarly, I learned React for frontend development but adopted Next.js when I saw the advantages it offered for performance and SEO. Now, I’m focusing on Redux for state management, moving beyond the Context API as projects become more complex.
+
+This adaptability helps me bring both a solid foundation and the latest tools to my work, making my projects efficient, modern, and easy to maintain. Plus, my constant learning means I’m always prepared to contribute fresh ideas and solutions that align with current trends and best practices.
+
+
+    <------QUESTION - 4 ------->
+
+Q.  How do you approach collaboration on a team project, particularly when integrating frontend and backend components?
+
+ANSWER:
+In team projects, clear communication and planning are essential. I ensure everyone knows their roles, especially in frontend-backend integration. Collaborating with backend developers, we define data structures and set up clear API endpoints for easy frontend use.
+
+Before connecting to the frontend, I test APIs with tools like Postman to confirm they work correctly. Regular check-ins help us address issues early and keep the team aligned. This approach ensures that frontend and backend components integrate smoothly, preventing last-minute problems.
+
+By organizing the project this way, the team works efficiently, making integration easier and faster.
+
+    <------ QUESTION- 5 ------>
+
+
+Q. In addition to technical skills, which soft skill do you believe is essential for a software developer, and how have you demonstrated this?
+
+ANSWER:
+Besides technical skills, I believe communication is essential for a software developer. Good communication helps make sure everyone on the team understands the project goals, tasks, and any challenges along the way.
+
+I’ve demonstrated this skill in my projects by always being open to discussions and sharing updates regularly. For example, when I worked on my e-commerce project, I often shared progress and asked for feedback from my teammates. If there was a problem, I’d bring it up early so we could work together on a solution.
+
+By keeping everyone in the loop and listening to others’ ideas, I helped the team work more effectively and kept the project on track.
+
+
+        <----- QUESTION - 6 ----->
+
+Q. Tell me about a time when you faced a roadblock in one of your projects. How did you overcome it?
+
+ANSWER:
+In one project, I faced a challenge with the appointment API. We needed to ensure that each doctor could only have unique appointments with each patient, so no duplicates were allowed. To solve this, I added a check in the API to verify if an appointment already existed between a specific doctor and patient. If it did, the API would prevent creating another appointment. This way, each doctor-patient combination stayed unique.
+
+<-----  QUESTION - 7 ------>
+
+Q. Why could we hire you?
+
+ANSWER:
+You should hire me because I bring a mix of strong technical skills and practical project experience that would be valuable for this role. I’m skilled in technologies like React, Next.js, and Tailwind CSS for building modern, responsive interfaces, and I’ve worked on both the front-end and back-end in my projects
+
+I’ve completed hands-on projects, like creating an e-commerce platform.which would let me contribute effectively from day one. I also pay close attention to detail and always aim to write clean, optimized code.
+
+Along with my technical skills, I’m a quick learner and stay updated with the latest trends, so I can adapt to new tools and contribute fresh ideas. I’m confident that my experience and willingness to learn make me a strong fit for the position and for your team.
+
+
+<------ QUESTION-8 ---->
+
+Q. How do you stay updated with the latest technology trends, especially as you mentioned keeping up with trends during your internship?
+
+ANSWER:
+I stay updated with technology trends by following tech blogs and websites like Medium and Dev.to, where developers share new ideas and tips. I also follow GitHub projects and communities like Stack Overflow, where I can see what tools and frameworks other developers are using.
+
+Whenever I learn about a new tool or trend, I try to use it in a small project to understand how it works. For example, I recently started using Redux for state management after seeing how useful it can be in larger projects. This way, I stay current and keep my skills sharp by combining learning with hands-on practice.
+
+<-----      QUESTION -9 ---->
+
+Q. What motivates you to excel in software development, particularly in web development and competitive programming?
+
+ANSWER:
+ I’m motivated by the idea of creating something that people can use and enjoy. In web development, I love building websites that look good and work smoothly because I know it improves the user’s experience. It feels great to see something I built come to life and be useful.
+
+ In data structures and algorithms, I enjoy the challenge of solving problems efficiently. Each problem feels like a puzzle, and finding the best solution is very satisfying. It also helps me improve my skills and think more clearly, which I can apply to real projects.
+
+
+<------- QUESTION - 10 ------>
+
+Q.  You have experience with various tools and frameworks like Next.js, React.js, Express.js, and Tailwind CSS. Which one do you find most powerful, and why?
+
+ANSWER:
+ I find Next.js very powerful because it combines the flexibility of React with features like server-side rendering, which makes websites faster. It also makes SEO easier, which is helpful for projects like e-commerce sites. Next.js is great because it works well with other frameworks, making it my first choice for full-stack projects.
+
+ <---- QUESTION - 11  ---->
+ Q. With over 250 problems solved on Leetcode and 200 on GeeksforGeeks, what types of algorithms or problems do you find most interesting or challenging?
+
+ANSWER:
+I really enjoy working on dynamic programming and graph problems. Dynamic programming is interesting because it involves breaking down problems and finding efficient solutions. For example, I enjoyed solving the coin change problem as it required trying different approaches to find the best one. These challenges make me think more deeply about how to optimize my code.
+
+<------ QUESTION- 12 ----->
+
+Q. In your HealthDebug project, what unique features or functionality did you implement?
+
+ANSWER:
+HealthDebug was a project to help connect doctors and patients. I led the front-end work with Next.js and built the back-end with Express.js. One unique feature was the real-time appointment scheduling, where I worked with my teammates to make sure everything fit together. Doing this project in a hackathon taught me to work quickly and well with others
+
+
+<---- QUESTION - 13 ----->
+
+Q. Can you tell us more about your experience with TrialShopy Marketplace Pvt. Ltd.?
+
+ANSWER:
+ At TrialShopy, I worked on creating responsive web pages using Next.js and React.js. I also connected the front-end with the back-end to make sure everything worked smoothly. I enjoyed reviewing code because I could suggest improvements and learn from others. This internship helped me keep up with new trends and improve my skills in building web applications.
+
+<------- QUESTION - 14 ------->
+
+Q. how do you see in next 5 years?
+
+ANSWER:
+In the next five years, I see myself growing both technically and professionally and taking on more responsibilities. I want to work on challenging projects that push me to learn new technologies and solve complex problems.  I also hope to develop leadership skills so I can eventually lead my own projects or even mentor others. My goal is to become a strong, well-rounded engineer who can make a big impact on my team and the company.

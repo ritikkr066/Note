@@ -1,0 +1,248 @@
+1. What is JavaScript?
+Ans :- JavaScript is a programming language used to create dynamic and interactive content on web pages.
+    Eg. console.log("Hello, World!"); // Outputs: Hello, World!
+
+2. What is null vs undefined?
+Ans:- null is an assigned value, meaning "empty" or "nothing."
+      undefined means a variable has been declared but not assigned a value.
+    eg.
+        let x;
+        console.log(x);       // undefined
+        let y = null;
+        console.log(y);      // null
+
+3. What is let, var, and const?
+Ans:- var is function-scoped.
+    let is block-scoped.
+    const is also block-scoped but cannot be reassigned.
+
+    eg.
+    function example() {
+        var a = 1;
+        let b = 2;
+            b= 8; // can be reassigned
+        const c = 3;
+            //  c=10; // cannot reassigned
+
+        if (true) {
+            var a = 4; // Re-declares and modifies the same `a`
+            let b = 5; // Creates a new block-scoped `b`
+            const c = 6; // Creates a new block-scoped `c`
+            console.log(a, b, c); // Outputs: 4, 5, 6
+        }
+
+        console.log(a, b, c); // Outputs: 4, 8, 3 (original `b` and `c` remain unchanged)
+    }
+    example();
+
+
+4. Explain hoisting in javascript with example?
+    Hoisting is a JavaScript mechanism where variables, functions, and classes are moved to the top of their scope during the compile phase.
+        the way hoisting works depends on how the variables or functions are declared:
+           -> Function Declarations: Fully hoisted (accessible before declaration).
+           -> var Variables: Hoisted, but initialized as undefined.
+           -> let and const Variables: Hoisted, but not initialized (temporal dead zone).
+           -> Class Declarations: Hoisted, but not initialized (temporal dead zone)
+
+           eg1.
+            console.log(a); // Output: undefined
+            var a = 5;
+            console.log(a); // Output: 5
+
+            eg2. -> let,const
+            console.log(b); // ReferenceError: Cannot access 'b' before initialization
+            let b = 10;
+            console.log(b); // Output: 10
+
+            eg3. -> Function declarations are fully hoisted, so you can call them before they are defined.
+            greet(); // Output: Hello!
+            function greet() {
+                console.log("Hello!");
+            }
+
+5. local storage and session storage?
+
+    Local storage:- data stored in local storage has no expiration time. it remains available even after the browser and tab is closed. and will persist until it explicitly deleted by user or through code.
+
+        eg. cart system in amazon/flipkart, cart item is still available from login/logout
+
+    Session storage:- Data stored in session storage is tied to the specified session of the browser. it gets cleared when the browser tab is closed, meaning the data us available as long as the tab window is open.
+
+        eg. linkedIn, while filling form when we reload the page wholw data which we filled  get disappeared.
+
+        Q.How do you store and retrieve an object in local storage?
+            const user = { name: "John", age: 30 };
+            localStorage.setItem("user", JSON.stringify(user));
+
+            const retrievedUser = JSON.parse(localStorage.getItem("user"));
+            console.log(retrievedUser.name); // "John"
+
+
+6. How can page loading time be reduced ?
+    
+    -> Optimise Images : use format like WebP/svg , which offer smaller size file with good quality
+                webP:  Web Picture format(developed by google)
+                svg : Scalable Vector Graphics
+    -> Minimize HTTP request : combine css and JS where possible
+    -> Enable Brower cashing :- Allow browser to store elements of the page.
+    -> Content Delivery Network : Reduce latency by serving it from closest server to the user.
+    -> Use lazy loading : Delay the loading of images and videos until they are needed. eg. pinrest websire
+            loading="lazy" attribue
+
+7. What is the differnece between SOAP and REST?
+    The major differnece between SOAP and REST is that SOAP is a protocol with strict standard and advanced features,making it suitable for complex ,secure application 
+    while REST is an architectural style that is simpler and more flexible, making it ideal for web services that require speen and scalability.
+
+    SOAP data from : XML
+    REST data format : SON, XML, Plain Text
+
+8. GraphQL vs REST
+
+
+    Feature                              GraphQL                                                REST
+    
+    1. Data Fetching            Single endpoint for all queries                     Multiple Endpoint for different resources
+
+    2. Response Structure       Client defines Structure of the  response           Server defines Structure of the response
+
+    3. over/under fetching      Reduces over-fetching/under fetching                Oftens leads to over-fetching and under-fetching
+
+
+    In REST APIS like JSONPlaceholder , we fetch data from specific endpoint and perform filtering on the client-side 
+    while GraphQL , we can tailor our queries to retrive only the necessary data directly from the server.
+
+
+9 what are components of a css box model?
+    CONTENT :- size of content area can be controlled using properties like width and height
+    PADDING :- space b/w content and border. padding add space inside the elements.
+    BORDER :- border surround the padding(if any) and content . lie b/w padding and margin
+    MARGIN :- space outside the border , create space b/w element and neighbouring element.
+
+10. class selector and id selector
+
+    Class selector can be applied to Multiple element. we can use the same class on diff. HTML elements.
+
+    ID selector should be assigned to only one element.
+
+11. Data type in javascript
+
+In JavaScript, data types can be broadly categorized into primitive and non-primitive types
+
+1. Primitive Data Types:
+
+    Type	            Description	                                                        Example
+    String	            Represents a sequence of characters.	                            "Hello, World!", 'JavaScript'
+    Number	            Represents both integer and floating-point numbers.	                42, 3.14, Infinity, NaN
+    BigInt	            Represents integers larger than Number.MAX_SAFE_INTEGER.	        123n, BigInt("9007199254740991")
+    Boolean	            Represents logical values: true or false.	                        true, false
+    Undefined	        A variable that has been declared but not initialized.	            let x; // x is undefined
+    Null	            Represents the intentional absence of any value                 	let y = null;
+    Symbol	            Represents unique, immutable values often used as object keys.	    Symbol('id')
+
+    Eg.
+    let str = "Hello";      // String
+    let num = 42;           // Number
+    let bigInt = 123456789012345678901234567890n; // BigInt
+    let isTrue = true;      // Boolean
+    let notDefined;         // Undefined
+    let empty = null;       // Null
+    let unique = Symbol('id'); // Symbol
+
+2. Non-Primitive Data Types (Objects)
+
+    Type	        Description	                                                Example
+
+    Object	        A collection of key-value pairs.	                        { name: "Alice", age: 25 }
+    Array	        A special type of object used to store ordered lists.	    [1, 2, 3, 4]
+    Function	    A block of reusable code.	                                function greet() { return "Hi!"; }
+    Date	        Represents dates and times.	                                new Date()
+    RegExp	        Represents regular expressions.	                            /ab+c/
+    Error	        Represents runtime errors.	                                new Error("Something went wrong!")
+
+
+    Differences Between Primitive and Non-Primitive Types
+        Aspect	                Primitive Types	                            Non-Primitive Types
+        Storage	                Stored by value.	                        Stored by reference.
+        Mutability	            Immutable (cannot be changed).	            Mutable (can be modified).
+        Example	                let x = 10;	                                let obj = { key: "value" };
+
+        // Primitive
+        let a = 10;
+        let b = a;
+        b = 20;
+        console.log(a); // Output: 10 (value not affected)
+
+        // Non-Primitive
+        let obj1 = { key: "value" };
+        let obj2 = obj1;
+        obj2.key = "newValue";
+        console.log(obj1.key); // Output: "newValue" (both references point to the same object)
+
+12. what is this keyword in javascript ?
+
+    the this keyword refers to the object that is currently executing the code. Its value depends on where it is used (context) and how the function it is in is called.
+            **Arrow functions do not have their own this. Instead, they inherit this from the surrounding lexical scope.
+
+13. what are advantages of using CDN ?
+
+    Faster Content Delivery: CDNs reduce latency by serving content from the closest server to the user, improving website loading times.
+
+    Scalability: CDNs handle large amount of traffic by distributing the load across multiple server.
+
+    Availability & Redundancy: With multiple servers around the world, CDNs provide high availability, ensuring the website remains accessible even during server failures.
+
+    Reduced Bandwidth Costs: By caching content on edge servers, CDNs reduce the load on the origin server, saving on bandwidth costs.
+
+    Enhanced Security: CDNs provide protection against DDoS attacks and offer SSL/TLS encryption for secure content delivery.
+
+    SEO Benefits: faster load times and improved performance , Enhances user experience.
+
+    Content Optimization: CDNs can automatically optimize images and videos for different devices and network conditions, improving performance and user experience.
+
+14. Event Capturing and bubbling?
+
+    1. Event Bubbling (Default Behavior):
+        In event bubbling, the event starts from the target element (where the event was originally triggered) and bubbles up to the root element (usually the document or window).
+
+        Example: If you click a button inside a div element, the event will first trigger on the button (target), and then propagate to the parent div, then to any other parent elements, until it reaches the root.
+
+    2. Event Capturing (Less Common)
+        In event capturing, the event starts from the root of the DOM and propagates down to the target element.
+
+        Example: If you click a button inside a div element, the event will first trigger on the document or window (root), then propagate down to the parent div, and finally to the target button.
+
+15. what is 'use strict' in javascript ?
+    'use strict' enforces stricter parsing and error handling in javascript code. it help to catch common mistake,prevent certion action that could lead to bugs, make the code more predictable and easier to maintain.
+
+    "use strict";
+    x = 10;  // Error: x is not defined
+
+            Without strict mode, JavaScript allows the creation of global variables by accident if they are not declared with let, const, or var. In strict mode, it throws an error if you try to assign a value to an undeclared variable
+
+
+16. what is the differnece between cookies and local storage?
+
+Cookies :-
+        -> primarily used for session management,user preferences and tracking user Behavior.
+        -> when we login into website(like Gmail), a cookies is created to remember your login session.
+        -> a websites like amazon uses cookies to remember our preferences. eg . what we searching, what are we looking for
+        -> website often uses cookies to track user Behavior for analytics.
+
+
+Local Storage:-
+        -> used to store large amount of data on the client side for web applications.
+        -> online games can use local storage to save our progress, scores and settings so that when we return to game later , we can pick up right where we left off
+
+
+17. How can you prevent a bot from scarping your publicly accessible API?
+
+    1. API Rate Limiting :- Limiting the number of request a user can make to an API within a certain oeriod of time.
+    2. CAPTCHA Integration :- CAPTCHA stands for 'Completely Automated Public Turing test to tell Computers and Humans Apart".
+                            It verifies whether you are real person or not.
+    
+    3. Creating Honeypots :- A Honeypot is like a trap of bots. It's hidden elemet that real user never see or interact with,but bot will.
+            set z-index-0 mean we not able to see but bot can intercat with this.
+
+    4. Token-Based System :- Use JWTs (JSON Web Tokens) or session tokens that expire after a short duration.
+
+    5. Obfuscating API Endpoints :- Obfuscating mean making API endpoints less obvious or harder to find.

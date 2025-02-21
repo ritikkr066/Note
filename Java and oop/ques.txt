@@ -1,0 +1,2 @@
+Why use String[] ans instead of a normal String?
+In Java, Strings are immutable, meaning they cannot be modified after creation. When using recursion, if we simply use a String ans, any changes made inside the recursive function won't be reflected outside because Java passes objects by value (reference copy), not by reference itself.
