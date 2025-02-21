@@ -1,0 +1,19 @@
+-- create table users
+create database user;
+use user;
+create table users(
+user_id int primary key,
+name varchar(200),
+per_hour_salary int default 0,
+working_hour int default 0,
+total_salary int default 0
+);
+
+select * from users;
+insert into users (user_id,name,per_hour_salary,working_hour)
+values
+(10002,"Mohan",5000,6);
+
+update users set working_hour=11,per_hour_salary=1200 where user_id=10001;
+alter table users add column acc_count int default 0;
+

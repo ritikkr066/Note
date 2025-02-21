@@ -1,0 +1,12 @@
+create table accounts(
+account_no int primary key,
+user_id int,
+balance int default 0
+);
+
+insert into accounts(account_no,user_id,balance)
+values
+(109,10002,500);
+
+delete from accounts where account_no=101;
+select * from accounts

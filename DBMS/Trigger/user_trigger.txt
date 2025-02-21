@@ -1,0 +1,46 @@
+-- create trigger : syntax trigger
+
+delimiter //
+
+create trigger before_trigger_user
+before insert
+on users for each row
+begin
+set NEW.total_salary = NEW.per_hour_salary * NEW.working_hour;
+end; //
+
+delimiter ;
+
+-- create update trigger
+-- update total salary based on updatation on perhour salary and working hour
+
+delimiter //
+
+create trigger before_update_user
+before update
+on users for each row
+begin
+set NEW.total_salary=NEW.per_hour_salary* NEW.working_hour ;
+end; //
+
+delimiter ;
+
+-- create trigger : to update account_count if users
+delimiter //
+create trigger before_open_account
+before insert
+on accounts for each row
+begin
+update users set acc_count = acc_count+1 where user_id = NEW.user_id;
+end; //
+delimiter  ; 
+
+-- create trigger : to close account of users
+delimiter //
+create trigger before_close_account
+before delete
+on accounts for each row
+begin
+update users set acc_count = acc_count-1 where user_id = OLD.user_id;
+end; //
+delimiter  ; 
