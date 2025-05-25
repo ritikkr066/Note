@@ -1,0 +1,71 @@
+What is Schedule?
+    Collection of multiple transcations running on same databases.
+
+What is concurrency?
+    Concurrency in DBMS refers to multiple transactions executing at the same time while ensuring the correctness and consistency of the database.
+
+Why concurrency?
+    1. improved throughput:  number of transactions completed successfully per unit of time.
+    2. Resource utilisation
+    3. Reduced waiting time
+
+problems with concurrency?
+    1. 🔁 Lost Update:  Two transactions read the same data and update it, but one update overwrites the other.
+    2. 🧪 Dirty Read:  Temporary update problem.
+    3. 🔄 Non-Repeatable Read : : A transaction reads the same row twice, but gets different data due to another transaction's update in between.
+    4. phantom read : A phantom read happens when a repeated query gives different results because new rows were added or deleted by another transaction during that tim
+
+    Concurrency in DBMS can lead to issues like lost updates, dirty reads, non-repeatable reads, and phantom reads. These problems occur when transactions interfere with each other without proper isolation.
+
+Good vs Bad Schedule
+    Good Schedule : Concurrent schedule which provide consistent result.
+
+ What is a Serial Schedule in DBMS?
+    A serial schedule is a type of transaction schedule where one transaction is executed completely before another starts.
+
+Non-serial Schedule
+    "A non-serial schedule is when multiple transactions’ operations are interleaved, allowing concurrent execution. This improves throughput but requires concurrency control to avoid consistency problems."
+
+Serializable Schedule 
+    A concurrent schedule which provide result as a serial schedule.
+    A serializable schedule allows transactions to run concurrently but ensures the result is the same as some serial execution of those transactions. This maintains consistency while improving system throughput."
+
+    🔄 Example:
+    Suppose T1 and T2 both update account balances.
+       Their operations can be interleaved (non-serial), but if the final balances are the same as if T1 ran fully before T2 (or vice versa), the schedule is serializable.
+
+### Total possible serial schedule n is n! i.e if n=3 total=3!=6
+
+Conflict
+    2 databases statements are conflicts if and only if
+        1. both are in different transactions.
+        2. both are accessing the same data item
+        3. Atleast one of them is write operation.
+
+Conflict Equivalent:
+    Two schedules are conflict equivalent if they have the same operations, and the order of all conflicting operations is the same in both schedules.
+
+# If cycle is present in precedence graph then there is not conflict serializable
+    if no cylce : serializable(conflict)
+
+🔗 What is a Precedence Graph?
+    A precedence graph is a directed graph used to check if a non-serial schedule is conflict serializable.
+
+View Serializibility
+    1. Who read from database.
+    2. Who reads from other's written value.
+    3. Who writes first
+
+    2 schedule s1,s2 are view equivalent if both are following similar sequences/rules of view Serializibility
+
+    A schedule is called view view schedule if it is view equivalentto any serial schedule.
+
+🔁 What is a Recoverable Schedule?
+    A recoverable schedule is a type of schedule in which a transaction commits only after all the transactions whose changes it has read have also committed.
+
+🔄 What is Cascading Rollback?
+    A cascading rollback occurs when the failure (abort) of one transaction causes other dependent transactions to also roll back, like a chain reaction.
+
+✅ What is a Cascadeless Schedule?
+    In a cascadeless schedule, no transaction reads data written by another uncommitted transaction.
+    

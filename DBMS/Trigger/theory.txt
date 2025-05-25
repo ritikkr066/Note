@@ -1,0 +1,1 @@
+#A trigger is a database object that automatically executes a predefined set of actions when a specified database event occurs, such as an INSERT, UPDATE, or DELETE operation.

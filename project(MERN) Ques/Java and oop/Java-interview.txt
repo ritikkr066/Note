@@ -1,0 +1,326 @@
+1. what is the difference between JDK,JRE,JVM in java?
+
+    In Java, the JDK, JRE, and JVM are key components of the Java development and execution environment, and each has a specific role:
+
+    JVM (Java Virtual Machine) is the engine that actually runs Java bytecode. It provides platform independence and handles tasks like memory management, garbage collection, and security. It's responsible for converting bytecode into machine-specific code.
+
+    JRE (Java Runtime Environment) is a package that provides the libraries, JVM, and other components to run Java applications. It does not include tools for development like compilers or debuggers.
+
+    JDK (Java Development Kit) is the full development kit. It includes everything in the JRE, plus development tools like the Java compiler (javac), debugger, and other tools required to write, compile, and debug Java programs.
+
+        #"JVM runs the code, JRE provides the environment to run it, and JDK provides the tools to develop it."
+
+
+2 What is Java main() method?
+    the main() method in Java is the entry point of any standalone Java application. It's where the program starts its execution
+    The signature looks like this:
+        public static void main(String[] args)
+
+        public means it can be accessed from outside the class — required so the JVM can call it.
+
+        static means it belongs to the class, not an instance — so it can run without creating an object.
+
+        void means it doesn't return any value.
+
+        main is the name recognized by the JVM as the starting point.
+
+        String[] args is used to accept command-line arguments.
+
+    So, when I run a Java program, the JVM looks for this exact method to start the execution.
+
+3 What is the significance of (String args[])?
+    Yes, the (String[] args) part in the main() method is used to receive command-line arguments when we run a Java program.
+        java MyProgram Hello World
+            then args[0] will be "Hello" and args[1] will be "World".
+
+4. Static method or variables can be only accessed by static method/variables.
+
+5. What is the method in java?
+    A method in Java is a block of code that performs a specific task. It's similar to a function in other programming languages.
+
+        We use methods to:
+            Improve code reusability (write once, use multiple times)
+            Organize logic into smaller, manageable pieces
+            Avoid code duplication
+
+6. what is the difference between superclass and subclass?
+    In Java, superclass and subclass are terms used in inheritance.
+
+    A superclass is the parent class — it contains common properties and methods that can be inherited.
+
+    A subclass is the child class — it inherits from the superclass and can also have additional properties or override methods.
+
+        "Superclass provides common behavior, and subclass specializes or extends that behavior."
+
+7. What is an abstract class in java?
+    An abstract class in Java is a class that cannot be instantiated — it's meant to be extended by other classes.
+        It can contain:
+            Abstract methods (methods without a body)
+            And also concrete methods (methods with a body)
+
+            Eg.
+            abstract class Animal {
+                abstract void makeSound(); // abstract method
+
+                void sleep() { // concrete method
+                    System.out.println("Sleeping...");
+                }
+            }
+
+        any subclass must implement the abstract method
+            class Dog extends Animal {
+                void makeSound() {
+                    System.out.println("Dog barks");
+                }
+            }
+    An abstract class is used when we want to define common behavior and force subclasses to implement specific methods.
+8. What is an Interface?
+
+    An interface in Java is a completely abstract type that is used to define a contract — it only contains method signatures and constants, but no method bodies
+        All methods in an interface are:
+            public
+            abstract (by default)
+    
+    In Java, a class cannot inherit from more than one class because Java does not support multiple inheritance with classes — this is to avoid ambiguity issues like the Diamond Problem.
+    
+    However, Java does support multiple inheritance with interfaces. That means a class can implement multiple interfaces at the same time.
+
+            interface Printable {
+                void print();
+            }
+            interface Scannable {
+                void scan();
+            }
+            class PrinterScanner implements Printable, Scannable {
+                public void print() {
+                    System.out.println("Printing...");
+                }
+                public void scan() {
+                    System.out.println("Scanning...");
+                }
+            }
+
+     if Java did support multiple class inheritance, the syntax might look like C++
+            class A {
+                void show() {
+                    System.out.println("From class A");
+                }
+            }
+            class B {
+                void show() {
+                    System.out.println("From class B");
+                }
+            }
+            // Hypothetical syntax (this is NOT allowed in Java)
+            class C extends A, B {
+                // Ambiguity: which show() should be used?
+            }
+
+    Compiler get confused, which show mehod should be called.
+    So, Java uses interfaces to achieve multiple inheritance safely, because interfaces do not carry implementation (unless explicitly marked as default), so there's no ambiguity.
+
+9. What is paxckage in JAVA - the build-in pakage and user defined?
+    in Java, a package is a way to organize classes and interfaces into a structured namespace — just like folders organize files on a computer.
+    There are two types of packages:
+    🔹 1. Built-in Packages
+        These are packages provided by Java. For example:
+            java.util – contains utility classes like ArrayList, HashMap, Collections
+            java.io – for input/output operations (e.g., File, BufferedReader)
+            java.lang – loaded by default; contains classes like String, Math, System
+
+    🔹 2. User-defined Packages
+        These are packages created by the programmer to group related classes and avoid naming conflicts.
+            package mypack;
+                import mypack.Hello;
+
+10. what is the use of 'this' keyword in java ?
+    In Java, the this keyword is a reference variable that refers to the current object of the class.
+        It’s mainly used for three purposes:
+
+        🔹 1. To refer to instance variables when local variables have the same name:
+            class Student {
+                String name;
+                Student(String name) {
+                    this.name = name;  // 'this.name' refers to instance variable, 'name' is constructor parameter
+                }
+            }
+
+         2. To call current class methods or constructors:
+            this.display();       // Calls a method of the current class  
+            this(10);             // Calls another constructor in the same class (constructor chaining)
+
+        3.  To pass the current object as a parameter:
+            class A {
+                void show(A obj) {
+                    System.out.println("Object received");
+                }
+
+                void callShow() {
+                    show(this);  // Passing current object to method
+                }
+            }
+
+11. How do you read and write files using java.nio.file in java?
+12. What are access modifier, and what are the types in java?
+13. Explain the concept of a constructor in java ?
+    The primary purpose of constructor is to intialise the object's properties when the object is created.
+
+    A custructor doesn't have a return type.
+
+    there are two type of cunstructor- default and Parameterized
+
+14. How is method overloading different from method overriding?
+    Method overloading : same method name, different parameters, determined at comppile time.
+
+    Method overriding : same method name and parameters , different implemention in subclass, runtime determination
+
+15.Difference between final and finally?
+
+    finally : ensures that certain code runs after try-catch , rregardless of exceptions.
+
+16. What are java collections , and why are they important?
+    List: Collections that allow duplicate elements.
+    Set : collection that doesn't allow duplicates elements.
+    Map : Collections that maps keys to values , with each key being unique
+    Queue : Ordered collection that follows FIFO or priority-based ordering
+
+17. Described checked and unchecked exceptions . 
+
+18,19 try , catch , exception , customised exception
+
+20 Describe the diff. between == and .equals() in java?
+  == : checks if two reference variable point to the same memory location
+  .equals() : checks if two objects have the same data. 
+
+21.  how java memeory model and how memory is allocated?
+    Heap:
+        The heap is a large memory space used for storing objects, instace variable and class variables
+
+        objects that are no longer reachable are removed and managed by JVM's garbase collector.
+
+    Stack:
+        Each thread in java has its own stack memory.
+        Stack memory is generally limited and temporary.
+
+        steps:-
+        1. Object Creation:
+            the JVM first detemines the size of the object based on its field.
+        2.Heap  Allocation:
+            the JVM allocates a block of memory from the heap.
+        3.Initialisation:
+            The object's field are initialised to their default values
+        4. reference Assignment:
+            A reference to the newly created object is assigned to a variable
+        5. Garbage collection
+            The garbage collection periodically scans the heap for objects that are no longer reachable by any active threads.
+    
+22. How does garbage collection work in java?
+    It is automated process that frees up memory by removing objects that are no longer in use or is being accessible by the program.
+
+23. what is lambda expression , and how is it used in java?
+    It's consise way to represent an anonymous function
+        (parameter)->expression
+        (int a,int b)->a+b
+
+24. Explain the importance of synchorised keyword?
+    synchronized is used to make sure that when multiple threads try to use the same resource, they don’t mess each other up. It locks the code so only one thread can run it at a time, which keeps things safe and accurate.
+
+    with synchorise(Thread-safe)
+
+    class Counter {
+        int count = 0;
+
+        synchronized void increment() {
+            count++;
+        }
+    }
+
+    public class SynchronizedExample {
+        public static void main(String[] args) throws InterruptedException {
+            Counter counter = new Counter();
+
+            Thread t1 = new Thread(() -> {
+                for (int i = 0; i < 1000; i++) {
+                    counter.increment();
+                }
+            });
+
+            Thread t2 = new Thread(() -> {
+                for (int i = 0; i < 1000; i++) {
+                    counter.increment();
+                }
+            });
+
+            t1.start();
+            t2.start();
+            t1.join();
+            t2.join();
+
+            System.out.println("Final Count (with synchronized): " + counter.count);
+        }
+    }
+
+    ##Final Count (with synchronized): 2000
+
+25.Explain the volatile keyword in Java?
+    When a variable is marked volatile, changes made to the variable by one thread are immediately visible to other threads.
+
+    volatile also ensure that the value of the variable is always fetched from the main memeory and not from thread's local cache(stack).
+
+26. what are streams in JAVA, and how are they used?
+    Streams in JAVA is a pipeline that makes it easier to filter, transform and colllect data from collection.
+
+    Streams can be processed in parallel, achieving multi-core processors for performance.
+
+        eg. 
+         List<String> names = Arrays.asList("Alice", "Bob", "Alex", "Ankit");
+         names.stream()
+            .filter(name -> name.startsWith("A"))
+            .map(String::toUpperCase)
+            .sorted()
+            .forEach(System.out::println);
+        
+27. what are java annotations and how do they work ?
+    "Annotations in Java are like special tags or labels we add to our code to give extra instructions. They don't change how the program runs by themselves, but they help tools, compilers, or frameworks understand what to do with that code"
+
+    @Override tells the compiler, "Hey, this method is overriding a method from the parent class."
+    @Deprecated means, "This method is old and shouldn't be used anymore."
+    @Suppress Warning 
+    @Functional Interface
+
+28. Explain the concept of autoboxing and unboxing?
+    Autoboxing
+        The automatic conversion of a primitive type into its corresponding wrapper class.
+    
+    Unboxing 
+        Converts an object of a wrapper class back into its corresponding primitive type.
+
+    eg. List<Integer> numbers = new ArrayList<>();
+        numbers.add(5);  // Autoboxing: 5 (int) -> Integer
+        int result = numbers.get(0);  // Unboxing: Integer -> int
+
+29. What is the purpose of trasient keyword in serialisation ?
+   The transient keyword tells Java not to save that variable when we serialize an object. It’s useful for hiding passwords or temporary data during serialization.
+
+   "Both static and transient variables are not serialized, but for different reasons:
+   🔹 static keyword:
+        static means the variable belongs to the class, not to any specific object.
+        Since serialization saves the state of an object, and static variables are not part of the object, they are not saved.
+
+    🔹 transient keyword:
+        transient means: "Do not save this field even if it's part of the object."
+        You use it when you want to skip certain fields during serialization (like passwords, temp data, or calculated values).
+
+30. what is the difference between String and a StringBuilder?
+        String : once a String object is created , its value cannot be chnages(Immutable).
+                used when we don’t need to modify the string.
+
+        StringBuilder: value can change the calue of the object after it's is created(Mutable);
+            used when we need to perform frequents modifications
+
+
+        
+
+
+
+

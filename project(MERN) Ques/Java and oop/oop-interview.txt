@@ -1,0 +1,185 @@
+1. What is oop and why is it important?
+    "OOP stands for Object-Oriented Programming. It’s a programming style where everything is organized as objects, which are instances of classes.
+    Each object contains data (fields) and behavior (methods). OOP helps make code more modular, reusable, and easier to understand."
+
+    🔹 Why OOP is Important:
+        ✅ Modularity – Code is organized into classes and objects.
+        🔁 Reusability – You can reuse code using inheritance.
+        🛡️ Security – Encapsulation hides internal data from outside interference.
+        🔧 Flexibility – Polymorphism lets you change behavior without changing code.
+        🌳 Scalability – It's easier to manage large programs.
+
+2. What are classes and objects?
+    Class : A blueprint or template for creating objects.
+            it defines properties(attributes) and method(functions) that an object have.
+
+            eg. class Dog { .... };
+
+    Object: An instance of a class.
+            It represent a real-world entity with properties and behavior.
+
+            eg. Dog d1;
+
+3. what are the four pillars of OOPs? 
+    🔹 1. Encapsulation – "Data hiding"
+            It means wrapping data and code together inside a class.
+            We hide internal details and only expose necessary parts.
+            Achieved using private variables and public getter/setter methods.
+        
+            eg. Car class with private speed, accessed via methods.
+    
+    🔹 2. Abstraction – "Hiding complexity"
+            Shows only important things, hides complex internal logic.
+            Done using abstract classes or interfaces.
+    
+    🔹 3. Inheritance – "Reusing code"
+            One class (child) can reuse code from another class (parent).
+            Helps reduce code duplication.
+    
+    🔹 4. Polymorphism – "One name, many forms"
+            Same method behaves differently depending on the object.
+            Two types: Compile-time (method overloading) and Run-time (method overriding).
+
+4. How do call one constructor from another?
+        we can achieve this using constructor Chaining.
+        Constrcutor chaining is the process of calling one constructor from another within the same class or from the base class.
+        Purpose : To reuse code and avoid duplication when initialising an object.
+
+        Two types:
+            Within the same class : this() keyword.
+            from base/parent class : super() keyword.
+
+        class Animal {
+            Animal(String type) {
+                System.out.println("Animal constructor called: " + type);
+            }
+        }
+
+        class Dog extends Animal {
+            Dog() {
+                this("Tommy");  // Calls the second constructor of Dog
+                System.out.println("Default Dog constructor"); //3
+            }
+
+            Dog(String name) {
+                super("Dog");  // Calls parent class constructor //1
+                System.out.println("Dog constructor with name: " + name); //2
+            }
+        }
+
+        public class Main {
+            public static void main(String[] args) {
+                Dog d = new Dog();
+            }
+        }
+
+        OUTPUT:
+            Animal constructor called: Dog  
+            Dog constructor with name: Tommy  
+            Default Dog constructor
+
+5. What are yhe Access Specifiers and their Purpose?
+    public : Accessible everywhere across the program, inside and outside the class and package.
+    private : Accessible only within the same class.
+    Protected : Accessible within the same package and by subclass in different packages.
+
+6. What are Manipulators in Java ?
+    "Manipulators are tools used to format output when printing data to the console.
+        eg. System.out.printf() or String.format()."
+
+    They help control: Number of decimal places, Field width, Padding, Alignment (left/right)
+
+    // Right-align with width 10
+        System.out.printf("Number: %10d\n", num);    //Number:         42
+    // Two decimal places
+        System.out.printf("Price: %.2f\n", price);   //Price: 123.46
+    // Left-align
+        System.out.printf("Left-aligned: %-10dEnd\n", num); // Left-aligned: 42        End
+
+7. What is the diff. b/w Deep copy and Shallow copy ?
+    In shallow copy, both objects share the same internal references.
+    In deep copy, everything is duplicated, so changes in one object won’t affect the other."
+
+    eg. shallow copy
+        ABC obj1=new ABC();
+        ABC obj2 =obj1;
+            obj2.x=6;
+        // obj1.x=6 will happen 
+
+        //deep copy
+        ABC obj1=new ABC();
+        ABC obj2=new ABC();
+         obj2.x=6;
+         // obj1.x=30 will remaim same
+        
+8. What do you mean by Abstract class ? Can we Intantiate the Abstract class?
+    "An abstract class is a blueprint that can contain both abstract and non-abstract methods.
+    We cannot instantiate it directly, but we can inherit it and provide implementations in child classes.
+    It's used when we want to define common behavior but leave some methods to be implemented by subclasses."
+
+    abstract methods (without body) as well as concrete methods (with body).
+
+9. What is an Interface in JAVA , how does it promote Abstraction ? Provide a simple example.
+    "An interface in Java is like a contract that defines a set of methods but doesn’t provide their implementation.
+    It’s used to achieve 100% abstraction and to define what a class should do, not how it does it."
+
+    🔹 How Interface Promotes Abstraction:
+        "Interfaces promote abstraction by hiding the implementation details.
+        They let us write code that focuses only on behavior, not how it's achieved internally.
+
+10. Discuss about Exception handling in Java?    
+    "Exception Handling in Java is a way to handle runtime errors so that the normal flow of the application is not interrupted
+        Java provides a robust way to catch and handle exceptions using try, catch, finally, and throw keywords."
+    🔹 Keywords Summary:
+        try: Wraps code that might throw an exception.
+        catch: Handles the exception.
+        finally: Executes code no matter what (optional).
+        throw: Used to throw an exception manually.
+        throws: Declares an exception might be thrown by a method.
+
+11. What is constructor and How can we overload them?
+    "A constructor is a special method in Java that is used to create and initialize an object.
+    It has the same name as the class, no return type, and is automatically called when an object is created."
+
+    Constructor overloading means defining multiple constructors with different parameter lists in the same class.
+        Constructor overloading lets us initialize objects in different ways by changing the number or type of parameters."
+
+12. What do you mean by Polymorphism? State the Difference between Static and Dynamic Polymorphism?
+        "Polymorphism means 'many forms'. In Java, it allows objects to behave differently based on their context, even if they share the same interface or method name
+
+        🔹 Two Types of Polymorphism in Java:
+            Type	                Also Known As	   How It's Achieved	                    Resolved At
+            Static Polymorphism	    Compile-Time	   Method Overloading	                    Compile Time
+            Dynamic Polymorphism	Run-Time	       Method Overriding (with Inheritance)	    Run Time
+
+13. What is coupling?
+    "Coupling shows the level of dependency between classes.
+    Tight coupling is bad for flexibility.
+    Loose coupling is better because it makes the code easier to maintain, test, and reuse."
+
+14. Explain Inheritance and its type?
+        "Inheritance means one class can reuse the properties and behaviors (methods) of another class.
+        It helps in code reusability and creating a relationship between classes.
+
+        🔹 Types of Inheritance in Java:
+            Single Inheritance
+                One class inherits from one superclass.
+                ✅ Supported in Java.
+
+            Multilevel Inheritance
+                A class inherits from a class which is already a subclass.
+                ✅ Supported in Java.
+
+            Hierarchical Inheritance
+                Multiple classes inherit from a single superclass.
+                ✅ Supported in Java.
+
+            Multiple Inheritance (with classes)
+                One class inherits from two classes.
+                ❌ Not supported directly in Java (to avoid confusion).
+                ✅ But Java supports it using interfaces.
+
+15. Explain Virtual keyword?
+16. what is diamont problem in oop?
+    "The Diamond Problem is a situation in multiple inheritance where a class inherits from two classes that have a common parent.
+    This can cause confusion for the compiler about which method to use from the common parent."
