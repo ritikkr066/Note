@@ -1,0 +1,10 @@
+1. Technique: Two-Pass Greedy with Local Comparisons
+    ✅ When to Use
+    When each element in an array/list depends on its neighbors (left/right).
+
+    When constraints are like:
+    "If a[i] > a[i-1], then f[i] > f[i-1]", and
+    "If a[i] > a[i+1], then f[i] > f[i+1]"
+    When you must minimize or maximize an array based on such local rules.
+
+    Leetcode: 135(candy)
