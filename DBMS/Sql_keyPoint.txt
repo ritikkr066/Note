@@ -1,0 +1,46 @@
+        SQL
+1. here used : and  & or 
+
+2. IFNULL(referee_id, 0) != 2
+    If referee_id is NULL, treat it as 0, and then check if it is not equal to 2.
+
+3. when case type
+    CASE 
+        WHEN employee_id % 2 = 1 AND name NOT LIKE 'M%' THEN salary
+        ELSE 0
+    END AS bonus
+
+4. Use DATE_SUB(date, INTERVAL x DAY) to get recent dates.
+    WHERE activity_date BETWEEN DATE_SUB('2019-07-27', INTERVAL 29 DAY) AND '2019-07-27'
+    WHERE activity_date >= DATE_SUB('2019-07-27', INTERVAL 30 DAY)
+
+5. COUNT(DISTINCT user_id) avoids counting duplicates.
+
+6. Always GROUP BY the field you want to count per group.
+    GROUP BY activity_date
+
+7. Use MOD(id, 2)=1 or id % 2 = 1 to check for odd IDs.
+
+8. Be careful with string comparisons — 'boring' ≠ "boring" in SQL.
+
+9. HAVING is used after GROUP BY to filter aggregated results.
+
+10. WHERE filters rows before aggregation; HAVING filters groups after.
+
+## Return actor-director pairs that worked together ≥ 3 times
+    SELECT actor_id, director_id
+    FROM ActorDirector
+    GROUP BY actor_id, director_id
+    HAVING COUNT(*) >= 3;
+
+11. To find top-k groups by count, use ORDER BY COUNT(*) DESC LIMIT k
+    ORDER BY COUNT(*) DESC
+    LIMIT 1;
+
+##  Concept 	Key Points
+    GROUP BY	Used to group data before aggregation (e.g., SUM, COUNT)
+    HAVING	    Filters groups after aggregation (use with GROUP BY)
+
+12. LEFT JOIN ensures all 1st table rows appear, even if there’s no matching 2nd table rows.
+
+13. OFFSET 1 skips the highest salary.
