@@ -1,0 +1,124 @@
+1. Client, Server, Peer, and Host – What Are They in Networking?
+    1. Client
+        A client is a device or program that requests services or data from another device (the server).
+        It initiates communication.
+        ✅ Example: Your browser (client) requests a web page from a web server.
+
+        🗄️ 2. Server
+            A server is a device or program that provides services or resources to clients.
+            It waits for requests and responds to them.
+            ✅ Example: A web server delivers websites, a database server serves queries.
+
+        🤝 3. Peer
+            A peer is both a client and a server in a peer-to-peer (P2P) network.
+            Peers share resources directly without a central server.
+            ✅ Example: File sharing using BitTorrent — your system downloads and uploads files simultaneously.
+
+        💻 4. Host
+            A host is any device (computer, phone, etc.) connected to a network and capable of sending/receiving data.
+            Both clients and servers are types of hosts.
+            ✅ Example: Your laptop on Wi-Fi is a host, whether it runs a server or just browses the web.
+
+2.  What Are Bandwidth, Jitter, Packet, and Frame in Networking?
+    📶 1. Bandwidth
+        Definition: The maximum rate at which data can be transferred over a network.
+        Measured in: Mbps, Gbps (bits per second)
+        Think of it like the width of a highway—wider means more data can flow at once.
+        ✅ Example: A 100 Mbps connection can transfer 100 megabits of data per second.
+
+    🔁 2. Jitter
+        Definition: The variation in delay of received packets over a network.
+        Low jitter = smoother streaming/voice calls. High jitter = glitches or lag.
+        Caused by network congestion, route changes, etc.
+        ✅ Example: In a video call, if packets arrive out of order or at uneven intervals, the video may freeze or stutter.
+
+    📦 3. Packet
+        Definition: A small chunk of data sent over a network.
+        Packets include:
+        Payload (the actual data)
+        Header (info like source, destination, sequence number)
+        ✅ Example: A 5 MB file is split into thousands of packets before being sent, and reassembled on arrival.
+
+    📁 4. Frame
+        Definition: A data unit at the Data Link Layer (Layer 2 in OSI model).
+        Encapsulates a packet with extra information (like MAC addresses and error checking).
+        Transmitted between two directly connected devices (like switches).
+        ✅ Example: Ethernet frames carry IP packets within a local area network (LAN).
+    
+3.  Localhost, Bit Rate, Noise, Attenuation, and Distortion (in Networking)?
+    🖥️ 1. Localhost
+        Definition: A loopback network address that refers to the local machine.
+        Usually resolved as IP address 127.0.0.1.
+        Used for testing servers/applications without leaving your own device.
+        ✅ Example: Running a web server locally → http://localhost:3000
+
+    🔢 2. Bit Rate
+        Definition: The number of bits transmitted per second over a communication channel.
+        Measured in bps (bits per second), kbps, Mbps, Gbps.
+        Higher bit rate = more data sent in less time.
+        ✅ Example: A video stream at 5 Mbps bit rate needs a 5 Mbps or higher connection to stream smoothly.
+
+    📢 3. Noise
+        Definition: Unwanted electrical or signal interference that corrupts the transmitted data.
+        Causes errors in transmission.
+        Sources: electromagnetic interference (EMI), hardware faults, environment.
+        ✅ Example: Crackling on a phone line or corrupted bits in a file transfer.
+
+    📉 4. Attenuation
+        Definition: The loss of signal strength over distance or medium.
+        Increases with long cables, poor quality medium, or obstacles.
+        Fixed using repeaters or amplifiers.
+        ✅ Example: Wi-Fi signal weakening as you move farther from the router.
+
+    🔄 5. Distortion
+        Definition: Change in the shape or quality of a signal due to delay or interference in different parts of the signal.
+        Occurs when signal components arrive at different times or are altered during transmission.
+        ✅ Example: In audio, distorted sound means the original signal has been altered during transmission.
+
+
+-----------------  Common Networking Commands: ----------------
+
+1. ping
+    Purpose: Checks connectivity between your system and a remote host.
+    How it works: Sends ICMP echo requests and waits for a reply.
+    Usage: ping google.com
+
+2. netstat
+    Purpose: Displays network connections, routing tables, and open ports.
+    Helps you see which applications are using which ports.
+    Usage:  netstat -an
+
+3. tracert (Windows) / traceroute (Linux)
+    Purpose: Shows the route (hops) a packet takes to reach a destination.
+    Useful to find delays or broken links in a network path.
+    Usage: tracert google.com
+
+4. ipconfig (Windows)
+    Purpose: Displays IP address, subnet mask, default gateway, and more.
+    Also used to renew or release DHCP IP addresses.
+    Usage: ipconfig
+
+5. nslookup
+    Purpose: Queries DNS records to resolve domain names to IP addresses.
+    Helps verify DNS configuration and issues.
+    Usage: nslookup google.com
+
+6.  route
+    Purpose: Displays or modifies the IP routing table.
+    Shows how data is routed to different networks.
+    Usage:  route print       # View routing table
+            route add ...     # Add a static route
+
+7. pathping (Windows only)
+    Purpose: Combines ping + tracert — shows route + packet loss and latency per hop.
+    Takes more time but gives detailed diagnostics.
+    Usage: pathping google.com
+
+8. hostname
+    Purpose: Displays the computer’s network name.
+
+9. arp (Address Resolution Protocol)
+    Purpose: Shows and manages the ARP cache — maps IP addresses to MAC addresses.
+    Usage:
+        arp -a         # View ARP table
+        arp -d <IP>    # Delete ARP entry

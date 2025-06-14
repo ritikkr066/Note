@@ -1,0 +1,219 @@
+1. What is Firewall?
+    A firewall is a security system—either hardware, software, or both—that monitors and controls incoming and outgoing network traffic based on predefined security rules.
+    Traffic Filtering:
+        --It examines packets based on IP address, port, or protocol.
+        --Blocks or allows traffic depending on rules set by the network admin.
+
+2. Types of firewall.
+    1. Packet-Filtering Firewall
+        Works at: Network Layer (Layer 3)
+        How it works: Checks each packet's source IP, destination IP, port number, and protocol
+        Use Case: Basic filtering in routers or gateways
+    
+    2. Stateful Inspection Firewall
+        Works at: Network & Transport Layers (Layer 3 & 4)
+        How it works: Keeps track of active connections and allows packets only if they belong to a valid session
+    
+    3. Proxy Firewall (Application-Level Gateway)
+        Use Case: Web filters, secure email gateways, content monitoring
+
+    4. Next-Generation Firewall (NGFW)
+        Works at: All Layers (especially Layer 7)
+        How it works: Combines stateful inspection, deep packet inspection, intrusion prevention, malware protection, and more
+        Use Case: Modern enterprises with complex threats
+    
+    5. Network Address Translation (NAT) Firewall
+        Works at: Network Layer
+        How it works: Hides internal IP addresses from the public, only allows requests initiated from inside
+        Use Case: Home and office networks with private IP addressing
+
+3.  What Are the Possible Attacks on Firewalls?
+     Common Attacks on Firewalls:
+        IP Spoofing
+            Attacker forges a trusted IP address to trick the firewall into allowing traffic.
+
+        Port Scanning
+            Used to probe for open ports and detect vulnerabilities in firewall rules.
+
+        Packet Fragmentation Attack
+            Sends split-up malicious packets to evade detection (e.g., IDS/IPS inside NGFW).
+
+        Denial of Service (DoS/DDoS)
+            Floods the firewall with traffic, overwhelming resources and disrupting service.
+
+        Tunneling Attacks
+            Malicious data is hidden inside allowed protocols (e.g., HTTP, DNS) to sneak through.
+
+        Misconfiguration Exploits
+            Attackers exploit poorly set rules or open ports left unguarded.
+
+        Man-in-the-Middle (MitM)
+            If firewall doesn't enforce encryption, attackers can intercept/modifying traffic.
+
+        Backdoor or Trojan Access
+            Malware inside the internal network initiates outbound connections, bypassing inbound firewall rules.
+        
+        🛡️ How to Defend Against These:
+            Enable stateful inspection
+            Use Intrusion Detection/Prevention Systems (IDS/IPS)
+            Regularly audit and update rules
+            Block unused ports and monitor traffic patterns
+            Deploy Next-Generation Firewalls (NGFW) with deep inspection
+
+4. What Are Basic Network Attacks?
+    Basic network attacks are attempts to disrupt, steal, or gain unauthorized access to data or systems over a network. 
+
+    🔥 Common Basic Network Attacks:
+    Denial of Service (DoS) / Distributed DoS (DDoS)
+        Floods a server/network with traffic to make it unavailable.
+        DDoS uses multiple systems to launch the attack.
+    
+    Man-in-the-Middle (MitM)
+        Attacker intercepts communication between two parties to eavesdrop or alter data.
+        Common in insecure Wi-Fi.
+    
+    IP Spoofing
+        Sending packets from a fake (spoofed) IP address to bypass security filters.
+    
+    MAC Spoofing
+        Changes the MAC address of a device to impersonate another machine.
+    
+    Packet Sniffing
+        Captures network packets using tools like Wireshark to read unencrypted data.
+    
+    Brute Force Attack
+        Repeatedly tries usernames/passwords to gain access.
+    
+    Phishing (via Network)
+        Uses emails or messages over the network to trick users into giving credentials or downloading malware.
+
+5.  What is Denial of Service (DoS) and How Can It Be Prevented?
+    A Denial of Service (DoS) attack is a malicious attempt to make a system, service, or network unavailable by overwhelming it with traffic or resource requests.
+    If it comes from multiple systems, it's called a Distributed Denial of Service (DDoS).
+
+    The attacker floods a server or network with massive amounts of:Traffic (e.g., SYN floods, HTTP requests). The target becomes overloaded, casuing slowness, crashes, unavailibity to legitimate user
+
+    🛡️ DoS/DDoS Prevention Techniques:
+        Rate Limiting:
+            Limit the number of requests a user/IP can make.
+
+        Firewalls & Intrusion Prevention Systems (IPS):
+            Block suspicious traffic patterns.
+
+        Traffic Filtering with Anti-DDoS Services:
+            Use services like Cloudflare, AWS Shield, Akamai to absorb and filter attacks.
+
+        CDNs (Content Delivery Networks):
+            Distribute traffic across multiple nodes to reduce load on a single server.
+
+        Network Redundancy:
+            Use load balancers and failover systems to spread traffic and prevent bottlenecks.
+
+        Blackhole Routing (Sinkholing):
+            Route attack traffic to a “black hole” (non-existent server) to protect the real one.
+
+6. What Are Digital Signatures and Digital Certificates?
+    A digital signature ensures the authenticity and integrity of a message or document, while a digital certificate verifies the identity of the sender through a trusted authority.
+
+    1. Digital Signature:A digital signature is like an electronic fingerprint.
+        🔧 How It Works:
+            Sender creates a hash of the message.
+            Hash is encrypted using the sender’s private key.
+            The encrypted hash is the digital signature.
+            Receiver:
+                Decrypts the signature using sender’s public key
+                Hashes the received message
+                Compares both hashes → if equal, message is valid and unmodified.
+
+     2. Digital Certificate (SSL Certificate):
+        A digital certificate is issued by a Certificate Authority (CA) to link a public key to an organization or individual’s identity.
+            --Confirms the owner of a public key
+        
+        🔧 What It Contains:
+            Owner’s public key
+            Owner’s identity details (domain, company)
+            CA's digital signature
+            Expiry date, serial number, and algorithm info
+
+7. What Are Active and Passive Attacks in Information Security?
+    1. Passive Attacks
+        Goal: Eavesdrop or monitor data without altering it.
+            Does not affect system operation
+            Hard to detect, but can leak sensitive information
+            eg. Packet sniffing(wireshark) , traffic analysis
+    
+    2. Active Attacks
+        Goal: Disrupt, modify, or spoof data or system behavior.
+            Changes or corrupts data
+            Often causes damage or unauthorized access
+        Examples:
+            Man-in-the-Middle (MitM)
+            Denial of Service (DoS)
+            Session hijacking
+
+8.  What Are the Types of Email Attacks?
+    📧 Common Types of Email Attacks:
+        1. Phishing
+            Attacker sends fake emails posing as trusted entities (like a bank, employer, etc.).
+            Goal: Steal credentials, personal info, or make the victim click on malicious links.
+        
+        2. Email Spoofing
+            The "From" address is forged to make the email look like it’s coming from someone you trust.
+            Often used in phishing or spam campaigns.
+        
+        3. Malware Attachments
+            Email contains infected attachments (PDF, Word, ZIP, etc.).
+            Once opened, malware like ransomware, spyware, or trojans infect the system.
+    
+9.  What is Cryptography?
+    Cryptography is the science of protecting information by transforming it into a secure format, so that only intended recipients can access and understand it.
+    It ensures confidentiality, integrity, authentication, and non-repudiation of data.
+
+    Principle	        Purpose
+    Confidentiality	    Only authorized users can read the data
+    Integrity	        Ensures the data hasn’t been altered
+    Authentication	    Confirms the sender/receiver identity
+    Non-repudiation	    Prevents denial of having sent or received data
+
+    1. Symmetric Key Cryptography
+        Same key is used to encrypt and decrypt.
+        Fast, but key sharing must be secure.
+        Example: AES, DES
+    
+    2. Asymmetric Key Cryptography
+        Uses a public key to encrypt and a private key to decrypt.
+        Solves key distribution problem.
+        Example: RSA, ECC
+    
+    3. Hash Functions (One-way)
+        Converts data into a fixed-size hash (digest).
+        Cannot be reversed. Used for integrity checks.
+        Example: SHA-256, 
+
+10. What is Cryptanalysis?
+    Cryptanalysis is the process of analyzing and breaking cryptographic algorithms or ciphers to extract secrets. It's crucial in testing and improving the security strength of encryption systems.
+
+11.  AES, DES, RSA, and MD5 — What Are They & How Do They Differ?
+    These are widely used cryptographic algorithms, but they serve different purposes and use different techniques.
+
+    1. AES (Advanced Encryption Standard)
+        Type: Symmetric Key Algorithm
+        Key Sizes: 128, 192, or 256 bits
+        Block Size: 128 bits
+        Usage: Secure data encryption in Wi-Fi, SSL, VPNs, etc.
+    
+    2. DES (Data Encryption Standard)
+        Type: Symmetric Key Algorithm
+        Key Size: 56 bits (very small by today’s standards)
+        Block Size: 64 bits
+        Usage: Legacy systems (now mostly replaced by AES)
+    
+    3. RSA (Rivest-Shamir-Adleman)
+        Type: Asymmetric Key Algorithm
+        Key Size: 1024, 2048, 4096+ bits
+        Usage: Encrypting small data, digital signatures, secure key exchang
+    
+    4. MD5 (Message Digest 5)
+        Type: Hash Function (One-Way)
+        Output Size: 128-bit hash
+        Usage: Checksums, data integrity (now obsolete for security use)
