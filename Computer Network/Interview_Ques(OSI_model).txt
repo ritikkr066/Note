@@ -1,0 +1,114 @@
+1.  Protocols in the Application Layer (Layer 7 of OSI Model)?
+    "The Application Layer protocols enable end-user services like browsing (HTTP), email (SMTP, IMAP), file transfer (FTP), name resolution (DNS), and more. They support communication between client-server apps using protocols that follow either TCP or UDP, depending on the use case."
+
+2. What is DNS (Domain Name System)?
+    DNS translates domain names (like www.google.com) into IP addresses (like 142.250.77.68) so browsers can load websites.
+
+3. Why Does DNS Use UDP and Not TCP (by Default)?
+    ✅ UDP is Faster: DNS queries are typically small (less than 512 bytes), so UDP is used to avoid connection overhead.
+    ✅ No Handshake Needed: UDP sends requests directly, making it faster for quick lookups.
+
+     But DNS can also use TCP:
+     Used when: Response size > 512 bytes 
+    
+4. Address Resolution in DNS (How DNS Works)
+    Client asks local DNS resolver: "What is the IP of google.com?"
+    If not cached, resolver contacts:
+        Root DNS server → returns Top Level Domain (TLD) server (e.g., .com)
+        TLD server → returns authoritative DNS server for the domain
+        Authoritative server → returns actual IP address
+    Resolver caches the result and gives IP to the client.
+
+    ✅ Simplified Flow:
+    Client → Resolver → Root → TLD → Authoritative → IP → Client
+
+5. What is DNS Spoofing / DNS Cache Poisoning?
+    An attacker sends fake DNS responses to a resolver before the real one arrives.
+    The resolver stores the fake IP in its cache.
+    Users are redirected to malicious websites, even if they typed the correct domain
+
+6. Types of DNS Attacks?
+    🛡️ Attack Type	         Description
+    DNS Spoofing	        Fake IP sent to cache (user redirected to attacker site)
+    DNS Tunneling	        Transfers malware/data through DNS queries
+    Domain Hijacking	    Changes domain ownership by compromising registra
+
+7. How DHCP Dynamically Assigns an IP Address to a Host
+    The process is known as DORA:
+    Discover → Offer → Request → Acknowledge
+
+    1. Discover (Client → Broadcast)
+    When a device connects to a network, it sends a DHCP Discover message.
+    It’s a broadcast request: “Is there any DHCP server out there?”
+
+    2. Offer (Server → Broadcast)
+    A DHCP server replies with a DHCP Offer.
+    It offers an available IP address and other config (subnet mask, gateway, lease time, etc.).
+
+    3. Request (Client → Broadcast)
+    The client sends a DHCP Request, indicating it wants the offered IP.
+
+    4. Acknowledge (Server → Broadcast)
+    The DHCP server sends a DHCP Acknowledgement (ACK).
+    Confirms the IP is now leased to the client.
+
+8.  What is Peer-to-Peer (P2P) Sharing?
+    In P2P sharing, devices (called peers) communicate and share resources directly with each other without a central server.
+
+9. What is an IP Address?
+    An IP (Internet Protocol) address is a unique identifier assigned to each device connected to a network, used to locate and communicate with other devices.
+
+10.  What is a Supernet?
+    A supernet is a combination of two or more contiguous smaller networks (subnets) into a larger network.
+    Why Use Supernetting?
+        To reduce the size of routing tables (aggregation).
+        To summarize multiple IP routes into one.
+        To improve routing efficiency and performance.
+
+11. WPA vs WPS – What's the Difference?
+    "WPA is a Wi-Fi security protocol that encrypts the data on a wireless network. WPS, on the other hand, is a convenience feature that allows users to connect to Wi-Fi without typing a password—usually via a push button or PIN. While WPA provides real security, WPS can be insecure and is often disabled due to brute-force vulnerabilities."
+
+12. What is AAA?
+    AAA stands for:
+        Authentication : Verifies the identity of a user or device.
+        Authorization : Determines what actions or services the user is permitted to access
+        Accounting : Tracks user activity and resource usage.
+
+    It is a framework used to control who can access network resources, what they can do, and track their actions.
+
+13. What is SONET?(Synchronous Optical Network)
+    SONET is a standardized protocol that defines how to transmit multiple digital data streams over optical fiber using lasers or LEDs.
+
+14. What is ACL (Access Control List)?
+    An Access Control List (ACL) is a set of rules that control inbound and outbound network traffic based on IP addresses, protocols, or ports.
+
+    📍 It tells routers or firewalls which packets to allow or deny.
+
+15.  What is Ethernet?
+    It defines how data is transmitted over cables between devices like computers, switches, and routers.
+     It operates at Layer 1 (Physical) and Layer 2 (Data Link) of the OSI model.
+
+16  Internet vs Intranet vs Extranet
+    Internet: Open to everyone (public).
+    Intranet: Internal use only (private company network).
+    Extranet: Intranet shared securely with specific outsiders.
+
+    "The Internet is a public global network used by anyone. An Intranet is a private network within an organization, used by employees to access internal tools and documents. An Extranet is an extension of an intranet that allows secure access to external users like partners or vendors. It enables collaboration without exposing the full internal network."
+
+17. Virtual Circuit vs Datagram Network ?
+    A virtual circuit network is connection-oriented, meaning it sets up a dedicated path before sending data, ensuring packets arrive in order. In contrast, a datagram network like the Internet is connectionless — each packet may take a different route, and they may arrive out of order or get lost. Datagram networks are more flexible, while virtual circuits offer better reliability."
+
+18. What is a Switch?
+    A network switch is a device that connects multiple devices (like computers, printers) within a Local Area Network (LAN) and forwards data only to the intended device using MAC addresses.
+     It operates at Layer 2 (Data Link Layer) of the OSI model (some advanced switches operate at Layer 3).
+    
+    "A switch is a Layer 2 device that connects devices in a LAN and forwards data based on MAC addresses. Unlike a hub, it sends data only to the intended recipient. Switches come in various types, including unmanaged, managed, Layer 2, and Layer 3, depending on their functionality and control features."
+
+19. What is a Virtual LAN (VLAN)?
+    A VLAN is a virtual LAN that allows network administrators to group devices logically instead of physically. Even if devices are on different switches or floors, they can be part of the same VLAN. This improves security, reduces broadcast traffic, and simplifies network management. VLANs are commonly used to separate departments or roles in an organization."
+
+20.  What is Wi-Fi?
+    "Wi-Fi is a wireless technology that connects devices to a network using radio waves. It’s based on IEEE 802.11 standards and allows access to the internet without physical cables. Wi-Fi uses frequencies like 2.4 GHz and 5 GHz, and modern standards like Wi-Fi 6 offer high speed and efficiency. It’s secured using protocols like WPA2 and WPA3.
+
+21. Web vs Internet ?
+    "The Internet is the physical and logical infrastructure of global computer networks. The Web, or World Wide Web, is a service built on top of the Internet that uses HTTP to access and view websites through browsers. So, the Web is a part of the Internet, but the Internet also supports many other services like email and file transfers."

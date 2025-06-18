@@ -1,0 +1,32 @@
+1. ER Model to Relational Model ?
+    🔹 1. Entities → Tables\
+        Each entity becomes a table.
+        Its attributes become columns.
+        Choose a primary key for each entity.
+        Example: Entity Student(RollNo, Name, Age) → Table Student with RollNo as Primary Key.
+
+    🔹 2. Relationships → Foreign Keys
+
+        For 1:Many (1:N), add the primary key of the “1” side as a foreign key in the “N” side.
+
+        For Many:Many (M:N), create a new table with foreign keys from both participating entities.
+
+        For 1:1, you can choose either side to place the foreign key (depends on total participation).
+
+        ✳️ Example:
+        Student and Course have a many-to-many relationship (enrollment).
+        You create:
+            Student(RollNo, Name)
+            Course(CourseID, Title)
+
+        Enrollment(RollNo, CourseID) — where both are foreign keys and together form a composite primary key.
+
+    🔹 3. Multivalued Attributes
+        Create a separate table.
+        Example: If a Student has multiple phone numbers → make a StudentPhone(RollNo, PhoneNo) table.
+
+    🔹 4. Weak Entities
+        Add them as a table with a foreign key to the strong entity + partial key.
+        Example: Dependent(DependentName, EmpID) → EmpID is foreign key from Employee.
+
+

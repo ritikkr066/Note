@@ -1,0 +1,15 @@
+Extended ER Features ? 
+    “Extended ER (EER) features are enhancements to the basic ER model that allow more complex and real-world data modeling. These features help represent inheritance, categorization, and specialization — concepts we often see in object-oriented systems.
+
+    The main EER features include:
+
+    1. Generalization – It is the process of extracting common characteristics from two or more entities and creating a generalized super-entity.
+        For example, Car and Truck can be generalized into a common entity Vehicle.
+
+    2. Specialization – It is the opposite of generalization. We take a higher-level entity and create more specific lower-level entities.
+        For example, from Employee, we can specialize into Manager and Engineer.
+
+    3. Inheritance – This means that a subclass (like Manager) inherits attributes and relationships of its superclass (like Employee).
+
+    4. Aggregation – This is used when we treat a relationship as a higher-level entity.
+        For example, if a Project is managed by an Employee and uses Resources, the ‘manages’ relationship itself can be considered as an abstract entity.

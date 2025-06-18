@@ -1,0 +1,91 @@
+1. View of data ?
+    “In DBMS, the 'view of data' refers to how data is presented or accessed by users. Not everyone needs to see or interact with all the data the same way — so DBMS provides different levels of data views to ensure security, simplicity, and better control.
+
+    There are three levels of data abstraction in DBMS:
+    1. Physical Level – This is the lowest level that describes how data is stored in memory or on the disk. It deals with file structures, indexing, and storage blocks, which are handled by the system, not the user.
+
+    2. Logical Level – This describes what data is stored and the relationships between data (like tables, columns, and relationships in a relational database). Developers mostly work at this level.
+
+    3. View (External) Level – This is the topmost level where users see a customized version of the data. For example, a sales manager may only see customer orders, not employee salaries.
+
+    This separation is called the Three-Level Architecture. It improves security, hides complexity, and allows changes in the database structure without affecting user interaction.
+
+    A good analogy is a restaurant:
+    The kitchen (physical level) handles storage and cooking.
+    The menu (logical level) describes what is available.
+    The customer (view level) only sees and interacts with selected items.
+
+2. Instance and Schema ?
+    “In DBMS, a schema is the overall design or structure of the database — like a blueprint. It defines how the data is organized, including tables, fields, relationships, and data types.
+
+    An instance is the actual content of the database at a specific point in time — the data stored in the tables right now.
+
+    For example, in a student database, the schema defines the table structure like Student(ID, Name, Age), while the instance would be the actual rows of student data.
+
+3. Data models?
+    “A data model defines how data is structured, stored, and related in a database. It provides a logical view of the data and helps in designing the database.
+
+    There are several types of data models:
+        Hierarchical Model – Data is organized in a tree-like structure with parent-child relationships.
+
+        Network Model – Similar to hierarchical but allows many-to-many relationships using graphs.
+
+        Relational Model – Most commonly used; data is stored in tables with rows and columns.
+
+        Object-Oriented Model – Stores data as objects, like in programming languages.
+
+    For example, in a relational model, a student and course can be two tables linked by a foreign key.
+
+4.  Database Languages ? 
+    “In DBMS, database languages are used to define, manipulate, and control data in a database. These are categorized into four main types:
+
+    1. DDL (Data Definition Language) – It is used to define the structure of the database, like creating or altering tables.
+        Examples: CREATE, ALTER, DROP.
+        For instance, CREATE TABLE Students (...) defines a new table.
+
+    2. DML (Data Manipulation Language) – It deals with data operations such as inserting, updating, or deleting records.
+        Examples: INSERT, UPDATE, DELETE, SELECT.
+        For example, INSERT INTO Students VALUES (...) adds a new record.
+
+    3. DCL (Data Control Language) – It is used to control access to the data by assigning permissions.
+        Examples: GRANT, REVOKE.
+        For example, GRANT SELECT ON Students TO user1 gives read access.
+
+    4. TCL (Transaction Control Language) – It manages database transactions to maintain data integrity.
+        Examples: COMMIT, ROLLBACK, SAVEPOINT.
+        For instance, after making changes, COMMIT saves them, while ROLLBACK undoes if something goes wrong.
+
+    Together, these languages help in creating the database, managing data, securing access, and ensuring consistency during transactions.
+
+5. How is database accessed from Applications programs?
+    “Application programs access a database using a Database Management System (DBMS) through an API or a query language like SQL.
+
+    The most common way is by using SQL queries embedded in the application code or through Database Connectivity APIs like:
+
+    JDBC for Java,
+    ODBC for general-purpose access,
+
+    The process typically works like this:
+        The user interacts with the application’s front end.
+        The application forms an SQL query based on the user input.
+        This query is sent to the DBMS via a connection (like JDBC).
+        The DBMS executes the query and sends the result back.
+        The application displays the result to the user.
+
+    For example, in a shopping app, when a user searches for a product, the app sends a query like SELECT * FROM Products WHERE name='Shoes', and the DBMS returns the matching rows.
+
+6. DBMS application architectures ?
+    “DBMS application architecture refers to how a database system is structured in terms of components like the user interface, application logic, and the database itself. There are mainly three types of architectures:
+
+    1. Single-tier (1-tier) architecture – The database and application run on the same system. It’s simple but not scalable, usually used for local or testing environments.
+
+    2. Two-tier architecture – Here, the application is split into two layers:
+        The client side (user interface + application logic), and
+        The server side (DBMS).
+            The client directly communicates with the database using SQL. This is used in small-scale applications.
+
+    3. Three-tier architecture – It separates the system into three layers:
+        Presentation layer (user interface)
+        Application layer (business logic/server)
+        Database layer (DBMS)
+            The user interacts with the interface, which talks to the application server, and then the server interacts with the database.

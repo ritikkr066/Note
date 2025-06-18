@@ -1,0 +1,42 @@
+1. ER Model ? 
+    “The ER model, or Entity-Relationship model, is a high-level data model used to design and represent the structure of a database before it's created. It helps in understanding the data and how different parts of it are related.
+
+    The ER model uses diagrams to show three main components:
+
+    1. Entities – These are objects or things in the real world that we want to store data about. For example, a ‘Student’ or ‘Course’.
+
+    2. Attributes – These are the details about an entity. For a Student entity, attributes can be Roll Number, Name, and Age.
+
+    3. Relationships – These show how two entities are connected. For example, a Student 'enrolls in' a Course.
+
+    ER diagrams use shapes:
+        Rectangles for entities
+        Ellipses for attributes
+        Diamonds for relationships
+        Lines connect them
+
+    There are also concepts like primary keys, cardinality (1:1, 1:N, N:M), and weak entities.
+
+    For example, in a college database, a Student entity might be connected to a Course entity through an ‘enrolls’ relationship.
+
+2. Relationship constraints ? 
+    “Relationship constraints in DBMS define rules that restrict how entities can be related to each other in an ER model. These ensure the correctness and consistency of the relationships between entities.
+
+    The two main types of relationship constraints are:
+
+    1. Cardinality Constraints – These define the number of instances of one entity that can be associated with instances of another entity. There are four types:
+
+    One-to-One (1:1) – e.g., one student has one ID card.
+
+    One-to-Many (1:N) – e.g., one teacher teaches many students.
+
+    Many-to-One (N:1) – e.g., many employees work in one department.
+
+    Many-to-Many (M:N) – e.g., students enroll in many courses, and each course has many students.
+
+    2. Participation Constraints – These specify whether all entities are required to participate in a relationship.
+
+    Total participation – Every instance must be involved (shown by a double line in ER diagram).
+    Partial participation – Some instances may not be involved (shown by a single line).
+
+    For example, in a banking system, the ‘Customer’ entity has total participation in the ‘Owns’ relationship with the ‘Account’ entity — meaning every customer must own at least one account.

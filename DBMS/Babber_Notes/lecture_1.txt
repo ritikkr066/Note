@@ -1,0 +1,26 @@
+1. Data vs Information ?
+    “Data and Information are closely related, but different.
+    Data is the raw input — like numbers, words, or measurements — that has no meaning on its own. When we process that data, organize it, and give it context, it becomes information.
+
+    For example, if we have numbers like 90, 85, 88, that’s data. But if we say 'These are marks of a student in Science', that becomes information.
+
+    In real-world applications, data is collected from various sources, and through processing — like analysis or formatting — it is turned into information that helps in making decisions.”
+
+2. What is database?
+    “A database is a structured way to store and manage data on a computer so that it can be easily accessed, updated, or searched.
+
+    For example, a school might use a database to store student details — like names, roll numbers, marks — and quickly retrieve any student’s data when needed.
+
+    Databases are used everywhere — in banking systems, e-commerce apps, social media, and more — to store and manage huge amounts of information safely and efficiently.”
+
+3. DBMS?
+    “DBMS stands for Database Management System. It’s a software tool that helps us store, organize, and manage data efficiently.
+
+    For example, MySQL or Oracle DBMS can be used by a bank to manage customer accounts and transactions.
+
+4. DBMS vs file system ? 
+    “A file system stores data in files and folders, but it lacks structure and is harder to search or manage when data grows large.
+
+    DBMS, on the other hand, stores data in a structured format like tables and provides powerful features like querying, indexing, and security.
+
+    For example, searching a student's record in a file system means going through multiple files, but in DBMS, we can just run a simple query.

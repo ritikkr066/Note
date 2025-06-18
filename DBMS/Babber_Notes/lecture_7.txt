@@ -1,0 +1,71 @@
+1. Relational model ?
+    “The Relational Model is the most widely used data model in modern databases. Each table consists of rows (tuples) and columns (attributes).
+
+    In this model, every row represents a unique record, and each column represents a field or property of that record.
+
+    For example, a Student table might look like this:
+            RollNo	Name	Age
+            101	    Raj	    20
+            102	    Simran	21
+    Here, RollNo, Name, and Age are attributes; each row is a tuple.
+
+    Key features of the Relational Model include:
+    Primary Key: A unique identifier for each record (e.g., RollNo).
+
+    Foreign Key: An attribute in one table that refers to the primary key of another (used to establish relationships).
+
+    Integrity Constraints: Rules like Entity Integrity (no null in primary key) and Referential Integrity (foreign keys must match existing values).
+
+    Relational Algebra: A set of operations (like SELECT, PROJECT, JOIN) used to retrieve and manipulate data.
+
+    The relational model is simple, flexible, and powerful, which is why it’s used in most systems like MySQL, PostgreSQL, Oracle, etc.
+
+    A good analogy is: a relational database is like an Excel workbook where each sheet is a table, rows are records, and columns are fields — and we can easily connect data across sheets using unique identifiers.
+
+    Overall, the relational model provides a strong foundation for organizing data logically, reducing redundancy, and enabling complex querying.”
+
+2 Relational model keys ? 
+    “In the relational model, keys are used to uniquely identify rows in a table and establish relationships between tables. They ensure data accuracy and integrity.
+
+    There are several important types of keys:
+    1. Primary Key –
+        Uniquely identifies each record in a table.
+        Cannot have NULL or duplicate values.
+        Example: In a Student table, RollNo can be a primary key.
+
+    2. Candidate Key –
+        A set of fields that could all be used as a primary key.
+        Out of multiple candidate keys, one is chosen as the primary key.
+        Example: A student’s RollNo and Email might both be unique — both are candidate keys.
+
+    3. Super Key –
+        Any combination of attributes that uniquely identifies a row.
+        All candidate keys are super keys, but not all super keys are candidate keys (some may have extra fields).
+
+    4. Foreign Key –
+        A field in one table that refers to the primary key of another table.
+        It establishes a relationship between two tables.
+        Example: In an Enrollment table, StudentID can be a foreign key referencing the Student table.
+
+    5. Composite Key –
+        A key formed by combining two or more columns to uniquely identify a row.
+        Used when no single column is unique.
+        Example: A combination of StudentID and CourseID in a Registration table.
+
+3. Constraints
+     1. Key Constraints (Uniqueness Constraint)
+        This ensures that primary keys are unique and not NULL.
+        It guarantees that each row in a table can be uniquely identified.
+        For example, no two students can have the same Roll Number in a Student table.
+
+    🔹 2. Entity Integrity Constraint
+        It applies specifically to primary keys.
+        It says the primary key must have a value (cannot be NULL).
+        This ensures that every record in a table can be identified.
+        Think of it like: a national ID must exist for every citizen record.
+
+    🔹 3. Referential Integrity Constraint
+        It applies to foreign keys.
+        It ensures that the value of a foreign key must match an existing value in the parent table or be NULL.
+        For example, if StudentID in the Enrollment table refers to a Student table, then every StudentID must exist in the Student table.
+
