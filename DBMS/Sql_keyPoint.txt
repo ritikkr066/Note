@@ -44,3 +44,11 @@
 12. LEFT JOIN ensures all 1st table rows appear, even if there’s no matching 2nd table rows.
 
 13. OFFSET 1 skips the highest salary.
+
+14. ROW_NUMBER() : It’s a window function that assigns a unique sequential number to rows  ordered by a specified column.
+    SELECT 
+        column1,
+        column2,
+        ROW_NUMBER() OVER (ORDER BY columnY) AS row_num
+        //  ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS row_num
+    FROM table_name;

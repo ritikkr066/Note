@@ -12,26 +12,19 @@
      Used when: Response size > 512 bytes 
     
 4. Address Resolution in DNS (How DNS Works)
-    Client asks local DNS resolver: "What is the IP of google.com?"
-    If not cached, resolver contacts:
-        Root DNS server → returns Top Level Domain (TLD) server (e.g., .com)
-        TLD server → returns authoritative DNS server for the domain
-        Authoritative server → returns actual IP address
-    Resolver caches the result and gives IP to the client.
+    DNS (Domain Name System) translates domain names like google.com into IP addresses. When a client wants to access a website, it first asks the local DNS resolver for the IP address. If it’s not already cached, the resolver contacts the root DNS server, which directs it to the relevant Top Level Domain (TLD) server—like .com for google.com. The TLD server then points to the authoritative DNS server for that domain, which finally responds with the actual IP address. The resolver caches this IP to speed up future requests and returns it to the client, enabling the browser to connect to the web server.
 
     ✅ Simplified Flow:
     Client → Resolver → Root → TLD → Authoritative → IP → Client
 
 5. What is DNS Spoofing / DNS Cache Poisoning?
-    An attacker sends fake DNS responses to a resolver before the real one arrives.
-    The resolver stores the fake IP in its cache.
-    Users are redirected to malicious websites, even if they typed the correct domain
+    In DNS spoofing, an attacker sends a fake DNS response to a resolver before the real one arrives. The resolver then caches the fake IP address, so when users type a correct website name, they’re redirected to a malicious site without knowing it.
 
 6. Types of DNS Attacks?
     🛡️ Attack Type	         Description
-    DNS Spoofing	        Fake IP sent to cache (user redirected to attacker site)
-    DNS Tunneling	        Transfers malware/data through DNS queries
-    Domain Hijacking	    Changes domain ownership by compromising registra
+    DNS Spoofing	       attackers send fake IP responses to DNS resolvers, causing users to be redirected to malicious websites.
+    DNS Tunneling	       a method where malware or stolen data is hidden inside DNS queries and responses to bypass firewalls
+    Domain Hijacking        occurs when attackers  change the ownership or DNS settings of a domain, effectively taking control of it.    
 
 7. How DHCP Dynamically Assigns an IP Address to a Host
     The process is known as DORA:
@@ -59,30 +52,23 @@
     An IP (Internet Protocol) address is a unique identifier assigned to each device connected to a network, used to locate and communicate with other devices.
 
 10.  What is a Supernet?
-    A supernet is a combination of two or more contiguous smaller networks (subnets) into a larger network.
-    Why Use Supernetting?
-        To reduce the size of routing tables (aggregation).
-        To summarize multiple IP routes into one.
-        To improve routing efficiency and performance.
+   A supernet is created by combining two or more contiguous subnets into a larger network. This process, known as supernetting, is mainly used to reduce the size of routing tables by summarizing multiple IP routes into a single route. This not only simplifies the routing process but also improves network performance and efficiency.
 
 11. WPA vs WPS – What's the Difference?
-    "WPA is a Wi-Fi security protocol that encrypts the data on a wireless network. WPS, on the other hand, is a convenience feature that allows users to connect to Wi-Fi without typing a password—usually via a push button or PIN. While WPA provides real security, WPS can be insecure and is often disabled due to brute-force vulnerabilities."
+    WPA (Wi-Fi Protected Access) is a security protocol used to encrypt data on wireless networks, protecting it from eavesdropping and unauthorized access. In contrast, WPS (Wi-Fi Protected Setup) is a convenience feature that lets users connect to Wi-Fi without typing a password, often by pressing a button or entering a PIN. While WPA provides real security, WPS is known to be insecure due to brute-force vulnerabilities
 
 12. What is AAA?
+    AAA stands for Authentication, Authorization, and Accounting, and it is a fundamental security framework in networking
     AAA stands for:
-        Authentication : Verifies the identity of a user or device.
-        Authorization : Determines what actions or services the user is permitted to access
-        Accounting : Tracks user activity and resource usage.
-
-    It is a framework used to control who can access network resources, what they can do, and track their actions.
+        Authentication : verifies who the user is, such as through a username and password
+        Authorization : determines what the user is allowed to do, like accessing specific files or network services.
+        Accounting :  tracks user activity and resource usage, such as login times and commands executed.
 
 13. What is SONET?(Synchronous Optical Network)
-    SONET is a standardized protocol that defines how to transmit multiple digital data streams over optical fiber using lasers or LEDs.
+   SONET (Synchronous Optical Network) is a standardized communication protocol used to transmit multiple digital data streams over optical fiber using technologies like lasers or LEDs. It allows different types of data—like voice, video, and internet traffic—to be multiplexed and sent together efficiently at high speeds.
 
 14. What is ACL (Access Control List)?
-    An Access Control List (ACL) is a set of rules that control inbound and outbound network traffic based on IP addresses, protocols, or ports.
-
-    📍 It tells routers or firewalls which packets to allow or deny.
+    An Access Control List (ACL) is a set of rules used in routers and firewalls to control network traffic by specifying which packets should be allowed or denied based on factors like IP address, protocol, or port number. 
 
 15.  What is Ethernet?
     It defines how data is transmitted over cables between devices like computers, switches, and routers.
@@ -99,13 +85,11 @@
     A virtual circuit network is connection-oriented, meaning it sets up a dedicated path before sending data, ensuring packets arrive in order. In contrast, a datagram network like the Internet is connectionless — each packet may take a different route, and they may arrive out of order or get lost. Datagram networks are more flexible, while virtual circuits offer better reliability."
 
 18. What is a Switch?
-    A network switch is a device that connects multiple devices (like computers, printers) within a Local Area Network (LAN) and forwards data only to the intended device using MAC addresses.
-     It operates at Layer 2 (Data Link Layer) of the OSI model (some advanced switches operate at Layer 3).
-    
-    "A switch is a Layer 2 device that connects devices in a LAN and forwards data based on MAC addresses. Unlike a hub, it sends data only to the intended recipient. Switches come in various types, including unmanaged, managed, Layer 2, and Layer 3, depending on their functionality and control features."
+    A network switch is a Layer 2 device in the OSI model that connects multiple devices within a Local Area Network (LAN) and forwards data based on MAC addresses. Unlike a hub that broadcasts data to all connected devices, a switch intelligently sends data only to the intended recipient, which improves both security and efficiency.Switches help reduce network congestion and enable faster communication within the network.
+    There are different types of switches, such as unmanaged switches (simple plug-and-play) and managed switches (which offer control, monitoring, and VLAN support).
 
 19. What is a Virtual LAN (VLAN)?
-    A VLAN is a virtual LAN that allows network administrators to group devices logically instead of physically. Even if devices are on different switches or floors, they can be part of the same VLAN. This improves security, reduces broadcast traffic, and simplifies network management. VLANs are commonly used to separate departments or roles in an organization."
+   A VLAN (Virtual Local Area Network) is a technology that lets network administrators logically group devices regardless of their physical location. VLANs are often used in organizations to separate departments—like keeping HR, Finance, and IT on different virtual networks—even though they share the same physical infrastructure.
 
 20.  What is Wi-Fi?
     "Wi-Fi is a wireless technology that connects devices to a network using radio waves. It’s based on IEEE 802.11 standards and allows access to the internet without physical cables. Wi-Fi uses frequencies like 2.4 GHz and 5 GHz, and modern standards like Wi-Fi 6 offer high speed and efficiency. It’s secured using protocols like WPA2 and WPA3.

@@ -1,34 +1,35 @@
-						Java OOPs
-1.we can make infinite number of class in one java file,but there will be only one Public class in it. 
-that public class name should be same as java file name
-eg. mainClass.java
+ 						Java OOPs
+1. we can make infinite number of class in one java file,but there will be only one Public class in it. 
+	that public class name should be same as java file name
+	eg. mainClass.java
 
-public class mainClass{
-	psvm(){
-		//class-> non-primitive data type
-		Dog dog=new Dog(); //object of that class 
-		dog.name="Tommy";
-		dog.walk(); // tommy is walking
+	public class mainClass{
+		psvm(){
+			//class-> non-primitive data type
+			Dog dog=new Dog(); //object of that class 
+			dog.name="Tommy";
+			dog.walk(); // tommy is walking
+		}
 	}
-}
 
 
 -> Classes and Object
 
-classes are blueprint which defines some properties and behaviors.
-Class is basically a way to stora data and behavior.it is basically an template used by its object
+	A class is a blueprint or template in object-oriented programming (OOP) that defines the properties (data) and behaviors (functions/methods) of objects
 
-class Dog{  //factory
-	String name; //properties
-	int age; //properties
+	For example, you can define a class Car with properties like color and speed, and behaviors like start() or brake(). Once a class is defined, you can create multiple objects (instances) from it, each having its own set of values but sharing the same structure. So, a class is like a template, and objects are its real-world usable versions.
 
-	void walk(){  	 // behavior->function
-		print(name+"is walking");
-	}	
-	void eat(){} // behavior
-}
-behaviour->function
-properties-> variable
+	class Dog{  //factory
+		String name; //properties
+		int age; //properties
+
+		void walk(){  	 // behavior->function
+			print(name+"is walking");
+		}	
+		void eat(){} // behavior
+	}
+	behaviour->function
+	properties-> variable
 
 
 ->	METHOD OVERLOADING

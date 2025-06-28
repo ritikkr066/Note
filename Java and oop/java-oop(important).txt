@@ -1,0 +1,72 @@
+1. we can make infinite number of class in one java file,but there will be only one Public class in it. 
+	that public class name should be same as java file name
+	eg. mainClass.java
+
+2. Classes and Object
+    A class is a blueprint or template in object-oriented programming (OOP) that defines the properties (data) and behaviors (functions/methods) of objects
+
+	For example, you can define a class Car with properties like color and speed, and behaviors like start() or brake(). Once a class is defined, you can create multiple objects (instances) from it, each having its own set of values but sharing the same structure. So, a class is like a template, and objects are its real-world usable versions.
+
+3. Method Overloading
+    Method overloading is a feature in object-oriented programming that allows multiple methods with the same name to exist in a class, as long as they have different parameter lists—either by changing the number or type of arguments. 
+    For example, you might have an add() method that works with both integers and doubles, or a multiply() method that handles two or three numbers.
+    A practical use case would be in a PaymentProcessor class, where the processPayment() method is overloaded to support various payment modes—like one version for basic card details, another with additional CVV, and a third for digital wallets.
+
+4. Constructors
+    A constructor is a special method in a class that is automatically called when an object is created. Its main purpose is to initialize the object’s data members. A constructor must have the same name as the class and does not have any return type, not even void. If no constructor is explicitly defined, Java provides a default no-argument constructor.
+     Constructors can also be overloaded, meaning you can define multiple constructors in the same class with different parameter lists to allow flexible object creation. For example, you might create a Student object with just a name in one constructor and with name and age in another.
+
+5. this Keyword in Java
+    The this keyword in Java is used to refer to the current object of a class. One common use is to differentiate between instance variables and local variables when they have the same name, especially inside constructors or methods. For example, if a constructor takes parameters named a and b, and the class also has instance variables with the same names, using this.a = a; makes it clear that we are assigning the local parameter value to the instance variable. Essentially, this helps avoid naming conflicts and ensures that you're accessing the current object's fields. It's also used to call other constructors in constructor chaining or to return the current object from a method.
+
+6. Super Keyword
+    The super keyword in Java refers to the immediate parent class and is used to access parent class members such as variables, methods, or constructors. It is commonly used when the subclass wants to call a method or constructor from its superclass.
+     For example, if the parent class has a method that’s overridden in the child class, super.methodName() can be used to call the original version. In constructors, super() is used to invoke the parent class constructor, and it must be the first statement in the child class’s constructor body. It’s important to note that this() and super() cannot be used together, as both must appear first in the constructor if used.
+
+7. final Keyword
+     the final keyword is a non-access modifier used to restrict modification of entities like variables, methods, and classes. A final variable can be assigned only once, meaning its value becomes constant after initialization.
+      A final method cannot be overridden by any subclass, which helps preserve the original behavior of critical methods.
+        A final class cannot be extended, meaning no other class can inherit from it—for example, the String class is final in Java. The final keyword is useful for enforcing immutability, ensuring safe inheritance, and improving code reliability by preventing accidental changes.
+
+8. Compile-Time vs Run-Time Polymorphism in Java
+    In Java, polymorphism allows objects to take on many forms, and it is classified into compile-time and run-time polymorphism. Compile-time polymorphism, also known as method overloading, occurs when multiple methods in the same class have the same name but different parameter lists. The compiler decides which method to call based on the arguments provided—this happens at compile time.
+    
+    On the other hand, run-time polymorphism is achieved through method overriding, where a subclass provides a specific implementation of a method already defined in its superclass. In this case, the JVM decides at runtime which version of the method to execute based on the actual object type, enabling dynamic behavior. Inheritance plays a key role in enabling runtime polymorphism.
+
+9.  Package in Java
+    A package in Java is a way to organize classes and interfaces into named groups, making large programs more modular and easier to manage.
+    Java has many built-in packages like java.util, java.io, and java.lang. You can also create your own user-defined packages.
+    To use classes from a package, we use the import statement. For example, import java.util.Date; imports just the Date class, while import java.io.*; imports all classes from the java.io package
+
+10.  Java Access Modifiers
+    Access modifiers define the visibility or accessibility of classes, methods, and variables. There are four main access modifiers: public, protected, default (no keyword), and private. A public member is accessible from anywhere, even outside the package. A protected member is accessible within the same package and also in subclasses across different packages, making it useful in inheritance. The default access (when no modifier is specified) allows access only within the same package. Finally, a private member is the most restrictive—it can only be accessed within the same class.
+
+11. Encapsulation in Java
+    Encapsulation is one of the core principles of object-oriented programming, and it refers to bundling data (fields) and methods (functions)  into a single unit called a class. It helps to protect internal object states by making fields private and exposing them only through public getter and setter methods. This practice helps in achieving data hiding, where internal implementation details are hidden from outside classes.
+     For example, in a BankAccount class, the accountNumber and balance fields can be kept private and accessed only through secure getter methods. 
+    
+12. static Keyword 
+    the static keyword is used to define class-level members—meaning you don't need to create an object to access them. It can be applied to variables, methods, blocks, and even nested classes.
+    only one copy exists in memory, which is allocated once when the class is loaded. This makes it useful for things like counters or constants.
+    static methods cannot access non-static variables or use this or super, because they do not belong to any instance.
+
+13. Abstract Class in Java
+    An abstract class in Java is a class that cannot be instantiated directly—it acts as a template or blueprint for other classes. It may contain abstract methods (without implementation) that must be implemented by any non-abstract subclass, as well as concrete methods (with code).
+     For example, you can create an abstract class Vehicle with an abstract method start() and a concrete method stop(). A subclass like Car must implement the start() method. Abstract classes can have constructors, which are called when their subclass objects are created. While Java doesn’t support multiple inheritance using classes, abstract classes can implement multiple interfaces to achieve flexibility
+
+14. Abstraction in Java
+    Abstraction in Java is the concept of hiding internal implementation details and showing only the essential features of an object. It allows us to define what an object does without specifying how it does it. 
+    Abstraction is mainly achieved using abstract classes and interfaces. For example, consider a Payment interface with a method processPayment(). Different classes like CreditCardPayment or PayPalPayment can implement this interface and define their own logic.
+     Interfaces support multiple inheritance  whereas abstract classes support single inheritance and are used when you want to provide some shared code as well.
+    Abstraction helps developers focus on high-level design without being concerned about low-level logic.
+
+15. Functional Interface
+    A functional interface in Java is an interface that contains exactly one abstract method, and it serves as the foundation for lambda expressions and method references, which were introduced in Java 8.
+     Lambda expressions like (a, b) -> a + b can be used to implement these interfaces on the fly, making the code shorter and more expressive.
+
+16. Stack vs Heap Memory
+    In Java, stack memory is used for storing method calls and local variables, and it operates in a Last-In-First-Out (LIFO) manner. Each time a method is called, a new frame is pushed onto the thread's call stack, and it is popped off once the method completes. This memory is fast and managed automatically, but it's limited in size and thread-specific.
+     In contrast, heap memory is used for dynamic allocation of objects, which are accessed globally and remain in memory until no longer referenced—after which they're cleaned up by Java's Garbage Collector. Heap is slower but shared across threads, making it ideal for storing objects created using new. For example, primitive variables like int x = 10; go on the stack, while objects like new Person("John", 25) go to the heap.
+
+
+

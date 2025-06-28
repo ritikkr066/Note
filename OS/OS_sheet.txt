@@ -1,0 +1,198 @@
+1. What is a Batch Operating System?
+    A Batch Operating System is an early type of operating system where similar jobs are grouped together and processed in batches without any user interaction during execution.
+
+2. What happens when you turn on your computer ? 
+    "When I turn on my computer, the power starts the hardware. Then a small program called BIOS or UEFI runs a quick check to see if everything like RAM and keyboard is working.
+    After that, it looks for the operating system on the hard drive. A small program called the bootloader loads the operating system into memory.
+    Finally, the operating system starts, shows the login screen or desktop, and the computer is ready to use."
+
+3. Critical Section, Race Condition, and Its Solution ? 
+    🔹 Critical Section
+        A critical section is a part of the code where a process accesses shared resources.
+        If two processes enter their critical sections at the same time, it can lead to inconsistent or corrupted data.
+    
+    🔹 Race Condition
+        A race condition happens when the outcome of the program depends on the sequence or timing of uncontrollable events like process scheduling.
+    
+    🔹 Solution to Critical Section Problem
+        Mutual Exclusion – Only one process should be allowed in the critical section at a time.
+        Progress – If no one is in the critical section, some process should be able to enter.
+        Bounded Waiting – A process should not wait forever to enter its critical section.
+
+4. Mutex (Mutual Exclusion Lock):
+    “A mutex (mutual exclusion) is a synchronization tool used in modern systems to control access to critical sections in a multithreaded or multiprocess environment.
+        Only one thread can acquire the mutex at a time.
+        Others trying to acquire it will wait (block) until it is released.
+
+5. Semaphores:
+    “A semaphore is a synchronization tool used to control access to shared resources by multiple threads or processes.
+    It’s basically a counter with atomic operations — wait() (also called P or down) and signal() (also called V or up).
+    There are two types:
+        Counting Semaphore: Allows access to a resource pool with multiple instances.
+        Binary Semaphore: Similar to a mutex, it allows only one thread to enter the critical section.
+
+6. Producer Consumer Problem ? 
+    Notes- Producer-Consumer Problem (Bounded Buffer):
+    •	Synchronization between the producer and consumer 
+    •	It ensures that the producer doesn't insert data when the buffer is full, and the consumer doesn't pick/remove data when the buffer is empty.
+
+    Semaphores Used:
+    - mutex (Binary Semaphore): Ensures exclusive access to the buffer.
+    - empty (Counting Semaphore): Tracks available empty slots in the buffer.
+    - full (Counting Semaphore): Tracks filled slots in the buffer.
+
+    Producer:
+    do {
+    wait(empty);   // Wait until there's an empty slot (empty > 0), then    decrement empty.
+        wait(mutex);     // Acquire lock on buffer.
+            // Critical Section: Add data to the buffer.
+        signal(mutex);	// Release lock.
+        signal(full);   	// Increment full to indicate a filled slot.
+    } while (true);
+
+    Consumer:
+    do {
+        wait(full);    	// Wait until there's a filled slot (full > 0), then decrement full.
+        wait(mutex);     // Acquire lock on buffer.
+                    // Critical Section: Remove data from the buffer.
+        signal(mutex);   // Release lock.
+        signal(empty);   // Increment empty to indicate an empty slot.
+    } while (true);
+
+    Important Points:
+    - The mutex semaphore ensures that only one producer or consumer can access the buffer at a time, preventing conflicts.
+    - empty semaphore represents the number of available empty slots, and full represents the number of filled slots.
+    - The wait operation on a counting semaphore decrements its value, and signal operation increments it.
+    - The use of semaphores helps in achieving synchronization and avoiding race conditions.
+    - This solution prevents the producer from adding data to a full buffer and the consumer from removing data from an empty buffer.
+    - The do-while(true) loop signifies that the producer and consumer processes continue their operations indefinitely.
+
+7. Reader writer problem ? 
+    “The Reader–Writer Problem is a classic synchronization problem where a shared resource (like a file or database) is accessed by multiple readers and writers.
+    The challenge is to ensure that:
+        Multiple readers can read the data simultaneously without any conflict.
+        But only one writer can write at a time — and no reader should read while writing is happening.
+    
+    🔹 The Problem:
+        If we allow writers and readers together, readers might read inconsistent or partial data.
+        If we block all readers during writes and vice versa, it might hurt performance.
+    
+8. Dining Philospher problem ?    
+    🔹 Problem Statement: 
+        Imagine 5 philosophers sitting around a circular dining table.
+        Each philosopher alternates between thinking and eating.
+        There is a fork between each pair of philosophers (so 5 forks total).
+        A philosopher needs both the left and right forks to eat.
+    
+    🔹 Key Issues:
+        If all philosophers pick up the left fork first and wait for the right fork, they will all wait forever — this leads to deadlock.
+        If only one philosopher gets both forks repeatedly, others starve — this is starvation.
+
+9. Deadlock
+    A deadlock is a situation where a set of processes are blocked forever, each waiting for a resource that is held by another process in the same set.
+
+    🔹 Necessary Conditions for Deadlock (Coffman Conditions):
+        Mutual Exclusion – At least one resource is non-shareable.
+        Hold and Wait – A process holds one resource while waiting for another.
+        No Preemption – A resource can’t be forcibly taken; it must be released voluntarily.
+        Circular Wait – A closed chain of processes exists, each waiting for a resource held by the next.
+    
+    🔹 How We Prevent Deadlock:
+    1. Break Hold and Wait
+        Make a process request all the resources at once before execution.
+        If even one is unavailable, it waits without holding anything.
+    
+    2. Break No Preemption
+        If a process holds resources and requests another that’s unavailable, it must release its current resources and try again later.
+    
+    3. Break Circular Wait
+        Impose a strict ordering of resource types and require that each process requests resources in that order.
+    
+    4. Mutual Exclusion (rarely broken)
+        Some resources (like printers) are inherently non-shareable.
+        
+    Deadlock Avoidance :    
+    Deadlock avoidance is a dynamic technique used in operating systems to ensure the system never enters a deadlock state by making decisions before allocating resources.
+
+    The system must have prior knowledge of:
+        Maximum resources a process may request.
+        Currently allocated resources.
+        Available resources.
+
+    The goal is to only allow safe states — states where there is a sequence of processes that can all finish without causing a deadlock.
+
+    Banker’s Algorithm (Example of Deadlock Avoidance):
+        If a process requests a resource:
+            The system temporarily allocates it.
+            Checks if the system is still in a safe state.
+            If yes, grant the request; else, deny or delay it.
+
+10. How OS manages the isolation and protect?
+    The Base Register holds the starting physical address of a process in main memory.
+    The Limit Register defines the size (or length) of that process's allocated memory.
+    So, a process can only access memory addresses in the range:
+        [Base Address] → [Base + Limit - 1]
+    If it tries to access memory outside this range, the OS raises a trap (protection fault).
+
+11.  External Fragmentation
+    External fragmentation occurs when free memory is broken into small, scattered holes across the memory space.
+    These free blocks are not contiguous, so even if the total free memory is enough, a process might not fit into any single hole.
+
+12. Transition look-aside buffer
+    The Translation Lookaside Buffer (TLB) is a special cache used in virtual memory systems to speed up address translation from virtual addresses to physical addresses.
+
+    🔹 Why TLB is Needed:
+        When a CPU accesses memory, it uses virtual addresses.
+        These must be translated to physical addresses using page tables, which are stored in RAM.
+        Accessing RAM for page table lookup is slow.
+    → So, the TLB caches recent address translations to make this process faster.
+
+    ✅ How It Works:
+        CPU generates a virtual address.
+        The MMU checks the TLB to see if the virtual page number is already mapped to a physical frame.
+            ✅ If TLB hit, the physical address is found quickly (in nanoseconds).
+            ❌ If TLB miss, the MMU accesses the page table in RAM, then stores the result in the TLB for future use.
+
+13. segmentation
+    Segmentation is a memory management technique in operating systems where the memory is divided into variable-sized segments based on the logical divisions of a program, like code, stack, heap, and data.
+
+14. Virtual Memory, Demand Paging, and Page Fault 
+    Virtual Memory is a fundamental concept that allows programs to execute even if they are not completely loaded into the main memory. It creates an illusion that every process has access to a large, continuous block of memory, which is often more than the actual physical RAM. This is possible because the OS uses both main memory (RAM) and secondary storage (like a hard disk) together.
+
+    The key idea is that programs are divided into pages (fixed-size blocks of memory), and the memory is divided into frames of the same size. Now, instead of loading the entire program into RAM at once, only the pages that are currently needed are brought into memory. This method is known as Demand Paging.
+
+    In demand paging, whenever a process tries to access a page that is not present in physical memory, a special exception called a page fault occurs. The OS then interrupts the current process and takes the following steps:
+
+        1.It checks whether the page is a valid part of the program.
+        2. If it is valid, the OS locates the page on the disk (in a special area called swap space or page file).
+        3. It then selects a free frame in RAM (or replaces an existing page using a page replacement algorithm, like LRU or FIFO).
+        4. Loads the required page into that frame.
+        5. Updates the page table with the new frame number.
+        6. Restarts the instruction that caused the page fault.
+
+     It helps in achieving multiprogramming, better memory utilization, and also supports process isolation by giving each process its own virtual address space.
+
+    If the system spends more time swapping pages in and out than executing actual instructions. This is known as thrashing, and it severely degrades system performance.
+
+15. Techniques to Handle Thrashing ?
+    “Thrashing occurs when a system spends more time handling page faults than executing processes, due to excessive swapping between RAM and disk.
+
+    1. Working Set Model:
+        This model tracks the set of pages a process is actively using.
+        If the system detects that the total working sets of all running processes exceed physical memory, it reduces the degree of multiprogramming (i.e., suspends some processes temporarily).
+        By keeping only processes whose working sets fit in memory, the OS avoids frequent page faults.
+    
+    2. Page Fault Frequency (PFF):
+        The OS monitors the rate of page faults for each process.
+        If the rate is too high, it allocates more frames to the process.
+        If the rate is low, it may take some frames away and give them to others.
+        This dynamic adjustment keeps page faults in check and reduces thrashing.
+    
+    3. Reduce Multiprogramming Level:
+        When thrashing is detected, the OS can swap out or pause some processes.
+        This allows active processes to get enough frames.
+    
+    4. Use Better Page Replacement Algorithms:
+        Algorithms like Least Recently Used (LRU) reducing unnecessary replacements and page faults
+
+                

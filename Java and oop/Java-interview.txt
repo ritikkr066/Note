@@ -3,9 +3,7 @@
     In Java, the JDK, JRE, and JVM are key components of the Java development and execution environment, and each has a specific role:
 
     JVM (Java Virtual Machine) is the engine that actually runs Java bytecode. It provides platform independence and handles tasks like memory management, garbage collection, and security. It's responsible for converting bytecode into machine-specific code.
-
-    JRE (Java Runtime Environment) is a package that provides the libraries, JVM, and other components to run Java applications. It does not include tools for development like compilers or debuggers.
-
+        JRE (Java Runtime Environment) is a package that provides the libraries, JVM, and other components to run Java applications. It does not include tools for development like compilers or debuggers.
     JDK (Java Development Kit) is the full development kit. It includes everything in the JRE, plus development tools like the Java compiler (javac), debugger, and other tools required to write, compile, and debug Java programs.
 
         #"JVM runs the code, JRE provides the environment to run it, and JDK provides the tools to develop it."
@@ -17,19 +15,14 @@
         public static void main(String[] args)
 
         public means it can be accessed from outside the class — required so the JVM can call it.
-
         static means it belongs to the class, not an instance — so it can run without creating an object.
-
         void means it doesn't return any value.
-
         main is the name recognized by the JVM as the starting point.
-
         String[] args is used to accept command-line arguments.
-
     So, when I run a Java program, the JVM looks for this exact method to start the execution.
 
 3 What is the significance of (String args[])?
-    Yes, the (String[] args) part in the main() method is used to receive command-line arguments when we run a Java program.
+     the (String[] args) part in the main() method is used to receive command-line arguments when we run a Java program.
         java MyProgram Hello World
             then args[0] will be "Hello" and args[1] will be "World".
 
@@ -47,7 +40,6 @@
     In Java, superclass and subclass are terms used in inheritance.
 
     A superclass is the parent class — it contains common properties and methods that can be inherited.
-
     A subclass is the child class — it inherits from the superclass and can also have additional properties or override methods.
 
         "Superclass provides common behavior, and subclass specializes or extends that behavior."
@@ -119,7 +111,7 @@
     Compiler get confused, which show mehod should be called.
     So, Java uses interfaces to achieve multiple inheritance safely, because interfaces do not carry implementation (unless explicitly marked as default), so there's no ambiguity.
 
-9. What is paxckage in JAVA - the build-in pakage and user defined?
+9. What is package in JAVA - the build-in pakage and user defined?
     in Java, a package is a way to organize classes and interfaces into a structured namespace — just like folders organize files on a computer.
     There are two types of packages:
     🔹 1. Built-in Packages
@@ -170,13 +162,13 @@
     there are two type of cunstructor- default and Parameterized
 
 14. How is method overloading different from method overriding?
-    Method overloading : same method name, different parameters, determined at comppile time.
+    Method overloading : same method name, different parameters, determined at compile time.
 
     Method overriding : same method name and parameters , different implemention in subclass, runtime determination
 
 15.Difference between final and finally?
 
-    finally : ensures that certain code runs after try-catch , rregardless of exceptions.
+    finally : ensures that certain code runs after try-catch , regardless of exceptions.
 
 16. What are java collections , and why are they important?
     List: Collections that allow duplicate elements.
@@ -264,12 +256,10 @@
 
 25.Explain the volatile keyword in Java?
     When a variable is marked volatile, changes made to the variable by one thread are immediately visible to other threads.
-
     volatile also ensure that the value of the variable is always fetched from the main memeory and not from thread's local cache(stack).
 
 26. what are streams in JAVA, and how are they used?
-    Streams in JAVA is a pipeline that makes it easier to filter, transform and colllect data from collection.
-
+    Streams in JAVA is a pipeline that makes it easier to filter, transform and collect data from collection.
     Streams can be processed in parallel, achieving multi-core processors for performance.
 
         eg. 
@@ -312,10 +302,10 @@
         You use it when you want to skip certain fields during serialization (like passwords, temp data, or calculated values).
 
 30. what is the difference between String and a StringBuilder?
-        String : once a String object is created , its value cannot be chnages(Immutable).
+        String : once a String object is created , its value cannot be changes(Immutable).
                 used when we don’t need to modify the string.
 
-        StringBuilder: value can change the calue of the object after it's is created(Mutable);
+        StringBuilder: we can change the value of the object after it's is created(Mutable);
             used when we need to perform frequents modifications
 
 
