@@ -6,3 +6,5 @@ Leetcode:-279
 "In DP, I’ll create an array dp where each index represents the minimum number of squares to reach that index. Each entry will be initialized to infinity, except dp[0] = 0 because no squares are needed for 0.
 
 "For each number i from 1 to n, I’ll look at every square number j^2 such that j^2 <= i, updating dp[i] with the minimum of its current value or dp[i - j^2] + 1. This means I’m trying each possible perfect square at every step to build up to the best solution for i."
+
+Leetcode

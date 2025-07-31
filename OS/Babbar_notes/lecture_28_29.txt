@@ -1,0 +1,88 @@
+✅ What is Virtual Memory?
+Virtual memory is a memory management technique that gives the illusion of a larger main memory than what is physically available. It allows programs to run even if they are not completely loaded into RAM. Instead, a part of the secondary memory (like a hard disk) is used as virtual RAM.
+
+The key benefit is that programs can be larger than the available physical memory, and the system can run multiple programs at the same time, improving overall CPU utilization.
+
+✅ How Virtual Memory Works (Demand Paging)
+One popular method to implement virtual memory is demand paging. In demand paging:
+
+Only the required pages of a program are loaded into memory, not the entire process.
+
+The rest of the pages remain in secondary memory (like a swap space) until they are needed.
+
+If a page is accessed and it's not in memory, a page fault occurs.
+
+This is handled using a page table that marks pages as "valid" (in memory) or "invalid" (not in memory). If a program tries to access an invalid page, the OS:
+
+Checks if the access is valid.
+
+If valid, brings the required page from disk into RAM.
+
+Updates the page table.
+
+Restarts the instruction that caused the fault.
+
+This approach is known as lazy loading—only load what’s needed. If we start with no pages in memory and load pages only on fault, that’s called pure demand paging.
+
+✅ Advantages and Disadvantages of Virtual Memory
+Advantages:
+
+Programs are not limited by physical memory size.
+
+Multiple processes can run at once (increased multiprogramming).
+
+Saves memory by loading only necessary parts.
+
+Disadvantages:
+
+If page faults are too frequent, it can cause slowness.
+
+If the system spends too much time swapping pages in and out, it results in thrashing.
+
+✅ Page Replacement Algorithms
+When all frames are full and a page fault occurs, the OS needs to replace a page in memory to load the new one. This is where page replacement algorithms are used to decide which page to remove.
+
+🔹 1. FIFO (First-In First-Out)
+The oldest loaded page is removed first.
+
+Easy to implement.
+
+Disadvantage: May remove pages that are still frequently used.
+
+Shows Belady’s Anomaly: Increasing memory may increase page faults.
+
+🔹 2. Optimal Page Replacement
+Replace the page that will not be used for the longest time in the future.
+
+Gives least number of page faults.
+
+Not practical in real systems as it requires knowledge of the future.
+
+🔹 3. LRU (Least Recently Used)
+Removes the page that has not been used for the longest time.
+
+Based on the idea that recently used pages are more likely to be used again.
+
+Can be implemented using:
+
+Counters (timestamp of last use).
+
+Stack (most recently used on top, least on bottom).
+
+More accurate than FIFO but slightly complex.
+
+🔹 4. Counting-Based Algorithms
+Uses reference counters for each page.
+
+a. LFU (Least Frequently Used):
+
+Remove page with least access count.
+
+b. MFU (Most Frequently Used):
+
+Opposite logic: remove the page with highest access count, assuming it has already done its job.
+
+Note: LFU and MFU are rarely used in practice because they may not always reflect true usage patterns.
+
+✅ In Summary (for Interview Style):
+"Virtual memory helps in running large programs by using disk space as an extension of RAM. With demand paging, only the needed parts of a process are loaded, which saves memory and improves efficiency. If the needed page isn't in memory, a page fault happens, and the OS brings it in. When memory is full, we use page replacement algorithms like FIFO, LRU, or Optimal to decide which page to remove. Among these, LRU is practical and efficient, while Optimal gives best results in theory but can’t be used in real-time."

@@ -1,0 +1,7 @@
+Thrashing happens when a process does not have enough memory frames to hold the pages it is currently using. Because of this, it keeps requesting pages that are not in memory, causing frequent page faults. Each time, it has to remove an existing page to bring in the required one. But since all the pages are in active use, it often removes a page that will be needed again soon. So, the process ends up loading and unloading pages repeatedly in a loop, leading to very high paging activity. This condition, where more time is spent in handling page faults than doing actual work, is called thrashing.
+
+To handle thrashing, two common techniques are used:
+
+Working Set Model: This model works on the idea of locality — which means a process uses only a small set of pages at a time. If we allocate enough memory frames to hold this “working set” of pages, the process will run smoothly. But if we give it fewer frames than it needs for its working set, the process will constantly page fault and thrash.
+
+Page Fault Frequency (PFF): This technique monitors how often page faults occur. If the page fault rate goes above a set upper limit, it means the process needs more memory, so we give it more frames. If the rate drops below a lower limit, we may reduce the allocated frames. By keeping the page fault rate within a good range, we can avoid thrashing and use memory efficiently.

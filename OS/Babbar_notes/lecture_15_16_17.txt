@@ -1,0 +1,29 @@
+🧵 What is Concurrency and Threading?
+Concurrency means executing multiple tasks or instructions at the same time. In an operating system, this happens when multiple threads or processes run in parallel. A thread is the smallest unit of execution — kind of like a mini-process inside a bigger process. It's an independent path of execution and is also called a lightweight process. For example, when you're using a browser with multiple tabs open, each tab might be a different thread. Or in a text editor, one thread handles typing, another checks spelling, and another auto-saves — all at the same time.
+
+🧠 How Threads Work and Are Scheduled
+Threads are scheduled by the operating system based on priority. Each thread gets a time slice from the CPU, so even though it looks like everything is running at once, it's actually being managed very fast behind the scenes. When the OS switches from one thread to another, it saves the current thread's state (like program counter, stack, and registers) but doesn’t switch memory space like with processes — this makes thread switching much faster than process switching.
+
+⚙️ How CPU Handles Multiple Threads
+Each thread has its own program counter, which tells the CPU what to do next. The OS decides the order in which threads get CPU time, depending on the scheduling algorithm. Threads may be switched based on time slices or if a thread is waiting for I/O. For managing thread state during switching, the OS uses a Thread Control Block (TCB) — similar to a PCB used for processes.
+
+❓ Is Multi-threading Useful on a Single-Core CPU?
+Not really. On a single-core CPU, threads can’t truly run at the same time — they take turns. So, switching between threads doesn't give much performance improvement. But on a multi-core CPU, different threads can run on different cores, which helps in true parallelism.
+
+✅ Benefits of Multi-threading
+Multi-threading improves responsiveness, like keeping your app running even while some tasks are loading. It also helps with resource sharing, cost efficiency, and better use of multi-core processors. Since threads share memory and resources, they are faster and cheaper to manage than creating separate processes.
+
+🔐 Critical Section and Race Condition
+When threads share data, there’s a risk they might change it at the same time — this is called a race condition. The part of the code where shared data is accessed is called the critical section. If two threads enter the critical section together, data inconsistency can occur. To fix this, we use synchronization techniques.
+
+🔧 Solutions for Synchronization (Race Condition)
+We make the critical section an atomic operation, or use mutual exclusion with tools like locks, mutexes, and semaphores. These allow only one thread at a time to access the shared part of the code. A simple flag is not enough to prevent race conditions. A classic solution like Peterson’s Algorithm works but only for two threads.
+
+🧱 Problems with Locks/Mutexes
+While locks prevent race conditions, they come with problems. For example, if a thread dies while holding a lock, others may wait forever — causing deadlock. There's also contention, debugging difficulties, and starvation, where low-priority threads may never get a chance.
+
+💡 Conditional Variables
+A conditional variable allows a thread to wait for a certain condition to be true. It always works with a lock. When a thread waits, it releases the lock and sleeps until another thread sends a signal. This way, we avoid busy waiting, where a thread keeps checking again and again, wasting CPU time.
+
+📊 Semaphores (Counting & Binary)
+A semaphore is an integer used to manage access to limited resources. A binary semaphore behaves like a lock (0 or 1) and allows one thread at a time. A counting semaphore lets multiple threads access resources if multiple instances are available. When the semaphore value is 0, threads go into a waiting queue instead of wasting CPU cycles. Later, when a resource is released, a signal wakes up one waiting thread.

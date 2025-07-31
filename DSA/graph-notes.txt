@@ -1,54 +1,101 @@
 1. when do we use ArrayList<ArrayList<Integer>> and Map<Integer<List<Integer>> for build graph.
 
-1️⃣ ArrayList<ArrayList<Integer>>
-    ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
+    1️⃣ ArrayList<ArrayList<Integer>>
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>();
 
-    -> Each index in the outer list represents a node.
-    -> The inner list at each index stores the neighbors of that node.
+        -> Each index in the outer list represents a node.
+        -> The inner list at each index stores the neighbors of that node.
 
-✅ When to Use?
-    ✔ Graph nodes are numbered from 0 to N-1
-    ✔ Fixed number of nodes (N) is known beforehand
-    ✔ Memory efficiency is important
-    ✔ Dense graphs (where many nodes exist and are numbered sequentially)
+    ✅ When to Use?
+        ✔ Graph nodes are numbered from 0 to N-1
+        ✔ Fixed number of nodes (N) is known beforehand
+        ✔ Memory efficiency is important
+        ✔ Dense graphs (where many nodes exist and are numbered sequentially)
 
-    code:- 
-    for (int i = 0; i < n; i++) {
-        graph.add(new ArrayList<>());
-    }
+        code:- 
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
 
-    // Add edges (undirected graph)
-    graph.get(0).add(1);
-    graph.get(1).add(0);
+        // Add edges (undirected graph)
+        graph.get(0).add(1);
+        graph.get(1).add(0);
 
-    Pros:-
-    Better for competitive programming, where N is predefined.
-    Faster access (O(1)) to a node’s neighbors using graph.get(node).
+        Pros:-
+        Better for competitive programming, where N is predefined.
+        Faster access (O(1)) to a node’s neighbors using graph.get(node).
 
-    cons:-
-    ❌ Doesn’t work well for sparse graphs (large node indices but fewer connections).
-    ❌ Cannot handle dynamic graphs well where nodes are arbitrary (e.g., IDs like 100, 500, 999).
+        cons:-
+        ❌ Doesn’t work well for sparse graphs (large node indices but fewer connections).
+        ❌ Cannot handle dynamic graphs well where nodes are arbitrary (e.g., IDs like 100, 500, 999).
 
-2️⃣ Map<Integer, List<Integer>>
-    Map<Integer, List<Integer>> graph = new HashMap<>();
+    2️⃣ Map<Integer, List<Integer>>
+        Map<Integer, List<Integer>> graph = new HashMap<>();
 
-    -> Keys represent nodes, which can be any arbitrary integer (not necessarily from 0 to N-1).
-    -> Values store lists of neighboring nodes.
+        -> Keys represent nodes, which can be any arbitrary integer (not necessarily from 0 to N-1).
+        -> Values store lists of neighboring nodes.
 
-✅ When to Use?
-    ✔ Graph has arbitrary node values (e.g., user IDs, large index gaps)
-    ✔ Sparse graphs where nodes are not sequential
-    ✔ Dynamic graphs (new nodes can be added without wasting space)
-    ✔ Better for large constraints where N is unknown initially
+    ✅ When to Use?
+        ✔ Graph has arbitrary node values (e.g., user IDs, large index gaps)
+        ✔ Sparse graphs where nodes are not sequential
+        ✔ Dynamic graphs (new nodes can be added without wasting space)
+        ✔ Better for large constraints where N is unknown initially
 
-    // Add edges
-    graph.computeIfAbsent(100, k -> new ArrayList<>()).add(200);
-    graph.computeIfAbsent(200, k -> new ArrayList<>()).add(100);
+        // Add edges
+        graph.computeIfAbsent(100, k -> new ArrayList<>()).add(200);
+        graph.computeIfAbsent(200, k -> new ArrayList<>()).add(100);
 
-    Pros:-
-    ✅ Can handle graphs where nodes are non-sequential (e.g., user IDs, large gaps in indices).
+        Pros:-
+        ✅ Can handle graphs where nodes are non-sequential (e.g., user IDs, large gaps in indices).
 
 
-Dynamic graph (adding/removing nodes) :- use Map
-Nodes are numbered from 0 to N-1 :- use List
-Nodes are arbitrary (e.g., 100, 500, 999) : use map 
+    Dynamic graph (adding/removing nodes) :- use Map
+    Nodes are numbered from 0 to N-1 :- use List
+    Nodes are arbitrary (e.g., 100, 500, 999) : use map 
+
+2.  When to Use Kahn vs DFS ? 
+    Asked explicitly for BFS-based approach	
+    You want topological order as well	
+    You want to avoid recursion (stack overflow)	
+    Graph is very large, and you're worried about DFS stack
+
+3. What is Topological Sorting?
+    A linear ordering of vertices such that for every edge u → v, u comes before v in the ordering.
+    So it only applies to a Directed Acyclic Graph (DAG).
+
+4.  “Bipartite” means
+    A graph is bipartite if we can color it using two colors such that no two adjacent nodes have the same color.
+    Another way: A graph is bipartite if it does not contain any odd-length cycle.
+
+5. Bellmon Ford Algorithm 
+    Repeat the edge relaxation process (V - 1) times
+    Because the longest possible shortest path can have at most V - 1 edges.
+    After that, all shortest paths should be finalized.
+
+6. All Pair shortest path
+    Dijkstra: Run V times for APSP → O(V × E log V)
+    Bellman-Ford: O(V² × E) if done for all pairs
+    Floyd-Warshall: O(V³) → simpler and often better for dense graphs
+
+    why K in outer loop not in inner loop ?
+        At step k, we consider all paths that can go through node k.
+        All updates to dist[i][j] are based on using nodes {0, 1, ..., k} as intermediate nodes.
+
+    If You Write k in the Inner Loop:
+        1. You're not building the solution step by step.
+            You’re trying all k for each i and j, but without ensuring the results from previous k values are already finalized.
+            So some paths might use future intermediate nodes that haven't been processed yet.
+    🔁 Real Analogy
+    Suppose you’re planning train trips from city i to city j:
+        You decide: “I’ll first see if I can go through station 0, then through station 1, and so on.”
+        That means: outer loop must be the station k you're trying to insert between every pair (i, j).
+
+    If you do k inside, it’s like:
+        “Try all possible in-between stations at once, without caring about order or progress,” which breaks the structure of the shortest-path updates.
+
+7. You have two standard MST algorithms:
+    Prim's Algorithm (Priority Queue + Visited Array)
+    Kruskal’s Algorithm (Sorting + Disjoint Set)
+
+    Prim's : Multiple same-weight edges? Doesn’t affect correctness; min weight is always chosen.
+

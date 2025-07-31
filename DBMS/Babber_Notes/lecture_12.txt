@@ -1,0 +1,29 @@
+Q. Transactions and ACID properties ?
+
+    A transaction in a database is a logical unit of work, consisting of one or more SQL operations like insert, update, or delete. These operations must be executed in a specific sequence to maintain correctness. The key idea is that either all the operations within a transaction are successfully completed and permanently saved in the database, or none of them take effect if any step fails. This ensures the database stays consistent.
+
+    To guarantee the reliability of transactions, databases follow the ACID properties.
+
+    Atomicity ensures that a transaction is all-or-nothing—if any part fails, the whole transaction is rolled back.
+
+    Consistency means that a transaction takes the database from one valid state to another, always maintaining rules like constraints or relationships.
+
+    Isolation ensures that concurrent transactions don’t interfere with each other. Each transaction behaves as if it’s the only one running, even when many are running at the same time.
+
+    Durability guarantees that once a transaction is committed, its changes will survive any system failure like power loss or crash.
+
+    Transactions go through several states during their execution:
+
+    In the Active state, the transaction begins and performs its read/write operations.
+
+    If everything works fine, it enters the Partially Committed state, where changes are saved in memory but not yet permanent in the database.
+
+    Once these changes are made permanent, the transaction enters the Committed state, and no rollback is possible from here.
+
+    If any failure occurs during execution, the transaction enters a Failed state, and all temporary changes are discarded.
+
+    After rollback, it moves to the Aborted state, restoring the database to the state before the transaction began.
+
+    Finally, once the transaction either commits or aborts, it reaches the Terminated state.
+
+    This entire flow ensures that even in the face of errors or system crashes, the database maintains correctness, stability, and reliability.

@@ -1,0 +1,9 @@
+Q: Clustering in DBMS ?
+
+    Clustering in DBMS means using multiple servers that work together to handle a single database. This setup is helpful when one server alone isn’t enough to manage large data or a high number of user requests. In clustering, we replicate the same data on multiple servers, so that if one server fails, the data is still available on the others. This gives us data redundancy, which is a good thing in this case because it protects against failures.
+
+    One of the biggest benefits of clustering is load balancing. It means the workload is shared among all the servers in the cluster, so no single server is overloaded. This makes the system more efficient and helps it handle traffic spikes smoothly. More users can access the database at the same time without slowing it down.
+
+    Another advantage is high availability. Since the data is stored on multiple servers, the database stays available even if one of the servers goes down. This is especially useful for applications that need to be available 24/7.
+
+    In terms of how it works, clustering splits incoming requests across different computers or nodes. If one node fails, another one takes over automatically. This setup greatly reduces the chances of a full system crash and ensures that users can still access the database without interruption.

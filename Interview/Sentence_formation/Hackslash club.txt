@@ -1,0 +1,24 @@
+Experiance
+
+Good morning everyone.
+Today I want to share my two-year journey with the Hacksmiths Club.
+I joined the club in July 2024 during my first year of engineering after the induction process.
+At first, I attended an orientation where I got to know the team and interacted with seniors.
+Working closely with them gave me useful insights and hands-on experience.
+Later that year, I got a chance to work on a project during TCF, where I collaborated with a junior to build the project.
+That was a great learning experience for me.
+
+In my second year, I became a senior member of the club.
+I was responsible for interviewing new juniors and guiding them in their learning journey.
+Many juniors were excited to learn everything quickly, so we helped them by giving a clear timeline and roadmap.
+
+My simple roadmap for web development goes like this:
+First, learn HTML and CSS, and make small projects.
+Once you're comfortable, move to JavaScript and use it in your projects.
+Then learn frameworks like ReactJS, NextJS, and styling tools like Tailwind CSS.
+If you feel confident with frontend, start learning the backend with Node.js and Express.js.
+Try building pages like login and signup.
+Then learn MongoDB and connect it to your projects.
+This step-by-step process has worked well for many juniors.
+
+That was my experience in the Hacksmiths Club, and I’m grateful for the learning and growth it brought me. Thank you!

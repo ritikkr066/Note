@@ -1,0 +1,15 @@
+Q. Dining Philosophers Problem
+
+    The Dining Philosophers Problem is a classic example in Operating Systems to show how deadlock and synchronization problems can occur in resource sharing. Imagine five philosophers sitting around a circular dining table. In front of each philosopher, there is a single fork placed between them and their neighbor.
+
+    Each philosopher does only two things in their life: thinking and eating. When a philosopher is thinking, they don’t interact with the others at all. But when they get hungry, they need to pick up the two forks next to them — one on the left and one on the right — to start eating. They are only allowed to pick up one fork at a time, and if a fork is already taken by another philosopher, they have to wait.
+
+    Now, to implement this behavior in code, we can use semaphores, where each fork is represented as a binary semaphore (either 0 or 1). A philosopher performs a wait() operation to pick a fork, and a signal() operation to release it after eating. For example, we can declare the forks like this: semaphore fork[5] = {1, 1, 1, 1, 1};
+
+    This setup ensures that no two neighboring philosophers eat at the same time. But still, it doesn’t solve the deadlock problem. Suppose all five philosophers get hungry at the same time and each one picks up their left fork. In that case, all the forks will be taken, and now each philosopher will wait forever for their right fork, which leads to a deadlock.
+
+    To avoid this situation, we need to apply some smart rules. One solution is to allow only four philosophers to sit at the table at the same time. This makes sure that at least one philosopher will always be able to eat and release forks. Another way is to make sure that a philosopher picks up both forks together, but only if both are available — this has to happen atomically, like in a critical section.
+
+    Another popular strategy is the odd-even rule. In this approach, philosophers are numbered 0 to 4. Philosophers with odd numbers pick up their left fork first, then the right. Philosophers with even numbers do the opposite — they pick up the right fork first, then the left. This breaks the cycle and helps avoid deadlock.
+
+    So, the main takeaway is: using semaphores alone is not enough to solve the Dining Philosophers Problem. We need to add extra rules or logic to prevent deadlock and ensure that philosophers can eat without blocking each other forever.

@@ -1,0 +1,4 @@
+1. Leetcode 78 Subset
+    List<Integer>list=new ArrayList<>(ans.get(i)); 
+        this will take O(k) T.C where k is  no. of elements is this list.
+        new ArrayList<>(ans.get(i)) :- we are creating new list or cloning 

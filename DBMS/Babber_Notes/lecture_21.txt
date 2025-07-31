@@ -1,0 +1,15 @@
+Q. Master-Slave architecture ? 
+
+    In distributed databases, when a single server cannot handle a high number of read and write operations efficiently, we use a Master-Slave architecture. This setup helps scale the system and improve performance.
+
+    In this architecture, the Master database is responsible for all the write operations—it stores the most recent and accurate version of the data. On the other hand, one or more Slave databases handle all the read operations. This division reduces the load on the Master and ensures that users can access data quickly without overloading a single server.
+
+    The Master regularly replicates its data to the Slaves. This replication can be:
+
+    Synchronous, where the Master waits for the Slaves to update before confirming a write, or
+
+    Asynchronous, where the Master confirms a write immediately and updates the Slaves later.
+
+    This model improves availability, reliability, and latency of the system. However, in case of asynchronous replication, there might be a slight delay in the Slaves reflecting the latest data.
+
+    Overall, Master-Slave is a commonly used pattern for scaling databases, especially when there are far more reads than writes in the system.

@@ -1,0 +1,47 @@
+🧠 What is Process Scheduling?
+Process scheduling is the core idea behind a multiprogramming operating system. It helps improve system performance by switching the CPU among different processes. Instead of making one process wait endlessly, the OS keeps several processes in memory, and whenever one process is blocked or finishes its time slice, the CPU is switched to another process. This keeps the system busy and efficient.
+
+⚙️ What is the Role of a CPU Scheduler?
+The CPU scheduler is a component of the OS that decides which process should get the CPU next from the ready queue. This decision is made every time the CPU becomes idle or a process finishes its execution or enters a waiting state. The short-term scheduler (STS) performs this job.
+
+🛑 Non-Preemptive Scheduling
+In non-preemptive scheduling, once a process gets the CPU, it keeps running until it finishes or enters a waiting state. This method is simple but not very efficient. It can lead to low CPU utilization and starvation, especially when a process with a long burst time blocks others with shorter jobs.
+
+🔄 Preemptive Scheduling
+In preemptive scheduling, the OS can take back the CPU from a running process if its time quantum expires or if a higher-priority process comes in. This improves CPU utilization and reduces the chances of starvation. It also helps maintain system responsiveness, especially in time-sharing environments.
+
+🎯 Goals of CPU Scheduling
+The main objectives of CPU scheduling are to maximize CPU usage, minimize turnaround time (TAT), reduce waiting time and response time, and increase system throughput — which means completing as many processes as possible in a given time.
+
+📊 Important Scheduling Terms
+Throughput: Number of processes completed per unit time.
+
+Arrival Time (AT): Time when a process enters the ready queue.
+
+Burst Time (BT): CPU time required by a process.
+
+Turnaround Time (TAT): Total time from arrival to completion (TAT = CT - AT).
+
+Waiting Time (WT): Time a process waits in the ready queue (WT = TAT - BT).
+
+Response Time: Time from arrival to the first time the process gets the CPU.
+
+Completion Time (CT): When a process finishes execution.
+
+⌛ FCFS (First Come, First Serve)
+In FCFS, the process that arrives first gets the CPU first. It's easy to understand and implement, but it suffers from the Convoy Effect — where one long process blocks several shorter ones behind it, leading to poor CPU and resource utilization.
+
+🚀 Shortest Job First (SJF)
+SJF picks the process with the shortest burst time. In non-preemptive SJF, once a short process starts, it runs until completion. In preemptive SJF (also called Shortest Remaining Time First), a shorter process can preempt a longer one. While preemptive SJF reduces waiting time, both versions can suffer from starvation if short processes keep arriving.
+
+🎯 Priority Scheduling
+In this method, each process is assigned a priority. The CPU is given to the highest-priority process. Like SJF, it can be non-preemptive or preemptive. The issue here is starvation of low-priority processes. A solution is aging, where a waiting process's priority increases over time to ensure it eventually runs.
+
+🔄 Round Robin (RR)
+Round Robin is one of the most popular scheduling algorithms, especially for time-sharing systems. Every process gets a fixed time slice or time quantum. If it doesn't finish in that time, it goes to the end of the queue. RR is fair, avoids starvation, and is easy to implement. However, if the time quantum is too small, frequent context switching can lead to overhead.
+
+🗂️ Multi-Level Queue (MLQ) Scheduling
+In MLQ, the ready queue is divided into multiple queues based on priority or process type — like system processes, interactive processes, and batch processes. Each queue has its own scheduling algorithm. For example, system processes may use RR while batch ones use FCFS. The drawback is starvation for lower queues, because higher-priority queues are always served first.
+
+🔄 Multi-Level Feedback Queue (MLFQ)
+MLFQ improves MLQ by allowing processes to move between queues based on behavior. For example, a process using too much CPU might be moved to a lower-priority queue, while one waiting too long can be moved up — this prevents starvation. MLFQ is flexible and adapts to different system needs, but it’s more complex to implement.

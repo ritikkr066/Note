@@ -1,0 +1,59 @@
+✅ Introduction to Operating Systems
+An Operating System (OS) is a type of system software that acts as a bridge between the user, application programs, and computer hardware. While application software performs specific tasks for users (like MS Word or Chrome), the OS manages all resources of the computer system—both hardware and software. It ensures efficient execution of programs by hiding the hardware complexity and acting as a resource manager.
+
+Without an OS, application developers would have to manually manage hardware like memory, CPU, and I/O devices. This would make apps large, error-prone, and inefficient. The OS simplifies this by abstracting hardware, protecting resources, and allocating them fairly among applications.
+
+✅ Functions of an Operating System
+The key roles of an OS include:
+
+Providing access to hardware.
+
+Acting as an interface between the user and hardware.
+
+Managing resources like memory, CPU, files, devices, and security.
+
+Providing abstraction and isolation to ensure each application runs securely and efficiently.
+
+The OS is made of a collection of system software that works together to fulfill these goals. Some of the main objectives are maximizing CPU usage, minimizing process starvation, and prioritizing critical jobs.
+
+✅ Types of Operating Systems
+Single Process OS: Only one process runs at a time. This is the earliest and simplest OS type.
+
+Batch Processing OS: Users submit jobs in bulk (or batches) using punch cards. No real-time interaction. Can lead to starvation and idle CPU during I/O.
+
+Multiprogramming OS: Multiple jobs are kept in memory, and the CPU switches to another job when the current one waits for I/O. This reduces CPU idle time.
+
+Multitasking OS: A logical extension of multiprogramming, where multiple tasks appear to run simultaneously using time-sharing. Improves responsiveness.
+
+Multiprocessing OS: Uses multiple CPUs. Provides better throughput, reliability, and reduced starvation.
+
+Distributed OS: Manages a collection of interconnected, independent nodes (with their own CPUs, memory, etc.). Appears as a single system to users.
+
+Real-Time OS (RTOS): Performs tasks within strict time constraints. Used in systems like air traffic control, robotics, etc.
+
+✅ LEC-3: Multi-Tasking vs Multi-Threading
+A Program is a file with compiled code, stored on disk, ready for execution.
+
+A Process is a running instance of a program in memory (RAM).
+
+A Thread is the smallest unit of execution within a process—a lightweight sub-process.
+
+🔁 Multitasking:
+It refers to running multiple processes seemingly at the same time. It uses context switching between processes, and each process has its own memory space. Example: running a browser and a text editor simultaneously.
+
+🧵 Multithreading:
+It refers to a single process running multiple threads concurrently. Threads share the same memory space but run independently. For example, when using a text editor, one thread handles typing, another handles spell check, and another handles saving.
+
+✅ Key Differences
+Feature	Multitasking	Multithreading
+What’s happening?	Multiple processes	Multiple threads of one process
+Memory	Separate memory	Shared memory
+Context switching	Slower, as entire process state changes	Faster, only thread state switches
+Isolation	Strong isolation	Weak isolation
+CPU Usage	Efficient but more overhead	More efficient, less overhead
+Example	Chrome + Spotify running together	Multiple tabs within Chrome
+
+⏱️ Thread vs Process Context Switching
+Thread context switching is faster because memory address space stays the same; only the stack, registers, and program counter change.
+
+Process context switching is slower because it includes memory address space changes, and the CPU cache may be flushed.

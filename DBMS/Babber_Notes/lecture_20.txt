@@ -1,0 +1,11 @@
+Q. CAP Theorem ? 
+
+    CAP Theorem is a fundamental concept in distributed databases that helps us understand the trade-offs when designing such systems. It stands for Consistency, Availability, and Partition Tolerance. The theorem says that in a distributed system, you can only guarantee two out of these three at the same time.
+
+    Consistency means that all nodes return the same, latest data — no matter which one you read from. Availability means the system always gives a response, even if some nodes are down. Partition Tolerance means the system keeps working even when there's a network failure between nodes.
+
+    In real-world systems, network issues (partitioning) are unavoidable, so we’re left to choose between Consistency and Availability. For example, MongoDB prefers Consistency and Partition Tolerance (CP) — it may stop responding during a network failure to avoid wrong data, which is ideal in systems like banking. On the other hand, Cassandra prefers Availability and Partition Tolerance (AP) — it keeps responding even during network failures, which is okay in social media apps like Facebook where being slightly outdated is acceptable.
+
+    CA systems, which focus on Consistency and Availability, are not ideal for distributed systems because they don't tolerate network issues well — traditional databases like MySQL or PostgreSQL follow this model.
+
+    In short, CAP Theorem helps us decide what to prioritize based on our use case: consistency or availability — because partition tolerance is non-negotiable in distributed systems.

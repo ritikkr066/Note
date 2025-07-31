@@ -1,0 +1,66 @@
+✅ LEC-4: Components of Operating System (OS)
+The Operating System (OS) is the system software that acts as a bridge between the hardware and the user. At its core, the OS is divided into two main areas: the Kernel and the User Space.
+
+The Kernel is the heart of the OS. It’s the first thing that loads when the system starts and it manages all the critical operations like process management, memory allocation, file handling, and input/output device management. It communicates directly with the hardware. For example, when you open a file or run an application, the kernel decides how that happens behind the scenes.
+
+The User Space is where user applications run — like Chrome, VS Code, etc. These apps don’t access hardware directly. Instead, they interact with the kernel, often through something called a shell, which can be either a command-line interface (CLI) or a graphical user interface (GUI).
+
+The kernel performs many functions:
+
+It handles processes — creating, scheduling, suspending, or resuming them.
+
+It manages memory — assigning and tracking usage.
+
+It handles file operations like reading, writing, creating, and deleting files.
+
+It controls I/O devices using mechanisms like buffering (within one job), caching (storing frequently used data), and spooling (managing jobs with different speeds like print jobs).
+
+There are different types of kernels:
+
+Monolithic Kernel – Everything runs in one place. It's fast but less stable (e.g., Linux, Unix).
+
+Microkernel – Only essential parts (like memory and process management) are inside the kernel. Others like file and I/O handling are moved to user space. It's smaller and more reliable but slower due to more switching between user and kernel modes.
+
+Hybrid Kernel – A mix of both. It keeps performance and stability balanced. Used in Windows and macOS.
+
+Nano/Exo Kernels – These are minimal and experimental.
+
+To allow user applications to communicate with the kernel, the OS uses Inter-Process Communication (IPC), which can be done through shared memory or message passing.
+
+✅ LEC-5: System Calls
+When an application needs help from the OS — for example, to open a file or create a new process — it uses system calls. Think of system calls as the official way for a program to ask the OS (specifically, the kernel) to do something it doesn’t have permission to do directly.
+
+For example, when you use the command mkdir new_folder, the actual work of creating the folder is done by the OS kernel, but it’s triggered using a system call. So, mkdir is just a wrapper — the real action happens through a system call.
+
+System calls are written in C and allow transitions from user mode to kernel mode through software interrupts. These interrupts let the CPU switch control to the kernel to perform the requested operation.
+
+There are different types of system calls, like:
+
+Process Control – Creating or ending processes, setting process attributes.
+
+File Management – Opening, reading, writing, and deleting files.
+
+Device Management – Requesting access to I/O devices.
+
+Information Management – Getting or setting system data, time, or process info.
+
+Communication – Sending and receiving messages between processes.
+
+Examples:
+
+In Windows, system calls include CreateFile(), WriteFile(), CreateProcess() etc.
+
+In Unix/Linux, system calls include open(), read(), write(), fork(), and wait().
+
+✅ Bonus: What Happens When You Turn on a PC? (Boot Process)
+When you press the power button on your PC:
+
+The CPU starts and looks for a firmware program called BIOS or UEFI stored in a chip on the motherboard.
+
+The BIOS performs a basic check called POST (Power-On Self Test) to ensure everything like RAM and CPU is working.
+
+BIOS then finds a small program called the bootloader, stored in a special part of the disk (like the MBR).
+
+The bootloader (like GRUB for Linux or Bootmgr for Windows) loads the kernel into memory.
+
+Once the kernel is running, it sets up the environment and launches the user space, where your applications and GUI start running.

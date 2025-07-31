@@ -1,0 +1,4 @@
+Leetcode 462 
+
+    The median minimizes the sum of absolute differences, i.e., ∣∑∣x i−m∣.
+    In contrast, the mean minimizes the sum of squared differences, i.e., ∑(𝑥𝑖−𝑚)^2.

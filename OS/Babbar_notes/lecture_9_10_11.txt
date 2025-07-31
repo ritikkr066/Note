@@ -1,0 +1,129 @@
+✅ 1. What is a Program?
+A program is just a set of instructions written by a programmer.
+When it's compiled (converted into machine code), it's ready to run on the computer.
+
+✅ 2. What is a Process?
+A process is a program that is running in the computer's memory.
+A program becomes a process when the OS (Operating System) starts running it.
+
+✅ 3. How does OS create a process?
+The OS performs these steps to start a process:
+
+Loads the program and its static data (like constants) into memory.
+
+Allocates a stack (used for function calls).
+
+Allocates heap memory (used when you create new objects).
+
+Handles I/O tasks, like opening files if needed.
+
+Gives control to the program's main() function so it starts running.
+
+✅ 4. Architecture of a Process
+A process has the following components:
+
+Code section (actual instructions)
+
+Data section (global/static variables)
+
+Heap (dynamically allocated memory)
+
+Stack (for function calls and local variables)
+
+✅ 5. Attributes of a Process
+These are things the OS uses to manage each process:
+
+Process ID: A unique number to identify each process.
+
+Process Table: A list that the OS uses to track all running processes.
+
+Each row in the table is called a PCB (Process Control Block).
+
+What’s inside a PCB?
+Process ID
+
+Process State (Running, Waiting, etc.)
+
+Program Counter (where it left off)
+
+CPU registers
+
+Priority, etc.
+
+✅ 6. PCB & Register Use
+When a process is paused (like switching to another one), the OS saves the current CPU values (registers) in the PCB.
+
+Later, when the process resumes, the OS loads those values back into the CPU — like pausing and resuming a video game.
+
+📘 LEC-10: Process States & Queues
+✅ 1. Process States
+A process can be in one of these states:
+
+New: Just created, not running yet.
+
+Ready: Waiting for CPU.
+
+Running: Actively being executed.
+
+Waiting: Waiting for I/O (like keyboard input or file).
+
+Terminated: Finished execution.
+
+✅ 2. Process Queues
+OS keeps different queues for different states:
+
+a. Job Queue:
+Stores new programs.
+
+Stored in hard disk.
+
+Picked by Long-Term Scheduler.
+
+b. Ready Queue:
+Stores processes ready to run.
+
+Stored in main memory (RAM).
+
+Picked by Short-Term Scheduler (CPU Scheduler).
+
+c. Waiting Queue:
+Stores processes waiting for some I/O.
+
+✅ 3. Degree of Multi-programming
+This means: How many processes are in memory at the same time.
+It’s controlled by the Long-Term Scheduler.
+
+✅ 4. Dispatcher
+It is a small program in the OS that gives the CPU to the process chosen by the CPU Scheduler.
+
+📘 LEC-11: Swapping, Context Switch, Orphan & Zombie
+✅ 1. Swapping
+When memory is full, the OS can remove (swap out) a process from RAM to hard disk.
+
+Later, it can bring it back (swap in) to resume execution.
+This helps manage memory better.
+
+✅ 2. Context Switching
+When OS moves the CPU from one process to another:
+
+It saves the current process info in its PCB.
+
+Then it loads the next process info from its PCB.
+
+Think of it like saving a paused game and loading another one.
+
+This switching takes time and doesn't do real work — it's just overhead.
+
+✅ 3. Orphan Process
+If a parent process ends, but the child process is still running, it becomes an orphan.
+
+These are taken care of by a special process called init.
+
+✅ 4. Zombie Process
+When a process finishes running but its entry is still in the process table, it becomes a zombie.
+
+Why?
+
+Because the parent process hasn't read the child's exit status yet.
+
+Once the parent reads it using wait(), the OS removes the zombie from the table.

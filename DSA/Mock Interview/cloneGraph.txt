@@ -1,0 +1,39 @@
+//clone graph - leetcode 133
+Input: adjList = [[2,4],[1,3],[2,4],[1,3]]
+Output: [[2,4],[1,3],[2,4],[1,3]]
+class Node {
+    public int val;
+    public List<Node> neighbors;
+}
+
+	0 -> 2,4
+	1 -> 1,3
+	2 -> 2,4
+	3 -> 1,3
+
+for this i iterate over level by level from rootNode .
+check whether the given neighbour is visited or not
+if it is not visited . i will make clone and add it neighbour
+if yes , mean node is already cloned , so simplely add it into it's neighbour
+
+Since i m using bfs , i will use queue to add new node which are not cloned. and add it to q.
+and use HashMap<Node,Node> to store clone node.
+
+	simple pseudocode/code
+	queue.add(root);
+	map.add(root,new Node(root.val);
+	
+	while(queue.size()>0){
+		Node curr=q.poll();
+		for(Node nbr: curr.neighbors){
+			if((!map.containsKey(neighbor)){// not visited till now
+				map.put(nbr, new Node(nbr.val); // cloning
+				q.add(nbr);
+			}
+			map.get(curr).neighbours.add(map.get(nbr); // add this new Node(nbr.val) to curr neighbors
+		}
+	}
+
+	return map.get(root) // deep copy
+
+	

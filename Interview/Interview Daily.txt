@@ -1,3 +1,64 @@
 Q. Introduce yourself
 
-Sure, I'm Ritik , currently in my third year of pursuing a B.Tech in Computer Science. I've developed a strong foundation in programming, algorithms, and software development, and I've been actively involved in projects like trialshopy, hospital management that enhance my technical and problem-solving skills. Where I was responsible for UI design, Frontend and Backend development . I used technology  like ReactJs, Nodejs, ExpressJs MongoDB to build scalable and efficient solutions.  I'm excited to bring my skills and passion into a practical environment and contribute effectively to impactful projects."
+Sure, I'm Ritik , currently in my fourth year of pursuing a B.Tech in Computer Science. I've developed a strong foundation in programming, algorithms, and software development, and I've been actively involved in projects like trialshopy, hospital management that enhance my technical and problem-solving skills. Where I was responsible for UI design, Frontend and Backend development . I used technology  like ReactJs, Nodejs, ExpressJs MongoDB to build scalable and efficient solutions.  I'm excited to bring my skills and passion into a practical environment and contribute effectively to impactful projects."
+
+or, 
+"Hi, I’m Ritik, currently in my fourth year of B.Tech in Computer Science.
+I’ve built a strong foundation in programming, data structures, and algorithms, and I regularly solve coding problems to improve my problem-solving skills.
+I’ve also worked on projects like TrialShopy and a Hospital Management System, where I handled both frontend and backend .
+I used technologies like React.js, Node.js, Express, and MongoDB to build scalable and efficient web applications.
+Now, I’m looking forward to applying my skills in a practical environment and contributing to impactful projects."
+
+Q. What are your strengths?
+"One of my main strengths is problem-solving. I enjoy solving complex problems and finding efficient solutions, as it helps me improve my thinking skills.
+Another strength is consistency — I make sure to study every day, even if it’s just for a short time. I believe regular practice is very important.
+I’m also hardworking — I always try to finish my work on time and give my best in everything I do.
+These strengths help me stay focused and improve a little every day."
+
+Q.  Your Weakness ?
+One of my weaknesses is that I used to speak very fast during presentations or discussions, which sometimes made it difficult for others to follow. I've been practicing slowing down and improving my communication.
+Another  weakness is that sometimes I spend too much time trying to make things perfect, especially in projects or assignments. I’ve realized that it’s better to focus on completing the task first, then improve it later.
+I’m also working on becoming more comfortable speaking in large groups, and I try to take every opportunity to practice and improve.
+
+Q. Tell Me About a Project” (HealthDebug)
+I’m currently working solo on a project called HealthDebug, which is a healthcare platform for booking doctor appointments, ordering medicines, and reading medical blogs
+I started this project in April 2024, and I’m handling both the frontend and backend development.
+On the frontend, I’m using React.js with Redux for state management
+I’ve implemented role-based access for patients, doctors, and admins, and used lazy loading and caching to improve performance.
+On the backend, I’m using Node.js, Express, and MongoDB.
+I also helped develop an appointment booking system, where patients could book visits with offline doctors.
+For medicine ordering, we integrated the PhonePe API for secure payments.
+We also secured the platform using JWT-based authentication for proper role management.
+Working solo on this project has helped me improve my full-stack skills, time management, and problem-solving — and I’ve learned a lot about building scalable web apps from scratch.
+
+
+Q.  Why Should We Hire You?
+You should hire me because I bring strong problem-solving skills, consistent learning habits, and hands-on project experience.
+I’ve worked on full-stack projects like HealthDebug, where I handled both frontend and backend on my own using technologies like React.js, Node.js, and MongoDB.
+I’m also someone who learns daily — I regularly solve DSA problems and keep improving my technical and communication skills.
+I may be a fresher, but I’m hardworking, quick to adapt, and truly excited to contribute and grow in a real-world development environment.
+
+
+Q. : “Describe a challenge and how you overcame it.”
+	TECHNICAL
+One challenge I faced was during the development of my HealthDebug project. I was working solo and had to integrate the PhonePe payment API for the medicine ordering system.
+At first, I struggled because the official documentation was limited, and I hadn't worked with payment gateways before.
+To overcome this, I spent time reading external blogs, watching tutorials, and testing different approaches. After a few days of trial and error, I was able to successfully integrate the API and make secure transactions work.
+This experience taught me how to learn independently, stay patient, and keep trying even when things get tough.
+
+NON-TECHNICAL
+A non-technical challenge I faced was during my second year in the Hacksmiths Club, when I became a senior and had to guide and communicate with new junior members.
+Many of them were excited to learn everything quickly, but they were also confused about where to start.
+At first, I found it difficult to explain things clearly and manage their expectations.
+To solve this, I created a simple roadmap for web development, starting from HTML/CSS to backend with Node.js.
+I also made sure to check in with them regularly and answer their questions patiently.
+This experience helped me become a better communicator and mentor, and it taught me how to guide others step by step.
+
+
+
+Q. Where do you see yourself in 5 years?”
+In the next 5 years, I see myself as a skilled and reliable software developer, working on meaningful projects in a company where I can grow and contribute.
+I want to keep improving my technical skills, especially in full-stack development and system design.
+I also hope to take on more responsibilities, like mentoring juniors or leading small teams.
+My main goal is to stay consistent in learning and become someone the team can trust to solve problems and deliver results.
+

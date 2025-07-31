@@ -1,0 +1,28 @@
+1. Which programming languages are you most comfortable with?
+    I'm most comfortable with JavaScript, especially for full-stack development using React.js on the frontend and Node.js on the backend.
+    I also have experience with JAVA for DSA and problem-solving, which I’ve practiced regularly on coding platforms.
+    I'm open to learning new languages quickly depending on the project requirements.
+
+2. How do you approach solving a coding problem?
+    First, I try to clearly understand the problem and note down the input, output, and constraints.
+    Then I think of a basic solution and try a few examples manually.
+    Once I understand the logic, I start writing the code step by step and test it with different test cases.
+    If it works, I try to optimize it for time and space.
+    This process helps me avoid errors and build clean solutions.
+
+3. How do you keep improving your coding skills?
+    I regularly solve DSA problems on platforms like LeetCode and GFG to improve my problem-solving.
+    I also follow coding YouTubers and read documentation to learn new tools and best practices.
+    Whenever I learn something new, I try to build a small project or feature with it to get hands-on experience.
+
+4.  Do you prefer frontend or backend — and why?
+    I enjoy working on both frontend and backend, but if I had to choose, I slightly prefer the frontend because I like creating user-friendly interfaces and seeing immediate results of my work.
+    However, I’m also comfortable with backend development using Node.js and Express, especially when it comes to creating APIs and handling authentication.
+    Since I’ve worked solo on full-stack projects, I’ve learned to balance both, and I’m happy to contribute wherever the team needs.
+
+5.  Explain any algorithm you like.
+    One of my favorite algorithms is binary search. It’s used to find a target value in a sorted array in O(log n) time.
+    The idea is to keep dividing the search space in half.
+    First, I find the middle element. If it matches the target, we return it.
+    If the target is smaller, I search in the left half, otherwise in the right half.
+    This algorithm is simple but very powerful, and I use it often in DSA problems.

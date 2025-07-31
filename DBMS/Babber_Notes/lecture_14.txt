@@ -1,0 +1,9 @@
+Q. Indexing in DBMS ?
+
+    Indexing is a way to speed up the process of finding data in a database. Without an index, the system would have to check each row one by one, which is slow. So instead, we use a special file called an index, which stores some key values and tells the system where to find the actual data on disk. It works like an index at the back of a book—it helps you jump directly to the page you're looking for. Indexing is especially helpful for SELECT queries, especially when we use WHERE conditions.
+
+    There are two main types of indexing: Primary indexing and Secondary indexing. In primary indexing, the data is sorted on a certain column, and we build the index based on that. If we store an index entry for every record, it's called a dense index. But if we store it only for some records, like one per block, it's a sparse index. Primary indexing is often used when the data is sorted on a primary key or another field. If it's sorted on a non-key field (like department names), we still use primary indexing, but usually with a dense index.
+
+    If the data is not sorted, we use secondary indexing. This is called non-clustering indexing and is commonly built on any field, like name or email. In this case, we must store an index entry for every single record because there's no order in the file—so it’s always a dense index. Also, when the index file itself gets big, we use multi-level indexing. It’s like having an index on the index to keep the searching fast.
+
+    Indexing makes reading data fast, but there are some downsides too. It uses extra space, and operations like INSERT, DELETE, and UPDATE become a bit slower because the index also needs to be updated.

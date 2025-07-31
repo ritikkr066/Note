@@ -1,0 +1,17 @@
+✅ Lec-7: 32-bit vs 64-bit Operating System (OS)
+When we talk about a 32-bit or 64-bit operating system, we are referring to how much data the CPU can handle at once and how much memory it can access directly. A 32-bit OS has registers that are 32 bits wide, which means it can address up to 2³² memory locations, or about 4GB of RAM. In contrast, a 64-bit OS can handle 2⁶⁴ memory addresses — that's a huge number, theoretically allowing it to access over 17 billion GB of memory.
+
+Because of this, 64-bit processors are much more powerful when it comes to handling large amounts of data. They can process 64 bits in one instruction cycle, while a 32-bit processor can only handle 32 bits. This gives 64-bit systems an edge in terms of performance, especially in applications like gaming, graphics, or multitasking.
+
+Another benefit is that a 64-bit processor can run both 32-bit and 64-bit operating systems, but a 32-bit processor is limited to only 32-bit OS. Also, if you install more RAM in a 32-bit OS, it won’t use it efficiently, but a 64-bit OS can utilize that extra RAM, improving performance significantly. So overall, 64-bit systems are faster, more compatible, and better suited for modern computing needs.
+
+✅ Lec-8: Storage Devices in a Computer System
+A computer uses multiple types of memory to manage data efficiently. At the top level, registers are the smallest and fastest type of memory, built directly into the CPU. They store immediate data like instructions, memory addresses, or temporary results while the CPU is running operations. Since they are inside the processor, they are extremely fast but also very expensive and limited in size.
+
+Just below that is the cache memory, which holds frequently accessed data and instructions so the CPU doesn’t have to go to the main memory again and again. This speeds up processing and improves performance.
+
+Next, we have the main memory, which is usually RAM. It is much larger than registers or cache, and it's where data and programs are loaded while the computer is running. However, RAM is volatile, meaning all its contents are lost when the power is turned off.
+
+Finally, there's secondary memory like hard disks or SSDs. This memory is non-volatile, so data remains even after shutting down. It is also much cheaper and larger in size than primary memory, but access speed is slower.
+
+To sum up: Registers are the fastest but smallest, cache comes next, followed by RAM. Secondary storage is the slowest but holds the most data and keeps it permanently.

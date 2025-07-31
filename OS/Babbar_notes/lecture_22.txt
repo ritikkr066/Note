@@ -1,0 +1,41 @@
+Q. Deadlock -2
+    Deadlock Avoidance (Easy Explanation)
+    Deadlock avoidance means making sure a deadlock never happens in the first place. To do this, the system needs to know in advance what resources each process might need during its entire execution. This way, the system can analyze each request and decide whether to allow it or make the process wait.
+
+    The system checks:
+
+    What resources are currently available.
+
+    What resources each process is holding.
+
+    What each process might ask for in the future.
+
+    If the system thinks that giving the requested resources might lead to a deadlock later, it won’t allow the request right now. The goal is to always keep the system in a "safe state"—this means there's some way to finish all processes without running into deadlock.
+
+    Safe and Unsafe States
+    A safe state means that there is at least one order (called a safe sequence) in which all processes can finish without causing a deadlock. Even if the system is very busy, as long as it’s in a safe state, we’re fine.
+
+    On the other hand, an unsafe state does not guarantee a deadlock, but there’s a risk that a deadlock might occur in the future. If processes make resource requests in a certain way, they could block each other permanently. So, unsafe ≠ deadlock, but it might lead to one.
+
+    Banker’s Algorithm
+    The most common algorithm for deadlock avoidance is the Banker's Algorithm. You can think of it like a bank that doesn’t give out money unless it’s sure it can still meet all its customer demands. Similarly, in this algorithm, before giving any resource to a process, the system checks if doing so would keep it in a safe state. If yes, it grants the resource; otherwise, it makes the process wait.
+
+    Deadlock Detection
+    If the system does not use avoidance or prevention, then it has to detect deadlocks after they happen. There are two cases:
+
+    Single Instance per Resource: Use a Wait-For Graph. In this graph, each node is a process. An edge from Process A to Process B means A is waiting for something that B is holding. If a cycle appears in this graph, then there is a deadlock.
+
+    Multiple Instances per Resource: The system uses a more advanced version of the Banker’s Algorithm to detect if current allocations are leading to deadlock.
+
+    Recovery from Deadlock
+    Once a deadlock is detected, the system needs to recover. There are two main ways:
+
+    Process Termination:
+
+    Either kill all deadlocked processes (fast but brutal), or
+
+    Kill one at a time, checking if the deadlock is gone after each kill.
+
+    Resource Preemption:
+
+    Take resources away from some processes and give them to others to break the cycle. This must be done carefully to avoid data inconsistency or starvation.

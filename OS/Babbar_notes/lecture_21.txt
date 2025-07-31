@@ -1,0 +1,19 @@
+Q. Deadlock?
+
+    In a multiprogramming environment, many processes run together and need resources like CPU, memory, or files to complete their tasks. These resources are limited, so sometimes multiple processes try to access the same resource. If a process requests a resource and that resource is already being used by another process, it has to wait. But in some cases, a process may end up waiting forever because the resource it needs is held by another waiting process. This situation is called a deadlock.
+
+A deadlock happens when two or more processes are stuck waiting for each other’s resources, and none of them can proceed. It’s a serious issue because the processes involved never finish, and the system gets stuck. This is considered a bug related to how processes or threads are synchronized when using shared resources.
+
+Examples of resources that can cause deadlock include memory space, CPU, files, I/O devices, locks, and sockets. These resources may have multiple instances, like a system with more than one CPU. When a process uses a resource, it goes through three steps: it first requests the resource, then uses it, and finally releases it so others can use it.
+
+For a deadlock to happen, four specific conditions must occur at the same time. The first is mutual exclusion, which means only one process can use a resource at a time. The second is hold and wait, where a process is holding some resources while waiting for others. The third condition is no preemption, meaning a resource can’t be forcibly taken from a process—it must release it voluntarily. The last condition is circular wait, where processes form a cycle, each waiting for a resource held by the next one in the circle.
+
+To handle deadlocks, we can take three general approaches. First, we can prevent or avoid deadlocks using certain strategies so the system never reaches a deadlock state. Second, we can allow deadlocks to happen but detect and recover from them later. Lastly, some systems just ignore the problem and assume that deadlocks are rare. This is called the Ostrich algorithm, where the system acts like there’s no problem at all.
+
+If we want to prevent deadlocks completely, we have to break at least one of the four conditions. For mutual exclusion, it’s hard to eliminate it completely because some resources are simply non-sharable. But for sharable resources like read-only files, we don’t need locks, so deadlock won’t occur.
+
+To break the hold and wait condition, we can use a rule where a process must request all the resources it needs at once, before it starts execution. Or we can allow a process to request resources only when it’s not holding any others.
+
+To break the no preemption condition, we can design a system where if a process requests a resource that isn’t available, then it must release all other resources it’s holding. It will only restart when it can get all the resources it needs. But this can lead to livelock, where processes keep restarting without making progress.
+
+To break circular wait, we can assign a fixed order to resource requests. For example, all processes must request resources in a specific order, like R1 before R2. So, even if two processes need the same resources, one will get them both and finish, avoiding a circular chain.

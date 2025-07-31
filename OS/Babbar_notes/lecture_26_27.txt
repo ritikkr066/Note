@@ -1,0 +1,46 @@
+✅ Introduction to Paging
+In memory management, external fragmentation is a big issue with dynamic partitioning. Even if there’s enough free memory in total, it’s scattered in small pieces, so a large process can’t be loaded. One solution is compaction, but that’s slow and not practical every time. That’s where paging helps.
+
+Paging is a technique that breaks the process into fixed-size blocks called pages and breaks the physical memory into frames of the same size. So now, we don’t need one big continuous memory block for a process. We can store its pages in any available frames in memory. This completely eliminates external fragmentation.
+
+✅ How Paging Works
+Let’s say the page size is 1KB. If a process is 4KB, it will be divided into 4 pages. These pages can be loaded into any four free frames in the memory, even if they are scattered. Each logical address is divided into two parts:
+
+A page number that identifies which page,
+
+And an offset, which is the exact position within that page.
+
+A page table is used to map page numbers to frame numbers. This page table is stored in memory, and its location is pointed to by the Page Table Base Register (PTBR). Every time there’s a context switch, the PTBR is updated to point to the new process’s page table.
+
+✅ Why Paging is Slow and the Role of TLB
+One problem with paging is that every memory access requires two lookups: one to get the frame number from the page table, and another to actually access the data in memory. This slows things down.
+
+To solve this, we use a special hardware called the Translation Lookaside Buffer (TLB). It’s a high-speed cache that stores recent page-to-frame translations. If the required mapping is found in the TLB (called a TLB hit), we can skip the page table and directly access memory, making the whole process much faster.
+
+TLB also stores something called ASID (Address Space Identifier), which ensures that entries from different processes don’t get mixed up. So multiple processes can safely use the TLB at the same time.
+
+✅ Introduction to Segmentation
+While paging is great for memory management, it doesn't care about how users or programmers logically structure their programs. That’s where segmentation comes in. It matches better with how programmers think about memory: in terms of functions, variables, stacks, heaps, etc.
+
+In segmentation, a program is divided into logical units called segments—like a code segment, data segment, stack segment, etc. Each segment has a segment number and an offset. So the logical address looks like:
+<segment number, offset> instead of just a page number and offset.
+
+✅ Advantages and Disadvantages of Segmentation
+Advantages:
+
+There’s no internal fragmentation (unlike paging).
+
+Related code or data stays together in the same segment, improving efficiency.
+
+Since each segment is a logical unit (like a function or array), access is faster within the segment.
+
+The segment table is usually smaller than a full page table.
+
+Disadvantages:
+
+Since segments are variable-sized, segmentation can cause external fragmentation.
+
+Swapping becomes more complex due to different segment sizes.
+
+✅ Hybrid Approach: Paging + Segmentation
+Modern operating systems actually use a combination of both—first dividing the program into segments (user view), and then breaking each segment into pages (OS view). This way, we get the logical structure of segmentation along with the memory efficiency of paging.

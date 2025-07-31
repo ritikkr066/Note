@@ -1,0 +1,18 @@
+Serializability means:
+    Even if multiple transactions run at the same time, the final result should be the same as if they had run one after another (serially).
+
+✅ Why do we need it?
+    When transactions run together (concurrently), they might interfere with each other and cause wrong results (like reading or writing incorrect data).
+
+    To avoid this, we use serializability, which checks whether the outcome of concurrent transactions is safe and correct, just like some serial (one-by-one) order.
+    
+"Serializability is used to make sure that even if transactions run together, the result should be just like if they ran one by one. This helps us avoid problems like inconsistent data or incorrect results when using concurrent transactions."
+
+A recoverable schedule ensures that if one transaction reads data written by another, it waits for that other transaction to commit before committing itself. This prevents committing on dirty or temporary data, avoiding inconsistency."
+
+"An irrecoverable schedule occurs when a transaction commits after reading uncommitted data from another transaction that later rolls back. This leads to inconsistency, and there's no way to undo it. That’s why DBMS avoids irrecoverable schedules by using recoverable and strict rules."
+
+Conflict serializability checks whether we can swap the order of non-conflicting operations in a concurrent schedule to make it look like a serial schedule.
+    When a schedule can be transformed into a serial schedule by swapping adjacent non-conflicting operations. This is called Conflict equivalent
+
+    Loop in precedence graph -> non-conflicting serializability

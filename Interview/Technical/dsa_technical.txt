@@ -1,0 +1,94 @@
+1. How would you count the number of vowels in a string ?
+    First, I’d create a set of vowels like a, e, i, o, u.
+    Then I’d loop through the string and for each character, check if it’s in the vowel set.
+    If it is, I’d increase a counter.
+    Finally, I’d return the counter as the number of vowels.
+    This approach runs in O(n) time and is simple to implement.
+
+2.  How would you reverse a given string ?
+    I would convert the string into a character array or use a StringBuilder.
+    Then, I’d swap characters from both ends using two pointers until they meet.
+    This gives the reversed string in O(n) time.
+
+3.  How do you check if a string reads the same forward and backward?
+    I’ll use two pointers — one at the start and one at the end.
+    I’ll compare characters while moving inward.
+    If all characters match, it’s a palindrome.
+
+4.  Find the largest number in an array?
+    I’d loop through the array and keep a variable to store the maximum value.
+    If any element is greater than the current max, I update it.
+    This is done in one pass, O(n) time.
+
+5.  Find the frequency of each character in a string
+    I’d use a HashMap or object to store character counts.
+    For each character, I increase its count.
+    This way I get the frequency of every letter in O(n) time.
+
+6. Check if two strings are anagrams?
+    I’d sort both strings and compare.
+    If they’re equal after sorting, they are anagrams.
+    Alternatively, I can count character frequencies and compare the maps.
+
+7.  Count digits in a number?
+    I’d divide the number by 10 in a loop and count how many times it runs.
+    Each division removes one digit.
+
+8. Check if a number is prime ? 
+    I’d check if the number is divisible by any number from 2 to sqrt(n).
+    If it is, it’s not prime.
+    Otherwise, it is.
+
+9. Find the sum of digits in a number?
+    I’d use a loop to get each digit using % 10 and keep adding it.
+    Then divide the number by 10 to remove that digit.
+
+10. Check if an array contains duplicates ?
+    I’d use a Set.
+    While looping through the array, if I see an element that’s already in the Set, I return true.
+    Otherwise, I add it to the Set.
+
+11. Find second largest element in an array?
+    I’d keep two variables — one for the largest and one for second largest.
+    As I loop through the array, I update them based on comparisons.
+
+12. Find the first non-repeating character in a string?
+    First, I’d use a HashMap to count the frequency of each character.
+    Then, I’d go through the string again and return the first character with frequency 1.
+
+13. Find the missing number in an array of size n-1 ?
+    I’d calculate the sum of numbers from 1 to n using the formula n*(n+1)/2,
+    then subtract the sum of array elements.
+    The difference is the missing number.
+
+14. Move all zeros to the end of the array?
+    I’d use two pointers — one to track non-zero elements and another to place them in order.
+    After that, I’d fill the rest of the array with zeros.
+
+15. Find all pairs in an array that sum up to a given number?
+    I’d use a HashSet to store visited elements.
+    For each number, I’d check if the target minus that number is already in the set.
+    If yes, it’s a valid pair.
+
+16. Check if a string is a rotation of another? 
+    I’d concatenate the original string to itself (like "abcdabcd")
+    Then check if the second string exists as a substring.
+    If yes, it’s a rotation.
+
+17. Find the majority element in an array (appears more than n/2 times) ?
+    I’d use the Boyer-Moore Voting Algorithm.
+    It keeps a count and a candidate.
+    If the count drops to zero, we change the candidate.
+    At the end, we check if the candidate appears more than n/2 times.
+
+18. Check if a number is a power of 2?
+    I’d use bitwise logic — if the number is greater than 0 and n & (n - 1) is 0,
+    then it’s a power of 2.
+
+19. Find the longest word in a sentence ? 
+    I’d split the sentence by spaces into words,
+    then loop through them to find the one with the maximum length.
+
+20.  Check if a string has all unique characters
+    I’d use a Set. If I find any repeating character while looping, I return false.
+    If no duplicates are found, the string has all unique characters.

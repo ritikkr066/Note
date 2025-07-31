@@ -1,0 +1,29 @@
+Q. Normalization ? 
+
+    Normalization is a technique used in database design to reduce data redundancy and improve data integrity. It helps to organize data efficiently so that the database remains consistent and avoids unnecessary duplication. Without normalization, a database may face problems like insertion, deletion, and update anomalies.
+
+    Functional Dependency (FD) is a core concept in normalization. It describes the relationship between attributes in a table. If attribute A determines attribute B, we write it as A → B. Here, A is the determinant and B is the dependent. A trivial functional dependency is when B is part of A (like A → A), and a non-trivial dependency is when B is not a subset of A.
+
+    There are also some rules called Armstrong’s Axioms which help in deriving new FDs from known ones. These include Reflexivity (A → B if B is part of A), Augmentation (if A → B, then AC → BC), and Transitivity (if A → B and B → C, then A → C). These help in logically analyzing dependencies between attributes.
+
+    The need for normalization arises when there is data redundancy in the database. Redundant data can cause anomalies such as insertion anomaly (you can't insert data without other data), deletion anomaly (deleting one piece of data removes other important data), and update anomaly (you must update the same value in multiple places, or risk inconsistency). These anomalies slow down the database and make it harder to manage.
+
+    To solve these issues, Normalization is applied. It restructures tables by breaking large ones into smaller ones and defining relationships between them. This helps eliminate anomalies and ensures each piece of data is stored in only one place. It also improves data integrity and reduces the overall database size.
+
+    Normalization is done in normal forms, each with specific rules:
+
+    1NF (First Normal Form) ensures each column holds only atomic (indivisible) values.
+
+    2NF requires that the table is in 1NF and that every non-prime attribute is fully functionally dependent on the entire primary key (i.e., no partial dependency).
+
+    3NF requires that the table is in 2NF and removes transitive dependencies between non-key attributes.
+
+    BCNF (Boyce-Codd Normal Form) is a stricter version of 3NF. It ensures that for every functional dependency A → B, A must be a super key.
+
+        Normal Form	            Fixes This Problem
+        1NF	                    No repeating/multiple values
+        2NF	                    No partial dependency
+        3NF	                    No transitive dependency
+        BCNF	                Every determinant is a super key
+
+    The benefits of normalization include reduced data redundancy, better organization, improved consistency, and easier database maintenance. It helps ensure that the data stays accurate and consistent even when multiple users are interacting with the database simultaneously.

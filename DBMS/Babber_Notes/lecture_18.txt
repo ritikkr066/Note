@@ -1,0 +1,11 @@
+Q. Partitioning and Sharding in DBMS ? 
+
+    When a database becomes too large or slow to handle, we can improve performance by breaking it into smaller parts. This is called partitioning. Instead of managing one huge table, we split it into smaller pieces called partitions, which are easier to handle and can be used directly in SQL queries without any special changes. This makes things faster, easier to manage, and more cost-effective.
+
+    There are two main types of partitioning: vertical and horizontal. In vertical partitioning, we divide the table by columns—for example, storing personal details on one server and login info on another. To get the full record, we may need to connect to both. In horizontal partitioning, we split the table by rows—like keeping data of users from India on one server, and users from the US on another. This way, each server has independent data and queries can run faster because the data is smaller.
+
+    Partitioning is useful when the dataset is huge or when many users are sending requests, making the system slow. It helps in improving performance, parallel processing, availability, and also reduces cost because instead of upgrading one expensive server (vertical scaling), we can use many simple ones (horizontal scaling).
+
+    Now, when we apply horizontal partitioning in a smart, scalable way across multiple servers with a routing layer, it is called Sharding. Sharding is a technique where each shard (or partition) handles a portion of the data, and the system uses a routing layer to send queries to the correct shard. This increases scalability and availability. However, it comes with its own challenges like added complexity, the need to implement routing, and difficulties in analytics since data is spread across multiple servers. This often leads to what's called a scatter-gather problem, where we have to collect data from many places to answer one big query.
+
+    When clustering, partitioning, and sharding are all used together, they help build a distributed database, which is a single logical database spread across many servers. This setup helps in handling large data and high traffic efficiently.
