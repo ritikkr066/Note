@@ -3,15 +3,15 @@ Q. Introduce yourself
 Sure, I'm Ritik , currently in my fourth year of pursuing a B.Tech in Computer Science. I've developed a strong foundation in programming, algorithms, and software development, and I've been actively involved in projects like trialshopy, hospital management that enhance my technical and problem-solving skills. Where I was responsible for UI design, Frontend and Backend development . I used technology  like ReactJs, Nodejs, ExpressJs MongoDB to build scalable and efficient solutions.  I'm excited to bring my skills and passion into a practical environment and contribute effectively to impactful projects."
 
 or, 
-"Hi, I’m Ritik, currently in my fourth year of B.Tech in Computer Science.
+"Hi, I’m Ritik, currently in my fourth year of B.Tech in Computer Science At NIT PATNA.
 I’ve built a strong foundation in programming, data structures, and algorithms, and I regularly solve coding problems to improve my problem-solving skills.
 I’ve also worked on projects like TrialShopy and a Hospital Management System, where I handled both frontend and backend .
-I used technologies like React.js, Node.js, Express, and MongoDB to build scalable and efficient web applications.
-Now, I’m looking forward to applying my skills in a practical environment and contributing to impactful projects."
+I am comfortable with technologies like React.js, Node.js, Express, and MongoDB and i used them  to build scalable and efficient web applications.
+Now, I’m looking forward to applying my skills in a real-world environment where i can contribute  to meaningful projects and continue learning."
 
 Q. What are your strengths?
 "One of my main strengths is problem-solving. I enjoy solving complex problems and finding efficient solutions, as it helps me improve my thinking skills.
-Another strength is consistency — I make sure to study every day, even if it’s just for a short time. I believe regular practice is very important.
+Another strength is consistency — I make sure to study every day, even if it’s just for a short time. I believe regular practice is key to improvement.
 I’m also hardworking — I always try to finish my work on time and give my best in everything I do.
 These strengths help me stay focused and improve a little every day."
 

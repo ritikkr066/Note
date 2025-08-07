@@ -54,7 +54,12 @@
     An abstract class in Java is a class that cannot be instantiated directly—it acts as a template or blueprint for other classes. It may contain abstract methods (without implementation) that must be implemented by any non-abstract subclass, as well as concrete methods (with code).
      For example, you can create an abstract class Vehicle with an abstract method start() and a concrete method stop(). A subclass like Car must implement the start() method. Abstract classes can have constructors, which are called when their subclass objects are created. While Java doesn’t support multiple inheritance using classes, abstract classes can implement multiple interfaces to achieve flexibility
 
+    instantiated:- To instantiate a class means to create an object of that class using the new keyword.
+      Animal a = new Animal();  // ❌ Error! Cannot instantiate abstract class
+
 14. Abstraction in Java
+    Hiding the internal code/logic and exposing only what is necessary to the outside world
+    
     Abstraction in Java is the concept of hiding internal implementation details and showing only the essential features of an object. It allows us to define what an object does without specifying how it does it. 
     Abstraction is mainly achieved using abstract classes and interfaces. For example, consider a Payment interface with a method processPayment(). Different classes like CreditCardPayment or PayPalPayment can implement this interface and define their own logic.
      Interfaces support multiple inheritance  whereas abstract classes support single inheritance and are used when you want to provide some shared code as well.

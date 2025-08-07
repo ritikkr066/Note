@@ -17,15 +17,10 @@ The main objectives of CPU scheduling are to maximize CPU usage, minimize turnar
 Throughput: Number of processes completed per unit time.
 
 Arrival Time (AT): Time when a process enters the ready queue.
-
 Burst Time (BT): CPU time required by a process.
-
 Turnaround Time (TAT): Total time from arrival to completion (TAT = CT - AT).
-
 Waiting Time (WT): Time a process waits in the ready queue (WT = TAT - BT).
-
 Response Time: Time from arrival to the first time the process gets the CPU.
-
 Completion Time (CT): When a process finishes execution.
 
 ⌛ FCFS (First Come, First Serve)

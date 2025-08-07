@@ -1,0 +1,23 @@
+input : ["eat", "tea", "tan", "ate", "nat", "bat"]
+output : [["eat", "tea", "ate"], ["tan", "nat"], ["bat"]]
+
+ for i to n
+	eat -> sort(eat)-> aet map.put(aet,eat);
+	tea -> sort(aet) -> map.get(aet).add(tea)
+	tan -> sort(ant) -> map.put(ant,tan)
+	ate ->              map.get(aet).add(ate)
+	nat ->              map.get(ant).add(nat)
+	bat -> sort(bat)  ->map.put(abt,bat)
+	
+	map :  [aet : eat,tea,ate]
+	       [ ant : tan , nat ]
+	       [ abt : bat ]
+
+	for(string it : Map)
+		list.add(map,get(it)	
+
+	
+	return list
+
+time complexity : O(n*k) , where k is size of largest string 
+space complexity : O(n)

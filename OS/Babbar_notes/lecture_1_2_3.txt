@@ -32,7 +32,7 @@ Distributed OS: Manages a collection of interconnected, independent nodes (with 
 Real-Time OS (RTOS): Performs tasks within strict time constraints. Used in systems like air traffic control, robotics, etc.
 
 ✅ LEC-3: Multi-Tasking vs Multi-Threading
-A Program is a file with compiled code, stored on disk, ready for execution.
+A Program is a executable  file with compiled code, stored on disk, ready for execution.
 
 A Process is a running instance of a program in memory (RAM).
 

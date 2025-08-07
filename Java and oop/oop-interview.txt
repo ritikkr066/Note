@@ -180,6 +180,6 @@
                 ✅ But Java supports it using interfaces.
 
 15. Explain Virtual keyword?
-16. what is diamont problem in oop?
+16. what is diamond problem in oop?
     "The Diamond Problem is a situation in multiple inheritance where a class inherits from two classes that have a common parent.
     This can cause confusion for the compiler about which method to use from the common parent."

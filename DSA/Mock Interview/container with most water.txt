@@ -1,0 +1,20 @@
+problem : container with most water
+input : height = [1,8,6,2,5,4,8,3,7]
+output : 49
+
+	case : if n<=1 return 0
+	case : if all height[i] is same then also return 0;
+
+	we have height= min(height[i], height[j]) now we have to find max length
+	i will use 2-point left =0, right=n-1;
+	area =max (max(h[left],h[right])* (right-left));
+	if(left<right)left++;
+	if(right<left)right++;
+	if(right==left) right--, left--
+	until(left<right)
+
+	t.c : O(n)
+	s.c : O(1)
+
+	
+	
