@@ -52,6 +52,8 @@
         "I have IP 192.168.1.10, and my MAC address is 00:1A:2B:3C:4D:5E."
     The sender stores this mapping in its ARP cache for future use
 
+    RARP (Reverse Address Resolution Protocol) does the opposite — it finds the IP address of a device when its MAC address is known. RARP was mainly used by diskless machines in older networks to get their IP address from a RARP server, but today it’s largely replaced by DHCP
+    
 7. What is the difference between Horizontal and Vertical Scaling?
     Horizontal Scaling and Vertical Scaling are two strategies used to improve a system's performance and handle increased load.
     1. Horizontal Scaling (Scale Out):
@@ -318,3 +320,6 @@
 
         Acknowledgment (if TCP):
         The receiver sends back an ACK (Acknowledgment) to confirm successful delivery.
+
+22. Bandwidth 
+    Bandwidth refers to the maximum amount of data that can be transmitted over a network connection in a given period of time. It’s usually measured in bits per second (bps), with common units like Kbps, Mbps, or Gbps.

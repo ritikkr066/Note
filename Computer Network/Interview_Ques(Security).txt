@@ -104,3 +104,6 @@
     DES (Data Encryption Standard) is also symmetric but uses only a 56-bit key, making it insecure by today’s standards and now largely replaced by AES.
     On the asymmetric side, RSA is used for encrypting small amounts of data, digital signatures, and secure key exchange, with key sizes like 1024 or 2048 bits.
     Lastly, MD5 is a hash function that produces a 128-bit digest and is used for checksums and basic integrity checks, but it’s considered broken and unsuitable for secure applications today due to known vulnerabilities.
+
+12. Man-in-the-Middle (MITM) attack?
+    A Man-in-the-Middle (MITM) attack is a cyberattack where an attacker secretly intercepts and possibly alters the communication between two parties who believe they are communicating directly with each other.

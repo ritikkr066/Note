@@ -1,0 +1,85 @@
+// Online Javascript Editor for free
+// Write, Edit and Run your Javascript code using JS Online Compiler
+
+const person = {
+  name: "Alice",
+  greet() { console.log(this.name); }
+};
+
+setTimeout(person.greet, 0); // ? Alice
+
+
+// console.log("");         //
+// console.log(!!"");       // ? false
+// console.log(!!"Hello");  // ?true
+// console.log(!!0);        // ? false
+// console.log(!![]);       // ? true
+
+
+// const obj = {};
+// const a = {key: "a"};
+// const b = {key: "b"};
+
+// obj[a] = 123;
+// obj[b] = 456;
+
+// console.log(obj[a]); // ? 123
+
+
+// let a = "5";
+// a++;
+// console.log(a);     // ? 6
+
+
+// console.log(NaN == NaN);        // ? true
+// console.log(NaN === NaN);       // ? false
+// console.log(isNaN("abc"));      // ? true
+// console.log(Number.isNaN("abc"));// ? true
+
+
+// console.log(0 == "");       // ? true
+// console.log(0 == []);       // ? true
+// console.log(0 == {});       // ? true
+
+
+// console.log(Boolean("false")); // ? true
+// console.log(Boolean(false));   // ? false
+// console.log(Boolean([]));      // ? true
+// console.log(Boolean({}));      // ? true
+
+
+
+
+// console.log([] + []);       // ? ""
+// console.log([] + {});       // ? ""
+// console.log({} + []);       // ? ""
+// console.log([1,2] + [3,4]); // ? 1,23,4
+
+
+
+// console.log(null == undefined);  // ? true
+// console.log(null === undefined); // ? false
+// console.log(null + 1);           // ? 1
+
+
+
+// if("0") {
+//     console.log("present");
+// } else {
+//     console.log("absent");
+// }
+
+// if("0" == true) {
+//     console.log("present");
+// } else {
+//     console.log("absent");
+// }
+
+
+
+// if([]){
+//     console.log("present");
+// }else{
+//     console.log("absent");
+// }
+// console.log("Try programiz.pro");

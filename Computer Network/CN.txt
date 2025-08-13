@@ -1,0 +1,82 @@
+1. If a packet gets corrupted, which layer detects it?
+    A corrupted packet is usually detected at the Data Link Layer (Layer 2) or the Transport Layer (Layer 4), depending on context:
+
+    Data Link Layer (e.g., Ethernet) — uses Frame Check Sequence (FCS) or CRC to detect corruption in a frame before passing it up the stack.
+
+    Transport Layer (e.g., TCP, UDP) — uses a checksum to detect errors in the payload after IP delivery.
+
+2. Which layer handles encryption in HTTPS?
+    In HTTPS, encryption is handled at the Transport Layer through the TLS/SSL protocol.
+
+3. Given IP 192.168.1.10/26, find the subnet mask and number of hosts?
+    1️⃣ Convert /26 to subnet mask
+        /26 means 26 bits for the network portion.
+        That’s 11111111.11111111.11111111.11000000 in binary.
+        In decimal: 255.255.255.192.
+    Subnet mask: 255.255.255.192
+
+    2️⃣ Calculate number of hosts
+        Host bits = 32 − 26 = 6 bits.
+        Total addresses = 2^6 = 64.
+        Usable host addresses = 64 − 2 = 62 (subtract network and broadcast).
+        Number of hosts: 62 usable ✅ 
+
+4. What happens when a TCP packet is lost?
+    When a TCP packet is lost, the sender detects it through duplicate ACKs or a timeout, retransmits the packet, and reduces the sending rate using congestion control.
+
+5. Why does HTTPS still use TCP even though it adds overhead?
+    HTTPS still uses TCP because TCP provides reliable, ordered, and error-checked delivery, which is essential for secure communication.
+
+    TLS/SSL encryption in HTTPS requires that all bytes arrive exactly in order and without loss.
+    TCP guarantees this with acknowledgments, retransmissions, and flow control, which UDP does not.
+    Although TCP adds extra overhead (handshake, acknowledgments), the reliability it provides is critical — without it, the encryption and decryption process could fail or data could be corrupted.
+
+6. If DNS server is slow, how does it affect application performance?
+    "A slow DNS server delays name resolution, so the application takes longer to start communicating with the server, directly increasing the overall response time.
+
+7. How would you troubleshoot if DNS resolution fails?
+    "I’d first verify network connectivity, then test DNS resolution with nslookup or dig. If the configured DNS server is unresponsive, I’d try a public DNS like 8.8.8.8. I’d also check DNS caching, firewall rules on port 53, and confirm that the domain’s authoritative records are correct." 
+
+8. How does data travel from one PC in India to a server in the USA?
+    When you send data from a PC in India to a server in the USA, the process starts with DNS resolution to find the server’s IP address. A TCP (and possibly TLS) handshake is then established, and the data is encapsulated into packets with appropriate headers. These packets travel from your PC through your local router and ISP, across undersea fiber optic cables and multiple internet exchange points, with routing decisions made by the Border Gateway Protocol (BGP). Once the packets reach the USA, they are delivered to the destination server, which processes the request and sends the response back to India, possibly via a different route, where your system reassembles the data and presents it to the application.
+
+9. If two devices have the same private IP in different networks, will there be a conflict?
+    No, there won’t be a conflict as long as the devices are in different private networks.
+
+    Private IP addresses (like 192.168.x.x, 10.x.x.x, 172.16.x.x – 172.31.x.x) are not routable over the public internet. They only need to be unique within the same local network.
+
+    When these devices access the internet, NAT (Network Address Translation) at their respective routers converts the private IP to a unique public IP for that network. Since the public IPs are different, there’s no conflict between the two devices in different networks.
+
+10. Explain TCP’s three-way handshake and four-way termination.
+    TCP Three-Way Handshake (Connection Establishment)
+        Purpose: To establish a reliable, synchronized connection between client and server.
+
+        SYN → Client sends a segment with the SYN (synchronize) flag set to the server, indicating it wants to start a connection and sending its initial sequence number (ISN).
+
+        SYN-ACK → Server responds with SYN + ACK, acknowledging the client’s ISN and sending its own ISN.
+
+        ACK → Client sends an ACK to acknowledge the server’s ISN.
+
+        ✅ Now both sides have agreed on sequence numbers and the connection is established.
+
+    TCP Four-Way Termination (Connection Closing)
+        Purpose: To gracefully close the connection, ensuring all data is transmitted.
+
+        FIN → One side (say, the client) sends a FIN flag, meaning it has finished sending data.
+
+        ACK → The other side (server) sends an ACK to acknowledge the FIN (connection is now half-closed).
+
+        FIN → When the server has finished sending its own data, it sends a FIN.
+
+        ACK → Client sends a final ACK, and after a waiting period (TIME_WAIT), the connection is fully closed.
+
+11. How would you secure an API from packet sniffing?
+    To secure an API from packet sniffing, the main goal is to ensure that even if someone captures the network traffic, they can’t read or tamper with the data.
+        To prevent packet sniffing, I’d serve the API over HTTPS so traffic is encrypted
+        Use JWT tokens, API keys, or OAuth 2.0 with short expiry times.
+
+12. Why is HTTPS still vulnerable to certain attacks?
+    HTTPS encrypts data in transit, making it much harder for attackers to intercept and read packets, but it is still vulnerable to certain threats. Attacks can occur if certificates are compromised, through phishing sites that also use HTTPS, via server-side vulnerabilities like SQL injection or XSS, or from malware on the client device that can read data before encryption. Additionally, without protections like HSTS, attackers can force a downgrade to HTTP, and weak TLS configurations can still be exploited. In short, HTTPS secures the channel, but it does not protect against all types of cyberattacks.
+
+13. What causes packet loss?
+    Packet loss happens when one or more data packets traveling across a network fail to reach their destination. This can cause slow loading, video buffering, voice call glitches, or dropped connections.

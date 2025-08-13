@@ -313,6 +313,8 @@ Q6. Explain Networking Devices?
         Network Address Translation (NAT)
             -> Network Address Translation (NAT) is a process where a network device (typically a router or firewall) translates private IP addresses used in a local network into a single public IP address  before forwarding data to the internet. It operates at the Network Layer (Layer 3) of the OSI model.
 
+            "There are three main types of NAT: Static NAT maps one private IP to one public IP, Dynamic NAT maps private IPs to available public IPs from a pool, and PAT (Port Address Translation) maps many private IPs to a single public IP by using different port numbers."
+
             -> Allows multiple devices on a local network to share a single public IP address.
             -> Hides internal private IP addresses from external networks, reducing the risk of direct attacks.
     

@@ -1,0 +1,244 @@
+Q. What is a process and how is it different from a thread?
+    “When we run a program, it goes from a stored state into a running state — that running instance is called a process. A process can be divided into smaller units called threads.
+
+    A thread is a lightweight sub-process that runs in parallel to perform tasks more efficiently. Threads within the same process share memory and resources, which makes them faster than starting a new process.”
+
+Q. What is the difference between SQL and NoSQL databases?
+    “SQL databases are relational databases that use Structured Query Language to manage data. They store data in tables with rows and columns, and relationships between the tables are defined using keys.
+
+    NoSQL databases are non-relational and are more flexible. They store data in various formats like JSON, key-value pairs, or documents. NoSQL is often used when the data structure is not fixed or changes frequently.”
+
+Q. What is normalization in databases, and why is it important?
+    “Normalization is a technique used in databases to remove anomalies and maintain data consistency. It helps organize the data in such a way that redundancy is minimized.
+
+    Normalization eliminates problems like insertion anomaly, deletion anomaly, and update anomaly by dividing data into smaller, related tables and linking them with keys.”
+
+    #First Normal Form (1NF)
+        First Normal Form (1NF) means that all the values in a table are atomic — that is, each column should contain only one value, not multiple or repeating values.
+        Also, each record (row) must be unique.
+    
+    2NF requires that the table is in 1NF and that every non-prime attribute is fully functionally dependent on the entire primary key (i.e., no partial dependency).
+
+    3NF requires that the table is in 2NF and removes transitive dependencies between non-key attributes.
+
+Q. What is the difference between primary key and foreign key?
+
+Q. What is the difference between a primary key and a unique key in SQL?
+    A primary key is a column that uniquely identifies each row in a table, and it cannot contain NULL values.
+    A unique key also ensures uniqueness of the values in a column, but it can have one NULL value.
+
+Q. What is a foreign key in SQL, and why is it used?
+    A foreign key is a column in one table that refers to the primary key of another table.
+    It is used to create a relationship between two tables and maintain referential integrity.
+
+
+Q. What is indexing in a database, and why is it used?
+    Indexing is a technique used in databases to improve the speed of data retrieval.
+    Instead of scanning every row, the database uses an index (like the index of a book) to quickly find the required data.
+
+        It works like a pointer to data.
+        Primary index is based on sorted data.
+        Secondary index is used when data is not sorted.
+
+Q. What is the difference between TCP and UDP? Give examples of where each is used.
+    TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are both transport layer protocols, but they differ in behavior:
+
+    TCP is connection-oriented and provides reliable communication. It ensures that data is delivered in sequence and without loss or duplication. It's slightly slower due to this overhead.
+
+    Example: Email, web browsing (HTTP/HTTPS), and file transfers (FTP) use TCP.
+
+    UDP is connectionless and does not guarantee delivery or order, but it's faster and has low latency.
+
+    Example: Video streaming, online gaming, and VoIP (Voice over IP) use UDP, where speed is more important than reliability.
+
+
+Q. Why is TCP considered reliable? Explain the specific mechanisms TCP uses to ensure reliability.
+    TCP is considered reliable because it uses several mechanisms to ensure that data is delivered accurately and in order:
+
+    Sequencing:
+    Each data packet is assigned a sequence number. This helps the receiver reorder packets if they arrive out of order.
+
+    Acknowledgment (ACKs):
+    After receiving a packet, the receiver sends back an acknowledgment number to confirm successful delivery. If this ACK is not received by the sender, it assumes the packet was lost.
+
+    Retransmission:
+    If the sender does not receive an acknowledgment within a certain timeout period, it retransmits the packet.
+
+    Flow Control (using Windowing):
+    TCP uses a sliding window protocol to ensure that the sender does not overwhelm the receiver with too much data at once.
+
+    Error Checking:
+    TCP also includes checksums to detect corrupted data. If a checksum fails, the packet is discarded and retransmitted.
+
+Q. What is the difference between a public IP address and a private IP address? Can you give some examples of private IP ranges?
+    Public IP address is an IP address that is globally unique and can be accessed over the internet. It is assigned by your ISP and is used to identify your device on the internet.
+
+    Private IP address is used within local networks (LAN), like in homes, schools, or offices. These are not routable on the public internet and are reserved for internal use only.
+        Most home Wi-Fi networks use IPs from the 192.168.x.x range.
+
+Q. What is NAT and how does it allow multiple devices to use the internet?
+    NAT (Network Address Translation) is a process used by routers to allow multiple devices on a private network to access the internet using a single public IP address.
+
+    At home, your phone, laptop, and smart TV may all have private IPs like 192.168.1.x. When any of them accesses the internet, the router uses NAT to translate their private IP to the one public IP assigned by your ISP.
+
+    NAT helps solve the problem of IPv4 address shortage, because not every device needs a public IP. It also adds a layer of security, since internal devices are not directly exposed to the public internet.
+
+Q.  What is the OSI Model?
+    The OSI model is a theoretical framework that describes how data travels from one computer to another over a network.
+    It has 7 layers, and each layer performs a specific task in the communication process.
+
+    Layer	Name	    Function	                    Real-Life Example
+    7	Application	    User interface, apps	        Browsers (Chrome), Email (Gmail)
+    6	Presentation	Data format, enc./decryption	JPEG, SSL/TLS
+    5	Session	Manage  sessions/connections	        Login sessions, video calls
+    4	Transport	    Reliable delivery (TCP/UDP)	    Ensures data reaches completely
+    3	Network	IP      addressing & routing	        Routers, IP addresses
+    2	Data Link	    MAC addressing, frames	        Switches, MAC filtering
+    1	Physical	    Transmission via cables,signals	Ethernet cables, Wi-Fi, fiber optics
+
+    Let’s say you send a message via WhatsApp:
+
+        Application (7): You type the message and click send.
+        Presentation (6): Message is converted to the right format and encrypted.
+        Session (5): WhatsApp session is kept active between you and your friend.
+        Transport (4): TCP splits your message into packets and ensures delivery.
+        Network (3): Each packet gets a source & destination IP address.
+        Data Link (2): Packets are turned into frames with MAC addresses.
+        Physical (1): Data is sent as electrical signals or radio waves.
+            Reverse happens on the receiver’s side—layer by layer, bottom to top.
+    
+Q. What is DNS and why is it needed?
+    DNS stands for Domain Name System. It is used to translate human-readable domain names like www.google.com into IP addresses like 142.250.182.100, which computers use to communicate.
+    Without DNS, we would have to remember IP addresses instead of domain names.
+
+    2. Steps when you type a URL in your browser:
+        Answer:
+        When I type a URL in my browser:
+            The browser first checks the DNS cache.
+            If not found, it asks the recursive DNS server (usually from the ISP).
+            The recursive server contacts the Root DNS server, which directs to the TLD server.
+            The TLD server points to the Authoritative DNS server for the domain.
+            The IP address is returned to the browser.
+            Then the browser makes a request to that IP and loads the website.
+
+Q. What is a deadlock? How can it be avoided?
+    A deadlock is a situation in an operating system where two or more processes are waiting for each other to release resources, and none of them can proceed.
+    📌 Example:
+        Process A holds Resource R1 and waits for R2.
+        Process B holds Resource R2 and waits for R1.
+        Neither can proceed — deadlock occurs.
+    
+    🔄 Four Conditions for Deadlock (Coffman Conditions):
+        Mutual Exclusion: Resources are non-shareable (only one process can use a resource at a time).
+        Hold and Wait: A process holds at least one resource and waits for more.
+        No Preemption: A resource can't be forcibly taken from a process.
+        Circular Wait: A set of processes are waiting for each other in a circular chain.
+            If all four are true at the same time — deadlock can occur.
+    
+    🛡️ How to Avoid Deadlock?
+        1. Deadlock Prevention (Break at least one Coffman condition):
+            Mutual Exclusion: Not always possible (e.g., a printer).
+            Hold and Wait: Request all resources at once (but this can reduce efficiency).
+            No Preemption: Allow preemption (forcefully take a resource if needed).
+            Circular Wait: Impose a fixed ordering on resource requests.
+
+        2. Deadlock Avoidance (Use algorithms to make safe decisions):
+            Banker’s Algorithm: Works like a bank lending system.
+            Only allocates resources if it leads to a safe state.
+            Needs advance knowledge of maximum resource needs.
+
+Q.  What are ACID Properties in Databases?
+    In database systems, ACID stands for:
+        Atomicity, Consistency, Isolation, Durability
+
+        1. 🧨 Atomicity ("All or Nothing")
+            A transaction is treated as a single unit.
+            Either all operations succeed, or none do.
+            If a failure occurs, the database is rolled back to its original state.
+
+            Example:
+            Transferring ₹100 from Account A to B:
+            Debit ₹100 from A ✔
+            Credit ₹100 to B ✔
+            → If either step fails, no changes are made.
+        
+        2. 📐 Consistency
+            A transaction brings the database from one valid state to another.
+            All rules, constraints, and relationships must be preserved.
+
+            Example:
+            If a rule says balance cannot go below ₹0, a transaction violating this will be rejected.
+        
+        3. 🧍‍♂️ Isolation
+            Concurrent transactions do not interfere with each other.
+
+            Example:
+            Two users trying to book the last ticket:
+            One transaction must complete before the other sees the update.
+        
+        4. 🛡️ Durability
+            Once a transaction is committed, its changes are permanent, even in case of a crash.
+            The data is written to non-volatile storage (like a disk).
+
+            Example:
+            If you book a flight and get confirmation, your booking won’t vanish even if the server crashes.
+
+Q. What is the difference between Paging and Segmentation?
+    ✅ Paging:
+        Paging is a memory management scheme that divides logical memory into fixed-size pages and physical memory into fixed-size frames.
+        It helps eliminate external fragmentation but may cause internal fragmentation.
+        It is based on the physical structure of memory.
+        Each process uses a page table to map logical pages to physical frames.
+        Logical address = <Page Number, Offset>.
+
+    ✅ Segmentation:
+        Segmentation divides memory into variable-size segments based on logical divisions like code, data, stack, etc.
+
+        It may cause external fragmentation, but no internal fragmentation.
+
+        It reflects the logical structure of the program.
+
+        Each process has a segment table to map segment numbers to physical addresses.
+
+        Logical address = <Segment Number, Offset>.
+
+Q. What is virtual memory?
+    Virtual memory is a memory management technique that gives an illusion of a large, continuous memory space, even if the physical RAM is limited.
+
+    🧠 It allows programs to use more memory than physically available by temporarily storing parts of data on disk (usually in a swap area or page file).
+
+Q. What is a Transaction in DBMS?
+    A transaction in DBMS is a single unit of work that consists of one or more operations (like INSERT, UPDATE, DELETE, etc.) performed on a database.
+
+    A transaction must follow ACID properties to ensure data integrity and reliability.
+
+        Transferring ₹100 from Account A to B:
+        Subtract ₹100 from Account A
+        Add ₹100 to Account B
+
+    This entire process is a transaction — either both steps succeed, or none should.
+
+Q. What is the difference between Abstraction and Encapsulation?
+    ✅ Abstraction:
+        Abstraction is the process of hiding internal implementation details and showing only the essential features of an object.
+        It focuses on what an object does.
+        Achieved using abstract classes and interfaces.
+            Example: When we call print() in Java, we don’t know how it prints; we only care that it prints.
+    
+    ✅ Encapsulation:
+        Encapsulation is the process of wrapping data and methods into a single unit (class) and restricting direct access to the data.
+        It focuses on how the data is protected and accessed.
+        Achieved using access modifiers (private, public, etc.).
+            Example: Declaring variables as private and accessing them via getters and setters.
+
+Q. What is the difference between Method Overloading and Method Overriding?
+    Method Overloading (Compile-time Polymorphism)
+        Method Overloading means having multiple methods with the same name in the same class, but with different parameters (type, number, or order).
+        Happens within the same class
+        Decided at compile-time
+    
+    Method Overriding (Runtime Polymorphism)
+        Method Overriding means a subclass provides a specific implementation of a method that is already defined in its parent class.
+        Happens between superclass and subclass
+        Decided at runtime (dynamic binding)
+        Used to achieve runtime polymorphism

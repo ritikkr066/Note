@@ -1,0 +1,36 @@
+Q1. What are your strengths and weaknesses?
+    “If I talk about my strengths, one of my main strengths is problem-solving. I enjoy working on complex problems and finding efficient solutions — it really helps sharpen my thinking skills.
+
+    Another strength is consistency. I make sure to study and practice every day, even if it's just for a short time, because I believe regular practice is the key to improvement.
+
+    As for my weakness, I tend to speak too fast during presentations and discussions, which sometimes makes it hard for others to follow me. I'm aware of this and have been practicing to slow down and improve my communication skills.”
+
+Q2. Why should we hire you?
+    "You should hire me because I bring strong problem-solving skills, a consistent learning habit, and hands-on experience through my projects. For example, I worked on a full-stack project called HealthDebug, where I handled both front-end and back-end development.
+
+    I’m also someone who learns steadily and keeps improving. I regularly solve DSA problems and work on enhancing both my technical and communication skills.
+
+    While I may be a fresher, I’m hardworking, quick to adapt, and genuinely excited to contribute and grow in a real-world environment."
+
+Q3. Where do you see yourself in the next 5 years?
+    “In the next five years, I see myself as a reliable software engineer working on meaningful projects in a company where I can grow and contribute. I want to continue improving my technical skills, especially in full-stack deployment and system design.
+
+    I also hope to take on more responsibilities, such as leading a project or mentoring junior team members. My goal is to stay consistent in learning and become someone the team can trust to deliver results.”
+
+Q4. Tell me about a challenge or conflict you faced in a team, and how you handled it.
+    “In our Hacklers Club, we were working on a project called Techno and Cultural Healthcare, a web application to display all ongoing events in our college.
+
+    During the project, we faced a conflict among team members about the UI design — everyone had different ideas, and it started affecting our progress. Since I was one of the project leads, I stepped in to handle the situation.
+
+    I organized a short meeting where everyone could share their ideas. We created a simple voting system to choose the best design based on user-friendliness and technical feasibility. Once we agreed on a direction, everyone felt heard and the team became more focused.
+
+    As a result, we finished the UI on time and the project moved forward smoothly. This experience taught me the importance of clear communication and team coordination.”
+
+Q5. What are your career goals?
+    “In the short term, my goal is to join a company where I can apply my technical skills, learn from experienced professionals, and work on real-world projects. I want to improve my skills in full-stack development and system design.
+
+    In the long term, I see myself growing into a more responsible role — possibly as a team lead or project manager — where I can guide others and contribute to larger projects.
+
+    My main goal is to keep learning, stay updated with new technologies, and grow both personally and professionally.”
+
+Q6. 

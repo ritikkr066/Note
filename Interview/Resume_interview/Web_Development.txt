@@ -1,0 +1,13 @@
+Q. Can you explain the difference between frontend and backend development?
+    “The frontend team works on the UI — that is, how the project looks and how users interact with it. The backend team, on the other hand, handles the internal logic, databases, and server-side operations that support the frontend.”
+
+Q. What is an API? Can you explain it in simple words?
+    “API stands for Application Programming Interface. It acts as a bridge between the frontend and the backend. It allows different parts of an application — or even two different applications — to communicate and share data. For example, in a web app, the frontend uses APIs to send or receive data from the backend server.”
+
+Q. Can you explain the difference between var, let, and const in JavaScript?
+    In JavaScript:
+        var is function-scoped and allows re-declaration and reassignment. It is hoisted, meaning it's accessible before its declaration (but will be undefined).
+
+        let is block-scoped (not function-scoped) and can be reassigned, but cannot be re-declared in the same scope.
+
+        const is also block-scoped, but it cannot be reassigned or re-declared. The value assigned to a const must remain constant. However, for objects and arrays, you can still change the contents (just not reassign the variable).

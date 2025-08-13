@@ -1,0 +1,1087 @@
+1. Difference between DBMS and RDBMS.
+    1️⃣ DBMS (Database Management System)
+        Definition: Software for storing and managing data in a database.
+        Data storage: Stores data as files, usually in hierarchical, network, or other formats.
+        Relationships: No concept of relationships between tables.
+        Normalization: Not mandatory.
+        Examples: File System, XML database, Microsoft Access (basic form).
+    
+    2️⃣ RDBMS (Relational Database Management System)
+        Definition: A type of DBMS that stores data in tables (rows and columns) and uses relationships between them.
+        Data storage: Follows the relational model proposed by E.F. Codd.
+        Relationships: Supports primary keys, foreign keys, and constraints to maintain data integrity.
+        Normalization: Typically uses normalization to avoid redundancy.
+        Examples: MySQL, PostgreSQL, Oracle, SQL Server.
+
+2. What is a schema?
+    A schema is the logical structure or blueprint of a database that defines how data is organized — including tables, fields, relationships, views, indexes, and constraints.
+        Key points for interviews:
+            It’s like a map of the database.
+            Defines what data will be stored and how it will be related.
+            Helps maintain data integrity and ensures consistent structure.
+            Exists at the logical level — independent of the physical storage details.
+
+3. Difference between primary key, foreign key, unique key.
+    1️⃣ Primary Key
+        Purpose: Uniquely identifies each record in a table.
+        Uniqueness: Must be unique and NOT NULL.
+        Count per table: Only one primary key per table (can be composite — multiple columns).
+        Example: student_id in Students table.
+
+    2️⃣ Foreign Key
+        Purpose: Creates a relationship between two tables by referencing the primary key of another table.
+        Uniqueness: Can have duplicate values.
+        Nullability: Can be NULL unless specified otherwise.
+        Count per table: Can have multiple foreign keys.
+        Example: student_id in Enrollments table (references Students.student_id).
+
+    3️⃣ Unique Key
+        Purpose: Ensures that all values in a column (or combination) are unique, but it’s not the primary key.
+        Uniqueness: Must be unique, but can have one NULL (in most RDBMS).
+        Count per table: Can have multiple unique keys.
+        Example: email in Users table.
+
+4. Difference between DDL, DML, DCL, TCL.
+    1️⃣ DDL – Data Definition Language
+        Purpose: Defines and modifies the structure of the database (tables, schemas, indexes).
+        Examples:
+            CREATE – Create table or database
+            ALTER – Modify table structure
+            DROP – Delete table or database
+            TRUNCATE – Remove all records, reset identity
+        Nature: Auto-commits (changes are permanent immediately).
+    
+    2️⃣ DML – Data Manipulation Language
+        Purpose: Deals with data inside the tables (insert, update, delete, retrieve).
+        Examples:
+            INSERT – Add new records
+            UPDATE – Modify records
+            DELETE – Remove records
+            SELECT – Retrieve data
+        Nature: Requires commit/rollback to save or discard changes.
+    
+    3️⃣ DCL – Data Control Language
+        Purpose: Controls access and permissions in the database.
+        Examples:
+            GRANT – Give user access rights
+            REVOKE – Remove user access rights
+            Nature: Used for database security.
+    
+    4️⃣ TCL – Transaction Control Language
+        Purpose: Manages transactions to ensure data integrity.
+        Examples:
+            COMMIT – Save changes permanently
+            ROLLBACK – Undo changes
+            SAVEPOINT – Set a point to rollback to
+            SET TRANSACTION – Configure transaction settings
+        Nature: Works with DML statements.
+    
+    "DDL defines the structure, DML manipulates data, DCL controls permissions, and TCL manages transactions."
+
+5. Syntax of SELECT, JOIN, GROUP BY, HAVING.
+    1️⃣ SELECT
+        Purpose: Retrieve data from one or more tables.
+            SELECT column1, column2, ...
+            FROM table_name
+            WHERE condition
+            ORDER BY column_name ASC|DESC;
+    
+    2️⃣ JOIN
+        Purpose: Combine rows from two or more tables based on a related column.
+            SELECT a.column1, b.column2
+            FROM table1 a
+            JOIN table2 b
+            ON a.common_column = b.common_column;
+    
+    3️⃣ GROUP BY
+        Purpose: Group rows with the same values into summary rows.
+            SELECT column_name, aggregate_function(column_name)
+            FROM table_name
+            WHERE condition
+            GROUP BY column_name;
+    
+    4️⃣ HAVING
+        Purpose: Filter groups after aggregation (works with GROUP BY).
+            SELECT column_name, aggregate_function(column_name)
+            FROM table_name
+            GROUP BY column_name
+            HAVING aggregate_function(column_name) condition;
+
+6. INNER JOIN vs LEFT JOIN vs RIGHT JOIN vs FULL JOIN.
+    1️⃣ INNER JOIN
+        Purpose: Returns only rows where there is a match in both tables.
+        Syntax:
+            SELECT a.column, b.column
+            FROM tableA a
+            INNER JOIN tableB b
+            ON a.id = b.id;
+        Example result:
+            If a student is in both Students and Marks, they will appear. No match → no row.
+    
+    2️⃣ LEFT JOIN (or LEFT OUTER JOIN)
+        Purpose: Returns all rows from the left table, plus matching rows from the right table. If no match → NULL values for right table columns.
+        Syntax:
+            SELECT a.column, b.column
+            FROM tableA a
+            LEFT JOIN tableB b
+            ON a.id = b.id;
+        Example result:
+        All students from Students appear, even if they have no marks (marks = NULL).
+
+    3️⃣ RIGHT JOIN (or RIGHT OUTER JOIN)
+        Purpose: Returns all rows from the right table, plus matching rows from the left table. If no match → NULL values for left table columns.
+        Syntax:
+            SELECT a.column, b.column
+            FROM tableA a
+            RIGHT JOIN tableB b
+            ON a.id = b.id;
+        Example result:
+            All subjects from Subjects appear, even if no student is enrolled in them (student = NULL).
+    
+    4️⃣ FULL JOIN (or FULL OUTER JOIN)
+        Purpose: Returns all rows from both tables — matching rows where possible, and NULLs where there’s no match.
+        Syntax: 
+            SELECT a.column, b.column
+            FROM tableA a
+            FULL JOIN tableB b
+            ON a.id = b.id;
+        Example result:
+        All students and all subjects appear — even if they have no match in the other table.
+
+7. Self join and cross join.
+    1️⃣ SELF JOIN
+        Purpose: Joins a table with itself as if it were two separate tables.
+        Use Case: Comparing rows within the same table.
+        Syntax:
+            SELECT a.column_name, b.column_name
+            FROM table_name a
+            JOIN table_name b
+            ON a.common_field = b.common_field
+            WHERE condition;
+        Example:
+        In an Employees table, find employees and their managers (both stored in the same table).
+    
+    2️⃣ CROSS JOIN (Cartesian Join)
+        Purpose: Returns the Cartesian product of two tables — every row from table A is paired with every row from table B.
+        Use Case: Combinations, testing, or generating all possible pairs.
+        Syntax:
+            SELECT a.column_name, b.column_name
+            FROM tableA a
+            CROSS JOIN tableB b;
+        Example:
+        If Colors has 3 rows and Sizes has 4 rows → result will have 3 × 4 = 12 rows.
+
+8. Explain 1NF, 2NF, 3NF, BCNF.
+9. Why Normalization is Needed?
+    Normalization is needed to organize data in a database efficiently so that:
+    1. Avoid Data Redundancy
+        Prevents storing the same piece of data in multiple places.
+    2. Ensure Data Consistency
+        If data exists in one place, updating it is easier and avoids mismatched values.
+    3. Improve Data Integrity
+        Maintains accurate relationships between data through constraints and keys
+    4. Optimize Storage
+        Reduces the amount of space wasted due to duplication.
+
+10. When to Use Denormalization? 
+    "Denormalization is the process of intentionally introducing redundancy into a database to improve read performance and reduce the need for complex joins."
+
+    "I would use denormalization in scenarios where query speed is more important than storage efficiency — for example, in reporting systems, analytics dashboards, or other read-heavy applications where multiple joins slow down performance."
+
+    "Let’s say we have a normalized database where sales reports require joining Orders, Customers, and Products. Instead of running heavy joins repeatedly, we can store the customer and product details directly in the orders table, making reports much faster."
+
+11. Explain trade-offs of denormalizing for faster reads.
+    Benefits : Faster Read Performance – Reduces joins, speeds up queries, great for analytics and dashboards.
+
+    2️⃣ Trade-offs / Downsides
+        Increased Redundancy	Same data stored in multiple places, wasting storage.
+        More Complex Updates	Updating redundant data means modifying multiple rows/tables.
+
+        3️⃣ Interview Example
+        "For example, if I denormalize by storing customer details in every order record to speed up reporting, it’s faster to read — but if the customer changes their address, I’ll have to update it in potentially thousands of rows, which increases maintenance effort and risk of inconsistency."
+
+        "Denormalization gives you speed at the cost of storage efficiency, consistency, and maintenance complexity."
+    
+12. ACID properties.
+    ACID stands for the four key properties of a reliable transaction in a database:
+    1️⃣ Atomicity – "All or nothing"
+        A transaction is treated as a single unit.
+        Either all operations succeed, or none are applied.
+        Example: Money transfer — debit and credit must both happen, or neither happens.
+
+    2️⃣ Consistency – "Valid state before and after"
+        A transaction must take the database from one valid state to another.
+        All rules, constraints, and relationships must remain valid.
+        Example: Account balance can’t become negative if business rules forbid it.
+
+    3️⃣ Isolation – "No dirty interference"
+        Transactions running at the same time don’t affect each other’s results.
+        Prevents issues like dirty reads, non-repeatable reads, and phantom reads.
+        Example: Two people booking the same movie seat simultaneously should not both succeed.
+
+    4️⃣ Durability – "Once saved, always saved"
+        Once a transaction is committed, its changes are permanent, even if the system crashes.
+        Achieved using transaction logs and backups.
+        Example: After a payment is confirmed, it remains confirmed even if the server restarts.
+
+13. Difference between commit and rollback.
+    1️⃣ COMMIT
+        Definition: Saves all changes made during the current transaction permanently to the database.
+        Key Point: After a commit, you cannot undo those changes (unless you start another transaction to reverse them).
+        Example:
+            BEGIN;
+            UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+            UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+            COMMIT; -- changes are now permanent
+
+    2️⃣ ROLLBACK
+        Definition: Cancels all changes made during the current transaction and restores the database to its last committed state.
+        Key Point: Used when an error occurs or you want to discard partial changes.
+        Example:
+            BEGIN;
+            UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+            UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+            ROLLBACK; -- no changes are saved
+        
+    "COMMIT makes your transaction changes permanent, while ROLLBACK undoes all changes since the last commit."
+
+    3️⃣ SAVEPOINT
+        Definition: Creates a checkpoint within a transaction, allowing you to roll back to that specific point without undoing the entire transaction.
+        Use Case: When you want partial undo within a transaction.
+        Example:
+            BEGIN;
+            UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+            SAVEPOINT sp1;
+            UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+            ROLLBACK TO sp1; -- undo only the last update, keep earlier changes
+            COMMIT;
+
+14. What is a transaction log?
+    A transaction log is a file maintained by a database system that records all changes made to the database, including insertions, updates, deletions, and the start/commit/rollback of transactions.
+        It acts as a history book of the database operations.
+    
+    Purpose
+        Recovery – If the system crashes, the database can use the transaction log to restore data to a consistent state.
+        Durability – Ensures that committed transactions are not lost, even after a failure.
+        Auditing – Helps track what changes were made and by whom.
+
+15. Explain what happens if two transactions try to update the same row simultaneously.
+    "When two transactions try to update the same row at the same time, the database uses concurrency control mechanisms to avoid conflicts and maintain data integrity."
+
+    Explain the normal case (with locking)
+    "In most databases, the first transaction that accesses the row acquires a lock on it. The second transaction will wait until the first one either commits or rolls back, ensuring updates happen sequentially."
+        Example:
+            T1 starts updating → locks the row.
+            T2 tries to update → waits.
+            Once T1 commits, T2 proceeds.
+    
+    Mention the problem case (low isolation)
+        "If the isolation level is too low, like READ UNCOMMITTED, both transactions might overwrite each other’s changes, leading to what's called a 'lost update' problem."
+        Example:
+            T1 reads 100 → adds 50 → plans to set 150.
+            T2 reads 100 → adds 30 → plans to set 130.
+            If T2 commits last, T1’s change is lost.
+    
+    "That’s why databases use row-level locks, proper isolation levels, and deadlock detection to make sure updates are applied safely and consistently."
+
+16. How would you prevent lost updates in concurrent transactions?
+    "Lost updates happen when two transactions overwrite each other’s changes because they’re working with outdated data."
+
+    1️⃣ Use proper isolation levels
+        Set REPEATABLE READ or SERIALIZABLE isolation level to ensure no other transaction modifies the row while you’re working on it.
+        This forces row locks and prevents overwrites.
+    2️⃣ Implement locking explicitly
+        Use SELECT ... FOR UPDATE in SQL to lock rows during read, so other transactions can’t update them until the current one finishes.
+
+    SELECT ... FOR UPDATE
+        We have a accounts table:
+        id   | account_name | balance
+        -----+--------------+--------
+        1    | Alice        | 1000
+        2    | Bob          |  800
+    
+    Query to Lock a Row Before Update
+        BEGIN;  -- Start transaction
+
+        -- Lock the row so no other transaction can update it until commit/rollback
+        SELECT balance 
+        FROM accounts
+        WHERE id = 1
+        FOR UPDATE;
+
+        -- Perform the update
+        UPDATE accounts
+        SET balance = balance - 200
+        WHERE id = 1;
+
+        COMMIT; -- End transaction
+    
+    How it Works
+        FOR UPDATE: Places a write lock on the selected row.
+        Other transactions trying to update that row will wait until this transaction commits or rolls back.
+        Prevents lost updates because two transactions can’t change the same row at the same time.
+    
+    Example: REPEATABLE READ with Transaction
+        -- Set isolation level
+        SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+        BEGIN;  -- Start transaction
+
+        -- First read (this value is locked for the transaction)
+        SELECT balance 
+        FROM accounts
+        WHERE id = 1;
+
+        -- Perform the update
+        UPDATE accounts
+        SET balance = balance - 200
+        WHERE id = 1;
+
+        COMMIT;  -- End transaction
+    
+    How it Works
+        REPEATABLE READ: Ensures that if you read the same row again in the same transaction, you’ll see the same value — no other transaction can modify it in the meantime.
+        Prevents non-repeatable reads and lost updates.
+        If another transaction tries to update that row before you commit, it will wait until you finish.
+
+17. What is an index? Types of indexes.
+    "An index is a database structure that improves the speed of data retrieval on a table at the cost of additional storage and write overhead."
+    Works like a book index — instead of scanning the whole table, the database can jump directly to the matching rows.
+    Physically stored as special data structures (commonly B-trees or hash tables).
+
+    Types of Indexes
+    1️⃣ Primary Index
+        Automatically created on the Primary Key.
+        Unique, cannot have NULL values.
+
+        CREATE TABLE users (
+        id INT PRIMARY KEY,
+        name VARCHAR(50)
+        );
+    
+    2️⃣ Unique Index
+        Ensures all values in the column(s) are unique.
+        Allows NULL unless explicitly restricted.
+        Eg. 
+        CREATE UNIQUE INDEX idx_email ON users(email);
+    
+    3️⃣ Composite Index
+        Index on multiple columns.
+        Helps with queries filtering/sorting by multiple fields.
+        Example:
+        CREATE INDEX idx_name_age ON users(name, age);
+
+18. Clustered vs non-clustered index.
+    1️⃣ Clustered Index
+    A clustered index defines the physical order of data in a table — the table itself is stored in that order
+    Data storage: Table data is stored in the order of the clustered index.
+    Count: Only one clustered index per table.
+    Example: If id is the clustered index, rows are stored sorted by id.
+
+    2️⃣ Non-clustered Index
+    A non-clustered index is separate from the table; it stores the indexed column values and pointers to the actual rows.
+    You can have many non-clustered indexes, and they’re great for speeding up lookups on different columns.
+    they require an extra step to fetch the data, so they’re slightly slower than clustered indexes 
+
+19. Advantages and disadvantages of indexing.
+    Advantages
+    Faster Query Performance – Reduces data scan time, especially on large tables
+    Improved JOIN Operations – Speeds up matching rows across tables.
+    Efficient Sorting & Filtering – Indexes keep data sorted for quick lookups (ORDER BY, WHERE).
+
+    Disadvantages
+    Slower Write Operations – INSERT, UPDATE, DELETE take longer because indexes must be updated.
+    Extra Storage Usage – Indexes consume additional disk space.
+
+    "Indexes are a trade-off between read speed and write cost. They make queries much faster but slow down data modifications and consume extra storage."
+
+20. Which column would you index in a table with millions of rows for fast search?
+    "I’d index the column that’s most frequently used in WHERE, JOIN, or ORDER BY clauses — ideally one with high selectivity, meaning it has many unique values. For example, if most queries search by email or customer_id, those would be good candidates. I’d avoid indexing columns with low selectivity like gender or status because the index wouldn’t reduce the search space much."
+
+21. Why indexing a frequently updated column might be a bad idea.
+    Indexing a frequently updated column can hurt performance because every time that column changes, the database must also update the index. This adds extra write overhead and can cause index fragmentation, which slows down future queries. If the column is updated often, the cost of maintaining the index can outweigh the read performance benefits."
+
+    "For instance, if you index a last_login_time column that changes every time a user logs in, the index will be rewritten constantly, creating unnecessary overhead."
+
+22. How does the database optimizer choose an execution plan?
+    "The query optimizer analyzes the SQL statement and generates multiple possible execution plans, then estimates the cost of each based on factors like table size, available indexes, data distribution, and statistics. It picks the plan with the lowest estimated cost, which could involve index scans, table scans, joins, or hash operations."
+
+23. Importance of EXPLAIN in SQL.
+    "EXPLAIN is used to see how the database plans to execute a query. It shows the execution plan chosen by the optimizer — including whether it uses indexes, does a table scan, the join type, and estimated row counts. This helps developers understand query performance and identify bottlenecks."
+
+    You can use EXPLAIN in SQL by placing it before your SELECT (or INSERT/UPDATE/DELETE in some DBs) statement
+    EXPLAIN
+    SELECT customer_id, name
+    FROM customers
+    WHERE email = 'john@example.com';
+
+    The database doesn’t execute the query — it just shows the execution plan.
+
+    You’ll see columns like:
+        id – query step order
+        select_type – type of query (simple, subquery, etc.)
+        table – table being accessed
+        type – access method (ALL = full scan, ref, eq_ref, index, etc.)
+        possible_keys – indexes the optimizer considered
+        key – index actually used
+        rows – estimated rows read
+        Extra – additional info (e.g., "Using index", "Using where")
+
+24. Your query is taking too long — how do you optimize it?
+    "I approach slow query optimization in a systematic way to find the root cause before making changes."
+
+    1️⃣ Analyze the Query
+        Use EXPLAIN / EXPLAIN ANALYZE to see the execution plan.
+        Identify full table scans, costly joins, or missing indexes.
+        Check execution time and row counts.
+    
+    2. Optimize the Query
+        Add indexes on frequently filtered or joined columns.
+        Avoid SELECT * — fetch only required columns.
+        Replace subqueries with JOINs
+        Choose the correct join type (INNER vs LEFT).
+    
+    3.  Verify the Improvement
+        Run the query again with EXPLAIN ANALYZE to check the plan changes.
+        Compare execution times before and after changes.
+    
+    "For example, if an order search query was slow, I’d check the plan and see if it’s scanning millions of rows. I’d add an index on order_date or order_id, rewrite the query to avoid unnecessary joins, and confirm the performance improvement using EXPLAIN ANALYZE."
+
+25. Why is SELECT * bad for performance?
+    "SELECT * is bad for performance because it fetches all columns from a table, even if you don’t need them. This increases memory usage, and can prevent indexes from being fully utilized."
+
+26. Candidate key, composite key, surrogate key.
+    1️⃣ Candidate Key
+        Definition:
+        A column (or set of columns) that can uniquely identify each row in a table.
+        A table can have multiple candidate keys.
+        One candidate key becomes the Primary Key.
+
+        Example:
+        In a Students table:
+        student_id (unique)
+        email (unique)
+        Both are candidate keys.
+    
+    @.Explain the difference between a composite key and concatenating columns.
+    2️⃣ Composite Key
+        Definition:
+        A candidate key made up of two or more columns combined to uniquely identify a row.
+        Used when no single column is unique by itself.
+
+        Example:
+        In an Enrollments table:
+        student_id + course_id together form a composite key.
+
+    2️⃣ Concatenating Columns
+        Definition:
+        Taking two or more column values and combining them into one string or value, usually for display or derived purposes.
+        Application-level or query-level operation — does not enforce uniqueness.
+            SELECT CONCAT(first_name, ' ', last_name) AS full_name
+            FROM Customers;
+
+     3️⃣ Surrogate Key
+        Definition:
+        An artificial or system-generated key used to uniquely identify a row, instead of a natural business key.
+        Usually an auto-increment ID or UUID.
+        Has no business meaning, only used for identification.
+
+        Example:
+        In a Customers table:
+        customer_id (auto-generated) is a surrogate key, even though email could also be unique.
+
+27. CHECK constraint vs NOT NULL.
+    1️⃣ NOT NULL
+        Purpose: Ensures a column cannot store NULL values.
+        Checks: Only whether a value exists, not what the value is.
+        CREATE TABLE Employees (
+            emp_id INT PRIMARY KEY,
+            name VARCHAR(50) NOT NULL
+        );
+    
+    2️⃣ CHECK Constraint
+        Purpose: Ensures a column’s value meets a specific condition.
+
+        Checks: Actual content and rules, not just existence.
+
+        CREATE TABLE Employees (
+            emp_id INT PRIMARY KEY,
+            age INT CHECK (age >= 18)
+        );
+        Here, age must be 18 or more, but could still be NULL unless also marked NOT NULL.
+
+28. Difference between a view and a table.
+    1️⃣ Table
+        Definition:
+        A physical database object that stores data in rows and columns.
+        Data Storage: Data is physically stored on disk.
+        Types: Permanent tables, temporary tables, partitioned tables.
+
+        CREATE TABLE Employees (
+            emp_id INT PRIMARY KEY,
+            name VARCHAR(50),
+            department VARCHAR(50)
+        );
+    
+    2️⃣ View
+        Definition:
+        A virtual table based on the result of a SQL query.
+        Data Storage: Does not store data physically (except materialized views); it stores only the SQL definition.
+        Purpose: To simplify queries, enhance security, and present computed or filtered data.
+
+        Example:
+            CREATE VIEW IT_Employees AS
+            SELECT emp_id, name
+            FROM Employees
+            WHERE department = 'IT';
+    
+        Materialized View
+        Definition:
+        A database object that stores the results of a query physically (like a snapshot of data).
+        Unlike a normal view, it doesn’t run the query every time — it retrieves stored data for faster reads.
+
+        Purpose:
+        To improve performance for complex queries, aggregations, or data from remote sources.
+
+29. What is a trigger? When to use it.
+    1️⃣ What is a Trigger?
+        Definition:
+        A stored procedure in a database that is automatically executed (fired) in response to a specific event on a table or view.
+        Events: INSERT, UPDATE, or DELETE.
+        Execution: Happens before or after the event, depending on the trigger type.
+    
+    "I use BEFORE triggers when I need to validate or modify data before it’s stored, and AFTER triggers when I want to log, notify, or cascade changes after the action is complete."
+
+30. Advantages of stored procedures.
+    "Stored procedures improve performance, security, and maintainability by encapsulating SQL logic inside the database and reducing repetitive query overhead."
+
+    Example (MySQL)
+        CREATE PROCEDURE GetOrdersByCustomer(IN cust_id INT)
+        BEGIN
+            SELECT * FROM orders WHERE customer_id = cust_id;
+        END;
+
+    Here, any application can just call:
+    CALL GetOrdersByCustomer(101);
+
+31. Write a trigger to log every deletion in an audit table.
+    Step 1: Create the audit table
+        CREATE TABLE employee_audit (
+            audit_id INT PRIMARY KEY AUTO_INCREMENT,
+            employee_id INT,
+            name VARCHAR(100),
+            deleted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            deleted_by VARCHAR(50)
+        );
+
+    Step 2: Create the trigger
+        CREATE TRIGGER log_employee_deletion
+        AFTER DELETE ON employees
+        FOR EACH ROW
+        INSERT INTO employee_audit (employee_id, name, deleted_by)
+        VALUES (OLD.id, OLD.name, USER());
+    
+    AFTER DELETE → Trigger runs only after a row is successfully deleted from employees.
+    OLD → Refers to the deleted row’s values.
+    USER() → Captures the database user who executed the delete.
+    Logs essential info into employee_audit for tracking.
+
+32. Create a view that shows only active customers.
+    CREATE VIEW ActiveCustomers AS
+    SELECT customer_id, customer_name, email, phone
+    FROM customers
+    WHERE status = 'Active';
+
+    To query the view:
+        SELECT * FROM ActiveCustomers
+
+33. OLTP vs OLAP.
+    ✅ OLTP (Online Transaction Processing)
+        OLTP systems handle day-to-day transactional operations — quick insert, update, and delete queries.
+        Purpose: Manage real-time transactional data.
+        Data type: Current operational data.
+        Operations: Short, simple queries (INSERT, UPDATE, DELETE).
+        Speed: Optimized for fast query processing.
+        Example: Banking transactions, online ticket booking.
+
+    ✅ OLAP (Online Analytical Processing)
+        OLAP systems handle data analysis and reporting — complex queries over large historical datasets.
+        Purpose: Support decision-making and business analysis.
+        Data type: Historical and aggregated data.
+        Operations: Complex read-heavy queries (SELECT with GROUP BY, JOIN).
+        Speed: Optimized for query accuracy over large data volumes, not for speed of updates.
+        Example: Sales trend analysis, market forecasting.
+
+    “OLTP is designed for managing real-time transactions, with fast and frequent reads/writes, while OLAP is designed for analyzing large volumes of historical data with complex queries. OLTP focuses on operational efficiency, while OLAP focuses on decision-making.”
+
+34. SQL vs NoSQL databases.
+    ✅ SQL Databases (Relational Databases)
+        SQL databases store data in structured tables with predefined schemas and relationships.
+        Data Model: Relational (rows & columns)
+        Schema: Fixed (must define structure before inserting data)
+        Query Language: SQL (Structured Query Language)
+        Transactions: Strong ACID compliance
+        Scalability: Vertical scaling (add more CPU/RAM to one server)
+        Best For: Structured data, complex queries, multi-row transactions
+        Examples: MySQL, PostgreSQL, Oracle, MS SQL Server
+
+    ✅ NoSQL Databases (Non-Relational Databases)
+        NoSQL databases store data in flexible, schema-less formats, such as documents, key-value pairs, graphs, or columns.
+        Data Model: Non-relational (Document, Key-Value, Graph, Wide-Column)
+        Schema: Flexible (can store data without predefined structure)
+        Query Language: Varies (JSON queries, APIs, custom query syntax)
+        Transactions: Often BASE (Basically Available, Soft state, Eventually consistent)
+        Scalability: Horizontal scaling (add more servers)
+        Best For: Unstructured/semi-structured data, fast development, big data, real-time analytics
+        Examples: MongoDB (Document), Redis (Key-Value), Cassandra (Wide Column), Neo4j (Graph)
+
+35. Which database would you choose for a chat application? Why?
+    “For a chat application, I’d choose a NoSQL database like MongoDB or Cassandra.
+    Chat systems need to handle millions of small messages per second with low latency and high availability.
+    NoSQL databases provide a flexible schema for varying message formats, horizontal scalability to handle growth, and follow BASE principles, which prioritize availability over strict consistency — perfect for real-time messaging.”
+
+        BASE (used in many NoSQL databases)
+        BASE stands for:
+        Basically Available – The system guarantees availability even in the presence of partial failures.
+        Soft State – The state of the system may change over time, even without input, because of eventual consistency.
+        Eventual Consistency – The system does not guarantee immediate consistency but ensures that all replicas will become consistent eventually.
+
+        “BASE is an alternative to ACID, used by many NoSQL databases.
+        It sacrifices immediate consistency for high availability and scalability.
+        In a distributed system like a chat app, this means a message might take a tiny fraction of a second to appear on all devices, but the app stays fast and responsive.”
+    
+    ✅ Key Points to Mention (if interviewer asks “Why not SQL?”)
+        SQL databases are rigid with schema → harder to adapt to evolving message structures.
+        Scaling SQL is mostly vertical, which is costlier and less elastic.
+        Chat requires availability first, not strict transactional ACID compliance.
+
+36. How would you store JSON data in a relational database?
+
+    "In a relational database like  MySQL, I can store JSON data in a dedicated column using the JSON  data type
+
+        CREATE TABLE orders (
+            id SERIAL PRIMARY KEY,
+            customer_name VARCHAR(255),
+            order_data JSONB
+        );
+
+    INSERT INTO orders (customer_name, order_data)
+    VALUES ('John Doe', '{"items": [{"id":1,"qty":2},{"id":2,"qty":5}], "total": 99.99}');
+
+    Follow up : Why not just use NoSQL?"
+        "NoSQL databases like MongoDB are great for JSON storage, but in my case, I might still choose a relational database if:
+            The application also needs strong ACID guarantees.
+            I need to run complex joins with other relational data.
+            The JSON portion is just a small part of a larger structured dataset.
+        This way, I get the flexibility of JSON for variable fields and the reliability + query power of SQL for everything else."
+
+37 . Design a schema for an e-commerce website with tables for users, orders, and products.
+    1️⃣ Users Table
+        Stores customer information.
+
+        CREATE TABLE Users (
+            user_id      BIGINT PRIMARY KEY AUTO_INCREMENT,
+            name         VARCHAR(100) NOT NULL,
+            email        VARCHAR(100) UNIQUE NOT NULL,
+            password_hash VARCHAR(255) NOT NULL,
+            phone_number VARCHAR(20),
+            address      TEXT,
+            created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+
+    2️⃣ Products Table
+        Stores catalog details.
+    
+        CREATE TABLE Products (
+            product_id   BIGINT PRIMARY KEY AUTO_INCREMENT,
+            name         VARCHAR(200) NOT NULL,
+            description  TEXT,
+            price        DECIMAL(10,2) NOT NULL,
+            stock_qty    INT NOT NULL,
+            category     VARCHAR(100),
+            created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+
+    3️⃣ Orders Table
+        Stores each order placed by a user.
+
+        CREATE TABLE Orders (
+            order_id     BIGINT PRIMARY KEY AUTO_INCREMENT,
+            user_id      BIGINT NOT NULL,        // -- Foreign Key → Users.user_id
+            total_amount DECIMAL(10,2) NOT NULL,
+            status       ENUM('Pending', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
+            created_at   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (user_id) REFERENCES Users(user_id)
+        );
+    
+    4️⃣ Order_Items Table
+        Links orders to products (Many-to-Many relationship).
+
+        CREATE TABLE Order_Items (
+            order_item_id BIGINT PRIMARY KEY AUTO_INCREMENT,   -- Primary Key
+            order_id      BIGINT NOT NULL,    -- Foreign Key → Orders.order_id
+            product_id    BIGINT NOT NULL,     -- Foreign Key → Products.product_id
+            quantity      INT NOT NULL,
+            price_at_time DECIMAL(10,2) NOT NULL,
+            FOREIGN KEY (order_id) REFERENCES Orders(order_id),
+            FOREIGN KEY (product_id) REFERENCES Products(product_id)
+        );
+            
+    Normalization: Avoids redundancy by separating products from orders.
+    Foreign Keys: Maintain referential integrity between tables.
+
+    ✅ Follow-up Interview Question You Might Get:
+        How would you handle product price changes over time?
+        → Store price_at_time in Order_Items so historical orders are not affected.
+
+        How would you optimize for frequent product searches?
+        → Add indexes on name, category.
+
+        How would you handle inventory updates when an order is placed?
+        → Use transactions to decrement stock atomically.
+
+38. Write a query to get the top 3 highest salaries from the employee table.
+    SELECT DISTINCT salary
+    FROM Employee
+    ORDER BY salary DESC
+    LIMIT 3;
+        DISTINCT ensures you don’t get duplicate salaries.
+        ORDER BY salary DESC sorts from highest to lowest.
+        LIMIT 3 fetches the top 3.
+
+    If you want the employees with those salaries
+        SELECT *
+        FROM Employee
+        WHERE salary IN (
+            SELECT DISTINCT salary
+            FROM Employee
+            ORDER BY salary DESC
+            LIMIT 3
+        );
+
+    Using RANK()
+        SELECT employee_id, name, salary
+        FROM (
+            SELECT employee_id, name, salary,
+                RANK() OVER (ORDER BY salary DESC) AS rnk
+            FROM Employee
+        ) ranked
+        WHERE rnk <= 3;
+    
+    How it works:
+        RANK() assigns the same rank to employees with the same salary.
+        If two people share 2nd highest salary, the next rank will skip (1, 2, 2, 4).
+    
+    Using DENSE_RANK()
+        this instead of RANK() 
+    
+    How it works:
+        DENSE_RANK() also gives the same rank to ties, but doesn’t skip the next number (1, 2, 2, 3).
+        This is usually better when you want exactly the top 3 salary levels.
+    
+    In an interview perspective, I’d mention:
+        "If the requirement is to find the top N salary values, DENSE_RANK() is safer. If the requirement is the top N rows regardless of ties, LIMIT works fine."
+
+39. Find customers who have placed more than 5 orders.
+    SELECT customer_id, COUNT(order_id) AS total_orders
+    FROM Orders
+    GROUP BY customer_id
+    HAVING COUNT(order_id) > 5;
+
+    Interview explanation:
+        GROUP BY customer_id → groups all orders by each customer.
+        COUNT(order_id) → counts how many orders they placed.
+        HAVING (not WHERE) is used because we’re filtering after aggregation.
+    
+    Common follow-up questions an interviewer might ask here:
+    "Why do we use HAVING instead of WHERE?"
+    Because WHERE filters rows before grouping, while HAVING filters groups after aggregation.
+
+    "What if I also want the customer names?"
+    You’d join with the Customers table:
+        SELECT c.customer_id, c.name, COUNT(o.order_id) AS total_orders
+        FROM Customers c
+        JOIN Orders o ON c.customer_id = o.customer_id
+        GROUP BY c.customer_id, c.name
+        HAVING COUNT(o.order_id) > 5;
+
+40. Write a query to display department-wise average salary.
+    SELECT department_id, AVG(salary) AS avg_salary
+    FROM Employees
+    GROUP BY department_id;
+
+    Interview perspective explanation:
+        AVG(salary) → calculates the average salary in each department.
+        GROUP BY department_id → ensures the average is computed per department.
+        Alias avg_salary makes output readable.
+
+    Follow-up questions interviewer might ask
+    1. "What if you also want department names instead of IDs?"
+
+        SELECT d.department_name, AVG(e.salary) AS avg_salary
+        FROM Employees e
+        JOIN Departments d ON e.department_id = d.department_id
+        GROUP BY d.department_name;
+
+    2. "How would you sort departments by highest average salary?"
+
+        SELECT department_id, AVG(salary) AS avg_salary
+        FROM Employees
+        GROUP BY department_id
+        ORDER BY avg_salary DESC;
+
+    3. find the department with the highest average salary:
+
+        SELECT department_id, AVG(salary) AS avg_salary
+        FROM Employees
+        GROUP BY department_id
+        ORDER BY avg_salary DESC
+        LIMIT 1;
+    
+    Interview perspective explanation:
+        ORDER BY avg_salary DESC → sorts so highest average salary comes first.
+        LIMIT 1 → picks only the top department.
+    
+    Common follow-up twist:
+        If the interviewer asks, “What if two or more departments have the same highest average salary?”
+        You shouldn’t use LIMIT 1, instead use HAVING with a subquery:
+
+        SELECT department_id, AVG(salary) AS avg_salary
+        FROM Employees
+        GROUP BY department_id
+        HAVING AVG(salary) = (
+            SELECT MAX(avg_salary)
+            FROM (
+                SELECT AVG(salary) AS avg_salary
+                FROM Employees
+                GROUP BY department_id
+            ) AS dept_avg
+        );
+
+41. Write a query to get employees and their manager names from the same table.
+    SELECT 
+        e.employee_id,
+        e.name AS employee_name,
+        m.name AS manager_name
+    FROM Employees e
+    LEFT JOIN Employees m
+        ON e.manager_id = m.employee_id;
+
+    Interview perspective explanation:
+        Employees e → alias for the main employee records.
+        Employees m → alias for the same table but representing managers.
+        ON e.manager_id = m.employee_id → links each employee’s manager_id to the manager’s employee_id.
+        LEFT JOIN → ensures employees without a manager (e.g., CEO) are still shown with NULL as the manager name.
+    
+
+    Follow up : How would you get only employees who have a manager?
+    You’d change it to INNER JOIN:
+        SELECT 
+            e.employee_id,
+            e.name AS employee_name,
+            m.name AS manager_name
+        FROM Employees e
+        INNER JOIN Employees m
+            ON e.manager_id = m.employee_id;
+    
+    1. Show only top-level managers (who don’t report to anyone)
+        SELECT DISTINCT 
+            m.employee_id,
+            m.name AS manager_name
+        FROM Employees m
+        LEFT JOIN Employees e 
+            ON e.manager_id = m.employee_id
+        WHERE m.manager_id IS NULL;
+    
+    Why it’s tricky: You need to know managers can also be employees, but not every employee is a manager.
+
+    2. Show employees with their manager’s manager
+        SELECT 
+            e.name AS employee_name,
+            m.name AS manager_name,
+            gm.name AS grand_manager_name
+        FROM Employees e
+        JOIN Employees m 
+            ON e.manager_id = m.employee_id
+        JOIN Employees gm 
+            ON m.manager_id = gm.employee_id;
+
+    Why it’s tricky: This tests multi-level self-joins.
+
+    3. Count how many employees report to each manager
+        SELECT 
+            m.name AS manager_name,
+            COUNT(e.employee_id) AS employee_count
+        FROM Employees m
+        LEFT JOIN Employees e 
+            ON e.manager_id = m.employee_id
+        GROUP BY m.name;
+    
+    Why it’s tricky: This combines self-join + aggregation.
+
+
+42. Find students who have not enrolled in any course.
+    Solution 1 — Using LEFT JOIN
+        SELECT s.student_id, s.student_name
+        FROM Students s
+        LEFT JOIN Enrollments e 
+            ON s.student_id = e.student_id
+        WHERE e.course_id IS NULL;
+
+    Why it works:
+        LEFT JOIN keeps all students.
+        WHERE e.course_id IS NULL filters only those without any matching enrollment.
+    
+    Solution 2 — Using NOT IN
+        SELECT student_id, student_name
+        FROM Students
+        WHERE student_id NOT IN (
+            SELECT student_id FROM Enrollments
+        );
+    Note: Avoid NOT IN if student_id in Enrollments can have NULL values, because it may return no results.
+
+    Solution 3 — Using NOT EXISTS (preferred for large datasets)
+        SELECT s.student_id, s.student_name
+        FROM Students s
+        WHERE NOT EXISTS (
+            SELECT 1 
+            FROM Enrollments e
+            WHERE e.student_id = s.student_id
+        );
+    Why it’s good for interviews: NOT EXISTS is often more efficient for large tables and is NULL-safe.
+
+    1. Find students who have enrolled but never completed any course
+        Scenario:
+            Enrollments table has a status column with values like "completed" or "in-progress".
+        
+        SELECT s.student_id, s.student_name
+        FROM Students s
+        JOIN Enrollments e 
+            ON s.student_id = e.student_id
+        WHERE e.status <> 'completed';
+
+        Twist: If a student has both completed and incomplete courses, you may need NOT EXISTS to filter only those with zero completions:
+            SELECT s.student_id, s.student_name
+            FROM Students s
+            WHERE EXISTS (
+                SELECT 1 FROM Enrollments e 
+                WHERE e.student_id = s.student_id
+            )
+            AND NOT EXISTS (
+                SELECT 1 FROM Enrollments e 
+                WHERE e.student_id = s.student_id 
+                AND e.status = 'completed'
+            );
+
+
+    2. Find students who have enrolled in all available courses
+        Scenario:
+        Courses table lists all courses.
+
+        SELECT s.student_id, s.student_name
+        FROM Students s
+        WHERE NOT EXISTS (
+            SELECT c.course_id 
+            FROM Courses c
+            WHERE NOT EXISTS (
+                SELECT 1 
+                FROM Enrollments e
+                WHERE e.student_id = s.student_id
+                AND e.course_id = c.course_id
+            )
+        );
+
+    Key logic: Double NOT EXISTS ensures the student has no missing course enrollments.
+
+    3. Find students enrolled in more than 2 courses in the same semester
+        Scenario:
+        Enrollments has semester column.
+
+        SELECT s.student_id, s.student_name, e.semester
+        FROM Students s
+        JOIN Enrollments e 
+            ON s.student_id = e.student_id
+        GROUP BY s.student_id, s.student_name, e.semester
+        HAVING COUNT(e.course_id) > 2;
+
+    Why this is tricky: This tests grouping with multiple columns.
+
+43. Normalize a table containing order details (order_id, customer_name, customer_address, product_name, price).
+        order_id | customer_name | customer_address | product_name | price
+
+    Step 1 – Identify Problems
+    This table is not normalized because:
+        Data redundancy – customer name/address repeats for every product in the same order.
+        Update anomalies – if customer address changes, you must update multiple rows.
+        Insertion anomalies – can’t insert a customer without an order.
+        Deletion anomalies – deleting an order might remove customer info.
+    
+    Step 2 – Apply Normal Forms
+    1st Normal Form (1NF)
+        Remove repeating groups & ensure atomic values.
+        Our table already has atomic values, so 1NF is fine.
+    
+    2nd Normal Form (2NF)
+        Remove partial dependencies (non-key columns depending only on part of a composite key).
+        Composite key here: (order_id, product_name)
+        customer_name and customer_address depend only on order_id, not on the product.
+
+        Orders table
+        order_id | customer_id
+
+        Customers table
+        customer_id | customer_name | customer_address
+
+        Order_Details table
+        order_id | product_id | price
+    
+    3rd Normal Form (3NF)
+        Remove transitive dependencies (non-key columns depending on non-key columns).
+        Here, product_name depends on product_id (not directly on order).
+        So we create:
+
+        Products table
+        product_id | product_name
+
+        Final Normalized Structure
+            Customers
+            customer_id | customer_name | customer_address
+
+            Orders
+            order_id | customer_id
+
+            Products
+            product_id | product_name
+
+            Order_Details
+            order_id | product_id | price
+        
+    ✅ This way:
+        Customer info is stored once.
+        Product names are stored once.
+        Orders just link customers and products.
+        No redundancy, no anomalies.
+
+44. Write a query to enforce that age must be greater than 18 in a table.
+    Example – During Table Creation
+        CREATE TABLE employees (
+            emp_id INT PRIMARY KEY,
+            emp_name VARCHAR(50),
+            age INT CHECK (age > 18)
+        );
+    Here, CHECK (age > 18) ensures you can’t insert or update a record with age <= 18.
+
+    Example – On Existing Table
+    ALTER TABLE employees
+    ADD CONSTRAINT chk_age CHECK (age > 18);
+
+    If you try:
+        INSERT INTO employees (emp_id, emp_name, age)
+        VALUES (1, 'John Doe', 17);
+
+    It will throw an error:
+        ERROR: Check constraint 'chk_age' is violated
+
+
+
+

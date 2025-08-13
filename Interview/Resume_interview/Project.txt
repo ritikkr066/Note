@@ -1,0 +1,116 @@
+1. What is the difference between React.js and Next.js?
+    React.js is a JavaScript library for building UI components on the client side.
+
+    Next.js is a React framework built on top of React, providing features like:
+        Server-side rendering (SSR)
+        Static site generation (SSG)
+        File-based routing
+        API routes
+
+    Feature	                React.js	                 Next.js
+    Rendering	            Client-side only	         SSR, SSG, ISR, CSR
+    Routing	Manual          (via React Router)	         File-system-based routing
+    SEO	Weak (CSR)	        Strong (SSR/SSG helps SEO)
+    API Support	            Not included	             Built-in API routes (/pages/api)
+    Performance	            Needs optimization manually	 Many optimizations by default
+
+    If interviewer asks which one you prefer:
+        “I prefer Next.js for production-level apps because of its SSR and SEO capabilities. However, React is ideal for quick prototypes or when SSR isn’t necessary.”
+
+2.How does useEffect work in React?
+    The useEffect hook in React is used to perform side effects in functional components, such as data fetching, setting up subscriptions, or manually updating the DOM.
+
+    When you pass an empty dependency array ([]), the effect runs only once after the initial render—similar to componentDidMount.
+
+    If you include a variable (e.g., count) in the dependency array, the effect will run every time that variable changes.
+
+    If no dependency array is provided, the effect runs after every render.
+
+    useEffect(() => {
+    fetch("/api/data")
+        .then(res => res.json())
+        .then(setData);
+    }, []);
+
+3. What is Redux Toolkit and how does it improve state management?
+    Redux Toolkit (RTK) is the official, recommended way to write Redux logic. It helps simplify and streamline the process of managing global state in React applications.
+
+    It reduces boilerplate code by providing utilities like createSlice, createAsyncThunk, and configureStore.
+    createSlice allows us to define reducers and actions together in one place.
+    It improves code readability and structure by enforcing a consistent pattern.
+
+    Traditional Redux vs Toolkit:
+        In traditional Redux, you write actions, reducers, and store separately.
+        In Redux Toolkit, you use createSlice() to do it all in one place.
+
+    import { createSlice } from '@reduxjs/toolkit';
+
+    const counterSlice = createSlice({
+    name: 'counter',
+    initialState: 0,
+    reducers: {
+        increment: state => state + 1,
+        decrement: state => state - 1,
+    }
+    });
+
+    export const { increment, decrement } = counterSlice.actions;
+    export default counterSlice.reducer;
+
+4. What is JWT and how does it work for authentication?
+    JWT (JSON Web Token) is a compact, URL-safe token format used for authentication and information exchange between a client and server.
+
+    Here's how it works in authentication:
+
+    When a user logs in, the server generates a JWT containing user-related information (like user ID or role) and signs it using a secret key.
+
+    The token is then sent to the client, usually stored in localStorage or cookies.
+    On each subsequent request, the client sends the JWT in the headers (commonly in the Authorization header).
+
+    The server verifies the token’s signature to ensure it's valid and hasn't been tampered with, and then uses the payload to identify the user.
+
+    JWT is stateless, so the server doesn’t need to store session data, making it scalable and efficient.
+        “In my project, after login, the server issues a JWT which is stored in localStorage. For protected routes, I use middleware to verify the token before granting access.”
+
+5.  Explain the flow of a REST API call in your HealthDebug project.
+    In my HealthDebug project, I built features like a top doctor list, medicine ordering system, and appointment booking.
+
+    The flow of a REST API call in my project works like this:
+
+    The frontend (React/Next.js) sends a request to the backend API — for example, to get a list of doctors or place an order.
+
+    The backend (Node.js with Express) receives the request and processes it by:
+    Authenticating the user using middleware
+    Fetching or updating data from the MongoDB database
+    Once the data is processed, the backend sends a JSON response back to the frontend.
+
+    The frontend then renders the response data in the UI.
+
+6. How did you integrate PhonePe API in your project?
+    In my project, I integrated PhonePe API for handling payments. Here's how the flow works:
+
+        On the frontend, the user initiates a payment request (e.g., for medicine orders or appointments).
+
+        The backend prepares a payload containing key details like:
+        Merchant ID
+        Transaction amount
+        Callback URL
+        Transaction ID
+        Checksum or digital signature for secure verification
+
+        This payload is sent to the PhonePe production endpoint.
+        PhonePe then processes the request and redirects the user to the PhonePe payment gateway page.
+        After the payment is completed, PhonePe calls the callback URL with the payment status.
+        Finally, my backend verifies the payment status, updates the order status in the database, and responds accordingly to the frontend.
+
+7. How do you secure APIs in Express.js?
+    To secure APIs in Express.js, I follow several best practices:
+    Authentication & Authorization:
+        I use JWT-based authentication to verify users.
+        For role-based access, I implement custom middleware that checks the user's role before allowing access to specific routes (e.g., admin-only features).
+
+    CORS:
+        I configure CORS policies carefully to restrict which domains can access the APIs.
+    
+    Validation:
+        I validate all incoming data using libraries like express-validator to prevent injection attacks or malformed requests. 
