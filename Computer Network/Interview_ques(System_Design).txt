@@ -138,7 +138,7 @@
 14.  Latency vs Throughput? 
     Latency and throughput are two key metrics used to evaluate system or network performance, but they measure different aspect
     Latency refers to the delay between sending a request and receiving a response, often measured in milliseconds — it’s like the reaction time of a system.
-    For example, if you click a link and the server responds in 100ms, the latency is 100ms
+    For example, if you click a link and the server responds in 100ms, the latency is 100ms.
 
     Throughput measures the amount of data or number of requests a system can process in a given time, such as requests per second or Mbps.
     It's about capacity — for instance, a server that handles 10,000 requests per second has high throughput. 
@@ -153,12 +153,24 @@
     5G: Enables real-time applications like autonomous cars, IoT, and smart cities with massive speed and ultra-low latency.
 
 16. How does a VPN work?
-    A VPN (Virtual Private Network) creates a secure, encrypted tunnel between your device and a remote VPN server, ensuring that your online activity remains private and protected.
+    A VPN (Virtual Private Network)  creates a secure, encrypted tunnel between your device and the internet through a remote server.
     🔧 How It Works (Step-by-Step):
-        When we connect to a VPN, our internet traffic is encrypted by the VPN client on our device and sent to the VPN server, which then decrypts it and forwards it to the intended website using its own IP address — effectively hiding your real IP. 
-        The response from the website follows the same path in reverse: it goes back to the VPN server, gets encrypted, and is finally decrypted on your device, making the entire session secure from hackers or  surveillance.
-        This not only protects your data on public Wi-Fi but also allows anonymous browsing and access to geo-restricted content.
-    
+       How VPN Works
+        1. You connect to a VPN client (on your laptop/phone).
+            Example: You open NordVPN/ProtonVPN app and turn it ON.
+
+        2. The VPN client encrypts your data.
+            Whatever you send (like passwords, search queries) is scrambled into unreadable code.
+
+        3. The data travels through a secure tunnel to the VPN server.
+            Think of it as your request going through a secret pathway instead of the normal open internet.
+
+        4. The VPN server decrypts it and forwards it to the website you want to visit.
+            So, the website sees the VPN server’s IP, not your real IP.
+
+        5. Response from the website comes back to the VPN server,
+            the server encrypts it again → sends it through the tunnel → your VPN client decrypts it
+            
 17.  Gateway vs Router?
     A router and a gateway are both networking devices, but they serve different roles.
     A router connects multiple devices within the same type of network and directs data packets along the best path, commonly used in homes and offices to route traffic from internal devices to the internet.

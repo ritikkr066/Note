@@ -1,0 +1,377 @@
+1. What is the difference between a process and a thread?
+    A process is an independent program in execution with its own memory space, system resources, and OS scheduling. A thread is the smallest unit of execution inside a process and shares the process’s memory and resources.
+    Example: A browser is a process; each tab might be a thread.
+
+    Processes → isolated, more overhead, slower context switching.
+    Threads → share memory, lightweight, faster context switching.
+
+2. How do processes communicate with each other? (IPC methods)
+    Since processes have isolated memory, they use Inter-Process Communication (IPC) methods such as:
+        Pipes → unidirectional data flow between processes.
+        Message Queues → store and forward messages.
+        Shared Memory → fastest method; processes share a region of memory.
+        Sockets → network-based communication between processes, even on different machines.
+        Signals → send small control messages (like interrupts).
+
+3. How does context switching work?
+    Context switching is when the CPU switches from one process/thread to another.
+    Steps:
+    Save the current process’s CPU state (registers, program counter, etc.) in its Process Control Block (PCB).
+    Load the saved state of the next process from its PCB.
+    Update scheduling data structures and resume execution.
+    It involves overhead because no useful work is done during the switch.
+
+4. What is a daemon process?
+    A daemon process is a background process that runs without direct user interaction, usually starting at system boot and providing services.
+    Examples:
+    sshd → handles SSH connections
+    cron → schedules jobs
+    Key traits: runs in background, detached from terminal, often ends only when the system shuts down.
+
+5. What is CPU scheduling? Name different scheduling algorithms.
+    CPU scheduling is the method an operating system uses to decide which process gets to use the CPU when multiple processes are ready to run (in the ready queue). Its main goal is to maximize CPU utilization, throughput, and responsiveness while minimizing waiting time and turnaround time.
+
+    2. Name different scheduling algorithms
+        First Come First Serve (FCFS) – Processes run in the order they arrive.
+        Shortest Job Next (SJN) / Shortest Job First (SJF) – Process with the shortest burst time runs first.
+        Priority Scheduling – Highest priority process runs first.
+        Round Robin (RR) – Each process gets a fixed time slice (quantum) in a cycle.
+        Multilevel Queue Scheduling – Multiple queues for different priority levels.
+        Multilevel Feedback Queue Scheduling – Similar to multilevel queue but allows movement between queues.
+
+6. Difference between preemptive and non-preemptive scheduling.
+    | Feature           | Preemptive Scheduling                                                   | Non-preemptive Scheduling                                             |
+    | ----------------- | ----------------------------------------------------------------------- | --------------------------------------------------------------------- |
+    | **Definition**    | CPU can be taken away from a process before it finishes.                | CPU is given to a process until it finishes or goes to waiting state. |
+    | **Response Time** | Better for time-sharing, more responsive.                               | Can cause long waits for short          tasks.                                 |
+    | **Overhead**      | Higher (due to context switching).                                      | Lower.                                                                |
+    | **Examples**      | Round Robin, Preemptive Priority, SRTF (Shortest Remaining Time First). | FCFS, Non-preemptive SJF, Non-preemptive Priority.                    |
+
+7. Which scheduling algorithm is best for time-sharing systems?
+    Round Robin (RR) is considered the best for time-sharing systems because:
+        It gives each process an equal share of CPU time.
+        No process can monopolize the CPU.
+        It ensures good responsiveness for interactive tasks
+    
+8. What is virtual memory? How is it implemented?
+    Definition:
+    Virtual memory is a memory management technique that gives the illusion of a larger main memory than what is physically available. It allows programs to run even if they are not completely loaded into RAM. Instead, a part of the secondary memory (like a hard disk) is used as virtual RAM.
+
+    Purpose:
+    Allows running programs larger than physical RAM.
+    Isolates processes for security.
+
+    Implementation:
+    Achieved using hardware (MMU – Memory Management Unit) + software (OS).
+    Virtual addresses from processes are translated into physical addresses via a page table.
+    If a required page is not in RAM → page fault occurs → OS loads the page from disk (swap space).
+
+9. Paging vs Segmentation
+    | Feature           | Paging                                   | Segmentation                                   |
+    | ----------------- | ---------------------------------------- | ---------------------------------------------- |
+    | **Division**      | Memory divided into fixed-size **pages** | Memory divided into variable-size **segments** |
+    | **Size**          | All pages are equal size                 | Segments can be different sizes                |
+    | **Address**       | Page number + page offset                | Segment number + segment offset                |
+    | **Fragmentation** | Internal fragmentation possible          | External fragmentation possible                |
+    | **Use case**      | OS-level virtual memory                  | Logical program division (code/data/stack)     |
+
+    Paging is a technique that breaks the process into fixed-size blocks called pages and breaks the physical memory into frames of the same size. So now, we don’t need one big continuous memory block for a process. We can store its pages in any available frames in memory. This completely eliminates external fragmentation.
+
+    In segmentation, a program is divided into logical units called segments—like a code segment, data segment, stack segment, etc. Each segment has a segment number and an offset. So the logical address looks like:
+    <segment number, offset> instead of just a page number and offset.
+
+
+10. Internal vs External Fragmentation
+    In memory management, internal fragmentation happens when fixed-size memory blocks are allocated to processes, but the process doesn’t use the entire block. The unused part inside the block is wasted, for example, if a process needs 18 KB and the block size is 20 KB, then 2 KB is wasted internally.
+
+    On the other hand, external fragmentation occurs when there is enough total free memory to satisfy a process’s request, but the free space is scattered in small non-contiguous blocks, so the process cannot be allocated. For example, if we need 30 KB and free memory is available as 10 KB + 15 KB + 20 KB scattered in different places, the request still fails even though 45 KB is free.
+
+11. What is a deadlock? Necessary conditions for deadlock (Coffman’s conditions)
+    A deadlock is a situation in an operating system where two or more processes are waiting for each other to release resources, and none of them can proceed.
+
+    Four Conditions for Deadlock (Coffman Conditions):
+        Mutual Exclusion: Resources are non-shareable (only one process can use a resource at a time).
+        Hold and Wait: A process holds at least one resource and waits for more.
+        No Preemption: A resource can't be forcibly taken from a process.
+        Circular Wait: A set of processes are waiting for each other in a circular chain.
+            If all four are true at the same time — deadlock can occur.
+
+12. Difference between deadlock, starvation, and livelock.
+    Deadlock	Processes are permanently blocked because they are each waiting for resources held by the other processes.
+    Starvation  A process never gets CPU or resources because higher-priority processes keep getting scheduled.
+    Livelock    Processes are actively changing states but still not making progress toward completion.
+        Imagine two processes, P1 and P2, both trying to send data over a network. If the network is busy, they both back off and retry after some random time. Now suppose their timers are unlucky and always expire at the same moment. Both try again together → collide again → both back off again. This cycle keeps repeating.
+
+13. Methods to prevent/avoid deadlock (Banker’s algorithm).
+    Deadlock Prevention (Eliminate at least one Coffman’s condition)
+        Mutual Exclusion: Make resources sharable (not always possible).
+        Hold and Wait: Require processes to request all resources at once.
+        No Preemption: Allow resource preemption (take resources away).
+        Circular Wait: Impose a resource ordering and require processes to request resources in that order.
+
+    Deadlock Avoidance (Banker’s Algorithm)
+        Requires prior knowledge of maximum resource needs of each process.
+        The system allocates resources only if it will remain in a safe state after allocation.
+        Safe state = there exists at least one order in which processes can finish without deadlock.
+
+    Deadlock Detection and Recovery
+        Let deadlocks occur, detect them using wait-for graphs or resource allocation matrices, and then:
+            Terminate processes.
+            Preempt resources.
+
+    Ignore Deadlock
+        Used in many systems (like UNIX) where deadlock is rare and fixing it is costly.
+
+14. How is a file stored in the OS? Difference between contiguous, linked, and indexed allocation.
+    The OS stores files on secondary storage (like HDD/SSD) in blocks/sectors. The file system decides:
+        How blocks are allocated to a file.
+        How metadata (file size, permissions, timestamps) is stored.
+
+        The three common file allocation methods are:
+        (a) Contiguous Allocation
+            Concept: All file blocks are stored in a continuous sequence on disk.
+            Advantages:
+                Fast access (just compute start + offset).
+                Good for sequential and direct access.
+
+            Disadvantages:
+            External fragmentation (free space scattered).
+            Difficult to grow a file in place.
+
+            Example: File A: [Block 5 - Block 8]
+
+        (b) Linked Allocation
+            Concept: Each file block contains a pointer to the next block.
+            Advantages:
+                No external fragmentation.
+                File size can grow dynamically.
+
+            Disadvantages:
+                Slower random access (must follow the chain).
+                Pointer overhead per block.
+
+            Example: File B: Block 3 → Block 10 → Block 7 → null
+
+        (c) Indexed Allocation
+            Concept: A separate index block contains all block addresses for the file.
+
+            Advantages:
+                Fast random access.
+                No external fragmentation.
+
+            Disadvantages:
+                Extra storage for index block.
+                If index block is large, may need multi-level indexing.
+            
+            Example : Index Block (File C): [4, 9, 11, 15]
+
+15. Difference between Absolute and Relative File Paths
+    | **Absolute Path**                                          | **Relative Path**                                             |
+    | ---------------------------------------------------------- | ------------------------------------------------------------- |
+    | Specifies location from the **root directory**.            | Specifies location **relative to current working directory**. |
+    | Always starts with `/` in Unix or drive letter in Windows. | Does not start with `/` or drive letter.                      |
+    | Example: `/home/user/docs/file.txt`                        | Example: `docs/file.txt`                                      |
+
+16. What is a Mount Point?
+    A mount point is a directory where an additional filesystem is attached (mounted) to the existing directory tree.
+    Allows access to the contents of the new filesystem.
+    Example in Linux:
+        # Mount USB drive to /media/usb
+        mount /dev/sdb1 /media/usb
+        Now /media/usb shows the contents of the USB drive.
+
+17. What are mutex, semaphore, and monitor?
+    1. Mutex (Mutual Exclusion Object)
+        A lock that allows only one thread/process to access a critical section at a time.
+        If one thread locks it, others trying to lock it will block until it’s released.
+        Ownership matters: only the thread that locked a mutex can unlock it.
+        Used for exclusive access.
+
+        Example (pseudo):
+            mutex.lock();
+                 // Critical section
+            mutex.unlock();
+    
+    2. Semaphore
+        A synchronization tool that uses a counter to control access to a resource pool.
+
+        Two types:
+        Binary Semaphore: behaves like a mutex (only 0 or 1), but no strict ownership.
+        Counting Semaphore: can have a counter > 1, allowing multiple threads to access resources up to a limit.
+
+        Threads wait if the counter is 0; signal increases the counter.
+        Example:
+            wait(semaphore);   // decrement counter, block if counter < 0
+                // Critical section
+            signal(semaphore); // increment counter
+    
+    3. Monitor
+        High-level synchronization construct (language feature in Java, C#, etc.).
+        Combines mutual exclusion + condition variables.
+        The language ensures only one thread executes inside the monitor at a time.
+        Provides wait() and notify() (or signal()) for coordination.
+        More structured and safer than raw semaphores/mutex.
+
+18. Binary semaphore vs counting semaphore.
+    A binary semaphore can have only two values, 0 and 1, and is mainly used for mutual exclusion (mutex-like behavior). It ensures that only one process/thread can access a critical section at a time—if the semaphore value is 1, a process can enter and it’s set to 0; if it’s 0, processes must wait until it becomes 1 again. In contrast, a counting semaphore can have a range of integer values and is used to manage multiple instances of a resource. Its value represents the number of available units; processes decrement it when they acquire a resource and increment it when they release one. If the value is zero, new requests block until a resource becomes available. In short, binary semaphores act like an on/off lock, while counting semaphores act like a resource counter.
+
+19. Producer Consumer Problem
+    Scenario:
+        A Producer generates data and puts it into a buffer.
+        A Consumer takes data from the buffer.
+        Goal: Prevent overflow (producer adding when buffer full) and underflow (consumer taking when empty).
+    Using Counting Semaphores:
+        empty → number of empty slots (initialized to buffer size)
+        full → number of filled slots (initialized to 0)
+        mutex → ensures one thread accesses buffer at a time
+    
+    Pseudocode:
+        Producer:
+            wait(empty);  // Wait if no empty slots
+            wait(mutex);  // Enter critical section
+            add_item_to_buffer();
+            signal(mutex); // Leave critical section
+            signal(full);  // Increase filled slots
+
+        Consumer:
+            wait(full);   // Wait if buffer empty
+            wait(mutex);  // Enter critical section
+            remove_item_from_buffer();
+            signal(mutex); // Leave critical section
+            signal(empty); // Increase empty slots
+
+20. Reader-Writer Lock to Prevent Starvation.
+    In the reader-writer problem, multiple readers can read simultaneously, but writers need exclusive access. If we always prioritize readers, writers may starve; if we prioritize writers, readers may starve. To prevent starvation, we can use a fair reader-writer lock that serves processes in the order they arrive. I would maintain a queue where both readers and writers wait, and use a mutex plus semaphores to control access. When a writer arrives, no new readers are allowed until the writer finishes. This ensures fair scheduling and avoids starvation.
+
+21. Dining Philosophers Problem Solution
+    The dining philosophers problem models resource sharing with five philosophers sharing five chopsticks. If all philosophers pick up their left chopstick first, a deadlock can occur. To solve this, I can number the chopsticks and enforce a rule: each philosopher picks up the lower-numbered chopstick first, then the higher. Alternatively, I can limit the number of philosophers trying to eat at the same time to four using a semaphore. This prevents deadlock, and fair resource allocation ensures no philosopher starves.
+
+22.  Difference between Kernel Mode and User Mode
+    Definition:
+    Kernel Mode (Privileged Mode): CPU can execute any instruction and access any memory location, including hardware.
+    User Mode: CPU can only execute a restricted set of instructions and access only memory assigned to the process.
+
+    In an operating system, the CPU works in two modes: user mode and kernel mode. In user mode, applications and user programs run with limited privileges, meaning they can only access their own memory and cannot directly interact with hardware or critical system resources. If they need something like file access or device control, they must make a system call to request the OS’s help. In kernel mode, the operating system runs with full privileges, allowing it to control hardware, manage memory, and execute critical instructions. The CPU switches between these two modes whenever a system call or interrupt occurs, ensuring that user programs stay safe and cannot crash or corrupt the entire system.
+
+    | Feature             | Kernel Mode                                    | User Mode                                      |
+    | ------------------- | ---------------------------------------------- | ---------------------------------------------- |
+    | **Access Rights**   | Full access to system resources & hardware     | Limited access; can’t directly access hardware |
+    | **Instruction Set** | Can run privileged instructions                | Restricted instructions only                   |
+    | **Use**             | OS kernel, device drivers                      | Applications and user processes                |
+    | **Error Impact**    | Crash can halt entire system                   | Crash affects only that process                |
+    | **Mode Switching**  | User → Kernel: via **system call / interrupt** | Kernel → User: via **return from system call** |
+
+    💡 Example:
+    When you open a file in a text editor:
+    The editor runs in user mode.
+    The actual file I/O is done in kernel mode after a system call.
+
+23. Types of Kernels: Monolithic vs Microkernel
+    Monolithic Kernel   
+        Definition: Entire OS (device drivers, file system, memory management, etc.) runs in kernel mode as one big process.
+
+        Advantages:
+        Faster (less context switching & message passing).
+        Direct communication between components.
+
+        Disadvantages:
+        Larger codebase → more bugs.
+        If one module crashes, whole system may crash.
+        Example OS: Linux, Unix, older Windows versions.
+
+    Microkernel
+        Definition: Only essential services (memory management, scheduling, IPC) run in kernel mode; other services (file systems, device drivers, networking) run in user mode.
+
+        Advantages:
+        More stable & secure (a crash in one service won’t crash entire OS).
+        Easier to maintain & extend.
+
+        Disadvantages:
+        Slower due to extra communication (message passing between user and kernel space).
+        Example OS: Minix, QNX, macOS (hybrid kernel with microkernel core).
+
+24. What is a System Call? Give Examples
+    Definition:
+    A system call is the interface between a user program and the operating system kernel.
+        User mode programs can’t directly access hardware → they request the OS via system calls.
+        Triggers a mode switch: User mode → Kernel mode.
+
+    Categories & Examples:
+        Process Control: fork(), exit(), exec()
+        File Management: open(), read(), write(), close()
+        Device Management: ioctl()
+        Information Maintenance: getpid(), time()
+        Communication: send(), recv(), pipe()
+
+    💡 Example Flow:
+        When you run:
+        fd = open("file.txt", O_RDONLY);
+
+        Your code runs in user mode.
+        Calls open() → triggers system call.
+        CPU switches to kernel mode to execute OS file-opening logic.
+        Returns file descriptor → switches back to user mode
+
+25. Explain what happens in the OS when you type ls in a terminal and press Enter.
+    When you type ls in a terminal and press Enter, the OS does roughly this:
+        Shell reads your command – The shell (like bash) sees you typed ls and recognizes it as a program name.
+        Finds the program – It searches the system’s $PATH directories to locate the ls executable file.
+        Creates a new process – The OS uses fork() to make a new process for running ls.
+        Loads the program – Using exec(), it replaces the new process’s memory with the ls program’s code.
+        Runs the program – ls asks the OS for the list of files in the current directory using system calls.
+        Displays output – The results are printed to the terminal via standard output (stdout).
+        Process ends – The ls process finishes, and the OS cleans up resources. Control goes back to the shell so you can type another command.
+
+        It’s like:
+        📜 You tell the shell “Hey, run ls” → 🖥 OS finds it → 🏃 Runs it → 🗂 Lists files → 📄 Shows you output → ✅ Done.
+
+26. If multiple processes want to read/write to the same file, how would you prevent data corruption?
+    When multiple processes access a file, we use file locks or synchronization mechanisms to prevent corruption. For example:
+        Mutex (Mutual Exclusion): Ensures only one process at a time can write to the file.
+        Reader-Writer Locks: Multiple readers can read simultaneously, but writers get exclusive access.
+        OS-level file locking (e.g., flock in Linux): Prevents other processes from writing while one is writing.
+
+27. you have a 7KB program and page size of 2KB — how many pages are required? (You can explain with page tables.)
+    (1) 7 KB program, page size 2 KB → how many pages?
+        Pages needed = ⌈7 / 2⌉ = ⌈3.5⌉ = 4 pages.
+    Page table (conceptually):
+        VPN  →  PPN (frame)   Valid
+        0    →  F12           1
+        1    →  F7            1
+        2    →  F3            1
+        3    →  F20           1
+    Each Virtual Page Number (VPN) maps to some Physical Page Number (frame); order doesn’t need to be contiguous in RAM.
+
+28. If you have multiple threads incrementing a shared variable, what can go wrong?
+    If you have multiple threads incrementing a shared variable, the main issue that can occur is a race condition.
+
+    What can go wrong?
+    When threads execute concurrently, the increment operation (e.g., x++) is not atomic — it involves multiple steps internally:
+        Read the value of x from memory into a register.
+        Add 1 to the register value.
+        Write the new value back to memory.
+    If two threads do this at the same time, they can overwrite each other’s updates. For example:
+        Initial value of x = 5
+        Thread A reads x = 5
+        Thread B reads x = 5
+        Thread A increments (5 → 6)
+        Thread B increments (5 → 6)  ← Overwrites A's update
+        Final value = 6 instead of 7
+    This is called a lost update.
+
+29. How to avoid race conditions in multi-threading?
+    You need synchronization mechanisms to ensure that only one thread can access the critical section (shared resource) at a time.
+    Common ways:
+        1.Locks / Mutexes – Ensure only one thread can execute the critical section.
+            synchronized(this) {
+                x++;
+            }
+        
+        2.Atomic variables – Use thread-safe classes like AtomicInteger (Java) or std::atomic (C++).
+            AtomicInteger count = new AtomicInteger();
+            count.incrementAndGet();
+
+        3. Semaphores – Control access with permits.
+        4. Monitors – Implicit locking in object methods (Java synchronized methods).
+        5. Volatile keyword (Java) – Ensures visibility of changes, but not atomicity (so still need locking for compound operations).
+

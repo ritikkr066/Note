@@ -18,7 +18,7 @@ Q3. Where do you see yourself in the next 5 years?
     I also hope to take on more responsibilities, such as leading a project or mentoring junior team members. My goal is to stay consistent in learning and become someone the team can trust to deliver results.”
 
 Q4. Tell me about a challenge or conflict you faced in a team, and how you handled it.
-    “In our Hacklers Club, we were working on a project called Techno and Cultural Healthcare, a web application to display all ongoing events in our college.
+    “In our HackSlash Club, we were working on a project called Techno and Cultural fest, a web application to display all ongoing events in our college.
 
     During the project, we faced a conflict among team members about the UI design — everyone had different ideas, and it started affecting our progress. Since I was one of the project leads, I stepped in to handle the situation.
 

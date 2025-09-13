@@ -68,25 +68,26 @@
     Output: User created with name: John and email: john@example.com
 
 3. What are Middleware functions in Express.js , how do they work ?
+    middleware functions are functions that sit between the request and the response.
 
-    1. Application-Level Middleware:Applied globally across the entire application.
-        Defined using app.use() or route-specific handlers.
-    
-    2. Router-Level Middleware : Specific to a route or group of routes.
-        Applied to instances of express.Router().
-    
-    3.  Error-Handling Middleware : Handles errors in the application.
-        Must include four arguments: (err, req, res, next).
+   How they work:
+    A middleware function gets access to req (request), res (response), and next (a function to pass control to the next middleware).
+    Middleware can modify the request or response, perform actions (like logging, authentication, validation), or even end the response.
+    If it doesn’t end the response, it must call next() to move to the next middleware.
 
 4. How can you handle errors in express Application?
 
-        -> Error Handling Middleware
+        -> Error Handling Middleware(err, req, res, next).
         -> 404 Handling
         -> custom error types
 
 5. What is the role of body parsers in Express, and how do you use them ?
-    Body parsers make it easier to work with data sent from a client to a server.
-    For example, if a client sends JSON data in a POST request, the body parser will convert that JSON string into a Javascript object, so we can access the values directly
+    In Express.js, when a client sends data (for example, in a POST or PUT request), that data is often in the request body.
+
+    👉 By default, Express does not automatically parse the request body — it comes in as a raw stream.
+    So, we use body parsers to extract and convert that data into a usable JavaScript object.
+        express.json() : Parses JSON data in the request body.  
+        express.urlencoded() : Parses URL-encoded data (like from HTML forms).
 
 6. How do you implement authentication and authorisation in Express ?
 

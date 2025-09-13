@@ -102,4 +102,99 @@ After testing, the system moves to the Deployment phase, where the software is i
 Finally, in the Maintenance phase, the software undergoes updates, bug fixes, and possible enhancements to keep it functioning smoothly in the long term.
 
 
+🔹 Common SDLC (Software Development Life Cycle) Models
+1. Waterfall Model
+
+Flow: One phase after another (requirement → design → development → testing → deployment).
+
+Best for: Small projects with clear requirements.
+
+Problem: No going back, not flexible.
+
+👉 Example: Building a government payroll system with fixed rules.
+
+2. Agile Model
+
+Flow: Work in sprints (short cycles, 1–2 weeks). Deliver small features quickly, get feedback, and improve.
+
+Best for: Dynamic projects where requirements may change.
+
+Problem: Needs active customer involvement.
+
+👉 Example: A startup building a shopping app where features keep changing.
+
+3. Iterative Model
+
+Flow: Build a small version first, then improve it in multiple iterations until final product.
+
+Best for: Projects where requirements aren’t fully clear at the start.
+
+Problem: Can take more time if iterations go on.
+
+👉 Example: Developing a new search engine where features keep evolving.
+
+4. Spiral Model
+
+Flow: Combines iterative + risk analysis. Repeats phases (planning → risk analysis → development → testing) in a spiral.
+
+Best for: Big, risky projects (banking, defense).
+
+Problem: Expensive, requires expertise.
+
+👉 Example: Building an air traffic control system.
+
+5. V-Model (Validation & Verification)
+
+Flow: Similar to Waterfall, but testing happens in parallel with each development stage.
+
+Best for: Projects where high quality and testing is critical.
+
+Problem: Still rigid, changes are hard to manage.
+
+👉 Example: Healthcare software where accuracy is crucial.
+
+✅ Interview Short Answer:
+“SDLC has different models like Waterfall, Agile, Iterative, Spiral, and V-Model. Waterfall is linear, Agile is flexible with sprints, Iterative delivers in versions, Spiral focuses on risk management, and V-Model pairs development with testing.”
+
+Do you want me to also prepare a 2-minute spoken-style answer (so you can directly speak it in interviews without sounding bookish)?
+
+You said:
+Evolutionary model
+ChatGPT said:
+
+Good question 👍
+
+The Evolutionary Model is another SDLC approach, often asked in interviews. Let me explain it simply:
+
+🔹 Evolutionary Model in SDLC
+
+It’s like the Iterative Model, but here the software is developed in small pieces (increments), and each piece evolves based on user feedback.
+
+Instead of delivering everything at once, you give users a basic working version quickly, then evolve it into the full system step by step.
+
+Each version is functional and usable, not just a prototype.
+
+✅ Key Features
+
+Partial implementation first → then keep adding features.
+
+Customer feedback after each version → helps refine requirements.
+
+Risk is reduced because you’re not waiting until the end.
+
+Works well when requirements change frequently.
+
+🔹 Example
+
+Suppose you are building an online learning platform:
+
+First release: User login + simple video upload.
+
+Second release: Add quizzes + progress tracking.
+
+Third release: Add AI-based recommendations.
+
+Each version is usable, and the product keeps evolving.
+
+
 

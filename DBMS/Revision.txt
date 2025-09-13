@@ -226,7 +226,7 @@
 
 13. Difference between commit and rollback.
     1️⃣ COMMIT
-        Definition: Saves all changes made during the current transaction permanently to the database.
+        Definition: it saves all the changes you’ve made in the current transaction permanently to the database."
         Key Point: After a commit, you cannot undo those changes (unless you start another transaction to reverse them).
         Example:
             BEGIN;
@@ -235,7 +235,7 @@
             COMMIT; -- changes are now permanent
 
     2️⃣ ROLLBACK
-        Definition: Cancels all changes made during the current transaction and restores the database to its last committed state.
+        Definition: Cancels all changes that we made during the current transaction and restores the database to its last committed state.
         Key Point: Used when an error occurs or you want to discard partial changes.
         Example:
             BEGIN;
@@ -246,7 +246,7 @@
     "COMMIT makes your transaction changes permanent, while ROLLBACK undoes all changes since the last commit."
 
     3️⃣ SAVEPOINT
-        Definition: Creates a checkpoint within a transaction, allowing you to roll back to that specific point without undoing the entire transaction.
+       A SAVEPOINT creates a checkpoint in a transaction so you can roll back to that point without undoing everything in the transaction."
         Use Case: When you want partial undo within a transaction.
         Example:
             BEGIN;
@@ -547,6 +547,8 @@
     1️⃣ What is a Trigger?
         Definition:
         A stored procedure in a database that is automatically executed (fired) in response to a specific event on a table or view.
+        In easy words:
+            A trigger is like an automatic reaction in the database — when something happens to a table (like inserting, updating, or deleting a row), the trigger runs a stored set of instructions without you having to call it manually.
         Events: INSERT, UPDATE, or DELETE.
         Execution: Happens before or after the event, depending on the trigger type.
     
@@ -1031,6 +1033,9 @@
 
         Customers table
         customer_id | customer_name | customer_address
+
+        Products table
+        product_id | product_name
 
         Order_Details table
         order_id | product_id | price

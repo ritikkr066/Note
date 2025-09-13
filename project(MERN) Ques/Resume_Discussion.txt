@@ -1,0 +1,681 @@
+1. Tell me about your role at TrialShopy.
+   At TrialShopy, I worked as a Software Developer Intern, primarily focusing on the front-end. My responsibilities included creating web pages and designing user interfaces. I closely collaborated with the back-end team to integrate the front-end with backend APIs. I also occasionally participated in debugging code.
+   Since the company follows the Agile methodology, I actively participated in sprint meetings to review progress, discuss updates, gather feedback from the manager, and implement improvements in the project.
+
+2. You mentioned Agile — what exactly did your sprints and stand-ups look like?
+    In Agile, we work in sprints, usually lasting two weeks. At the start of each sprint, we divide the tasks among team members. Every day, we have a short stand-up meeting where everyone shares what they worked on yesterday, what they plan to work on today, and any issues they are facing. This process helps us stay in sync and resolve problems quickly. At the end of the sprint, we hold a review meeting where we present our progress to the manager, gather feedback, and make improvements for the next sprint.
+
+3. How did you handle conflicts or disagreements in code reviews?
+    In code reviews, if there was a disagreement, I first tried to understand the other person’s point. I explained my logic in simple words and also listened to their side. If their way was better, I accepted it. If I still felt my approach was good, I gave examples or showed why it worked. And if we couldn’t decide, we asked a senior or team lead. I always kept the focus on writing clean code, not on proving myself right.
+
+4. What steps do you take when optimizing frontend code for performance?
+    “When optimizing frontend code, I focus on a few things. I try to keep components small and reusable, so they load faster. I use React features like memo or useCallback to stop extra re-renders. I also make sure images and assets are compressed, and I load only what is needed, using lazy loading. For API calls, I handle caching so data doesn’t reload again and again. These steps together make the app faster and smoother.”
+        
+    const Child = React.memo(({ value }) => {
+        console.log("Child rendered");
+        return <p>{value}</p>;
+    });
+
+    function App() {
+        const [count, setCount] = useState(0);
+        return (
+            <>
+            <button onClick={() => setCount(count + 1)}>Increase</button>
+            <Child value="Fixed text" />
+            </>
+        );
+    }
+
+    Explain to interviewer (in simple words)
+    “Here, Child is wrapped with React.memo.
+    Normally, when parent re-renders, child also re-renders even if its props didn’t change.
+    With React.memo, Child renders only if props change.
+    This saves time and improves performance.”
+
+    ## : Small React example (component lazy loading)
+    import React, { Suspense, lazy, useState } from "react";
+
+    // Lazy import
+    const HeavyComponent = lazy(() => import("./HeavyComponent"));
+
+    function App() {
+    const [show, setShow] = useState(false);
+
+        return (
+            <>
+            <button onClick={() => setShow(true)}>Load Component</button>
+            <Suspense fallback={<p>Loading...</p>}>
+                {show && <HeavyComponent />}
+            </Suspense>
+            </>
+        );
+    }
+
+    Explain in simple words
+        “Here, HeavyComponent is not loaded when the app starts.
+        It only loads when I click the button.
+        Until then, React shows a fallback (Loading...).
+        This saves time and makes the app faster, especially if the component is big.”
+
+    @ can we use lazy without suspense ? 
+        No, you can’t use React.lazy without Suspense.
+        Suspense provides that fallback (like a spinner, “Loading...”, etc.).
+        Without Suspense, React won’t know what to show → it will throw an error.
+    
+    A fallback is just a temporary UI (like text, spinner, or loader) shown while something is loading.
+
+
+    <-----------------------FRONTEND------------------------------>
+
+5. Why did you choose Next.js over plain React for certain projects?
+    I chose Next.js because it gives some extra features on top of React. For example, it supports server-side rendering, which makes pages load faster and helps with SEO. It also has file-based routing, so we don’t have to set up React Router manually. API routes are built in, so we can create small backend endpoints inside the same project. These things save time and make the project more scalable compared to plain React.”
+
+6. What’s the difference between SSR, CSR, and SSG in Next.js? When would you use each?
+    1. CSR (Client-Side Rendering)
+        Page loads empty → browser downloads JS → React builds UI.
+        First load is slower (blank page at start), but after that, navigation is fast.
+        Example use: Dashboards or apps with login where SEO doesn’t matter much.
+    
+    2. SSR (Server-Side Rendering)
+        Page HTML is generated on the server for every request.
+        Faster first load + good for SEO.
+        Example use: E-commerce product pages, news articles (content changes often, SEO important).
+    
+    3. SSG (Static Site Generation)
+        HTML is generated at build time (once), and the same file is served to all users.
+        Super fast, very cheap, but not good if content changes every minute.
+        Example use: Blogs, documentation sites, marketing pages.
+    
+    4. ISR(Incremental Static Regeneration) : enables us to use static-generation on a per-page basis, without needing to rebuilt the entire site 
+
+    How to explain usage in interview:
+        CSR → when user-specific data is needed (like dashboards).
+        SSR → when data changes frequently and SEO is important.
+        SSG → when data is stable and performance matters most.
+
+7. Closure
+    A closure is formed when a function “remembers” the variables from its outer scope even after that outer function has finished executing.
+    A closure is the combination of a function bundled together(enclosed). A closure gives you access to an outer  function's scope from an inner fuction.
+
+    function bankAccount() {
+    let balance = 1000;
+
+    return {
+        deposit(amount) {
+        balance += amount;
+        return balance;
+        },
+        withdraw(amount) {
+        if (amount > balance) return "Insufficient funds";
+        balance -= amount;
+        return balance;
+        }
+    };
+    }
+
+    const account = bankAccount();
+    console.log(account.deposit(500)); // 1500
+    console.log(account.withdraw(200)); // 1300
+    // balance is not directly accessible
+
+    Data encapsulation (security)
+    Helps in hiding implementation details.
+    Variables cannot be accessed directly from outside
+
+
+9. How do you optimize rendering in React when a component keeps re-rendering unnecessarily?
+    “If a component keeps re-rendering unnecessarily, I first check why. Usually it happens because props or functions are changing every render. To fix it, I use tools like:
+    React.memo – to stop a child component from re-rendering if props didn’t change.
+    useCallback – to memoize functions so they don’t get recreated every time.
+    useMemo – to memoize heavy calculations so they don’t run again on every render.
+
+    With useCallback
+    function App() {
+    const [count, setCount] = React.useState(0);
+
+    // function is memorized, not recreated every render
+    const handleClick = React.useCallback(() => {
+        console.log("Clicked");
+    }, []); // no dependency → same function always
+
+        return (
+            <>
+            <button onClick={() => setCount(count + 1)}>Increase</button>
+            <Child onClick={handleClick} />
+            </>
+        );
+    }
+    Now Child will not re-render when count changes, because the onClick function stays the same.
+
+    //useMemo
+    import React, { useState, useMemo } from "react";
+
+    export default function App() {
+    const [number, setNumber] = useState(0);
+    const [text, setText] = useState("");
+
+    // ✅ useMemo remembers the result until `number` changes
+    const double = useMemo(() => {
+        console.log("Calculating...");
+        return number * 2;
+    }, [number]);
+
+    return (
+        <div>
+        <input
+            type="number"
+            value={number}
+            onChange={(e) => setNumber(Number(e.target.value))}
+        />
+        <p>Double: {double}</p>
+
+        <input
+            placeholder="Type something..."
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+        />
+        </div>
+    );
+    }
+
+10. Explain how you managed responsive UI with Tailwind CSS.
+    I used Tailwind’s responsive classes to make the UI adjust on different screen sizes. Tailwind has built-in breakpoints like sm, md, lg, and xl. For example, I could write text-sm md:text-lg to make text small on mobile but larger on bigger screens. Similarly, I used grid and flex utilities with responsive prefixes, like grid-cols-1 md:grid-cols-3, so the layout changes from single column on mobile to three columns on desktop. This way I didn’t need to write separate CSS files, Tailwind handled it directly with utility classes.
+
+11. How do you handle global state in React apps? Why Redux instead of just Context API?
+    In React, I handle global state either with Context API or with Redux, depending on project size.
+        For small apps, Context API is fine. But in bigger apps, I prefer Redux because:
+        Redux gives a single store where all global data is managed.
+        It has clear actions and reducers, so the flow of data is predictable.
+        Debugging is easier with tools like Redux DevTools.
+        With Context, if state grows large, it causes unnecessary re-renders and becomes hard to manage.
+
+        src/
+        ├── store/
+        │    ├── store.js
+        │    └── userSlice.js
+        ├── components/
+        │    └── Profile.jsx
+        ├── App.jsx
+        └── index.js
+
+        1. store/userSlice.js
+        import { createSlice } from "@reduxjs/toolkit";
+
+        const userSlice = createSlice({
+        name: "user",
+        initialState: { name: "" },
+        reducers: {
+            setUser: (state, action) => {
+            state.name = action.payload;
+            },
+            logout: (state) => {
+            state.name = "";
+            }
+        }
+        });
+
+        export const { setUser, logout } = userSlice.actions;
+        export default userSlice.reducer;
+
+        2. store/store.js
+        import { configureStore } from "@reduxjs/toolkit";
+        import userReducer from "./userSlice";
+
+        export const store = configureStore({
+        reducer: {
+            user: userReducer,
+        },
+        });
+
+        3. components/Profile.jsx
+
+        import React from "react";
+        import { useSelector, useDispatch } from "react-redux";
+        import { setUser, logout } from "../store/userSlice";
+
+        function Profile() {
+        const user = useSelector((state) => state.user.name);
+        const dispatch = useDispatch();
+
+        return (
+            <div className="p-4">
+            <h2 className="text-xl">Profile</h2>
+            <p>User: {user || "Guest"}</p>
+            <div className="mt-2">
+                <button
+                className="bg-blue-500 text-white px-3 py-1 rounded mr-2"
+                onClick={() => dispatch(setUser("Ritik"))}
+                >
+                Login
+                </button>
+                <button
+                className="bg-red-500 text-white px-3 py-1 rounded"
+                onClick={() => dispatch(logout())}
+                >
+                Logout
+                </button>
+            </div>
+            </div>
+        );
+        }
+
+        export default Profile;
+
+        1. createSlice
+            In Redux Toolkit, instead of writing separate actions and reducers, we write everything in one place using createSlice.
+            It contains:
+                name: slice name (for grouping)
+                initialState: default values
+                reducers: functions to update state
+            
+        2. configureStore
+            This creates the Redux store and combines all reducers.
+            You pass the slice’s reducer here.
+        
+        3. useDispatch
+            dispatch is used to send actions to the store.
+            Think of it like “telling Redux what to do”.
+        
+        4. useSelector
+            Used to read state values from the Redux store.
+    
+12. Can you explain React’s reconciliation process and why keys are important in lists?
+    🔹 Reconciliation in React
+        Reconciliation is React’s process of figuring out what changed in the UI when your state or props update.
+        React creates a Virtual DOM copy of the UI.
+        When something changes, React compares the new Virtual DOM with the old one (diffing).
+        Instead of re-rendering the whole page, React updates only the parts that actually changed.
+        👉 This makes React fast.
+
+        🔹 Why are keys important in lists?
+            When rendering a list (like map()), React uses key to identify each item uniquely.
+            Keys help React understand which items are:
+            Added
+            Removed
+            Reordered
+        function TodoList({ todos }) {
+        return (
+            <ul>
+            {todos.map((todo) => (
+                <li key={todo.id}>{todo.task}</li>  // ✅ unique key
+            ))}
+            </ul>
+        );
+        }
+
+13. What’s the difference between useEffect and useLayoutEffect?
+    Execution timing
+    useEffect: Runs after the browser paints the screen.
+    👉 This means the UI is already visible when your effect runs.
+
+    useLayoutEffect: Runs synchronously before the browser paints the screen.
+    👉 The DOM is updated, but the user won’t see it until your effect finishes.
+
+    Performance
+    useEffect: Non-blocking, better for performance.
+    useLayoutEffect: Blocking — if you do heavy work here, it will cause UI flickering or lag.
+
+    useEffect:
+    ✅ Data fetching
+    ✅ Updating state after API calls
+
+    useLayoutEffect:
+    ✅ Measuring DOM elements (width, height, position)
+
+
+<--------------BACKEND------------------>
+14. How did you design your REST APIs?
+    Resource-based design
+        I identified the main entities (e.g., users, appointments, orders, products)
+            Then I mapped them to endpoints:
+                GET /api/appointments → fetch all appointments
+                POST /api/appointments → create appointment
+    
+    Followed HTTP methods properly
+        GET for fetching
+        POST for creating
+        PUT/PATCH for updating
+        DELETE for removing
+    
+    Used proper status codes
+        200 for success,
+        201 for created,
+        400 for bad request,
+        401/403 for auth errors,
+        404 for not found.
+
+15. What’s the difference between REST and GraphQL? Why did you use REST?
+    REST APIs work with fixed endpoints.
+    For example, we can have /users or /users/:id. Each endpoint gives a fixed type of response, and we use HTTP methods like GET, POST, PUT, and DELETE. One limitation is sometimes we get more data than we need, or we have to make multiple requests to get all the data.
+
+    GraphQL is different.
+    It usually has one single endpoint. The client can decide exactly which fields it wants in the response. This solves the problem of over-fetching or under-fetching. But the setup is more complex because we need to define schemas and resolvers, and it also adds a learning curve for the team
+
+    Why I chose REST for my project.
+    My project mainly needed CRUD operations like creating appointments, fetching users, and integrating with APIs like PhonePe. REST was simple to set up with Express.js, and it made integration easier since almost every service supports REST. It also gave me clear error handling using HTTP status codes and simple caching.
+
+    When to consider GraphQL.
+    If the project grows bigger, with complex data relationships and multiple frontend clients needing different types of data, then GraphQL would be useful. But for my case, REST was the right balance of simplicity and speed.
+
+16. How did you implement JWT authentication in your project?
+    “I implemented JWT authentication to secure user access. When a user logs in with email and password, the backend verifies their credentials and generates a JWT token using a secret key. This token contains the user’s ID and role.
+
+    The frontend stores the token (usually in localStorage or cookies) and sends it in the Authorization header for every protected API request. On the backend, I created a middleware that verifies the token before allowing access to routes. If the token is invalid or expired, the API responds with 401 Unauthorized.
+
+    This approach ensures that only authenticated users can access protected endpoints, and the server doesn’t need to store session data, making it scalable.”
+
+    1. Generate token on login
+        import jwt from "jsonwebtoken";
+
+        function login(req, res) {
+        const { email, password } = req.body;
+        // 1. Verify user credentials (pseudo)
+        const user = User.find(u => u.email === email && u.password === password);
+        if (!user) return res.status(401).json({ message: "Invalid credentials" });
+
+        // 2. Generate JWT
+        const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
+            expiresIn: "1h"
+        });
+
+        res.json({ token });
+        }
+
+    2. Middleware to protect routes
+        function authMiddleware(req, res, next) {
+        const authHeader = req.headers.authorization;
+        if (!authHeader) return res.status(401).json({ message: "No token provided" });
+
+        const token = authHeader.split(" ")[1];
+
+        try {
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
+            req.user = decoded; // attach user info to request
+            next();
+        } catch (err) {
+            res.status(401).json({ message: "Invalid token" });
+        }
+        }
+
+    3. Using middleware in routes
+        app.get("/api/appointments", authMiddleware, (req, res) => {
+            // Only authenticated users reach here
+            res.json(Appointment.find({ userId: req.user.id }));
+        });
+
+
+17. How do you refresh JWT tokens securely?
+    🔹 How JWT token refreshing works
+        Two-token system
+            Access token: short-lived (e.g., 15–30 minutes), used for API requests.
+            Refresh token: long-lived (e.g., 7–30 days), used only to get a new access token.
+
+        Workflow
+            When a user logs in, backend sends both access and refresh tokens.
+            Frontend stores access token in memory (or short-term storage) and refresh token in HttpOnly cookie for security.
+            If the access token expires, frontend calls a /refresh endpoint with the refresh token.
+            Backend verifies the refresh token, issues a new access token, and optionally rotates the refresh token.
+
+    Refresh endpoint
+        app.post("/refresh", (req, res) => {
+            const refreshToken = req.cookies.refreshToken;
+            if (!refreshToken) return res.status(401).json({ message: "No token" });
+
+            try {
+                const payload = jwt.verify(refreshToken, process.env.REFRESH_SECRET);
+                const newAccessToken = jwt.sign({ id: payload.id }, process.env.JWT_SECRET, { expiresIn: "15m" });
+                res.json({ accessToken: newAccessToken });
+            } catch (err) {
+                res.status(401).json({ message: "Invalid token" });
+            }
+        });
+
+18. How did you handle role-based access control (RBAC) in your system?
+    🔹 How I handled RBAC
+        Define roles
+            I defined roles in the system, for example: admin, doctor, patient.
+
+        Assign roles to users
+            When a user signs up or is created, they are assigned a role stored in the database and also embedded in their JWT token.
+
+        Middleware to check roles
+            I created an authorization middleware that runs after authentication.
+            It checks the user’s role (from JWT token) before allowing access to protected routes.
+            If the role doesn’t match, the API responds with 403 Forbidden.
+
+        Example use cases
+            Only admin can create or delete doctors.
+            Only the doctor role can view their patient appointments.
+            Patient can book appointments but cannot access other patients’ data.
+
+    // roleMiddleware.js
+    export function authorizeRoles(...allowedRoles) {
+    return (req, res, next) => {
+        const userRole = req.user.role; // from JWT
+        if (!allowedRoles.includes(userRole)) {
+        return res.status(403).json({ message: "Access denied" });
+        }
+        next();
+    };
+    }
+
+    // Usage in routes
+    app.post(
+    "/api/doctors",
+    authMiddleware,          // check JWT
+    authorizeRoles("admin"), // check role
+    (req, res) => {
+        res.json({ message: "Doctor created" });
+    }
+    );
+
+19. What are some best practices you followed in designing modular APIs?
+    “I followed modular design by separating routes, controllers, and middleware. I ensured consistency in request/response formats, reusable authentication and validation logic, API versioning, and security practices like JWT and role-based access. This made the APIs scalable, maintainable, and easy for frontend integration.”
+
+20. How do you handle errors and exceptions in Express?
+    Instead of adding try/catch in every route, I use a single error-handling middleware to catch all errors.
+    Use next() to pass errors: In controllers, when something goes wrong, I pass an error object to next(err).
+
+    1. Error handling middleware
+        // middleware/errorHandler.js
+        export const errorHandler = (err, req, res, next) => {
+        const statusCode = err.statusCode || 500;
+        res.status(statusCode).json({
+            success: false,
+            message: err.message || "Server Error",
+        });
+        };
+    
+
+        app.get("/api/users/:id", async (req, res, next) => {
+        try {
+            const user = await User.findById(req.params.id);
+            if (!user) return next({ statusCode: 404, message: "User not found" });
+            res.json({ success: true, data: user });
+        } catch (err) {
+            next(err); // pass to error middleware
+        }
+        });
+
+        // Register error handler at the end
+        app.use(errorHandler);
+
+        User sends a request, e.g., GET /api/users/123.
+        Express matches this route and runs the async callback.
+        await User.findById(req.params.id) tries to fetch the user from the database.
+        If user exists → res.json({ success: true, data: user }) sends data back.
+        If user doesn’t exist → next({ statusCode: 404, message: "User not found" }) passes an error object to the next middleware.
+        If any other error happens (e.g., DB connection fails), the catch block runs → next(err) passes that error to the middleware.
+
+        app.use(errorHandler);
+            Express checks all middleware in order.
+            The errorHandler middleware is special: it has 4 parameters (err, req, res, next).
+            When next(err) is called, Express skips normal middleware and goes straight to error-handling middleware.
+            The middleware reads the err object:
+                const statusCode = err.statusCode || 500;
+                    res.status(statusCode).json({
+                    success: false,
+                    message: err.message || "Server Error",
+                });
+            It sends a consistent JSON response with the error status and message to the client.
+        
+        Request → Route → next(err) → Error Middleware → Response
+
+<-------------DATABASE---------------->
+
+21. How did you design your MongoDB schema for appointments and medicine ordering?
+    const mongoose = require("mongoose");
+
+    const userSchema = new mongoose.Schema({
+    name: String,
+    email: { type: String, unique: true },
+    phone: String,
+    role: { type: String, enum: ["patient", "doctor", "admin"], default: "patient" }
+    });
+
+    module.exports = mongoose.model("User", userSchema);
+
+22. What’s the difference between embedding and referencing in MongoDB?
+    🔹 Embedding (Denormalization)
+        You put related data inside the same document.
+        Think of it as keeping all information in one big JSON object.  
+        ✅ Example (embedding medicines inside an order):
+        {
+            "_id": "order123",
+            "patientName": "Ritik",
+            "medicines": [
+                { "name": "Paracetamol", "quantity": 2 },
+                { "name": "Amoxicillin", "quantity": 1 }
+            ],
+            "totalPrice": 300
+        }
+    
+    🔹 Referencing (Normalization)
+        You store related data in separate collections and connect them with IDs.
+        Think of it like a foreign key in SQL.
+        Best when data is reused in multiple places or can get very large.
+
+        // Appointment document
+        {
+            "_id": "appt101",
+            "patientName": "Ritik",
+            "doctorId": "doc555",
+            "date": "2025-08-28"
+        }
+
+        // Doctor document
+        {
+            "_id": "doc555",
+            "name": "Dr. Sharma",
+            "specialization": "Cardiologist"
+        }
+        If doctor details change (like specialization), we don’t need to update every appointment record.
+
+        Embedding → For small, tightly coupled data (like medicines inside one order).
+        Referencing → For large or shared data (like patients, doctors, or users that appear in multiple collections).
+
+23. Did you use indexes? How did they improve performance?
+    🔹 What are Indexes?
+        An index in MongoDB is like the index at the back of a book.
+        Instead of scanning every page, you jump directly to the right page.
+        Without an index, MongoDB does a collection scan (checks every document one by one). With an index, it can directly find matching documents much faster.
+    
+        Appointments collection
+        const appointmentSchema = new mongoose.Schema({
+            patientId: { type: mongoose.Schema.Types.ObjectId, ref: "User", index: true },
+            doctorId: { type: mongoose.Schema.Types.ObjectId, ref: "Doctor", index: true },
+            date: { type: Date, index: true }
+        });
+        Indexed doctorId → so we can quickly find all appointments of a doctor.
+    
+        🔹 type: mongoose.Schema.Types.ObjectId
+            ObjectId is a special datatype in MongoDB.
+            MongoDB automatically uses ObjectId as the primary key (_id) for each document.
+        
+        🔹 ref: "User"
+            ref tells Mongoose which collection/model this ObjectId belongs to.
+    
+24. How do you handle queries when the dataset grows very large?
+    🔹 1. Indexes
+    🔹 3. Pagination for Large Results
+            Instead of returning thousands of documents at once, use pagination
+    🔹 4. Sharding (Horizontal Scaling)
+         MongoDB supports sharding (splitting data across multiple servers).
+    🔹 5. Caching 
+        Use Redis or in-memory cache for repeated queries.
+
+25. Why MongoDB for Appointments & Medicine Ordering?
+    👉 Flexibility:
+        MongoDB allows flexible schema without changing structure again & again.
+
+    👉 Scalability:
+        If many patients/appointments grow rapidly, MongoDB scales horizontally across servers better than SQL.
+    
+    👉 Integration with Node.js:
+        MongoDB stores data in JSON-like format, which directly matches how we work with JavaScript in React/Express.
+
+
+<-------------PhonePe---------->
+26. How did you integrate PhonePe API for payments?
+    1. Setup & Configuration
+        First, I registered the app on PhonePe developer portal and got the Merchant ID, Salt Key, and Salt Index.
+        In my Express backend, I kept these secrets in environment variables (.env) for security.
+
+    2. Payment Flow (Step by Step)
+        Frontend (React)
+            When a user clicks Pay Now (for appointment fee or medicines), I send the amount + orderId + userId to the backend.
+
+        Backend (Express + Node.js)
+            I created a route like /api/payments/initiate.
+            The backend takes amount, orderId, and merchant details.
+            According to PhonePe docs, I generated a checksum (HMAC SHA256 using Salt Key + payload) to secure the request.
+            Then I called the PhonePe API endpoint (/pg/v1/pay) with this signed payload.
+
+        PhonePe Response
+            PhonePe responded with a redirect URL or a payment page link.
+            I sent this back to the frontend.
+
+        Frontend Redirection
+            The frontend redirected the user to the PhonePe payment page (UPI/Wallet/Card).
+
+        Payment Callback
+            After payment, PhonePe hit my backend’s callback URL (like /api/payments/callback).
+            I verified the transaction status using PhonePe’s /status/{merchantId}/{transactionId} API.
+
+        Database Update (MongoDB)
+            If status = SUCCESS → I updated the appointment/medicine order document in MongoDB as paid.
+            If status = FAILURE → I marked it as failed.
+
+<-------------Security------------->
+
+27. How did you secure authentication using JWT?
+    🔑 How I Secured Authentication with JWT
+
+        User Login → Token Issued
+            When a user logged in with email/password, the server verified credentials.
+            If correct, I generated a JWT token signed with a secret key (stored safely in backend).
+            Token contained userId + role (doctor/patient/admin).
+
+        Token Storage
+            I sent the token to frontend → usually stored in HTTP-only cookies (to prevent XSS attacks).
+            Sometimes in memory (React state) for API calls.
+
+        Protected Routes with Middleware
+            For any protected API (like booking an appointment, ordering medicine), the request had to include the JWT in Authorization: Bearer <token>.
+            I used Express middleware to:
+                Verify the token signature.
+                Decode payload.
+                Attach user info to req.user.
+
+        Expiration & Refresh
+            Tokens had a short expiry (e.g., 15–30 mins).
+            For longer sessions, I used refresh tokens (stored securely in DB) to issue new tokens.
+
+        Role-Based Access Control
+            Based on the token payload, I restricted access.
+            Example: only doctors could approve appointments, only admin could add medicines.
+
+        Security Best Practices
+            Secret keys never exposed in frontend.
+            Used strong hashing (HS256/RS256).
+            Logged out users by blacklisting tokens if needed.

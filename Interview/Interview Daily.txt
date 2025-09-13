@@ -3,7 +3,7 @@ Q. Introduce yourself
 Sure, I'm Ritik , currently in my fourth year of pursuing a B.Tech in Computer Science. I've developed a strong foundation in programming, algorithms, and software development, and I've been actively involved in projects like trialshopy, hospital management that enhance my technical and problem-solving skills. Where I was responsible for UI design, Frontend and Backend development . I used technology  like ReactJs, Nodejs, ExpressJs MongoDB to build scalable and efficient solutions.  I'm excited to bring my skills and passion into a practical environment and contribute effectively to impactful projects."
 
 or, 
-"Hi, I’m Ritik, currently in my fourth year of B.Tech in Computer Science At NIT PATNA.
+"Hi, I’m Ritik, currently in my final year of B.Tech in Computer Science At NIT PATNA.
 I’ve built a strong foundation in programming, data structures, and algorithms, and I regularly solve coding problems to improve my problem-solving skills.
 I’ve also worked on projects like TrialShopy and a Hospital Management System, where I handled both frontend and backend .
 I am comfortable with technologies like React.js, Node.js, Express, and MongoDB and i used them  to build scalable and efficient web applications.

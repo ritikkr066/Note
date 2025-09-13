@@ -1,0 +1,276 @@
+1. Could u explain your project ?
+    My project is called HealthDebug. It is a healthcare website where patients can book appointments with doctors and also order medicines online.The goal is to save patients’ time, especially in smaller cities.
+
+    In tier-2 and tier-3 cities. People usually have to visit the hospital just to book an appointment and then come again later for the check-up, or they end up waiting for hours. To solve this, I built a system where patients can directly book appointments online with offline doctors. They get a proper time slot, which saves their time, and doctors can also manage their schedule more efficiently. I even added a feature that shows the number of bookings for each doctor, so patients can plan better before choosing a slot.”
+
+    The platform has different roles: patients, doctors, and admins. Patients can book and track their appointments, doctors can manage their schedule, and admins can handle overall operations. I also built a medicine ordering system with secure PhonePe payment integration.
+
+    On the technical side, I used React.js for the frontend, Node.js and Express for the backend, MongoDB as the database, and JWT authentication for secure login. I also optimized performance using caching and indexing.
+
+    In the future, I plan to add notifications so patients get an alert when their turn is near or doctors can send message regarding their start to check-up time. 
+
+2. Can u explain the architecure of your project ?
+    The architecture of my project follows a 3-tier model:
+
+    Frontend (Client side):
+    I used React.js with Redux for state management. This is what the patients, doctors, and admins see in the browser. It handles UI, form submissions, appointment booking, and medicine orders.
+
+    Backend (Server side):
+    I built this with Node.js and Express.js. The backend has REST APIs that receive requests from the frontend, process the logic, and send back responses.
+    It manages appointments, medicine orders, and payments.
+    It also handles authentication and authorization using JWT, so only the right roles (patient/doctor/admin) can access specific features.
+
+    Database (Storage):
+    I used MongoDB to store all the data, such as user details, doctor schedules, appointments, and medicine orders. I added indexes to speed up searches and caching for frequently used data.
+
+    External Integration:
+    For payments, I integrated the PhonePe API, which securely handles online transactions for appointment booking and  medicine orders.
+
+    Security Layer:
+    I implemented JWT tokens, input validation, and secure API routes. Sensitive data is stored in an encrypted format.
+
+    So, the flow is simple:
+    The user interacts with the frontend → the request goes to the backend APIs → the backend fetches/updates data in MongoDB and responds → if it’s a payment, it interacts with the PhonePe API.
+
+3. what technologies did u utilise in your project ? 
+    I used a mix of frontend, backend, database, and integration technologies to build my project:
+
+    Frontend: React.js with Redux for state management, along with lazy loading and caching to improve performance.
+
+    Backend: Node.js with Express.js to build REST APIs and handle the main application logic.
+
+    Database: MongoDB to store users, doctors, appointments, and medicine orders. I also used indexing to speed up queries.
+
+    Authentication & Security: JWT for secure login, role-based access control, and middleware for authorization.
+
+    Payments: Integrated PhonePe API for secure medicine ordering payments.
+
+    Version Control: GitHub for source code management and collaboration.
+
+4. could you outline the modules present in your project?
+    I divided my project into different modules to keep it organized and scalable:
+
+    Authentication & Authorization Module
+        Handles login, signup, and role-based access using JWT.
+        Ensures patients, doctors, and admins only see what they’re allowed to.
+
+    Patient Module
+        Patients can book doctor appointments, check booking status, and order medicines.
+        In the future, they’ll also get notifications about their appointment time.
+
+    Doctor Module
+        Doctors can manage their schedules, see patient bookings, and update availability.
+
+    Admin Module
+        Admins oversee the platform, manage doctors, medicines,  bookings.
+
+    Appointment Scheduling Module
+        Handles time-slot booking for offline consultations.
+        Shows the number of existing bookings so patients can plan better.
+        Integrated with PhonePe API for secure payments.
+
+    Medicine Ordering & Payment Module
+        Patients can order medicines online.
+        Integrated with PhonePe API for secure payments.
+
+    Database & Optimization Module
+        MongoDB stores all data (users, doctors, appointments, orders).
+        Used indexing and caching to make queries fast.
+
+5. what type of user were involved in your project?
+    There were mainly three types of users in my project:
+
+    Patients
+        They can register/login, book doctor appointments, check their booking status, and order medicines with online payment.
+        In future, they will also receive notifications about their appointment time.
+
+    Doctors
+        Doctors can manage their availability, see which patients have booked them, and update appointment slots.
+        This helps them organize their schedule better.
+
+    Admins
+        Admins manage the overall system.
+        They can add or verify doctors, manage medicines, monitor appointments, and ensure smooth operations on the platform.
+
+6. how many tables are present in your project ?
+    In my project, I designed the database with around 7 main collections (tables):
+
+    Patient Collection – stores patient details like name, age, contact, medical history (if needed).
+
+    Doctor Collection – stores doctor details like specialization, availability, and schedule.
+
+    Appointment Collection – stores booking information such as patient ID, doctor ID, time slot, and status.
+
+    Medicine Collection – stores medicine details like name, price, stock, and category.
+
+    Cart Collection – stores items added by patients before placing an order.
+
+    Login/Signup (User) Collection – handles authentication details such as email, password (hashed), and role (patient/doctor/admin).
+
+    Fetch All Doctors Collection (or simply part of Doctor Collection with indexes) – in practice, I optimized doctor search using MongoDB indexing, so fetching all doctors is fast without needing a separate collection.
+
+7. which table hold significant importance in the project?
+    The most important table in my project is the Appointment table. Since the main problem I wanted to solve is doctor appointment booking, this table directly connects patients with doctors. It stores details like which patient booked which doctor, the time slot, and the appointment status. Doctors use it to manage their schedules, and patients use it to track their visits. Even features like payments and future notifications depend on it, so it’s really the core of the system.
+
+8. how many rest api did you developed?
+    In my project, I developed around 15–20 REST APIs, divided across different modules. Some examples are:
+
+    Authentication APIs
+        POST /signup → Register a new user
+        POST /login → Login with JWT token
+
+    Patient APIs
+        GET /doctors → Fetch all available doctors
+        POST /appointments → Book an appointment
+        GET /appointments/:id → Fetch a patient’s appointment details
+        POST /cart → Add medicines to cart
+        POST /order → Place a medicine order with payment
+
+    Doctor APIs
+        GET /appointments/doctor/:id → Get all appointments for a doctor
+        PUT /availability/:id → Update doctor availability
+
+    Admin APIs
+        POST /doctor → Add a new doctor
+        DELETE /doctor/:id → Remove a doctor
+        GET /all-appointments → Monitor all bookings
+
+    Payment API
+        POST /payment/phonepe → Integrate with PhonePe for secure transactions
+
+9. what were your main responsibilies within the project?
+    “My main responsibilities were both on the frontend and backend. On the frontend, I led development using React.js with Redux for state management, and I optimized performance with lazy loading and reusable components. On the backend, I built REST APIs with Node.js and Express for appointments, patients, doctors, and medicines. I also handled authentication using JWT and implemented role-based access. For the database, I designed MongoDB collections and optimized queries with indexes and caching. I integrated PhonePe for secure payments with signature verification. Apart from that, I made sure the system was modular for scalability. Since this was a hackathon project, I also collaborated with my team, managed the GitHub repo, and ensured integration.”
+
+10. could you provide an explanation of any specific api  you developed?
+    “One of the APIs I developed was the Appointment Booking API. It’s a POST /appointments endpoint that lets patients book offline appointments with doctors. The patient sends details like doctorId, patientId, and their preferred time slot. The backend first checks if the doctor is available at that slot. If it’s free, it creates a record in the Appointment collection linking the doctor and patient and then returns a confirmation with the appointment details. If the slot is already taken, it responds with an error message. To keep it secure, this API requires a valid JWT token, and middleware ensures that only logged-in users with the Patient role can book appointments.”
+
+11. can u discuss the user role within the project?
+    In my project, there are three main user roles — Patient, Doctor, and Admin. Each role has specific permissions:
+
+    Patient Role
+        Can register/login.
+        Book appointments with doctors.
+        View or cancel their appointments.
+        Order medicines online and make payments via PhonePe.
+        In the future, they’ll also receive notifications about their appointment time.
+
+    Doctor Role
+        Can log in as a doctor.
+        Manage their availability (set time slots).
+        View all appointments booked with them.
+        Update status after consultation (completed, cancelled, etc.).
+
+    Admin Role
+        Has the highest control over the system.
+        Can add or verify doctors before they are listed on the platform.
+        Manage medicine inventory.
+        Monitor all appointments and transactions.
+        Ensure smooth operation of the platform.
+
+12. what challenges did u encounter during the project ?
+    Payment Integration (PhonePe):
+    At first, I was not able to integrate the PhonePe API because I had never done it before. I followed some YouTube tutorials and the official documentation. There were so many technical terms like HMAC-SHA256 encryption, checksum verification, callback URLs, and request signing, which were confusing for me in the beginning. Slowly, by testing different cases and debugging step by step, I was able to make it work and ensure that only successful payments were stored in the system.
+
+    Securing Admin Pages:
+    Another issue I faced was with making protected routes. In the beginning, even if a user was not an admin, they could still access admin pages just by typing the URL in the browser. To fix this, I used JWT authentication with role-based access. Now, only users with the “Admin” role can open admin routes or call admin APIs, and normal patients/doctors are blocked automatically.
+
+13.  Can you walk me through your project from start to end?
+    Sure. My project is a doctor appointment booking system mainly for tier-2 and tier-3 cities. Patients first sign up or log in. Then, they can search for doctors, view available slots, and book an offline appointment. Once booked, they get the time they need to visit the hospital, so they don’t have to wait for hours. Doctors, on the other side, can manage their availability and see patient bookings. Admin manages users, doctors, and appointments. In future, I plan to add notifications and booking insights so patients can make better decisions.
+
+14. How is your project different from existing solutions like Practo?
+    Practo focuses mainly on online consultation, digital prescriptions, and bigger city hospitals. My project is simple and focuses only on offline visits in small cities, where most people still prefer going physically. The idea is to save their time and provide a clear idea of when to visit the doctor. I also plan to show live booking counts so that patients can choose less-crowded doctors in urgent cases. So, mine is more lightweight, local, and specific to offline needs.
+
+15. Why did you choose MongoDB instead of MySQL/Postgres?
+
+    👉 Answer:
+    I chose MongoDB because it is flexible. In healthcare, patient data and doctor details can vary a lot. For example, some patients may have just basic info, others may have extra details like allergies or past history. MongoDB allows me to store this easily without changing the schema every time. Also, it works well with Node.js because both use JSON format, so integration becomes easier.
+
+16. How did you ensure the system is scalable for more users?
+
+    👉 Answer:
+    I kept the architecture modular. The backend is REST API-based, so frontend and backend are separate. If users increase, I can deploy the backend on cloud services like AWS and use load balancing. MongoDB also supports sharding and horizontal scaling, so the database can handle large amounts of data. Basically, I designed it so that if more patients and doctors join, I don’t need to change much code — just upgrade the deployment.
+
+    “In MongoDB, sharding is the process of distributing data across multiple servers. Instead of keeping the entire dataset on one server (which could be slow or run out of storage), MongoDB splits the data into chunks and stores them on different servers (shards). This way, queries and writes can be handled in parallel, improving performance and scalability. The mongos router is used to direct queries to the right shard.”
+        Sharding = Horizontal partitioning of data.
+
+
+17. . Can you draw or explain an ER diagram for your database?
+
+    👉 Answer:
+    Yes. In simple terms:
+    Patient Table → stores patient info (name, age, contact).
+    Doctor Table → stores doctor info (specialization, experience).
+    Appointment Table → links patient and doctor, stores date/time.
+    Login/Signup Table → manages user authentication.
+    Medicine Table → stores medicines (for future prescription module).
+    Cart Table → allows patients to add medicines (if pharmacy module is added).
+
+    Relationships:
+    A patient can have many appointments.
+    A doctor can have many appointments.
+    Appointment links doctor_id and patient_id.
+
+18  Why did you choose React.js?
+    I chose React.js because it makes building user interfaces much simpler and more reusable. Using components, I was able to break the UI into smaller parts like the Navbar, Doctor List, and Appointment Form. This made the code more organized and easier to maintain.
+
+    React also has strong community support, is widely used in the industry, and integrates well with tools like Redux and React Router, which helped me handle state management and navigation smoothly. Overall, it made my development process faster and more efficient.”
+
+19. How did you use Redux in your project?
+    I used Redux to handle the global state in my project. For example, I kept the login status of the user, the cart data when patients add medicines, and also doctor and patient details. If I didn’t use Redux, I would have to pass props through many components, which is difficult. With Redux, everything stayed in one place, and I could access the data easily from anywhere.
+
+    AuthSlice example
+    “Inside authSlice, I stored whether the user is logged in and also the user’s details. Whenever the user logged in, I updated the Redux state, and then any component like Navbar could directly use that data without passing props.”
+
+    CartSlice example
+    “In cartSlice, I stored the medicines that a patient adds to the cart. So whenever the user adds or removes a medicine, the state in Redux gets updated, and all the pages that need the cart data automatically reflect the changes.”
+
+20. What optimizations did you do in the frontend?
+    Some optimizations I did:
+        Used React lazy loading for large components to reduce initial load time.
+        Implemented pagination when fetching large lists of doctors or medicines instead of loading everything at once.
+        Used memoization (React.memo, useCallback, useMemo) to avoid unnecessary re-renders.
+        Compressed and optimized images.
+    These steps improved performance and user experience.
+
+21. How did you implement protected routes in React?
+    For protected routes, I used React Router along with authentication checks.
+    When a user logs in, I store the JWT token in localStorage.
+    I created a PrivateRoute component that checks if the token exists and is valid.
+        If yes → it allows access to the page.
+        If not → it redirects the user to the login page.
+    For admin pages, I also checked the role of the user. If the role was not "admin", they were blocked from accessing admin routes.
+
+22.  How did you handle authentication and authorization?
+    I used JWT (JSON Web Token) authentication.
+        When a user logs in, the backend checks their credentials.
+        If correct, it generates a JWT token signed with a secret key.
+        This token is sent to the client and stored in localStorage (or cookies).
+        For every API request, the client sends the token in the header.
+        The backend verifies the token before allowing access.
+    For authorization, I added role-based checks. For example, only admins can access admin APIs, while normal users can only access their own data.
+
+23. Why did you use JWT instead of session-based authentication?
+    JWT is stateless → The server doesn’t need to store sessions in memory or a database.
+    This makes it scalable and efficient, especially when multiple servers are running.
+    JWT can also carry extra information like user ID and role inside the token payload, which is useful for authorization.
+    It works well for REST APIs, unlike sessions that need server-side storage.
+
+24. What would happen if someone tampers with a JWT token?
+    JWTs are digitally signed with a secret key.
+    If someone changes the payload (like changing role from "user" to "admin"), the signature won’t match.
+    The backend will reject the token as invalid.
+    So, tampering doesn’t work unless the attacker somehow knows the secret key, which is never exposed
+
+25.  Why did you choose PhonePe and not another payment gateway?
+    I chose PhonePe because:
+        It is widely used in India and supports UPI, debit/credit cards, and wallets.
+        Their API documentation was clear and easy to integrate.
+        It had lower transaction fees compared to some alternatives.
+        I also considered Razorpay and Paytm, but PhonePe was more suitable for our project’s target users.
+
+26. What if the payment fails midway?”
+    You can say:
+    I handled this by checking the payment status callback from PhonePe. If the payment was successful, I confirmed the booking. If not, I rolled back the transaction and showed a failure message to the user.
+
+27. What did you learn from this project that you didn’t know before?
+    I learned how to implement secure authentication with JWT, manage role-based authorization, and integrate a real payment gateway like PhonePe with proper error handling. This project taught me to think beyond just building features and focus on security and scalability.

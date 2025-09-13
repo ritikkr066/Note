@@ -68,7 +68,7 @@ Ans:- var is function-scoped.
 
     Session storage:- Data stored in session storage is tied to the specified session of the browser. it gets cleared when the browser tab is closed, meaning the data us available as long as the tab window is open.
 
-        eg. linkedIn, while filling form when we reload the page wholw data which we filled  get disappeared.
+        eg. linkedIn, while filling form when we reload the page whole data which we filled  get disappeared.
 
         Q.How do you store and retrieve an object in local storage?
             const user = { name: "John", age: 30 };
@@ -246,3 +246,28 @@ Local Storage:-
     4. Token-Based System :- Use JWTs (JSON Web Tokens) or session tokens that expire after a short duration.
 
     5. Obfuscating API Endpoints :- Obfuscating mean making API endpoints less obvious or harder to find.
+
+18. higher order function
+    is a function that take function as a argument 
+
+19 callback function 
+    is a function that passed as a argument to another function
+
+20. callback
+    Callback Hell happens when we use too many nested callbacks, one inside another,
+
+21. closure
+    “Closure basically happens when we have a function inside another function. The inner function still remembers the variables of the outer function, even after the outer one has finished execution. So instead of copying, it keeps a reference to those variables. For example, if I return an inner function, it can still use the outer variable later. That’s closure.”
+
+22. Promises
+    Promises in JavaScript are basically used to handle asynchronous work like API calls. Instead of getting stuck waiting, a promise represents a value that will be available in the future. It has three states: pending, fulfilled, or rejected. We use .then() when it’s successful and .catch() when it fails. This makes the code cleaner and avoids callback hell.”
+
+23. JSON.stringify() & JSON.parse()
+    JSON.stringify() 
+    Converts a JavaScript object → JSON string (text format).
+    Used when sending data to a server or storing in localStorage, because JSON is a text-based format.
+
+    JSON.parse()
+    Converts JSON string → JavaScript object.
+    Used when receiving JSON data from a server API or reading from localStorage.
+    

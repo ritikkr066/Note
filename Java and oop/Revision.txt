@@ -1,0 +1,635 @@
+1. What is OOP and why is it used?
+    "OOP stands for Object-Oriented Programming. It’s a programming style where everything is organized as objects, which are instances of classes.
+    Each object contains data (fields) and behavior (methods). OOP helps make code more modular, reusable, and easier to understand."
+
+    🔹 Why OOP is Important:
+        ✅ Modularity – Code is organized into classes and objects.
+        🔁 Reusability – You can reuse code using inheritance.
+        🛡️ Security – Encapsulation hides internal data from outside interference.
+        🔧 Flexibility – Polymorphism lets you change behavior without changing code.
+        🌳 Scalability – It's easier to manage large programs.
+
+2.  Difference between procedural and object-oriented programming.
+    Procedural Programming (POP) is a programming style where the focus is on writing functions (procedures) that operate on data. The program is divided into steps or instructions, and data is usually kept separate from functions. For example, in C you might have global data and multiple functions that modify it.
+
+    Object-Oriented Programming (OOP), on the other hand, organizes programs around objects, which combine both data (attributes) and methods (behaviors). Instead of just writing functions, you create classes that represent real-world entities and reuse them. This makes code more modular, reusable, and easier to maintain.
+
+3. What are classes and objects?
+    Class : A blueprint or template for creating objects.
+            it defines properties(attributes) and method(functions) that an object have.
+
+            eg. class Dog { .... };
+
+    Object: An instance of a class.
+            It represent a real-world entity with properties and behavior.
+
+            eg. Dog d1;
+
+4. Create a Car class with properties (brand, model, speed) and a method to increase speed.
+    class Car {
+        // Properties (Attributes)
+        String brand;
+        String model;
+        int speed;
+
+        // Constructor
+        Car(String brand, String model, int speed) {
+            this.brand = brand;
+            this.model = model;
+            this.speed = speed;
+        }
+
+        // Method to increase speed
+        void increaseSpeed(int value) {
+            speed += value;
+            System.out.println("Speed increased by " + value + ". Current speed: " + speed + " km/h");
+        }
+
+        // Method to display details
+        void displayInfo() {
+            System.out.println("Car: " + brand + " " + model + " | Speed: " + speed + " km/h");
+        }
+    }
+
+5. Explain how you would model a “Bank Account” in OOP.
+    I would model a Bank Account as a class because it has both data (state) and operations (behavior).
+
+    The state (properties) of a bank account would include things like:
+        accountNumber
+        accountHolderName
+        balance
+
+    The behavior (methods) would include:
+        deposit(amount) → to add money to the account
+        withdraw(amount) → to remove money if balance is sufficient
+        checkBalance() → to view current balance
+
+    This way, the account details are encapsulated inside the class, and only allowed operations can modify the balance, ensuring security.
+
+    class BankAccount {
+        private String accountNumber;
+        private String accountHolderName;
+        private double balance;
+
+        // Constructor
+        BankAccount(String accountNumber, String accountHolderName, double balance) {
+            this.accountNumber = accountNumber;
+            this.accountHolderName = accountHolderName;
+            this.balance = balance;
+        }
+
+        // Deposit method
+        public void deposit(double amount) {
+            if (amount > 0) {
+                balance += amount;
+                System.out.println("Deposited: " + amount);
+            } else {
+                System.out.println("Invalid deposit amount!");
+            }
+        }
+
+        // Withdraw method
+        public void withdraw(double amount) {
+            if (amount > 0 && amount <= balance) {
+                balance -= amount;
+                System.out.println("Withdrew: " + amount);
+            } else {
+                System.out.println("Insufficient balance or invalid amount!");
+            }
+        }
+
+        // Check balance
+        public void checkBalance() {
+            System.out.println("Current Balance: " + balance);
+        }
+    }
+
+6. What is encapsulation? How is it implemented?
+   Encapsulation means bundling data (variables) and methods into a single unit (class) and restricting direct access to the data by using controlled methods (getters/setters). 
+
+    In simple words:
+        Encapsulation = Data hiding + Controlled access
+    
+    How it is implemented:
+        Using access modifiers:
+        Private → data is hidden inside the class.
+        Public → methods provide controlled access to that data.
+
+        Using getters and setters:
+        Getter → retrieves the value safely.
+        Setter → modifies the value but with conditions if required.
+
+    class Student {
+        private String name;  // private → cannot be accessed directly
+        private int age;
+
+        // Getter for name
+        public String getName() {
+            return name;
+        }
+
+        // Setter for name
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        // Getter for age
+        public int getAge() {
+            return age;
+        }
+
+        // Setter for age with condition
+        public void setAge(int age) {
+            if (age > 0) {
+                this.age = age;
+            } else {
+                System.out.println("Invalid age!");
+            }
+        }
+    }
+
+7. Why use getters and setters?
+    Why use getters and setters instead of direct access?
+
+    1. Data Hiding (Encapsulation)
+        If fields are public, anyone can directly modify them without restrictions.
+        With setters, you can control how values are set (e.g., prevent negative age).
+        With getters, you decide what to expose to the outside world.
+
+    2. Validation before assignment
+        Example: You don’t want someone to set age = -5.
+        A setter can check validity before updating the variable.
+    
+    3. Read-only or Write-only control
+        With only getter → property becomes read-only.
+        With only setter → property becomes write-only. 
+        This is not possible if fields are directly public.
+    
+8. Implement a Student class where marks are private and can be accessed only through methods.
+    class Student {
+        private String name;
+        private int marks;
+
+        // Constructor
+        public Student(String name, int marks) {
+            this.name = name;
+            setMarks(marks); // use setter for validation
+        }
+
+        // Getter for name
+        public String getName() {
+            return name;
+        }
+
+        // Setter for name
+        public void setName(String name) {
+            if (name != null && !name.isEmpty()) {
+                this.name = name;
+            } else {
+                System.out.println("Invalid name!");
+            }
+        }
+
+        // Getter for marks (read-only access)
+        public int getMarks() {
+            return marks;
+        }
+
+        // Setter for marks (write with validation)
+        public void setMarks(int marks) {
+            if (marks >= 0 && marks <= 100) {
+                this.marks = marks;
+            } else {
+                System.out.println("Invalid marks! Must be between 0 and 100.");
+            }
+        }
+
+        // Display student info
+        public void display() {
+            System.out.println("Name: " + name + ", Marks: " + marks);
+        }
+    }
+
+9. What is inheritance? Types of inheritance.
+    Inheritance in Object-Oriented Programming (OOP) is a mechanism where one class (called the child class or subclass) can acquire the properties (fields/attributes) and behaviors (methods) of another class (called the parent class or superclass).
+    
+    It promotes code reusability and helps in building a hierarchical relationship between classes.
+
+    class Vehicle {
+        String brand;
+
+        void drive() {
+            System.out.println("The vehicle is driving");
+        }
+    }
+
+    class Car extends Vehicle {  // Car inherits Vehicle
+        String model;
+
+        void display() {
+            System.out.println("Brand: " + brand + ", Model: " + model);
+        }
+    }
+
+    🔹 Types of Inheritance
+    Single Inheritance
+        A child class inherits from one parent class.
+    
+    Multilevel Inheritance
+        A class inherits from another class, which is itself a child of another.
+    
+    Hierarchical Inheritance
+        Multiple classes inherit from a single parent class.
+
+    Multiple Inheritance (⚠️ Not directly supported in Java with classes, but possible with interfaces to avoid ambiguity.)
+
+    Inheritance = "is-a" relationship (e.g., Car is a Vehicle).
+
+10. How does method overriding work?
+    Method overriding happens when a subclass provides its own implementation of a method that is already defined in its parent class.
+    👉 It is used to achieve runtime polymorphism (dynamic method dispatch).
+
+    class Animal {
+        void sound() {
+            System.out.println("Animal makes a sound");
+        }
+    }
+
+    class Dog extends Animal {
+        @Override   // annotation (optional but recommended)
+        void sound() {
+            System.out.println("Dog barks");
+        }
+    }
+
+    -To change behavior of inherited methods.
+
+11. Multiple inheritance issues and how interfaces solve them. in java
+    🔹 Multiple Inheritance Issue in Java
+    In multiple inheritance, a class can inherit from more than one class. The problem arises when two parent classes have a method with the same name, and the child class inherits both. The compiler gets confused about which method to use — this is called the Diamond Problem. To avoid this ambiguity, Java does not support multiple inheritance with classes.
+
+    🔹 How Interfaces Solve the Problem
+    Instead of allowing multiple inheritance with classes, Java uses interfaces. A class can implement multiple interfaces, and if two interfaces have the same method, the class must provide its own implementation. This way, there is no confusion because the child class defines exactly which method to use. Interfaces only contain method signatures (no state), so they avoid the diamond problem and make the design clean and flexible.
+
+12. Compile-time vs runtime polymorphism.
+    1. Compile-time Polymorphism (Static Polymorphism)
+        Decided at compile time → compiler knows which method to call.
+        Achieved by method overloading (same method name, different parameter lists).
+        Binding happens at compile-time.
+        Faster, no runtime overhead.
+    👉 The compiler decides which add() to call based on argument types.
+
+    2. Runtime Polymorphism (Dynamic Polymorphism)
+        Decided at runtime → JVM decides which method to call based on object type.
+        Achieved by method overriding (child class provides its own version of parent’s method).
+        Binding happens at runtime (dynamic binding).
+        Slower than compile-time, but more flexible.
+    👉 At compile time, the compiler only knows sound() exists in Animal.
+    👉 At runtime, JVM sees the actual object (Dog / Cat) and calls the correct method.
+
+13. Method overloading vs method overriding.
+    1. Method Overloading
+        ➡️ Same method name but different parameter list (number or type of parameters).
+        ➡️ Happens within the same class (or child class can also overload parent’s method).
+        ➡️ Compile-time polymorphism.
+        ➡️ Return type can be different, but it alone cannot distinguish overloaded methods.
+    
+    2. Method Overriding
+        ➡️ Same method name, same parameter list, same return type (or covariant type).
+        ➡️ Happens in parent-child relationship (inheritance).
+        ➡️ Runtime polymorphism.
+        ➡️ Access modifier in child should be same or more accessible (not less).
+        ➡️ Cannot override final, static, or private methods.
+    
+14. What is abstraction? Difference between abstraction and encapsulation.
+    Abstraction means hiding the implementation details and showing only the essential features of an object.
+    It tells what an object does, not how it does it.
+    Example:
+    When you drive a car:
+        You use the steering wheel, accelerator, brake (interface).
+        You don’t care how the engine works internally (implementation hidden).
+
+    In Java, abstraction is achieved using:
+        Abstract classes (abstract keyword).
+        Interfaces
+    
+    🔹 What is Encapsulation?
+        Encapsulation means wrapping data (variables) and methods (functions) into a single unit (class).
+        It focuses on data hiding and protection.
+        You achieve it using:
+            private fields.
+            getters and setters.
+    | Feature               | Abstraction                              | Encapsulation                                          |
+| --------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------- |
+| Definition        | Hides implementation details and exposes only essential features. | Bundles data (variables) and methods into a single unit.    |
+| Focus             | Focuses on what an object does.                          | Focuses on how data is hidden & protected.              |
+| Achieved by      | Abstract classes, Interfaces.                           | Classes, Access modifiers (private,public).            |
+| Real-life Example | Car driver only knows to press the brake (not how it works inside).   | Car engine is encapsulated inside the hood (protected). |
+| Purpose           | To provide a clear design.                      | To provide security and control over data.          |
+
+15. Abstract class vs interface.
+    👉 The main difference is:
+    Abstract class = partial abstraction (can have both concrete and abstract methods).
+    Interface = full abstraction (mostly defines what should be done, not how).
+    Abstract class supports single inheritance, while interfaces support multiple inheritance
+
+16. Create an interface Payment with method pay(), implemented by CreditCard and UPI classes.
+    // Interface
+    interface Payment {
+        void pay(double amount);   // abstract method
+    }
+
+    // CreditCard implementation
+    class CreditCard implements Payment {
+        @Override
+        public void pay(double amount) {
+            System.out.println("Paid " + amount + " using Credit Card.");
+        }
+    }
+
+    // UPI implementation
+    class UPI implements Payment {
+        @Override
+        public void pay(double amount) {
+            System.out.println("Paid " + amount + " using UPI.");
+        }
+    }
+
+17. Public, private, protected, and default/package-private.
+    1. public : Accessible from anywhere (same class, same package, different package).
+    2. private : Accessible only within the same class. Used for encapsulation (hiding data).
+    3. protected : Accessible in: Same class &  Same package & Subclasses (even in different package)
+    4. default / package-private : If no modifier is given → it’s default, Accessible only in the same package
+
+18. Why access control is important.
+    - to hide the internal details of a class from the outside world.
+        ✅ Protects critical data from unauthorized or accidental modification.
+    
+    2. Security  : Restricting access prevents misuse of sensitive methods and variables.
+        For example, marking a password field as private ensures it cannot be directly accessed.
+    
+    3. Controlled Access : You can allow safe ways to interact with data using getters & setters.
+
+19. Explain what happens if a subclass in another package tries to access a protected member.
+    ✅ It can access the protected member, but only via inheritance.
+        Meaning, the subclass can access the member on its own object (i.e., this or subclass reference).
+        It cannot access it using a reference of the superclass.
+
+        // File: package1/Parent.java
+        package package1;
+
+        public class Parent {
+            protected String message = "Hello from Parent!";
+        }
+
+        // File: package2/Child.java
+        package package2;
+        import package1.Parent;
+
+        public class Child extends Parent {
+            public void showMessage() {
+                // ✅ Accessing protected member via inheritance
+                System.out.println(this.message);  
+            }
+
+            public void tryAccess() {
+                Parent p = new Parent();
+                // ❌ ERROR: Cannot access protected member via superclass object
+                // System.out.println(p.message); 
+            }
+        }
+
+20. Default constructor vs parameterized constructor.
+    1. Default Constructor
+        A constructor with no parameters.
+        If you don’t write any constructor in your class, Java automatically provides one (only if no other constructor is defined).
+        Its main job: initialize objects with default values.
+    
+    2. Parameterized Constructor
+        A constructor with parameters.
+        Used to initialize an object with specific values at the time of creation.
+        Gives more control compared to default constructor.
+
+21. How clone() works in Java
+    In Java, cloning is done using the clone() method from the Object class.
+    To allow an object to be cloned, the class must implement the Cloneable interface.
+        class Student implements Cloneable {}
+        Student s1 = new Student("Ritik", 22);
+        Student s2 = (Student) s1.clone();  // cloning
+
+22. Explain constructor chaining.
+    Constructor chaining in Java means calling one constructor from another constructor within the same class or from a parent class constructor.
+    Within the same class (using this())
+    Across classes (using super())
+
+23. Static variables vs instance variables.
+    1. Instance Variables
+        Declared inside a class, but outside any method or constructor.
+        Each object of the class gets its own separate copy.
+        Lifetime: Exists as long as the object exists.
+        Accessed using object reference.
+
+    2. Static Variables
+        Declared with the static keyword inside a class.
+        Shared across all objects of the class (only one copy in memory).
+        Lifetime: Exists as long as the class is loaded in JVM.
+        Accessed using class name (recommended) or object reference.
+    
+    class Student {
+        String name;      // instance variable
+        static String college = "IIT";  // static variable
+    }
+    Main(){
+        Student s1 = new Student("Ritik");
+        Student s2 = new Student("Rahul");
+        s1.display(); // Ritik - IIT
+
+        // Changing static variable using class name
+        Student.college = "NIT";
+
+        s1.display(); // Ritik - NIT
+        s2.display(); // Rahul - NIT
+    }
+
+24. Static methods and their limitations.
+    In Java, static methods are methods that belong to the class rather than to any specific object.
+    They can be called directly using the class name (e.g., ClassName.methodName()) without creating an object.
+
+    Limitations of Static Methods
+        Cannot use this or super keywords
+            Because static methods do not belong to any object, there is no this reference.
+
+        Cannot access non-static (instance) variables/methods directly
+            Since instance members belong to objects, a static method cannot directly access them without creating an object.
+        
+        Cannot be overridden (only hidden)
+    
+25.  Create a class that counts the number of objects created using a static variable.
+    class Counter {
+        // static variable to keep track of objects
+        static int count = 0;
+
+        // constructor
+        Counter() {
+            count++;  // increment each time an object is created
+            System.out.println("Object created. Total objects: " + count);
+        }
+    }
+
+    public class Main {
+        public static void main(String[] args) {
+            // creating objects
+            Counter c1 = new Counter(); // Object created. Total objects: 1
+            Counter c2 = new Counter(); // Object created. Total objects: 2
+            Counter c3 = new Counter(); // Object created. Total objects: 3
+        }
+    }
+
+26. How to translate a real-world problem into classes and objects.
+    🔹 Steps to Translate a Real-World Problem into Classes & Objects
+    1. Identify Entities (Nouns in the problem)
+        Look for things in the real world.
+        Example: In a library system → Book, Member, Librarian, Library.
+    
+    2. Identify Responsibilities (Verbs/Actions)
+        What should each entity do?
+        Example: A Book can be issued, a Member can borrow, a Librarian can add books.
+    
+    3.Define Attributes (Properties of entities)
+        Example:
+        Book → title, author, ISBN.
+        Member → name, ID, membership type.
+    
+    4. Define Relationships (How classes interact)
+        Example:
+        A Library has many Books.
+        A Member borrows Books.
+    
+    5. Create Classes and Objects
+        Each class represents a blueprint.
+        Objects are real instances created at runtime.
+
+    🔹 Example: Library Management System
+
+        // Entity: Book
+        class Book {
+            String title;
+            String author;
+            boolean isIssued;
+
+            Book(String title, String author) {
+                this.title = title;
+                this.author = author;
+                this.isIssued = false;
+            }
+
+            void issueBook() {
+                if (!isIssued) {
+                    isIssued = true;
+                    System.out.println(title + " has been issued.");
+                } else {
+                    System.out.println(title + " is already issued.");
+                }
+            }
+
+            void returnBook() {
+                isIssued = false;
+                System.out.println(title + " has been returned.");
+            }
+        }
+
+        // Entity: Member
+        class Member {
+            String name;
+            int id;
+
+            Member(String name, int id) {
+                this.name = name;
+                this.id = id;
+            }
+
+            void borrowBook(Book book) {
+                book.issueBook();
+            }
+
+            void returnBook(Book book) {
+                book.returnBook();
+            }
+        }
+
+        // Main class to test
+        public class Main {
+            public static void main(String[] args) {
+                Book b1 = new Book("Clean Code", "Robert Martin");
+                Member m1 = new Member("Alice", 101);
+
+                m1.borrowBook(b1);  // Alice borrows Clean Code
+                m1.returnBook(b1);  // Alice returns Clean Code
+            }
+        }
+
+27. Composition vs aggregation.
+    Composition: It is a strong "has-a" relationship where the child object’s lifecycle depends on the parent. If the parent is destroyed, the child also ceases to exist.
+
+    Aggregation: It is a weak "has-a" relationship where the child object’s lifecycle is independent of the parent. Even if the parent is destroyed, the child can still exist.
+
+    Eg. Composition
+    class Heart {
+        void pump() {
+            System.out.println("Heart is pumping blood...");
+        }
+    }
+    class Human {
+        private Heart heart; // Composition
+
+        public Human() {
+            this.heart = new Heart();  // Created inside Human
+        }  
+    }
+    👉 Here, Heart cannot exist without Human. That’s Composition.
+
+    Eg. Aggregation
+    class Book {
+        String title;
+
+        public Book(String title) {
+            this.title = title;
+        }
+    }
+    class Library {
+        private List<Book> books;  // Aggregation
+
+        public Library(List<Book> books) {
+            this.books = books;  // Passed from outside
+        }
+    }
+    👉 Here, Book objects are created outside and then aggregated into the Library. Books can exist even without the library.
+
+28. Explain why composition is preferred over inheritance in some cases.
+    Composition is often preferred over inheritance because it provides greater flexibility, loose coupling, and better code reuse. Inheritance is static and rigid, while composition allows us to change behavior at runtime and avoid deep, fragile hierarchies
+
+    // Inheritance (Rigid)
+    class Bird {
+        void fly() { System.out.println("Flying"); }
+    }
+    class Penguin extends Bird { } // Problem: Penguins can’t fly!
+
+    // Composition (Flexible)
+    interface FlyBehavior { void fly(); }
+    class CanFly implements FlyBehavior { public void fly() { System.out.println("Flying"); } }
+    class NoFly implements FlyBehavior { public void fly() { System.out.println("Can't fly"); } }
+
+    class Bird {
+        private FlyBehavior flyBehavior;
+        Bird(FlyBehavior fb) { this.flyBehavior = fb; }
+        void performFly() { flyBehavior.fly(); }
+    }
+
+29. Explain why deep copy is needed when objects contain dynamically allocated memory.
+    When an object contains dynamically allocated memory (like arrays, pointers, or heap objects), a shallow copy only copies the pointer value, not the actual memory.
+    That means:
+        Both the original object and the copied object will point to the same memory location.
+        If one modifies or deletes it, the other object gets affected too → leading to data corruption or double deletion.
+    
+    👉 Deep copy solves this by creating a new memory block and copying the actual contents, not just the pointer.
+

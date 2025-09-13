@@ -1,15 +1,25 @@
 1.Explain Asychronous and Non-blocking programming?
-    Asychronous programming allows our code to start a task and move on the next one without waiting for the previous task to finish.
-    Asychronous refers to the timing of tasks - tasks run independently and notify when they are done.
-
-    Non-blocking programming refers to the way Node.js handles tasks without stopping(or blocking) the execution of other tasks. 
-    Non-blocking refers to the behavior of the code - ensuring that no tasks waits or hold up the system.
+   In Node.js, asynchronous and non-blocking mean that tasks don’t wait for each other. For example, if I read a file, Node.js doesn’t stop — it continues with the next task, and when the file is ready, it gives me the result. This makes Node.js very efficient for handling multiple requests at the same time
 
 2. What is the Event Loop in Node.js?
-    The Event loop in Node.js is a mechanism that handles asychronous operations. It allows Node.js to perform non-blocking I/O operations ,even through Javascript is single-threaded.
+    The Event Loop is the heart of Node.js. Since Node.js runs on a single thread, it uses the Event Loop to manage all asynchronous operations. Instead of blocking and waiting (like reading a file or calling an API), Node.js hands that work to the system and continues doing other tasks. When the work is finished, the Event Loop makes sure the result or callback runs.
+
+    console.log("Start");
+
+    setTimeout(() => {
+    console.log("Inside setTimeout");
+    }, 2000);
+
+    console.log("End");
+
+    When this code runs, Node.js first prints “Start”, then schedules the setTimeout function to run after 2 seconds. It doesn’t wait — it immediately prints “End”. After 2 seconds, the Event Loop picks up the setTimeout callback and executes it, printing “Inside setTimeout”.
 
 3. What is middleware in Express.js?
-    Middleware in Express.js is a function that has access to the request object(req),response object(res) and the next middleware function in the application 's request-response cycle.
+   In Express.js, middleware is basically a function that sits between the request and the response.
+
+    When a request comes to your server, middleware can:
+        Look at the request (like check if the user is logged in, log details, parse JSON, etc.).
+        Decide whether to continue to the next middleware/route or stop and send a response.
 
     eg.  app.use()
 
@@ -21,14 +31,7 @@
         -> Static File Serving: Serve files like images, CSS, etc. (e.g., express.static).
 
 4. How does Node.js handle child Threads ?
-    Node.js handles child threads by using worker threads for parallel processing and child processes for creating independent processes. The event loop and non-blocking I/O handle most asychronous tasks, ensuring that Node.js remains efficient and fast.
-                    or,
-    Node.js uses worker threads for running tasks in parallel and child processes for creating separate processes. The event loop and non-blocking I/O handle most async tasks, keeping Node.js efficient and fast.
-
-    -> Worker Threads: Used for parallel processing, especially for CPU-intensive tasks.
-    -> Child Processes: Used to create completely independent processes, which can run separate instances of Node.js.
-    -> Event Loop: Manages asynchronous operations efficiently without blocking the main thread.
-    -> Non-blocking I/O: Ensures fast execution by delegating time-consuming tasks to the system or worker threads.
+    Node.js runs JavaScript code in a single thread but it doesn’t mean Node.js is fully single-threaded. Node.js uses a C++ library called libuv, which provides a thread pool. When you perform heavy tasks like file I/O, crypto, or compression, Node.js offloads those task  to child threads in that pool, so the main event loop remains free and non-blocking. Once the child thread finishes, the result is passed back to the main thread through a callback or a promise. This is how Node.js achieves concurrency without blocking the event loop.”
 
     Aspect	        Child Processes	                                            Worker Threads
     Definition	    Independent processes with their own memory.	            Threads within the same process sharing memory.
@@ -37,7 +40,7 @@
     Communication	Uses inter-process communication (IPC).	                    Uses message passing (via MessagePort).
 
 5. What are Streams in Node.js?
-    Streams in Node.js are a way to handle reading or writing data sequentially in chunks, rather than loading the entire data into memory. They are especially useful for working with large files, real-time data, or network communication.
+   Streams in Node.js are objects that let us read or write data piece by piece, instead of loading the whole data into memory at once. They are especially useful when dealing with large files or continuous data, like reading a video or sending logs over a network. For example, instead of reading a 1GB file fully, a stream will read it in small chunks, process them, and keep memory usage low. Node.js has four main types of streams: Readable, Writable, Duplex, and Transform.
 
     Types of Streams
         1. Readable Streams: Used to read data (e.g., fs.createReadStream for reading files).
@@ -46,7 +49,7 @@
         4. Transform Streams: A type of duplex stream that modifies or transforms data as it is read or written (e.g., zlib.createGzip for compression).
     
 6. What is  Callback hell and how can fix it?
-    Callback hell refers to a situation in programming specially in Javascript, where multiple nested callback (functions exccuted after a task is completed ) make the code difficult to read, understand and maintain
+    Callback Hell happens in Node.js when we have too many nested callbacks, usually in asynchronous code.
 
     Fix callback hell in node.js:-
 
@@ -69,45 +72,32 @@
         .catch(err => console.error(err));
     
     2. Use Async/Await
-        async function executeTasks() {
+        async function processOrder(id) {
             try {
-                const result1 = await asyncOperation1();
-                const result2 = await asyncOperation2(result1);
-                const result3 = await asyncOperation3(result2);
-                console.log(result3);
+                const user = await getUser(id);
+                const orders = await getOrders(user.id);
+                const details = await getOrderDetails(orders[0]);
+                const result = await processPayment(details);
+                console.log("Payment processed:", result);
             } catch (err) {
-                console.error(err);
+                console.error("Error:", err);
             }
         }
-
-        executeTasks();
-    
+                
     3. Modularize Functions :- Break down nested callbacks into smaller, named functions
 
 7. How do Promises improve callback handling ?
-    Promises allows us to chain asynchronous operations using .then(), making the code more linear and readable
-
-    it improves:- Readibility, Error Handling, Flexibility
+   Promises in Node.js improve callback handling by avoiding deeply nested functions (callback hell). Instead of passing a callback into every function, a Promise represents a value that will be available in the future. This allows us to chain operations using .then() and handle errors with .catch(), making code cleaner, more readable, and easier to maintain.”
 
 8. What is the purpose of package.json?
-    The package.json file servesas the central configuration file that defines important information about the project
-
-    Key Purposes of package.json:
-        1. Project Metadata:-Provides basic information about the project, such as:
-                name, version , description, author
-        
-        2. Dependency Management:Lists all the libraries and tools your project depends on, categorized as:
-                dependencies:Required for the project to run. eg. "express": "^4.18.2"
-                devDependencies: Required for development only (e.g., testing frameworks). eg.  "nodemon": "^2.0.22"
-
-        3. Scripts : Defines custom commands for automating tasks, like starting the server or running tests.
-                "start": "node index.js",
-                "test": "jest"
-
-        Entry Point:Specifies the main file of the application using the main field.
-            eg.  "main": "index.js"
+    The package.json file is the heart of any Node.js project. It stores metadata about the project, such as its name, version, description, author, and most importantly, the list of dependencies and scripts. It ensures that anyone working on the project can install the exact same dependencies with npm install. It also defines custom scripts, like start or test commands, to simplify project execution.”
+    Project Metadata → name, version, description, author.
+    Dependencies → lists required packages (dependencies and devDependencies).
+    Scripts → lets you define custom commands like npm start, npm test.
+    Version Control → ensures consistent project setup across environments.
 
 9. What is the difference between process.nextTick() and setImmediate()?
+    Both process.nextTick() and setImmediate() schedule callbacks asynchronously, but they run in different phases of the Event Loop.
 
     Feature	             process.nextTick()	                            setImmediate()
     Execution Timing
