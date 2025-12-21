@@ -1,0 +1,32 @@
+Strategy Pattern = Choose your method at runtime without changing your main code.
+        Define a family of Algorithm , put them into separate class so that they can be changed at run time.
+
+Q1. What is the Strategy Design Pattern?
+        The Strategy Pattern defines a family of algorithms (or behaviors), encapsulates each one, and makes them interchangeable at runtime.
+        It lets a class change its behavior without modifying its code, by delegating the behavior to an interface (strategy).
+
+        ➡ In your example:
+        WalkableRobot, TalkableRobot, and FlyableRobot are strategy interfaces.
+        Classes like NormalWalk, NoWalk, NormalFly, etc., are concrete strategies.
+        The Robot class uses composition to include these strategies and delegate behavior to them.
+
+Q2. How is flexibility achieved in this code?
+        By passing different strategy implementations at runtime:
+        new CompanionRobot(new NormalWalk(), new NormalTalk(), new NoFly());
+        new WorkerRobot(new NoWalk(), new NoTalk(), new NormalFly());
+
+    👉 You can easily mix and match behaviors without changing the base Robot class.
+
+Q3. How is the pattern different from inheritance-based solutions?
+        Inheritance defines behavior at compile-time, but the Strategy pattern lets you define or change behavior at runtime using composition.
+
+Q4. What kind of relationship exists between Robot and the behavior classes?
+        It’s a HAS-A relationship (composition).
+        Each Robot has a walking, talking, and flying behavior.
+
+Q5. What would happen if you directly implemented walking/talking/flying in the Robot subclasses?
+        That would lead to code duplication and rigid behavior. Each new robot type would need to reimplement the same logic instead of reusing strategy classes.
+
+Q6. Why are there multiple interfaces (WalkableRobot, TalkableRobot, etc.) instead of one?
+        To follow the Interface Segregation Principle (ISP) —
+        each interface has a single responsibility (only one type of behavior).

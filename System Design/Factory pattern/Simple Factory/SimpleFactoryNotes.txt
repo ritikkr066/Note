@@ -1,0 +1,19 @@
+In Simple Words:
+    You tell the factory what burger you want (“standard”).
+    The factory decides which class to use and creates it.
+    You don’t need to know how or which class — you just get a Burger object.
+    Then you call prepare(), and it behaves according to the burger type.
+
+Q4. What principle does this follow?
+    Encapsulation: Object creation logic is encapsulated in one class.
+    Single Responsibility Principle: The factory has the sole responsibility of creating objects.
+
+Q5. What are the drawbacks of Simple Factory?
+    ❌ Violates Open/Closed Principle — if you add a new burger type, you must modify the factory code.
+    ❌ Factory can grow large if too many types are handled.
+
+Structure : 
+    Interface → Concrete Classes → Factory → Client
+
+Eg. 
+    Client → BurgerFactory.createBurger("standard") → returns new StandardBurger()

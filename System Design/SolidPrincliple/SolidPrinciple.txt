@@ -1,0 +1,34 @@
+Problems : 
+    Maintainability
+    Readibility
+    Bugs
+
+SOLID 
+    S: Single responsibility principle(SRP)
+    O: Open-close principle (OCP)
+    L: Liskov Substituition principle (LSP)
+    I: Interface Segragation principle (ISP)
+    D: Dependecy Inversion principle(DIP)
+
+S : Single Responsibility Principle 
+    A class should have only one reason to change
+    A class should do only one thing 
+    Meaning: Each class should handle only one functionality or responsibility.
+
+O : Open- close Principle
+    A class should open for extension but close for modification
+    Meaning: You should be able to add new features without modifying existing code.
+
+L : Liskov Substituition Principle
+    subclass should be Substituition for their base classes.
+    Meaning: If class B is a child of class A, then objects of A should be replaceable with B without breaking functionality.
+
+I : Interface Segregation Principle
+    Many client specific are better than one general purpose interface.
+    Clients should not be forced to depend on methods they do not use.
+    Meaning: Create smaller, specific interfaces instead of one big interface.
+
+D : Dependecy Inversion Principle
+    High level module should not depend on low level module but rather both should depend on abstraction.
+    Meaning: Code should depend on interfaces/abstractions rather than concrete classes.
+

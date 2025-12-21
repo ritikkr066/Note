@@ -52,3 +52,5 @@
         ROW_NUMBER() OVER (ORDER BY columnY) AS row_num
         //  ROW_NUMBER() OVER (PARTITION BY dept_id ORDER BY salary DESC) AS row_num
     FROM table_name;
+
+15.

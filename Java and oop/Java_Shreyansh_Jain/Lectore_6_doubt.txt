@@ -1,0 +1,16 @@
+Primitive and non-Primitive(Reference-type)
+    | Feature             | Primitive   | Reference           |
+    | ------------------- | ---------   | ------------------- |
+    | Stores value        | Directly    | Address (reference) |
+    | Null allowed        | ❌          | ✅                 |
+    | Methods             | ❌          | ✅                 |
+    | Used in OOP         | ❌          | ✅                 |
+    | Used in Collections | ❌          | ✅                 |
+    | Memory              | Stack       | Heap                |
+    | Speed               | Fast        | Slightly slower     |
+
+
+Q. So does constructor “return” the object?
+
+    👉 Yes — but not explicitly by you.
+    It implicitly returns the reference of the object created by new.
