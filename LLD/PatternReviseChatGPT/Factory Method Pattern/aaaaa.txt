@@ -1,0 +1,27 @@
+Factory Method defines an interface for creating objects, but lets subclasses decide which class to instantiate.
+2️⃣ Structure (MEMORIZE THIS DIAGRAM LOGIC)
+Client
+   |
+Creator (abstract class)
+   |
+ConcreteCreatorA  ---> ProductA
+ConcreteCreatorB  ---> ProductB
+
+Factory Method replaces conditional logic with polymorphism.
+
+Q1. Where is the factory method?
+    protected abstract Notification createNotification();
+
+Q2. Why is it protected, not public?
+    So subclasses can override it, but client cannot directly call it.
+
+Q3. Why abstract class instead of interface?
+    Because creator contains shared business logic (notifyUser) in addition to the factory method.
+
+Q4. Does this follow SOLID?
+    ✔ OCP – new type → new subclass
+    ✔ DIP – depends on abstraction
+    ✔ SRP – creation separated
+
+Factory Method Pattern defines an interface for object creation, but lets subclasses decide which class to instantiate.
+It eliminates conditional logic and supports Open–Closed Principle using polymorphism.

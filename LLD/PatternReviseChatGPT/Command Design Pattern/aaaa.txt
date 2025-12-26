@@ -1,0 +1,30 @@
+Command Pattern encapsulates a request as an object, allowing you to parameterize clients, queue requests, and support undo/redo.
+
+3️⃣ What happens when you press the button
+    remote.press(button);
+
+    Step-by-step
+        Remote says:
+        “I don’t know what this does, I’ll just call execute()”
+        LightOnCommand.execute() is called
+        Inside:
+        livingRoomLight.on();
+        Light turns ON 💡
+        Remote is decoupled from Light.
+
+4️⃣ Undo — why this is powerful
+    remote.undo();
+
+    What happens?
+        Remote remembers last executed command
+        Calls:
+        lastCommand.undo();
+        LightOnCommand.undo():
+        livingRoomLight.off();
+        Light turns OFF ❌💡
+        Real life:
+        You press “undo” on remote → last action is reversed
+
+Command pattern is not only for undo.
+Undo is optional.
+Command’s real purpose is decoupling sender from receiver.

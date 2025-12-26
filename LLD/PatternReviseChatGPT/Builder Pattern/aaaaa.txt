@@ -1,0 +1,42 @@
+Does Builder make sense without Pizza?
+❌ No
+✔️ It exists only to create Pizza
+    That’s the biggest reason it’s nested.
+    Nested class = “logically belongs to outer class”
+
+4️⃣ Why is Pizza constructor private?
+    private Pizza(Builder builder)
+
+    This ensures:
+    Pizza can be created only via Builder
+    No half-baked objects
+
+How can Builder call a private constructor?
+    👉 Because it’s inside the same class
+    This is intentional design, not coincidence.
+
+5️⃣ Why Builder is static nested class (important)
+    public static class Builder
+
+    Why static?
+    Builder does NOT need an existing Pizza instance
+    It avoids holding implicit reference to Pizza
+
+Static nested classes are accessed using:
+    OuterClass.InnerClass // new Pizza.Builder()
+
+
+3️⃣ What happens step-by-step (important for confidence)
+    new Pizza.Builder()
+        ✔ Creates an empty builder object
+    .size("L")
+        ✔ Sets builder.size = "L"
+    .addCheese()
+        ✔ Sets cheese = true
+    .build()
+        calls new Pizza(this)
+    
+    ✔ Pizza constructor copies values from builder
+    ✔ Final immutable object created
+
+“Builder postpones object creation until all configuration is done.”

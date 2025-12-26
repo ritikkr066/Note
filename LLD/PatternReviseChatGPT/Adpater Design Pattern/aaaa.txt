@@ -1,0 +1,58 @@
+“How do you make two incompatible interfaces work together?”
+    Adapter Pattern converts the interface of a class into another interface that the client expects
+
+2️⃣ Problem It Solves (Why we need it)
+    You have:
+    Existing code (client)
+    Third-party / legacy class
+    Interfaces don’t match
+    ❌ You cannot modify either
+    ✅ Adapter acts as a bridge
+
+3️⃣ Real-World Analogy (Easy Recall)
+    Charger adapter 🔋
+    Plug ≠ Socket → Adapter makes them compatible
+
+4️⃣ Structure
+Client → Target Interface
+              ↑
+           Adapter
+              ↑
+         Adaptee (existing class)
+
+
+5️⃣ Now explain that line step-by-step
+    new PayPalService()
+    ✔ Creates PayPal’s object
+    ✔ This class is not compatible with PaymentGateway
+
+    new PayPalAdapter(new PayPalService())
+    ✔ Creates adapter
+    ✔ Injects PayPalService into it
+    ✔ Adapter wraps PayPalService
+    ✔ Adapter becomes compatible with PaymentGateway
+
+    PaymentGateway gateway =
+        new PayPalAdapter(new PayPalService());
+    gateway.pay(500);
+    Your system talks to PaymentGateway
+    Adapter talks to PayPal
+    PayPal remains unchanged
+
+6️⃣ Why not create PayPalService inside Adapter?
+    class PayPalAdapter {
+        PayPalAdapter() {
+            this.payPalService = new PayPalService(); // ❌
+        }
+    }
+
+    Problems:
+        Adapter tightly coupled to PayPal
+        Cannot mock/test
+        Cannot swap implementation
+        Violates Dependency Inversion
+        Passing it in constructor = dependency injection ✅
+
+class PayPalAdapter implements PaymentGateway {
+    private PayPalService payPalService;   // PayPalAdapter HAS a PayPalService
+}

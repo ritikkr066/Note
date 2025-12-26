@@ -1,0 +1,28 @@
+“How do you simplify a complex system for clients?”
+    Facade Pattern provides a simplified interface to a complex subsystem.
+
+2️⃣ Problem It Solves (Why we need it)
+    Inventory inventory = new Inventory();
+    Payment payment = new Payment();
+    Shipping shipping = new Shipping();
+
+    if (inventory.checkStock()) {
+        payment.makePayment();
+        shipping.shipOrder();
+    }
+
+    we do : Book ticket
+    we don't do :Check seat
+                Reserve seat
+                Pay
+                Generate ticket
+                Send email
+
+3️⃣ Structure (IMPORTANT)
+    Client → Facade → Subsystem Classes
+        Client knows only Facade
+        Subsystems remain unchanged
+
+❓ “Does Facade add new functionality?”
+❌ No
+✔ It only organizes and simplifies access

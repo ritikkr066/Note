@@ -1,0 +1,49 @@
+“How do you treat individual objects and groups of objects uniformly?”
+    Composite Pattern lets clients treat individual objects and compositions of objects uniformly.
+
+Sometimes you want to treat a single object and a group of objects in the same way.
+
+2️⃣ WITHOUT Composite
+    What if:
+    Folder contains another folder?
+    Or folder contains mix of files + folders?
+
+        if (item instanceof File) { ... }
+        else if (item instanceof Folder) { ... }
+    
+    client code become :
+        if(obj is File) {
+            file.showSize();
+        } else {
+            folder.showSize();
+        }
+
+    💥 Problems:
+    Client must know type
+    instanceof everywhere
+    Code breaks when new types added
+    Violates Open–Closed Principle
+
+3️⃣ Structure
+    Component (interface)
+    |
+    Leaf (single object)
+    |
+    Composite (group of components)
+
+
+4️⃣ MAGIC moment ✨
+    👉 File and Folder are both FileSystem
+    FileSystem x = file OR folder;
+    x.showSize(); // SAME CALL
+
+    💡 Client does not care if it's:
+        Single object (File)
+        Group of objects (Folder)
+
+Company structure
+    Employee → single
+    Department → group of employees
+        both have getSalary()
+
+

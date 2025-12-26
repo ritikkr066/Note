@@ -1,0 +1,6 @@
+Observer Pattern establishes a one-to-many relationship where observers are notified automatically when subject state changes. It promotes loose coupling and is commonly used in event-driven systems.
+
+👉 Implement:
+Stock (Subject)
+Observers: MobileApp, WebDashboard
+Update on price change

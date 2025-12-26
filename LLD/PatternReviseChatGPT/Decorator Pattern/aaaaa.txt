@@ -1,0 +1,61 @@
+Decorator Pattern dynamically adds new behavior to an object by wrapping it, without modifying its class.
+
+A decorator “is-a” component and also “has-a” component
+
+Structure
+    Component (interface)
+    |
+    ConcreteComponent
+    |
+    Decorator (abstract)  ---> wraps Component
+    |
+    ConcreteDecorators
+
+#Decorator enhances behavior; Strategy changes behavior.
+
+Decorator Pattern allows adding new functionality to an object dynamically by wrapping it. It avoids subclass explosion and follows Open-Closed Principle using composition.
+
+Coffee coffee =
+    new SugarDecorator(
+        new MilkDecorator(
+            new SimpleCoffee()
+        )
+    );
+
+2️⃣ Two different phases (this is the key insight)
+    🟦 Phase 1: Object creation (INSIDE → OUTSIDE)
+    This happens at construction time.
+    Creation order:
+        new SimpleCoffee()
+        → new MilkDecorator(SimpleCoffee)
+        → new SugarDecorator(MilkDecorator)
+    Creation works from inside to outside
+
+    🟩 Phase 2: Method execution (OUTSIDE → INSIDE → OUTSIDE)
+    This happens when you call a method. // coffee.cost();
+
+        SugarDecorator.cost()
+            → MilkDecorator.cost()
+                → SimpleCoffee.cost()
+            ← MilkDecorator adds cost
+        ← SugarDecorator adds cost
+    
+    Execution:
+    SugarDecorator says:
+    👉 “Let me ask inner coffee first”
+    MilkDecorator says:
+    👉 “Let me ask inner coffee first”
+    SimpleCoffee returns 50
+    MilkDecorator adds +10 → 60
+    SugarDecorator adds +5 → 65
+    ✔ Final result: 65
+
+    coffee.getDescription();
+    //Execution
+        Sugar → Milk → Simple
+        Simple returns "Simple Coffee"
+        Milk adds ", Milk"
+        Sugar adds ", Sugar"
+    
+    //Result
+        "Simple Coffee, Milk, Sugar"

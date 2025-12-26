@@ -1,0 +1,16 @@
+Key idea:
+👉 Client injects behavior
+👉 Context doesn’t create objects
+
+Strategy
+Behavior chosen by client
+Decided at runtime
+Easily switchable
+
+6️⃣ Real-Life Analogy (Best memory trick)
+Factory Method 🏭
+    You go to a restaurant.
+    Chef decides how the dish is made.
+
+Strategy 🧠
+    You choose cooking style: fried / baked / grilled.
