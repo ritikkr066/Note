@@ -1,0 +1,43 @@
+1️⃣ First: what problem does Bridge solve?
+    👉 When one thing varies in TWO dimensions and inheritance explodes.
+    Example:
+        Shapes → Circle, Square
+        Colors → Red, Blue
+
+2️⃣ The core idea
+    Bridge separates “what an object is” from “how it is implemented.”
+    Abstraction → what
+    Implementor → how
+
+    They are connected by composition (has-a).
+
+3️⃣ Diagram
+    Abstraction ─── has ───► Implementor
+     ↑                      ↑
+    RefinedAbstraction   ConcreteImplementor
+
+
+abstract class Shape {
+    protected Color color;   // 🔥 bridge
+}
+
+Shape and Color vary independently
+No class explosion
+New color? → no change in shapes
+New shape? → no change in colors
+
+🔥 THIS is Bridge.
+
+Strategy(Behavior)
+Payment payment = new Payment(new CreditCard());
+payment.pay();
+    Payment is same
+    Algorithm changes (Card / UPI / PayPal)
+    Runtime switching
+
+5️⃣ Bridge (two dimensions)
+Shape circle = new Circle(new Red());
+Shape square = new Square(new Blue());
+    Shape hierarchy grows
+    Color hierarchy grows
+    Both evolve independently

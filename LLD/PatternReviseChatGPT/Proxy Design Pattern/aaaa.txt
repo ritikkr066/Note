@@ -1,0 +1,38 @@
+“How do you control access to an object?”
+“How do you add lazy loading, caching, or security without changing the real class?”
+    Proxy Pattern provides a surrogate or placeholder for another object to control access to it.
+
+3️⃣ Core Idea (IMPORTANT)
+    Client talks to Proxy, not the real object
+    Proxy decides when / how to forward the call
+
+4️⃣ Structure
+    Client → Subject (interface)
+             ↑
+         Proxy
+             ↑
+        RealSubject
+
+What it means (in 1 minute)
+    Client talks only to Subject interface
+    Proxy and RealSubject both implement Subject
+    Proxy stands in front of RealSubject
+    Proxy controls access to RealSubject
+    👉 Client doesn’t know (or care) whether it’s talking to Proxy or Real object.
+
+Why Proxy exists
+    Add extra behavior without changing RealSubject
+
+Examples of extra behavior:
+    Access control
+    Lazy loading
+    Caching
+    Logging
+    Network call handling
+
+
+Practice Task (IMPORTANT)
+👉 Implement Bank Account Proxy
+BankAccount
+RealBankAccount
+SecurityProxy (check PIN before withdraw)

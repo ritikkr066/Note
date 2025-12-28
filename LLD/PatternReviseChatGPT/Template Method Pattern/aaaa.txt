@@ -1,0 +1,38 @@
+👉 When the overall algorithm is fixed, but some steps can vary.
+    Same flow
+    Different implementations of some steps
+
+Template Method Pattern defines the skeleton of an algorithm in a base class and lets subclasses override specific steps without changing the overall structure.
+
+diagram
+    AbstractClass
+    ├── templateMethod()  ← final
+    ├── step1()
+    ├── step2()  ← abstract
+    └── hook()   ← optional
+
+3️⃣ templateMethod() (WHY final?)
+    🔒 final means:
+        Child class CANNOT change order
+        Algorithm is protected
+
+        Interview line:
+        “Template method defines the skeleton of the algorithm.”
+
+4️⃣ step1() (common behavior)
+    void step1() {
+        System.out.println("Common step");
+    }
+    Same for all subclasses
+
+5️⃣ step2() (abstract = must implement)
+    abstract void step2();
+    
+    Different for each subclass
+    Child must define it
+
+6️⃣ hook() (optional override)
+    void hook() {
+        // do nothing
+    }
+    Child may override, Child may ignore

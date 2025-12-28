@@ -1,0 +1,22 @@
+Traverse a collection without knowing how it’s implemented.
+
+3️⃣ Iterator Solution (Core idea)
+    Collection provides an iterator
+    Client uses same interface to traverse
+    Internal structure remains hidden
+
+    Client → Iterator → Collection
+
+4️⃣ Structure
+    Iterator        Collection
+    --------        ----------
+    hasNext()       createIterator()
+    next()
+
+6️⃣ What problem did this solve?
+    ✔ Client doesn’t know:
+        Array or List?
+        Index logic?
+        Storage details?
+
+    ✔ Collection controls traversal logic

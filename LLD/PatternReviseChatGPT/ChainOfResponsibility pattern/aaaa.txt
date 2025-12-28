@@ -1,0 +1,26 @@
+Chain of Responsibility pattern lets you pass a request along a chain of handlers. Each handler decides either to handle the request or pass it to the next handler.
+
+👉 Sender does not know which handler will process the request.
+
+2️⃣ Real-life analogy
+    Example: Customer Support System
+        Level 1: Chatbot
+        Level 2: Support Executive
+        Level 3: Manager
+
+    A complaint comes:
+        If chatbot can solve → done
+        Else → forward to executive
+        Else → manager
+
+    💡 This forwarding is Chain of Responsibility
+
+3️⃣ When should YOU use it?
+    Use CoR when:
+        Multiple objects can handle the same request
+        You don’t want if-else chains
+        You want to add/remove handlers easily
+        Order of processing matters
+
+4️⃣ Structure
+    Client → Handler1 → Handler2 → Handler3
