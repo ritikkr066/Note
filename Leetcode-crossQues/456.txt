@@ -1,0 +1,2 @@
+Why traverse from right?
+    We traverse from the right because the pattern requires i < j < k, and when scanning from right to left, we can treat each element as a potential j while already having full knowledge of all possible k values to its right. This allows us to efficiently check whether a valid i exists

@@ -1,0 +1,20 @@
+QuickSelect
+    Average Time Complexity: ✅ O(n)
+    Worst Case Time Complexity: ❌ O(n²)
+    Space Complexity: ✅ O(1) (in-place)
+
+Even though partitioning takes O(n), we only recurse (or iterate) on one side of the array, not both.
+total work : n + n/2 + n/4 + ... ≈ 2n → O(n)
+
+Why Worst Case is O(n²)
+    Worst case happens when:
+    Pivot is always the smallest or largest element
+    Array is already sorted (or reverse sorted)
+    You always shrink by only 1 element
+
+    n + (n-1) + (n-2) + ... + 1 = O(n²)
+
+How to Fix Worst Case
+    Use randomized pivot
+        int pivotIndex = l + rand.nextInt(r - l + 1);
+        swap(nums, l, pivotIndex);

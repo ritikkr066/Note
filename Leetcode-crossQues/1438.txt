@@ -1,0 +1,4 @@
+Why two deques needed?
+    We need two deques because at any moment we must know both the maximum and the minimum element in the current sliding window. The condition depends on
+    max(window) − min(window) ≤ limit.
+    One monotonic deque maintains the maximum values in decreasing order, and the other maintains the minimum values in increasing order. This allows us to get both extremes in O(1) time while sliding the window, keeping the total complexity O(n).

@@ -1,0 +1,15 @@
+Why exactly-k is hard directly?
+    Exactly-k is hard because sliding window requires monotonic conditions, and exactly-k is not monotonic—both expanding and shrinking the window can break the condition. However, ‘at most k’ is monotonic and easy to count. Using the identity exactly(k) = atMost(k) − atMost(k−1), we convert the problem into two easy sliding window problems.”
+
+
+Sliding window works best for:
+    👉 monotonic conditions
+    Examples:
+        sum ≤ k
+        at most k distinct
+        at most k odd numbers
+        Because when the condition breaks:
+        moving left always fixes it
+        window size moves in one direction
+
+Even when oddCount equals k, we may still need to shrink because multiple valid subarrays can end at the same right index, and sliding window cannot count them cleanly.

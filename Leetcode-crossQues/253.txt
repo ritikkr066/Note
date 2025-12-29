@@ -1,0 +1,12 @@
+Can this be done without heap?
+    Optimal WITHOUT Heap → Two Pointer / Sweep Line
+    Instead of tracking rooms explicitly, we track how many meetings are going on at the same time.
+
+    Steps
+    Sort start[]
+    Sort end[]
+    Use two pointers:
+    i → start times
+    j → end times
+    If a meeting starts before the earliest ending meeting finishes → need a new room
+    Otherwise → a room gets freed

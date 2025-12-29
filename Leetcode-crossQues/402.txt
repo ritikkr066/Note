@@ -1,0 +1,2 @@
+Why removing from left is optimal?
+    Removing from the left is optimal because digits on the left have higher place value and impact the number more than digits on the right. If a larger digit appears before a smaller digit, keeping it would make the number unnecessarily large. So, whenever a digit is greater than the digit after it, removing that left digit allows the smaller digit to move to a more significant position, producing a smaller number overall. This greedy choice ensures the leftmost digits are minimized first, which guarantees the smallest possible result.

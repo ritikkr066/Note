@@ -1,0 +1,11 @@
+Why do we use a strictly increasing stack in LeetCode 907?
+    “We use a strictly increasing monotonic stack to efficiently find the nearest smaller elements on both sides.
+    The strictness is required to handle duplicate values correctly and avoid double counting subarrays.
+    By making one side strict and the other non-strict, we assign each subarray to exactly one index.”
+
+If interviewer asks “why increasing?”
+    “An increasing stack allows us to quickly find the previous smaller and next smaller element for every index in linear time, which lets us count how many subarrays consider this element as the minimum.”
+
+If interviewer asks “why strict?”
+    “If we don’t use strict comparison, duplicate values will either over-count or under-count subarrays.
+    Strictness acts as a tie-breaker so only one occurrence among duplicates is responsible for shared subarrays.”

@@ -1,0 +1,9 @@
+Why binary search is worse here?
+    1️⃣ Binary Search approach
+        For each i:
+        Binary search for target − nums[i] in the remaining array
+
+        Time complexity: O(n log n)
+    Although binary search works, it performs an extra log n search for every element. Since the array is sorted, we can exploit the ordering more efficiently using two pointers, solving the problem in linear time instead of n log n.
+
+        

@@ -1,0 +1,2 @@
+Why leftMax/rightMax works?
+    Water trapped at any position depends on the tallest bars to its left and right. Since water spills over the shorter side first, the maximum water height is the minimum of leftMax and rightMax. Subtracting the bar height gives trapped water. This principle allows both the prefix/suffix max solution and the optimized two-pointer approach.
