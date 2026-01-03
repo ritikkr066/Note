@@ -1,0 +1,30 @@
+State Pattern allows an object to change its behavior when its internal state changes, without using if-else conditions.
+
+“Behavior changes automatically when state changes.”
+
+3️⃣ State Pattern Solution (Core idea)
+    Each state is a class
+    Context holds current state
+    State itself decides next behavior
+
+4️⃣ Structure
+    Context ── has ──► State (interface)
+                            ↑
+                    ConcreteStateA
+                    ConcreteStateB
+
+    Context: object whose behavior changes
+    State: interface defining behavior
+    ConcreteState: behavior for each state
+
+
+8️⃣ State vs Strategy (IMPORTANT)
+    | State                          | Strategy                  |
+    | ------------------------------ | ------------------------- |
+    | Behavior changes automatically | Behavior chosen by client |
+    | State transitions inside       | No transitions            |
+    | Represents object lifecycle    | Represents algorithm      |
+
+🧠 Rule:
+    If object moves between modes → State
+    If you choose algorithm → Strategy

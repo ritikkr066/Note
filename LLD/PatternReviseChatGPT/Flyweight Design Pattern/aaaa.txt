@@ -1,0 +1,48 @@
+1️⃣ The core problem Flyweight solves
+    👉 Too many similar objects → huge memory waste
+
+Example:
+    1,00,000 bullets in a game
+    1,00,000 characters in a text editor
+    1,00,000 map tiles
+If each object stores duplicate data, memory explodes.
+
+Share common (intrinsic) data and pass changing (extrinsic) data from outside
+
+3️⃣ Intrinsic vs Extrinsic
+    Intrinsic (shared, stored once)
+        Color
+        Texture
+        Font
+        Shape
+        Weapon type
+
+    Extrinsic (changes per object)
+        Position (x, y)
+        Speed
+        Health
+        Rotation
+        Size
+    🚨 Flyweight stores ONLY intrinsic data
+
+4️⃣ Real-life analogy 🧠
+    Google Docs typing text
+    Font = Times New Roman (same)
+    Size = 12 (same)
+    Color = Black (same)
+
+    But:
+    Position of each character is different
+    Google does not create full object per character.
+    That’s Flyweight.
+
+5️⃣ WITHOUT Flyweight ❌ (wasteful)
+    class Bullet {
+        String color;
+        String texture;
+        int x, y;
+    }
+    100k bullets → 100k textures in memory ❌
+
+6️⃣ WITH Flyweight ✅
+    code...

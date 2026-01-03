@@ -1,0 +1,18 @@
+1️⃣ The core problem Visitor solves
+    “I have a stable object structure, but I want to add NEW OPERATIONS on it without modifying the objects.”
+
+Key point:
+    Objects don’t change
+    Operations change frequently
+    This is the opposite of Strategy.
+
+2️⃣ Real-life analogy (lock it in)
+    Think of:
+        A hospital
+        Patients = elements
+        Doctors = visitors
+    Patients don’t change when:
+        Surgeon visits
+        Physician visits
+        Insurance auditor visits
+        Each visitor performs different operations on the same patient.

@@ -1,0 +1,35 @@
+1️⃣ The core problem Mediator solves
+❌ Without Mediator (tight coupling)
+Imagine components directly talking to each other:
+    class User {
+        public void sendMessage(String msg, ChatRoom room) {
+            room.showMessage(this, msg);
+        }
+    }
+But internally:
+    User knows ChatRoom
+    ChatRoom knows all Users
+    Users may start talking to each other directly
+As system grows:
+    Too many connections
+    Hard to change behavior
+
+2️⃣ Real-world analogy (BEST for interviews)
+    ✈️ Air Traffic Control (ATC)
+        Planes do not talk to each other
+        Every plane talks only to ATC
+        ATC coordinates land, takeoff, routes
+    👉 ATC = Mediator
+    👉 Planes = Colleagues
+    If one plane leaves → others don’t care.
+
+Mediator Pattern defines an object that encapsulates how a set of objects interact, promoting loose coupling by preventing objects from referring to each other explicitly.
+
+Objects talk to mediator, not to each other.
+
+4️⃣ When you NEED Mediator (interview trigger)
+
+Use Mediator when:
+    Many objects communicate with each other
+    Communication logic becomes complex
+    You want to avoid many-to-many dependencies

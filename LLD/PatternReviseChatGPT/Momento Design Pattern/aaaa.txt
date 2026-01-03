@@ -1,0 +1,42 @@
+Memento Pattern captures and stores an object’s internal state so that it can be restored later without violating encapsulation.
+
+“Save and restore state (Undo/Redo).”
+
+2️⃣ Why do we need Memento? (The problem)
+    Examples:
+    Undo / Redo in editor
+    Game save / load
+    Transaction rollback
+
+    ❌ If client accesses internal state directly → breaks encapsulation
+    ❌ Complex manual backups
+
+3️⃣ Memento Solution (Core idea)
+    Originator → object whose state we save
+    Memento → snapshot of state
+    Caretaker → manages history
+
+    Caretaker → Memento ← Originator
+        Caretaker never modifies memento.
+
+4️⃣ Structure
+    Originator ── creates ──▶ Memento
+    ▲                         │
+    └──── restores ◀──────────┘
+    Caretaker (stores mementos)
+
+    4️⃣ Role 1: Originator (the real object)
+        Has internal state
+        Knows how to save & restore itself
+    
+    Role 2: Memento (snapshot of state)
+        This stores a copy of Originator’s state.
+        Important:
+            State is immutable
+            No business logic
+            No setters
+
+    Role 3: Caretaker (the manager)
+        stores mementos
+        Does NOT inspect them
+    Caretaker must never modify memento.

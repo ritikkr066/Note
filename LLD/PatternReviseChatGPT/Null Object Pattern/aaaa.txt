@@ -1,0 +1,12 @@
+Null Object Pattern provides a non-null object that implements the same interface but does nothing, avoiding null checks.
+
+“Replace null with a real object that does nothing.”
+
+2️⃣ Why do we need Null Object? (The problem)
+if (user != null) {
+    user.sendNotification();
+}
+    Problems:
+    Repeated null checks
+    Risk of NullPointerException
+    Messy code

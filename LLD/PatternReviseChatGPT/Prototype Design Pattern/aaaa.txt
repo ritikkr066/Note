@@ -1,0 +1,19 @@
+1️⃣ What problem does Prototype actually solve?
+    Prototype answers one specific question:
+    ❓ “Object creation is expensive or complex — can I create new objects by copying an existing one instead of building from scratch?”
+
+If creation is:
+    Heavy (DB calls, API calls, file reads)
+    Complex (many fields, nested objects)
+    Repetitive (same configuration again and again)
+
+    👉 Prototype is useful
+
+6️⃣ Shallow vs Deep Copy (VERY IMPORTANT)
+🔹 Shallow Copy
+    Copies references
+    Changes affect original
+
+🔹 Deep Copy
+    Copies actual objects
+    Fully independent
