@@ -1,0 +1,26 @@
+STEP 1: Clarify Requirements
+Assumptions (we can extend later)
+    Building has:
+        N floors
+        M elevators (lifts)
+
+    Each elevator:
+        Can move UP / DOWN / IDLE
+        Can serve one request at a time
+
+    User:
+        Presses UP or DOWN button on a floor
+
+    System:
+        Assigns best elevator to the request
+
+
+Main classes we clearly need
+    Elevator
+    ElevatorController / ElevatorSystem
+    Request
+    Direction (enum)
+
+Q. “Why queue in Elevator?”
+    “Each elevator is an independent entity with its own pending requests.
+    This avoids tight coupling and makes system scalable.”
