@@ -1,0 +1,3 @@
+enum ElevatorState {
+    IDLE, MOVING
+}

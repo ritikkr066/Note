@@ -1,5 +1,6 @@
 enum Direction{
     UP,
     DOWN,
-    IDLE
+    IDLE,
+    NONE
 }
