@@ -1,0 +1,4 @@
+enum StopType {
+    PICKUP,
+    DROPOFF
+}

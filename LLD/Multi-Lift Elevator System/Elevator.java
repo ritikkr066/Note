@@ -1,95 +1,86 @@
 import java.util.Collections;
-// import java.util.LinkedList;
-// import java.util.Queue;
-import java.util.TreeSet;
+import java.util.Random;
+import java.util.TreeMap;
 
 class Elevator implements Runnable{
     int id;
     int currentFloor;
     ElevatorState state = ElevatorState.IDLE;
     Direction direction =  Direction.NONE;
-    // Queue<Integer>requests;
-    TreeSet<Integer>upRequests;
-    TreeSet<Integer>downRequests;
+    TreeMap<Integer,StopType>upRequests;
+    TreeMap<Integer,StopType>downRequests;
 
-    static final int MIN_FLOOR = 0;
-    static final int MAX_FLOOR = 10;
+    private final int minFloor;
+    private final int maxFloor;
 
-    
-
-
-
-        public Elevator(int id){
+        public Elevator(int id,int minFloor,int maxFloor){
             this.id=id;
             this.currentFloor=0;
             this.direction=Direction.IDLE;
-            // requests=new LinkedList<>();
-            this.upRequests = new TreeSet<>();
-            this.downRequests = new TreeSet<>(Collections.reverseOrder());
+            this.minFloor = minFloor;
+            this.maxFloor = maxFloor;
+    
+            this.upRequests = new TreeMap<>();
+            this.downRequests = new TreeMap<>(Collections.reverseOrder());
         }
     
-        public synchronized void addRequest(int floor){
+        public synchronized void addPickupRequest(int floor, Direction reqDirection){
             if (floor == currentFloor) {
                 System.out.println("Elevator " + id +
                     " already at floor " + floor + " — doors opened");
+                
+                onPassengerEntered();
                 return;
             }
-            
-            if(floor>currentFloor){
-                upRequests.add(floor);
-            }else if(floor<currentFloor){
-                downRequests.add(floor);
+
+            // 🔑 Use REQUEST direction (not relative position)
+            if (reqDirection == Direction.UP) {
+                upRequests.put(floor, StopType.PICKUP);
+            } else if (reqDirection == Direction.DOWN) {
+                downRequests.put(floor, StopType.PICKUP);
             }
+
+            // Wake up elevator if idle
             if (direction == Direction.IDLE) {
-                if (!upRequests.isEmpty()) direction = Direction.UP;
-                else if (!downRequests.isEmpty()) direction = Direction.DOWN;
+                // direction = reqDirection;
+                 if(!upRequests.isEmpty()) direction = Direction.UP;
+                else if(!downRequests.isEmpty()) direction = Direction.DOWN;
             }
-            System.out.println("Request added to Elevator " + id + 
-                           " for floor " + floor);
+
+            System.out.println(
+                "Pickup request added to Elevator " + id +
+                " for floor " + floor +
+                " direction " + reqDirection
+            );
                            
         }
 
-        // public void move() {
-        //     if (direction == Direction.UP) {
-        //         processUpRequests();
-        //     } else if (direction == Direction.DOWN) {
-        //         processDownRequests();
-        //     } else {
-        //         System.out.println("Elevator " + id + " is IDLE");
-        //     }
-        // }
+        public synchronized void addInternalRequest(int floor) {
+            if (floor < minFloor || floor > maxFloor) {
+                System.out.println(
+                    "Invalid internal request " + floor +
+                    " for Elevator " + id
+                );
+                return;
+            }
 
-        // private void processUpRequests() {
-        //     if (upRequests.isEmpty()) {
-        //         direction = !downRequests.isEmpty() ? Direction.DOWN : Direction.IDLE;
-        //         return;
-        //     }
+            if (floor == currentFloor) {
+                // System.out.println("Elevator " + id +
+                //     " already at floor " + floor + " ? doors opened");
 
-        //     int nextFloor = upRequests.pollFirst();
-        //     moveTo(nextFloor);
-        // }
-    
-        // private void processDownRequests() {
-        //     if (downRequests.isEmpty()) {
-        //         direction = !upRequests.isEmpty() ? Direction.UP : Direction.IDLE;
-        //         return;
-        //     }
+                // onPassengerEntered();
+                return;
+            }
 
-        //     int nextFloor = downRequests.pollFirst();
-        //     moveTo(nextFloor);
-        // }
+            if (floor > currentFloor) {
+                upRequests.put(floor,StopType.DROPOFF);
+            } else {
+                downRequests.put(floor,StopType.DROPOFF);
+            }
 
-        // private void moveTo(int floor) {
-        //     System.out.println("Elevator " + id +
-        //         " moving " + direction +
-        //         " from " + currentFloor +
-        //         " to " + floor);
-
-        //     currentFloor = floor;
-
-        //     System.out.println("Elevator " + id +
-        //         " reached floor " + currentFloor);
-        // }
+            System.out.println("Elevator " + id +
+                " internal request added for floor " + floor);
+        }
 
         public synchronized void step() {
 
@@ -105,12 +96,57 @@ class Elevator implements Runnable{
             if (direction == Direction.IDLE) {
                 if (!upRequests.isEmpty()) direction = Direction.UP;
                 else if (!downRequests.isEmpty()) direction = Direction.DOWN;
-                else return; // nothing to do
+                else {
+                    state = ElevatorState.IDLE;
+                    return; 
+                }// nothing to do
+                // 🚫 Do NOT move if no requests in current direction
+                
             }
+
+            if (direction == Direction.UP && upRequests.isEmpty()) {
+                    if (!downRequests.isEmpty()) {
+                        direction = Direction.DOWN;
+                    } else {
+                        direction = Direction.IDLE;
+                        state = ElevatorState.IDLE;
+                        return;
+                    }
+                }
+
+                if (direction == Direction.DOWN && downRequests.isEmpty()) {
+                    if (!upRequests.isEmpty()) {
+                        direction = Direction.UP;
+                    } else {
+                        direction = Direction.IDLE;
+                        state = ElevatorState.IDLE;
+                        return;
+                    }
+                }
+            if (direction == Direction.UP && currentFloor == maxFloor) {
+                if (!downRequests.isEmpty()) {
+                    direction = Direction.DOWN;
+                } else {
+                    direction = Direction.IDLE;
+                    state = ElevatorState.IDLE;
+                }
+                return;
+            }
+
+            if (direction == Direction.DOWN && currentFloor == minFloor) {
+                if (!upRequests.isEmpty()) {
+                    direction = Direction.UP;
+                } else {
+                    direction = Direction.IDLE;
+                    state = ElevatorState.IDLE;
+                }
+                return;
+            }
+
 
             // Move ONE floor
             if (direction == Direction.UP) {
-                if (currentFloor == MAX_FLOOR) {
+                if (currentFloor == maxFloor) {
                     direction = Direction.DOWN;
                     return;
                 }
@@ -119,10 +155,15 @@ class Elevator implements Runnable{
                 System.out.println("Elevator " + id + " at floor " + currentFloor);
 
                 // Stop if request exists
-                if (upRequests.contains(currentFloor)) {
-                    upRequests.remove(currentFloor);
+                if (upRequests.containsKey(currentFloor)) {
+                    StopType type = upRequests.remove(currentFloor);
+                    // upRequests.remove(currentFloor);
                     System.out.println("Elevator " + id +
                         " stopped at floor " + currentFloor);
+                    
+                    if (type == StopType.PICKUP) {
+                        onPassengerEntered(); // ✅ NOW passenger boards
+                    }
                 }
 
                 // Switch direction if no more UP requests
@@ -131,7 +172,7 @@ class Elevator implements Runnable{
                 }
 
             } else if (direction == Direction.DOWN) {
-                if (currentFloor == MIN_FLOOR) {
+                if (currentFloor == minFloor) {
                     direction = Direction.UP;
                     return;
                 }
@@ -139,10 +180,14 @@ class Elevator implements Runnable{
                 currentFloor--;
                 System.out.println("Elevator " + id + " at floor " + currentFloor);
 
-                if (downRequests.contains(currentFloor)) {
-                    downRequests.remove(currentFloor);
+                if (downRequests.containsKey(currentFloor)) {
+                    StopType type=downRequests.remove(currentFloor);
                     System.out.println("Elevator " + id +
                         " stopped at floor " + currentFloor);
+                    
+                    if (type == StopType.PICKUP) {
+                        onPassengerEntered(); // ✅ NOW passenger boards
+                    }
                 }
 
                 if (downRequests.isEmpty() && !upRequests.isEmpty()) {
@@ -150,6 +195,29 @@ class Elevator implements Runnable{
                 }
             }
         }
+
+        private synchronized void onPassengerEntered() {
+            int destination = getRandomDestination();
+
+            System.out.println(
+                "Passenger boarded Elevator " + id +
+                " at floor " + currentFloor +
+                ", destination: " + destination
+            );
+
+            addInternalRequest(destination);
+        }
+
+        private synchronized int getRandomDestination() {
+            int dest;
+            do {
+                dest = minFloor +
+                    new Random().nextInt(maxFloor - minFloor + 1);
+            } while (dest == currentFloor);
+            return dest;
+        }
+
+
 
         @Override
         public void run() {
@@ -162,40 +230,4 @@ class Elevator implements Runnable{
                 System.out.println("Elevator " + id + " stopped.");
             }
         }
-
-
-        // public void step() {
-        //     if (direction == Direction.IDLE) {
-        //         if (!upRequests.isEmpty()) direction = Direction.UP;
-        //         else if (!downRequests.isEmpty()) direction = Direction.DOWN;
-        //         else return;
-        //     }
-
-        //     if (direction == Direction.UP) {
-        //         processUpRequests();
-        //     } else {
-        //         processDownRequests();
-        //     }
-        // }
-
-
-    // public void processNextRequest(){
-    //     if(requests.isEmpty()){
-    //         direction=Direction.IDLE;
-    //         return;
-    //     }
-    //     int nextFloor=requests.poll();
-        
-
-    //     System.out.println("Elevator " + id + 
-    //         " moving from " + currentFloor + 
-    //         " to " + nextFloor);
-        
-    //     currentFloor=nextFloor;
-    //     direction=Direction.IDLE;
-
-    //     System.out.println("Elevator " + id + 
-    //         " reached floor " + currentFloor);
-    // }
-
 }

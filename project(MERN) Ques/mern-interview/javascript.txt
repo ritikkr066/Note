@@ -68,7 +68,7 @@ Ans:- var is function-scoped.
 
     Session storage:- Data stored in session storage is tied to the specified session of the browser. it gets cleared when the browser tab is closed, meaning the data us available as long as the tab window is open.
 
-        eg. linkedIn, while filling form when we reload the page whole data which we filled  get disappeared.
+        eg. linkedIn,while filling form when we reload the page whole data which we filled  get disappeared. 
 
         Q.How do you store and retrieve an object in local storage?
             const user = { name: "John", age: 30 };

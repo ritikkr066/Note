@@ -3,11 +3,14 @@ import java.util.ArrayList;
 class ElevatorSystem {
     ArrayList<Elevator>elevators;
 
+    static final int MIN_FLOOR = 0;
+    static final int MAX_FLOOR = 6;
+
     public ElevatorSystem(int numberOfElevators){
         elevators=new ArrayList<>();
         for(int i=0;i<numberOfElevators;i++){
             // elevators.add(new Elevator(i));
-            Elevator e = new Elevator(i);
+            Elevator e = new Elevator(i,MIN_FLOOR, MAX_FLOOR);
             elevators.add(e);
 
             Thread t = new Thread(e);
@@ -18,7 +21,7 @@ class ElevatorSystem {
     public void handleRequest(Request request){
         Elevator bestElevator=findBestElevator(request);
         if(bestElevator!=null){
-            bestElevator.addRequest(request.floor);
+            bestElevator.addPickupRequest(request.floor,request.direction);
             //  System.out.println("Request added to Elevator " +  bestElevator.id +
             //            " for floor " + request.floor);
         }else{

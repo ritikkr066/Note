@@ -1,0 +1,85 @@
+springboot : framework , provide tool to build java application
+Spring : too much configuration , manual work
+Spring remove boilerplate code, provide helpful feature
+Springboot : Standalone application
+Maven : Maven is a build and dependency management tool for Java that automatically downloads libraries and builds your project using a pom.xml file.
+Maven automatically downloads required libraries and builds your Java project.
+        build and manage dependency
+JAR = packages Java code as a library or app
+WAR = packages Java web app for a server (like Tomcat)
+pom.xml : project object model
+<parent> : have required plugins, required dependencies
+target -jar (FAT jar) : contain compile code along with dependencies
+target -jar (original) : contain only compile code
+Tomcat is a server that runs Java web applications and handles HTTP requests.
+IoC :Inversion of Control (IoC) means Spring creates and manages objects instead of you using `new`.
+Ioc Container : IoC have Container which contains diff. objects
+ApplicationContext is the Spring container that creates, manages, and injects all objects (beans).
+@Component tells Spring to create and manage this class as an object (bean).
+    put it into IoC Container 
+@SpringBootApplication starts a Spring Boot app by enabling auto-configuration and component scanning.
+    three annotations: @Configuration + @EnableAutoConfiguration + @ComponentScan
+    (So it marks config, enables auto setup, and scans components.)
+@RestController marks a class that handles HTTP requests and returns JSON responses (not views)
+@Autowired tells Spring to automatically inject the required object (dependency).
+@GetMapping maps an HTTP GET request to a method.
+Hibernate is an ORM tool that maps Java objects to database tables, so you don’t write SQL manually.
+ORM (Object Relational Mapping) lets you work with database tables as Java objects instead of writing SQL.
+    ORM allow developers to work with databases using oops concept , making it easier to interact with Relational database
+JPA (Java Persistence API) is a Java standard specification that defines how Java objects are stored, retrieved, and managed in a database.
+    It provides a common set of annotations and interfaces so developers can work with databases using objects instead of SQL, while tools like Hibernate implement this standard and do the actual work.
+    JVA  is a way to achieve ORM , require Persistence provider(ORM tools) for implementation
+JPA Persistence provider include Hibernate.
+JPA is primarly designed for working with Relational databases. so JPA is not used with MongoDb.
+ResponseEntity lets you control HTTP status, headers, and response body in a REST API.
+Lombok reduces boilerplate code by auto-generating getters, setters, constructors, etc. using annotations.
+@DBRef is used in Spring Data MongoDB to create a reference (link) from one MongoDB document to another, similar to a foreign key in SQL.
+    When to use @DBRef : Data is very large, Updates should reflect everywhere
+    When NOT to use ❌ : High-traffic APIs , Frequently accessed relations
+@PathVariable is used to read values directly from the URL path and map them to method parameters.
+JSON to POJO deserialization means converting JSON data into a Java object automatically (usually done by Jackson in Spring Boot).
+Cascade : Cascade means when you save/delete a parent, the child documents also save/delete
+         MongoDB + Spring Boot, cascade does NOT happen automatically like JPA
+        In MongoDB, you must handle this manually in service code (or use embedded documents).
+@Transactional ensures that all database operations in a method succeed together or all are rolled back if any error occurs.
+@EnableTransactionManagement enables Spring’s transaction handling, so @Transactional works.
+MongoDatabaseFactory provides connections to the MongoDB database used internally by Spring Data MongoDB.
+Transactions work only on a MongoDB replica set (even a single-node replica set), not on a standalone server.
+Authentication is the process of verifying who the user is (e.g., login with username and password).
+Authorization is the process of deciding what an authenticated user is allowed to access (roles/permissions)
+Spring Security is a framework that handles authentication and authorization for Spring applications.
+WebSecurityConfigurerAdapter was used to configure Spring Security rules, but it is deprecated and replaced by SecurityFilterChain in newer Spring versions.
+How Remember-me works (simple):
+    User logs in and checks “Remember me”
+    Spring Security creates a remember-me cookie and sends it to the browser
+    Browser stores the cookie
+    On next visit, browser sends the cookie
+    Spring verifies it and auto-logs in the user
+    👉 No login form needed again until the cookie expires.
+http.csrf(): It means protecting your app from fake requests sent using a logged-in user’s browser.
+    Simple example:
+    If you’re logged into a site, a malicious website could secretly send a request (like money transfer) on your behalf.
+    CSRF protection stops this by checking a special token.
+
+    👉 In JWT/REST APIs, we usually disable it because there’s no browser session or cookie.
+antMatcher is used in Spring Security to match URL patterns (like /admin/**) and apply security rules to them.
+Precedence of application.properties and properties.yml : If both exist, application.properties has higher precedence than application.yml (same profile, same location).
+JUnit is a testing framework used to write and run unit tests for Java and Spring Boot code.
+assert is used in tests to check if the actual result matches the expected result.
+@CsvSource supplies multiple input values to a JUnit test, so the same test runs with different data.
+@MockBean creates a mock object in Spring’s context to replace a real bean during testing.
+.\mvnw clean package: Cleans old build files and creates a fresh JAR/WAR using Maven Wrapper, without needing Maven installed.
+Profiles in Spring Boot let you use different configurations for different environments (dev, test, prod).
+Logback is a logging framework that records application messages (info, error, debug) to console or files to help debug and monitor your Spring Boot app.
+Logger is an object used to write log messages (info, debug, error) instead of using System.out.println.
+@Slf4j is a Lombok annotation that automatically creates a Logger object so you can write logs easily without boilerplate code.
+Appender decides where logs are written (console, file, database, etc.).
+Encoder defines how the log message is formatted (time, level, class name, message) before the appender writes it.
+SonarCloud is a cloud tool that checks code quality by finding bugs, security issues, and code smells automatically.
+@JsonProperty maps a JSON field name to a Java field during request/response serialization and deserialization.
+@Service marks a class as a business logic layer component managed by Spring.
+@Value injects a value from properties or config into a Spring variable.
+@PostConstruct runs a method once after the bean is created and dependencies are injected.
+Criteria is a type-safe way to build dynamic database queries in JPA without writing SQL.
+MongoTemplate is a Spring class used to perform custom MongoDB queries and operations programmatically.
+Crons are time-based schedules used to run tasks automatically at fixed times or intervals.
