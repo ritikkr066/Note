@@ -1,0 +1,116 @@
+
+
+where do u see yourself in next 5 year ? 
+    “Sir, in the next five years, I see myself as a responsible professional with strong skills and practical experience in my field.
+
+    If I get the opportunity to join Bharat Petroleum Corporation Limited, I would like to grow within the organization, understand its operations in depth, and take on increasing responsibilities over time.
+
+    At the same time, my focus in the next few years is continuous learning and improving myself so that wherever I work, I can contribute effectively and perform my role responsibly.”
+
+
+“Why do you want to work at BPCL instead of corporate, especially when you have coding skills?”
+    “Sir, my corporate experience has helped me build my technical skills and understand how work is done in a professional environment.
+
+    But for the long term, I want to work in an organization like BPCL, where the work is at a larger scale and has a direct impact on people.
+
+    I feel in corporate roles, the work is more focused on specific products or business goals, while in BPCL, there is a mix of responsibility, real-world impact, and stability.
+
+    I believe my technical skills will still be useful here, and I would like to apply them in a more practical and meaningful way while building a long-term career.”
+
+❓ “Would you be okay working at any BPCL location?
+    “Yes sir, I am comfortable working at any location.
+
+    I understand that the job may require moving to different places, and I am open to that. I see it as a good opportunity to learn, adapt, and gain new experiences.”
+
+
+❓ “Why do you want to join BPCL?
+    “Sir, I want to join Bharat Petroleum Corporation Limited because it gives me an opportunity to work in a stable and large-scale system that impacts people directly.
+
+    As a CSE student, I am interested in how technology is used in real-world industries like energy — for things like automation, data management, and improving efficiency. I feel BPCL is a place where I can apply my technical skills in a meaningful way, not just in software products but in systems that affect daily life.
+
+    Also, I prefer a structured environment where I can learn, take responsibility, and grow over time. BPCL provides that kind of platform.
+
+    Overall, I see this as a place where I can build a long-term career while continuously learning and contributing.”
+
+how can you use ai & ml in bpcl?
+    “Sir, AI and ML can be used in Bharat Petroleum Corporation Limited in multiple practical ways.
+
+    One important use is predictive maintenance. Using ML models, we can analyze data from machines and sensors to predict failures in advance, which helps reduce downtime and maintenance cost.
+
+    Another use is in demand forecasting. By analyzing past fuel consumption data, AI can help predict future demand more accurately, which improves supply planning and reduces shortages or overstock.
+
+    AI can also be used for fraud detection and monitoring in transactions at fuel stations by identifying unusual patterns.
+
+    Additionally, in logistics, AI can help in route optimization for fuel transportation, which can save time and cost.
+
+    As a CSE student, I am interested in applying these kinds of technologies to improve efficiency and decision-making in such large-scale systems.”
+
+Can u tell me about yourself ?
+    “Good morning sir,
+
+    I am Ritik Kumar, currently in my final year of B.Tech in Computer Science from NIT Patna.
+
+    I have a good understanding of programming, data structures, and algorithms, and I regularly practice coding to improve my problem-solving skills.
+
+    I have worked on projects like TrialShopy and a Hospital Management System, where I handled both frontend and backend.
+
+    I completed a 6-month internship at TrialShopy, and currently I am working as a Software Engineer Intern, where I am gaining practical experience.
+
+    Apart from this, I also mentored juniors, organized sessions, and led the web team in a student group, which improved my leadership and communication skills.
+
+    I am eager to learn, take responsibility, and contribute to BPCL.”
+
+❓ “Tell me one challenge you faced while mentoring.”
+    “One challenge I faced while mentoring was that juniors had different learning speeds. Some understood concepts quickly, while others needed more time and simple explanations.
+
+    To handle this, I started using real-life examples and explained things step by step instead of jumping directly to complex topics.
+
+    Another issue I noticed was that many juniors didn’t know how to start web development properly. Most of them were just watching YouTube tutorials without building projects. So, I guided them with a proper roadmap — like first clearing basics of HTML, CSS, and JavaScript, then building small projects, and gradually moving to frameworks like React.
+
+    This approach helped them learn in a better way, and over time, everyone started improving.”
+
+
+Explain your intership project Trialshopy ?
+    “Sir, during my internship at TrialShopy, I worked on an e-commerce platform where my primary contribution was in both frontend and backend development.
+
+    On the frontend side, I developed more than 20 UI pages, focusing on creating a user-friendly and responsive interface. I also integrated APIs to ensure smooth data flow between the frontend and backend.
+
+    One of my key contributions was implementing product filtering features, such as filtering based on price, color, and other attributes, which helps users easily find products according to their preferences.
+
+    On the backend side, I worked on product-related APIs, where I handled data fetching, updates, and basic business logic. This gave me a better understanding of how backend systems support frontend functionality.
+
+    I worked in an Agile environment, where tasks were divided into sprints, and we had regular discussions with the team to track progress and resolve issues. This helped me understand the importance of teamwork, communication, and timely delivery.
+
+    Overall, this internship gave me hands-on experience in building scalable applications, working in a team, and understanding how real-world projects are developed and maintained.”
+
+Explain your project HealthDebug ?
+    My project is called HealthDebug. It is a healthcare website where patients can book appointments with doctors and also order medicines online.The goal is to save patients’ time, especially in smaller cities.
+     In tier-2 and tier-3 cities. People usually have to visit the hospital just to book an appointment and then come again later for the check-up, or they end up waiting for hours. To solve this, I built a system where patients can directly book appointments online with offline doctors. They get a proper time slot, which saves their time, and doctors can also manage their schedule more efficiently.
+      I even added a feature that shows the number of bookings for each doctor, so patients can plan better before choosing a slot.” The platform has different roles: patients, doctors, and admins. Patients can book and track their appointments, doctors can manage their schedule, and admins can handle overall operations.
+       I also built a medicine ordering system with secure PhonePe payment integration. On the technical side, I used JWT authentication for secure login. In the future, I plan to add notifications so patients get an alert when their turn is near or doctors can send message regarding their start to check-up time.
+
+what are the things learn from any intership ?
+    “Sir, one of the most important things I learned from my internship is that experience significantly improves efficiency and decision-making.
+
+    Initially, tasks that used to take me hours—like debugging or understanding a new requirement—now take much less time because I’ve developed a structured approach to solving problems.
+
+    Apart from that, I learned how real-world projects are different from academic work. In the industry, writing clean, maintainable, and scalable code is very important, not just making things work.
+
+    I also understood the importance of teamwork and communication—regularly discussing requirements, clarifying doubts early, and updating progress properly.
+
+    Another key learning was handling real-world constraints like deadlines and changing requirements, which taught me adaptability and prioritization.
+
+    Overall, the internship helped me move from a theoretical understanding to a more practical and professional mindset.”
+
+what did u do in four year of clg life apart from your studies?
+    “Sir, apart from academics, I focused on both technical development and contributing actively outside the classroom.
+
+    On the technical side, I worked consistently on improving my problem-solving skills by practicing data structures and algorithms, and I also built projects using the MERN stack to understand real-world application development.
+
+    Along with this, I was actively involved in student communities. I was part of a club called Think India and also associated with HackSlash, where I contributed to technical activities. In HackSlash, I had the opportunity to mentor juniors and also led the web team, where we worked on development-related tasks and coordination.
+
+    I also organized sessions for juniors, where I helped them understand basic concepts of coding and development. This experience improved my communication skills and also strengthened my own fundamentals.
+
+    Additionally, I participated in hackathons, which gave me exposure to working under time constraints, collaborating with a team, and quickly building solutions.
+
+    Overall, during my college years, I tried to maintain a balance between academics, technical skill-building, and leadership activities so that I develop both professionally and personally.”

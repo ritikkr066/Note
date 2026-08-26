@@ -1,0 +1,59 @@
+Ethernet is the most widely used LAN technology and mainly operates at the Physical and Data Link layers of the OSI model. Traditional Ethernet uses CSMA/CD (Carrier Sense Multiple Access with Collision Detection) to control access to a shared communication medium. Before transmitting, a station listens to the channel (Carrier Sense); if the channel is idle, it transmits. Since multiple devices can share the same medium (Multiple Access), collisions may occur when two stations transmit simultaneously. In Ethernet, collision detection is performed by the sender, not the receiver. When a collision is detected, the sender stops transmission, sends a jam signal, waits for a random time determined by the Binary Exponential Backoff algorithm, and retransmits. To ensure that collisions can be detected, Ethernet defines a minimum frame size of 64 bytes (512 bits).
+
+An Ethernet frame consists of Preamble, Destination MAC Address, Source MAC Address, Type/Length field, Data, and CRC. A MAC address is a unique 48-bit (6-byte) hardware address assigned to a network interface card. Ethernet supports unicast, multicast, and broadcast communication, where the broadcast MAC address is FF:FF:FF:FF:FF:FF. Error detection is performed using CRC (Cyclic Redundancy Check), which can detect transmission errors but cannot correct them. Standard Ethernet allows payload sizes from 46 to 1500 bytes, with a maximum frame size of 1518 bytes.
+
+In older Ethernet networks using hubs, all devices shared a common collision domain, making collisions possible. A hub operates at the Physical layer and forwards signals to all connected devices, whereas a switch operates at the Data Link layer and creates a separate collision domain for each port, effectively eliminating collisions. Modern switched Ethernet generally uses full-duplex communication, allowing simultaneous transmission and reception without collisions; therefore, CSMA/CD is no longer required in full-duplex switched networks. For PSU and CIL exams, remember these key facts: Ethernet uses CSMA/CD, collision detection is done by the sender, MAC address length is 48 bits, minimum frame size is 64 bytes, maximum payload is 1500 bytes, CRC is used for error detection, and switches eliminate collisions.
+
+30-Second Exam Revision
+    Ethernet → LAN technology
+    Access method → CSMA/CD
+    Collision detected by → Sender
+    Minimum frame size → 64 Bytes (512 bits)
+    Maximum payload → 1500 Bytes
+    MAC address → 48 bits (6 bytes)
+    Broadcast MAC → FF:FF:FF:FF:FF:FF
+    Error detection → CRC
+    Hub → Collisions possible
+    Switch → No collisions
+    Full Duplex → No CSMA/CD required
+
+
+..............................................................................................
+
+FLOW AND ERROR CONTROL
+An outstanding packet is: A packet that has been sent but whose ACK has not yet been received.
+
+Stop-and-Wait
+    Sender window size = 1
+    Receiver window size = 1
+    Outstanding frames = 1
+    Uses ACK and Timeout
+    Sequence numbers = 0 and 1
+    Also called Alternating Bit Protocol
+    Very low efficiency for long-distance links
+
+Go-Back-N ARQ is a sliding-window protocol in which the sender can transmit multiple frames without waiting for individual acknowledgments. If the sequence number field contains m bits, the maximum sender window size is 2^m − 1, while the receiver window size is always 1. The receiver accepts only the next expected frame and sends cumulative acknowledgments. If a frame is lost or damaged, the sender retransmits that frame and all subsequent frames after a timeout, which is why the protocol is called Go-Back-N. It provides better efficiency than Stop-and-Wait but may retransmit many correctly received frames.
+
+
+Selective Repeat ARQ is a sliding-window error control protocol in which both sender and receiver maintain windows of size 2^(m−1), where m is the number of sequence bits. Unlike Go-Back-N, the receiver can accept and buffer out-of-order frames. If a frame is lost, only that specific frame is retransmitted, reducing bandwidth wastage and improving efficiency. However, Selective Repeat requires additional memory and complexity because the receiver must store out-of-order frames until missing frames arrive. It is more efficient than both Stop-and-Wait and Go-Back-N and is widely used where transmission efficiency is important.
+
+
+Error control techniques are used to detect errors introduced during transmission. The simplest method is parity checking, where an extra bit is added to make the total number of 1s even or odd. Parity can reliably detect single-bit errors but may fail when multiple bits change. CRC (Cyclic Redundancy Check) is a more powerful error detection technique used in Ethernet. In CRC, the sender divides the dataword (with appended zeros) by a generator polynomial using modulo-2 division and appends the remainder to the frame. The receiver performs the same division; a non-zero remainder indicates that an error occurred during transmission. CRC is highly effective in detecting burst errors and multiple-bit errors.
+
+Parity → Detects single-bit errors.
+Checksum → Uses binary addition + 1's complement; used in IP/TCP/UDP.
+CRC → Uses modulo-2 division; used in Ethernet; strongest among these three for error detection.
+End-around carry is the key concept in checksum.
+
+TCP Slow Start is a congestion control mechanism in which the congestion window (cwnd) starts with a small value, usually 1 MSS, and doubles every RTT. Thus the growth pattern is 1, 2, 4, 8, 16, 32, and so on, which is exponential growth. Slow Start continues until the slow start threshold (ssthresh) is reached. After that, TCP enters Congestion Avoidance mode, where cwnd increases linearly by approximately 1 MSS per RTT. The purpose of Slow Start is to avoid overwhelming the network and causing congestion.
+
+Distance Vector Routing (DVR) is a routing technique in which routers know only the distance to destinations and exchange routing tables with their neighbors. It uses the Bellman-Ford algorithm and suffers from the count-to-infinity problem, resulting in slow convergence. RIP is a classic example of a Distance Vector protocol. Link State Routing (LSR), on the other hand, allows every router to build a complete map of the network by flooding Link State Packets (LSPs). It uses Dijkstra's shortest path algorithm, converges faster, avoids the count-to-infinity problem, and is used by OSPF.
+
+Memory Trick
+
+HTTP = 80
+HTTPS = 443
+FTP = 21
+SMTP = 25
+DNS = 53
+SSH = 22

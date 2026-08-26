@@ -1,4 +1,4 @@
-1. What is the difference between a process and a thread?
+,1. What is the difference between a process and a thread?
     A process is an independent program in execution with its own memory space, system resources, and OS scheduling. A thread is the smallest unit of execution inside a process and shares the process’s memory and resources.
     Example: A browser is a process; each tab might be a thread.
 

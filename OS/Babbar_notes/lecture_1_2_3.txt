@@ -3,7 +3,7 @@ An Operating System (OS) is a type of system software that acts as a bridge betw
 
 Without an OS, application developers would have to manually manage hardware like memory, CPU, and I/O devices. This would make apps large, error-prone, and inefficient. The OS simplifies this by abstracting hardware, protecting resources, and allocating them fairly among applications.
 
-✅ Functions of an Operating System
+✅ Functions of an Operating Systems
 The key roles of an OS include:
 
 Providing access to hardware.
